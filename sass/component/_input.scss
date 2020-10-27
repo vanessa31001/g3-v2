@@ -1,0 +1,81 @@
+.search_input{
+    font-size: 0;
+    width:360px;
+    position: relative;
+    margin: 10px;
+}
+
+.search_input input{
+    border: 1px solid #ced4da;
+    vertical-align: top;
+    padding:  0px 0px 0px 6px;
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    
+    margin: 10; /* Safari */
+}
+
+.search_input label{
+    display: inline-block;
+    border: 3px solid #00A5A3;
+    background-color: #00A5A3;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    width: 80px;
+    line-height: 40px;
+    text-align: center;
+    border-radius:10px;
+    position: absolute;
+    top: 0px;
+    right:0px;
+    
+}
+.search_input label:hover{
+    border: 3px solid #00A5A3;
+    background-color: white;
+    color: #00A5A3;
+    cursor: pointer;
+}
+.search_input input:focus{
+    background-color: #F3F8F4;
+}
+
+
+// ----------------------------------------
+
+.inputstyle{
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid $grayColor1;
+}
+.inputstyle:focus{
+    border: 2px solid $greenColor1;
+    background-color: 
+    #F3F8F4;
+}
+
+// ----------------------------------------------
+.selectstyle{
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid $grayColor1;
+}
+.selectstyle:focus{
+    border: 2px solid $greenColor1;
+    background-color: 
+    #F3F8F4;
+}
+
+.textareastyle{
+    border-radius: 3px;
+    border: 1px solid $grayColor1;
+}
+.textareastyle:focus{
+    border: 2px solid $greenColor1;
+    background-color: 
+    #F3F8F4;
+}

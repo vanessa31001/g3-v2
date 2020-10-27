@@ -1,0 +1,339 @@
+
+.bg{
+    // border:1px solid rgb(30, 131, 21); 
+    padding: 20px;
+    margin: 10px 0 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.bg3{
+    // border:1px solid rgb(30, 131, 21); 
+    padding: 20px;
+
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.space{
+    height: 40px;
+}
+
+.one{
+    // border:1px solid rgb(144, 103, 216); 
+
+}
+
+@media screen and (max-width: 576px){
+    .one{
+        // padding-left: 20px;
+    }
+
+}
+
+.two{
+    // border:1px solid rgb(153, 219, 29); 
+    // margin-top: 60px;
+    // line-height: 55px;
+    width: 100%;
+    // margin-top: 70px;
+}
+
+.two-title{
+    // color: #007E85;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.three{
+    // border:1px solid rgb(219, 29, 194); 
+    text-align: center;
+    width: 20%;
+}
+
+.three img{
+
+    width: 100%;
+}
+
+.two , .three{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.four{
+    // border: 1px solid rgb(245, 200, 18); 
+    width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+    background-image: url("./../pic/aboutus/pic1_3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 420px;
+    display:flex;
+    align-items: center;//(logo垂直置中)
+    justify-content: center;//(logo水平置中)
+    // position: relative;
+    
+
+
+
+}
+
+
+
+//服務項目
+.bg2{ 
+    // border: 1px solid rgb(30, 131, 21); 
+    padding: 20px;
+    margin: 10px 0 20px;
+    background-color: white;
+    border-radius: 10px;
+    // text-align: center;
+
+}
+
+.service_icon{
+    // border: 2px solid rgb(245, 44, 18); 
+    display: flex;  
+    flex-wrap: no-wrap;  
+    justify-content: space-evenly;
+    padding-top: 20px;
+}
+
+.service_icon_1{
+    // border: 2px solid rgb(36, 192, 70); 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 20px;
+    // padding: 0 40px;
+    //flex-wrap: wrap;  
+    flex: 16%;
+}
+
+.icon{
+    // border: 1px solid rgb(18, 41, 245); 
+    // margin: 20px;
+}
+
+.icon_title{
+    // border: 2px solid rgb(125, 23, 243); 
+}
+
+//服務團隊
+
+.member_pic{
+    // border: 2px solid rgb(245, 44, 18); 
+    display: flex;  
+    flex-wrap: wrap;  
+    justify-content: center;
+    padding-top: 20px;
+    .member_pic_1{
+        padding: 30px;
+        // border: 1px solid rgb(36, 192, 70); 
+        text-align: center;
+        flex-basis: 25%;
+        img{
+            max-width: 300px;
+            width: 100%;
+        }
+    }
+}
+
+//聯絡我們
+
+
+.contact_all1{
+    // border: 3px solid rgb(255, 170, 12);
+    color: #4B4848;
+    vertical-align: top;
+    // margin-top: 34px;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;  
+    // justify-content: flex-end;
+    
+
+}
+
+.five{
+    // border: 2px solid rgb(77, 11, 162); 
+    width: 40%;
+    background-image: url("./../pic/aboutus/pic2_1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 767px){
+    .five{
+        display: none;
+        width: 100%;
+    }
+
+}
+
+
+.the_form{
+    // border: 2px solid rgb(245, 18, 219); 
+    width: 60%;
+    padding: 0 20px;
+    .the_fore_title{
+        // border: 2px solid rgb(77, 11, 162); 
+        padding: 0 0 20px 0;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .the_form{
+        width: 100%;
+    }
+}
+
+
+
+
+div.item_block{
+    // border: 2px solid rgb(245, 44, 18); 
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+div.item_block > label{
+    // border: 2px solid rgb(26, 236, 93); 
+    width: 120px;
+    text-align: right;
+    color: #626262;
+    font-size: 16px;
+    /* vertical-align: top; */
+    line-height: 34px;
+    height: 34px;
+}
+
+div.item_block > input{
+    // border: 2px solid rgb(131, 26, 236); 
+    height: 30px;
+    font-size: 16px;
+    padding: 0 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+    opacity: 0.7;
+    // width: 360px
+    
+}
+
+div.item_block textarea.notes{
+    width: calc(100% - 100px);
+    vertical-align: top;
+    height: 120px;
+    border-radius: 5px;
+    resize:vertical;
+}
+@media screen and (max-width: 767px){
+    div.item_block textarea.notes{
+        display: block;
+        width: 100%;
+    }
+}
+
+//兩個按鈕
+div.btn_submit_all{
+    // border: 2px solid rgb(18, 245, 18); 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;  
+    align-items: center;//(logo垂直置中)
+
+    // padding-right: 55px;
+}
+
+label{
+    /* border: 1px solid blue; */
+}
+
+div.btn_submit2{
+    /* border: 2px solid red; */
+    margin-left: 20px;
+    /* text-align: right; */
+}
+
+@media (max-width: 375px) {
+    form.the_form{
+        width: 100%;
+        /* color: red; */
+        margin-right: 0px;
+        padding-right: 20px;
+        padding-left: 20px;
+}
+
+    div.btn_submit_all{
+        justify-content: center;
+        padding-right: 0px;
+    }
+
+}
+  
+
+
+
+
+
+
+@media screen and (max-width: 767px){
+    .service_icon{
+        flex-wrap: wrap;
+        .service_icon_1{
+            flex-wrap: wrap;
+            flex-basis: 33%;
+            max-width: 160px;
+            width: 100%;
+            img{
+                max-width: 160px;
+            width: 100%;
+            }
+        }
+    }
+
+    .member_pic{
+        flex-wrap: wrap;
+        .service_icon_1{
+            flex-wrap: wrap;
+            flex-basis: 25%;
+        }
+    }
+
+    .member_pic{
+        .member_pic_1{
+            flex-basis: 50%;
+            img{
+                max-width: 350px;
+                width: 100%;
+            }
+        }
+    }
+
+    .three{
+        width: 35%;
+    }
+
+}
+
+@media screen and (max-width: 545px){
+    .two , .three{
+        display: block;
+        margin: 0 auto;
+    }
+
+    .two{
+
+        width: 100%;
+    }
+
+}
+
+
+
+
+

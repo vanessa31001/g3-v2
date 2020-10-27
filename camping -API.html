@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>營區攻略</title>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/1017_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header >
+        <div class="forphone">
+        <button class="hamburger hamburger--spring" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        </div>
+        <nav class="wrap">
+            <div class="nav_logo">
+                <a href="#" class="logo_link -bottom">
+                    <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                </a>
+                <a class="changelogo" href="./shansen.html">
+                <img class="phone" src="./pic/commom/手機_header.svg">
+                </a>
+                <div class="middle_bg"></div>
+                <a href="./shansen.html" class="logo_link -up">
+                    <img class="desk" src="./pic/commom/電腦版_header.svg">
+                </a>
+            </div>
+            <div class="nav_list">
+                <ul >
+                    <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                    <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
+                    <li><a class="nav_title orange2" href="./camping.html">營區攻略</a></li>
+                    <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                    <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                    <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="bgcColor page">
+
+    <section class="section1">
+        <div class="wrap">
+            <div class="title">營區攻略</div>
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>
+                    <li class="level0 gray1">營區攻略</li>
+                </ul>
+            </div>
+            <div class="spot camping_block">
+                <div id="weatherbox">
+                    <div class="sub_title">尋找營區</div>
+                    <div id="app"></div>
+                </div>
+                
+                <div id="map" class="map"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="wrap">
+            <div class="title">熱門營區</div>
+            <div class="popular_area camping_block">
+                <div class="hot">
+                    <p class="white">熱門景點</p>
+                </div>
+                <div class="area_pic">
+                    <img src="./pic/camping/北1-1.jpg" alt="">
+                </div>
+                <div class="area_info">
+                    <div class="sub_title">確幸莊園
+                        <div class="third_title coll_num">收藏數：888</div>
+                    </div>
+                    <div class="level1">位於新北市新店區的「確幸莊園」
+                        為台北市近郊的露營區，前身為婚紗拍攝地
+                        車程近、營區寬敞、景色優質，非常適合愛拍照又愛戶外露營的露友喔！</div>
+                    <div class="third_title">聯絡資訊</div>
+                    <div class="level1">
+                        地址：新北市新店區新潭路二段27號<br>
+                        通話：02 2918 8769</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="other_popular_area">
+                <div class="card camping_block">
+                    <div class="content">
+                        <img src="./pic/camping/北2-1.jpg" alt="">
+                        <div class="sub_title">森森親子露營</div>
+                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                    </div>
+                </div>
+                <div class="card camping_block">
+                    <div class="content">
+                        <img src="./pic/camping/北5-1.jpg" alt="">
+                        <div class="sub_title">相思園露營區</div>
+                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                    </div>
+                </div>
+                <div class="card camping_block">
+                    <div class="content">
+                        <img src="./pic/camping/中2-1.jpg" alt="">
+                        <div class="sub_title">樹不老露營區</div>
+                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                    </div>
+                </div>
+                <div class="card camping_block">
+                    <div class="content">
+                        <img src="./pic/camping/南1-1.jpg" alt="">
+                        <div class="sub_title">春園休閒農場</div>
+                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="title">近期揪團</div>
+            <div class="camping_block">
+                <div class="currently_gruop">
+                    <div class="card">
+                        <img src="./pic/camping/北2-2.jpg" alt="">
+                        <div class="text">
+                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
+                            <div class="sub_title">相思園露營區</div>
+                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./pic/camping/北2-3.jpg" alt="">
+                        <div class="text">
+                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
+                            <div class="sub_title">相思園露營區</div>
+                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./pic/camping/北2-5.jpg" alt="">
+                        <div class="text">
+                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
+                            <div class="sub_title">相思園露營區</div>
+                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="camping_btn">
+                    <button class="mainbtn1 more_btn">看更多精選</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    <footer>
+        <div class="footer_bgc">
+            <div class="wrap">
+                <div class="footerarrange">
+                    <div class="footright">
+                        <div class="level2 green1">聯絡資訊 |</div>
+                        <div class="level0 green1">
+                            電子信箱|ShanSen@gmail.com<br>
+                            營業時間|週二至週日 10:00~20:00(國定假日休假)
+                        </div>
+                    </div>
+                    <div class="footercenter">
+                        <a href="./shansen.html">
+                            <img src="./pic/commom/電腦版_header.svg">
+                        </a>
+                    </div>
+                    <div class="footerright">
+                        <div class="link">
+                            <div class="level2 green1">相關連結 |</div>
+                            <div class="footer_icon">
+                                <img src="./pic/commom/foot_line.svg" alt="">
+                                <img src="./pic/commom/foot_ig.svg" alt="">
+                                <img src="./pic/commom/foot_fb.svg" alt="">
+                                <img src="./pic/commom/foot_email.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">Copyright &copy; 2020ShanSen</div>
+    </footer>
+
+    <script>
+        var map;
+
+        map =L.map('map', {
+                center: [ 24.926455,121.526396], // 中心點座標
+                zoom: 12, // 0 - 18
+                attributionControl: true, // 是否秀出「leaflet」的貢獻標記
+                zoomControl: true , // 是否秀出 - + 按鈕
+                });
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+
+        //建立地標
+        var marker = L.marker([ 24.926455,121.526396]);
+        marker.addTo(map);
+        marker.bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>確幸莊園</a><br>目前開團:2組");
+        
+
+        //讀取 GeoJSON，加入行政區邊界
+        // $.getJSON('https://1999.noob.tw/data/kaohsiung.json', function(r){
+        //     L.geoJSON(r, {color: '#333', weight: 0.7}).addTo(map);
+        // })
+        function onlick(){
+            $(marker).openPopup();
+        }
+
+    </script>
+
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="cities.js"></script>
+    <script>
+        $(function(){
+            
+            // hamburger icon 的切換
+            $("button.hamburger").on("click", function(){
+                $(this).toggleClass("is-active");
+                $('.nav_list').slideToggle();
+    
+                });
+            });
+    </script>
+    <script>
+
+        Vue.component('Select', {
+            props: ['value', 'options', 'label'],
+            computed: {
+                index: {
+                    get() {
+                    return this.value;
+                    },
+                    set(val) {
+                    this.$emit("input", val);
+                    }
+                }
+            },
+            methods: {
+                optionText(item) {    	
+                    if( this.label === 'text' ) {
+                    return item["text"];
+                    }
+                    else {
+                    return eval("item." + this.label);
+                    }
+                    
+                }
+            },
+            template: 
+            `  	
+            <select v-model="index">    	
+                <option v-for="(item, index) in options" :value="index">{{optionText(item)}}</option>
+            </select>    	
+            `
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+            cityIndex: 0,
+            areaIndex: 0,
+            weather:'',
+            },
+            watch: {
+            areaIndex() {
+                this.cityIndex = 0;
+            }
+            },
+            computed: {
+            areas() {
+                return spots;
+            },
+            cities() {
+                return spots[this.areaIndex].city;
+            },
+
+            },
+            mounted() {
+                axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-071?Authorization=CWB-FA772AA0-8D0C-4FEF-B569-7DE1EEF2453D&format=JSON&locationName=%E6%96%B0%E5%BA%97%E5%8D%80&elementName=MinT,MaxT,Wind,Td,PoP12h,T,RH,Wx,WeatherDescription').then(data => {
+                // console.log(data)
+                this.weather_data = data.data.cwbopendata.dataset.locations.location;
+                
+            })
+            },
+            template: 
+            `
+            <div>
+
+            <div class="weather">
+                <div class="weathernow">
+                    <!-- 地區搜尋 -->
+                    <div class="search_area">
+                        <p>
+                            <label class="third_title" for="">選擇地區:</label>
+                            <Select v-model="areaIndex" :options="spots" label="area" ></Select>
+                        </p>
+                        <p>
+                            <label class="third_title" for="">選擇營地:</label>
+                            <Select v-model="cityIndex" :options="cities" label="text"></Select>
+                        </p>
+                        <!--<div>{{ this.areaIndex }} - {{ this.cityIndex }} </div>-->
+                    </div>
+                        
+                    <!-- 溫度、降雨、濕度 -->
+                    <div class="infos">
+                        <div class="NowT infosbox">
+                            <p class="title">22oC</p>
+                            <div class="TtoT">
+                                <span id=MinT>19oC</span>~
+                                <span id=MaxT>23oC</span>
+                            </div>
+                        </div>
+                        <div class="PoP infosbox">
+                            降雨機率
+                            <p id="PoP">{{}}</p>
+                        </div>
+                        <div class="RH infosbox">
+                            相對溼度
+                            <p id="RH">78%</p>
+                        </div>
+                    </div>
+                    <!-- 未來一周 -->
+                    <div class="weatherweek">
+                        <div class="day1 week">
+                            <p class="day" id="date1">21</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day2 week">
+                            <p class="day" id="date2">22</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day3 week">
+                            <p class="day" id="date3">23</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day4 week">
+                            <p class="day" id="date4">24</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day5 week">
+                            <p class="day" id="date5">25</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day6 week">
+                            <p class="day" id="date6">26</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                        <div class="day7 week">
+                            <p class="day" id="date7">27</p>
+                            <p class="temp" id="LowT">20oC</p>
+                            <p class="temp" id="HightT">22oC</p>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <!-- 氣象描述 -->
+                    <div class="weatherdesc">
+                        <p id="weatherp" class="level1">陰天。降雨機率 10%。溫度攝氏22至24度。
+                            舒適。東北風 風速2級(每秒3公尺)。相對濕度74%。</p><br>
+                        <div class="level1">更新時間：<span class="nowTime">年月日時分秒</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+    </script>
+
+
+    <!-- <script>
+        let N1data;
+        $(function (N1) {
+            $.ajax({
+                type: "GET",
+                url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-071?Authorization=CWB-FA772AA0-8D0C-4FEF-B569-7DE1EEF2453D&format=JSON&locationName=%E6%96%B0%E5%BA%97%E5%8D%80&elementName=MinT,MaxT,Wind,Td,PoP12h,T,RH,Wx,WeatherDescription",
+                dataType: "json",
+                error: function (e) {
+                    // console.log('oh no');
+                },
+                success: function (N1data) {
+                    // console.log(N1)
+                    N1data= N1;
+                }
+            });
+        });
+
+        let N2data;
+        $(function (N2) {
+            $.ajax({
+                type: "GET",
+                url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-071?Authorization=CWB-FA772AA0-8D0C-4FEF-B569-7DE1EEF2453D&format=JSON&locationName=%E5%8C%97%E6%8A%95%E5%8D%80&elementName=MinT,MaxT,Wind,Td,PoP12h,T,RH,Wx,WeatherDescription",
+                dataType: "json",
+                error: function (e) {
+                    // console.log('oh no');
+                },
+                success: function (N2data) {
+                    // console.log(N1)
+                    N2data= N2;
+                }
+            });
+        });
+
+        let AreaDataArray = ["N1data", "N2data"];
+
+function RenderWeather(AreaData){
+    // 天氣敘述
+    $id('weatherp').innerHTML = AreaData.records.locations[0].location[0].weatherElement[5].time[0].elementValue[0].value
+    // 渲染日期 
+    $id('date1').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[1].startTime.slice(8,10);
+    $id('date2').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[3].startTime.slice(8,10);
+    $id('date3').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[5].startTime.slice(8,10);
+    $id('date4').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[7].startTime.slice(8,10);
+    $id('date5').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[9].startTime.slice(8,10);
+    $id('date6').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[11].startTime.slice(8,10);
+    $id('date7').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[13].startTime.slice(8,10);
+    // 渲染早上平均溫度
+    $id('Ttop1').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[1].elementValue[0].value + '°C'
+    $id('Ttop2').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[3].elementValue[0].value + '°C'
+    $id('Ttop3').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[5].elementValue[0].value + '°C'
+    $id('Ttop4').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[7].elementValue[0].value + '°C'
+    $id('Ttop5').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[9].elementValue[0].value + '°C'
+    $id('Ttop6').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[11].elementValue[0].value + '°C'
+    $id('Ttop7').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[13].elementValue[0].value + '°C'
+    // 渲染晚上平均溫度
+    $id('Tbutton1').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[2].elementValue[0].value + '°C'
+    $id('Tbutton2').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[4].elementValue[0].value + '°C'
+    $id('Tbutton3').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[6].elementValue[0].value + '°C'
+    $id('Tbutton4').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[8].elementValue[0].value + '°C'
+    $id('Tbutton5').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[10].elementValue[0].value + '°C'
+    $id('Tbutton6').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[12].elementValue[0].value + '°C'
+    if (AreaData.records.locations[0].location[0].weatherElement[1].length === 15) {
+        $id('Tbutton7').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[14].elementValue[0].value + '°C'
+    }   else    {
+        $id('Tbutton7').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[13].elementValue[0].value + '°C'
+    }
+    // 渲染當下溫度、最低溫、最高溫、降雨機率、相對濕度
+    $id('NowT').innerText = AreaData.records.locations[0].location[0].weatherElement[1].time[0].elementValue[0].value + '°C'
+    $id('MinT').innerText = AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value + '°C'
+    $id('MaxT').innerText = AreaData.records.locations[0].location[0].weatherElement[6].time[0].elementValue[0].value + '°C'
+    $id('PoP').innerText = AreaData.records.locations[0].location[0].weatherElement[0].time[0].elementValue[0].value + '%'
+    $id('RH').innerText = AreaData.records.locations[0].location[0].weatherElement[2].time[0].elementValue[0].value + '%'
+}
+    </script> -->
+
+
+</body>
+</html>

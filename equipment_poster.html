@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備交換</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header >
+            <div class="forphone">
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            </div>
+            <nav class="wrap">
+                <div class="nav_logo">
+                    <a href="#" class="logo_link -bottom">
+                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                    </a>
+                    <a class="changelogo" href="./shansen.html">
+                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    </a>
+                    <div class="middle_bg"></div>
+                    <a href="./shansen.html" class="logo_link -up">
+                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                    </a>
+                </div>
+                <div class="nav_list">
+                    <ul >
+                        <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                        <li><a class="nav_title orange2" href="./equipment.html">設備交換</a></li>
+                        <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                        <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                        <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class=" bgcColor bg_dis">
+        <section class="section1 bgcColor">
+            <div class="wrap">
+                <div class="title">
+                    設備交換
+                </div>
+
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>        
+                        <li><a href="equipment.html" class="level0 green1">設備交換</a></li>
+                        <li><a href="equipment.html" class="level0 green1">露營帳篷</a></li>
+                        <li class="level0 gray1">Outdoorbase 家庭露營帳</li>
+                    </ul>    
+                </div>
+
+                <div class="equ_container">
+                    <div class="equbar">
+                        <div class="nav">
+                            <div class="title_btn_block">
+                                <div class="equipment_select_title">
+                                <h2 class="level7 green1">搜尋設備</h2>
+                                </div>
+                                <div class="post_btn">
+                                    <a href="equipment_post.html">
+                                        <button class="secondbtn1">我要刊登商品</button>
+                                    </a>    
+                                </div>
+                            </div>
+                            <!-- <hr> -->
+                            <div class="equlist_block">
+                                <div class="equlist">
+                                    <!-- <img src="pic/equipment/icon01.png" alt="">                    -->
+                                    <h3>
+                                    <a class="level2 green1" href="">所有商品</a></h3>
+                                </div>        
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a  class="level2 green1" href="">露營帳篷</a></h3>
+                                    <div v-for="tent in tents"><a class="level2 gray1 minsorts" href="">{{tent}}</a></div>    
+                                </div>
+                                <hr>        
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a class="level2 green1" href="">睡袋</a></h3>
+                                    <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
+                                </div>  
+                                <hr>      
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a class="level2 green1" href="">其他</a></h3>
+                                    <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
+                                </div>
+                            </div>
+                            
+                        </div>    
+                    </div>
+
+                    <div class="equmain">
+                        <div class="equpic">
+                            <div class="bigimg">
+                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            </div>
+                            <div class="minimg">
+                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            </div>
+
+                            <div class="poster_inform">
+                                <h4 class="third_title poster">刊登會員資訊</h4>
+                                <div class="inform_block01">
+                                    <div class="inform_block02">
+                                        <div class="inform_block02_pic">
+                                            <a href=""><img src="pic/equipment/member.png" alt=""></a>
+                                        </div>
+                                        <div class="inform_block02_text">
+                                            <h4><a href="" class="third_title level2">Yong Hwa</a></h4>
+                                            <p class="level1 gray1">會員等級：鑽石</p>
+                                        </div>                               
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="equdescribe">
+                            <div class="sub_title green1 level7">NUIT 家庭帳篷六人帳蓬</div>
+                            <div class="third_title level2 equ_third">商品說明</div>
+                            <p class="level1 gray1">✔270標準大內帳，搭配L號充氣床，小資族也能享受舒適露營。</p>
+                            <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
+                            <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
+                            <p class="level1 gray1">✔可收闔的兩頁式後門，全黑膠塗層，阻隔刺眼陽光。</p>
+                            <p class="level1 gray1">✔大片前延系統，強化遮光擋雨片。</p>
+                            <p class="level1 gray1">✔頂級3000mm耐水壓，高防水等級。</p>
+
+                            <div class="third_title level2 equ_third">商品規格</div>
+                            <p class="level1 gray1">✔外帳/75D 185T Polyester聚酯纖維 黑膠塗層、縫線防水貼條 耐水壓PU3000mm。</p>
+                            <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
+                            <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
+                            
+                            
+                        </div>
+
+                        
+                    </div> 
+                </div>                      
+            </div>
+        </section>
+        <section class="bgcColor bg_dis">
+            <div class="wrap">
+                <div class="title">
+                    其他設備
+                </div>
+
+                <div class="other_equ">
+                    <div class="other_equ_block">
+                        <a href="" class="level2 gray1">
+                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        NUIT 家庭帳篷六人帳蓬
+                        </a>
+                    </div>
+                    <div class="other_equ_block">
+                        <a href="" class="level2 gray1">
+                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        NUIT 家庭帳篷六人帳蓬
+                        </a>
+                    </div>
+                    <div class="other_equ_block">
+                        <a href="" class="level2 gray1">
+                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        NUIT 家庭帳篷六人帳蓬
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bgcColor">
+            <div class="wrap">
+                <div class="title">
+                    誰來交換
+                </div>
+
+                <div class="change_block">
+                    <div class="change_min_block01">
+
+                        <!-- <div class="num_pic_desc_block"> -->
+                            <div class="change_min_block01_num">
+                                <h3 class="level1 green1 change_tit">#1</h3>
+                            </div>
+                            <div class="change_min_block01_pic">
+                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            </div>
+                            <div class="change_min_block01_desc">
+                                <div class="third_title level1">商品說明</div>
+                                <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
+                                <div class="third_title level1 equ_num">商品數量</div>
+                                <p class="level1 gray1">1個</p>
+                            </div>
+                        <!-- </div> -->
+                        
+                        <div class="change_min_block01_mem">
+                            <div class="change_min_block01_mem_pic">
+                                <a href=""><img src="pic/equipment/memb02.png" alt=""></a>
+                            </div>
+                            <div class="change_min_block01_text">
+                                <h4><a href="" class="third_title level2">Allison Lin</a></h4>
+                                <p class="level1 gray1">會員等級：鑽石</p>
+                            </div>  
+                            <div class="change_btn_block">
+                                <button class="secondbtn1 change_btn">交換</button>
+                            </div>                          
+                        </div>                        
+                    </div>
+
+                    <div class="change_min_block01">
+                        <div class="change_min_block01_num">
+                            <h3 class="level1 green1 change_tit">#2</h3>
+                        </div>
+                        <div class="change_min_block01_pic">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        </div>
+                        <div class="change_min_block01_desc">
+                            <div class="third_title level1">商品說明</div>
+                            <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
+                            <div class="third_title level1 equ_num">商品數量</div>
+                            <p class="level1 gray1">1個</p>
+                        </div>
+                        <div class="change_min_block01_mem">
+                            <div class="change_min_block01_mem_pic">
+                                <a href=""><img src="pic/equipment/memb03.jpg" alt=""></a>
+                            </div>
+                            <div class="change_min_block01_text">
+                                <h4><a href="" class="third_title level2">Arrow Wei</a></h4>
+                                <p class="level1 gray1">會員等級：鑽石</p>
+                            </div>  
+                            <div class="change_btn_block">
+                                <button class="secondbtn1 change_btn">交換</button>
+                            </div>                          
+                        </div>                        
+                    </div>
+
+                    <div class="change_min_block01">
+                        <div class="change_min_block01_num">
+                            <h3 class="level1 green1 change_tit">#3</h3>
+                        </div>
+                        <div class="change_min_block01_pic">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        </div>                        
+                        <div class="change_min_block01_desc">
+                            <div class="third_title level1">商品說明</div>
+                            <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
+                            <div class="third_title level1 equ_num">商品數量</div>
+                            <p class="level1 gray1">1個</p>
+                        </div>
+                        <div class="change_min_block01_mem">
+                            <div class="change_min_block01_mem_pic">
+                                <a href=""><img src="pic/equipment/memb04.jpg" alt=""></a>
+                            </div>
+                            <div class="change_min_block01_text">
+                                <h4><a href="" class="third_title level2">Greg Hsu</a></h4>
+                                <p class="level1 gray1">會員等級：鑽石</p>
+                            </div>
+
+                            <div class="change_btn_block">
+                                <button class="secondbtn1 change_btn">交換</button>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>  
+
+        <footer>
+            <div class="footer_bgc">
+                <div class="wrap">
+                    <div class="footerarrange">
+                        <div class="footright">
+                            <div class="level2 green1">聯絡資訊 |</div>
+                            <div class="level0 green1">
+                                電子信箱|ShanSen@gmail.com<br>
+                                營業時間|週二至週日 10:00~20:00(國定假日休假)
+                            </div>
+                        </div>
+                        <div class="footercenter">
+                            <a href="./shansen.html">
+                                <img src="./pic/commom/電腦版_header.svg">
+                            </a>
+                        </div>
+                        <div class="footerright">
+                            <div class="link">
+                                <div class="level2 green1">相關連結 |</div>
+                                <div class="footer_icon">
+                                    <img src="./pic/commom/foot_line.svg" alt="">
+                                    <img src="./pic/commom/foot_ig.svg" alt="">
+                                    <img src="./pic/commom/foot_fb.svg" alt="">
+                                    <img src="./pic/commom/foot_email.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">Copyright &copy; 2020ShanSen</div>
+        </footer>
+    </div>
+    
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {  
+                tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
+                sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
+                others: ['桌椅','炊具','小物'],       
+                
+            },
+            methods: {
+
+            },
+            computed: {
+            },
+            watch: { 
+            },
+        });
+    </script>
+    <script>
+        $(function(){
+            
+            // hamburger icon 的切換
+            $("button.hamburger").on("click", function(){
+                $(this).toggleClass("is-active");
+                $('.nav_list').slideToggle();
+
+                });
+            });
+    </script>
+
+
+</body>
+</html>

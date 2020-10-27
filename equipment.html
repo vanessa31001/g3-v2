@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備交換</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header >
+            <div class="forphone">
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            </div>
+            <nav class="wrap">
+                <div class="nav_logo">
+                    <a href="#" class="logo_link -bottom">
+                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                    </a>
+                    <a class="changelogo" href="./shansen.html">
+                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    </a>
+                    <div class="middle_bg"></div>
+                    <a href="./shansen.html" class="logo_link -up">
+                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                    </a>
+                </div>
+                <div class="nav_list">
+                    <ul >
+                        <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                        <li><a class="nav_title orange2" href="./equipment_product.html">設備交換</a></li>
+                        <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                        <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                        <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="bgcColor bg_dis">
+        <section class="section1 bgcColor">
+            <div class="wrap">
+                <div class="title">
+                    設備交換
+                </div>
+
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>        
+                        <li class="level0 gray1">設備交換</li>
+                    </ul>    
+                </div>
+
+                <div class="equ_select">
+                    <div class="select01">
+                        <label class="bold level5 gray1 select_text1" for="sel_text">我想交換的</label>
+                        <select class="equ_select_bar" name="equ_sort" id="equ_sort">
+                            <optgroup label="帳篷">
+                                <option value="" disabled selected hidden>請選擇類別</option>
+                                <option value="family">家庭帳</option>
+                                <option value="small">小型帳</option>
+                                <option value="livingroom">客廳帳</option>
+                                <option value="cloth">更衣帳</option>
+                                <option value="cook">炊事帳</option>
+                            </optgroup>
+                            <optgroup label="睡袋">
+                                <option value="adult">成人睡袋</option>
+                                <option value="kid">兒童睡袋</option>
+                                <option value="couple">雙人睡袋</option>
+                            </optgroup>
+                            <optgroup label="其他">
+                                <option value="tabchai">桌椅</option>
+                                <option value="cooing">炊具</option>
+                                <option value="material">小物</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="select02">
+                        <label class="bold level5 gray1 select_text2" for="sel_text">其他人想交換的</label>
+                        <select class="equ_select_bar" name="equ_sort" id="equ_sort">
+                            <optgroup label="帳篷">
+                                <option value="" disabled selected hidden>請選擇類別</option>
+                                <option value="family">家庭帳</option>
+                                <option value="small">小型帳</option>
+                                <option value="livingroom">客廳帳</option>
+                                <option value="cloth">更衣帳</option>
+                                <option value="cook">炊事帳</option>
+                            </optgroup>
+                            <optgroup label="睡袋">
+                                <option value="adult">成人睡袋</option>
+                                <option value="kid">兒童睡袋</option>
+                                <option value="couple">雙人睡袋</option>
+                            </optgroup>
+                            <optgroup label="其他">
+                                <option value="tabchai">桌椅</option>
+                                <option value="cooing">炊具</option>
+                                <option value="material">小物</option>
+                            </optgroup>
+                        </select>
+                    </div>  
+                </div>
+
+                <div class="equ_container">
+                    <div class="equbar">
+                        <div class="nav">
+                            <div class="title_btn_block">
+                                <div class="equipment_select_title">
+                                <h2 class="level7 green1">搜尋設備</h2>
+                                </div>
+                                <div class="post_btn">
+                                    <a href="./equipment_post.html">
+                                        <button class="secondbtn1">我要刊登商品</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <hr> -->
+                            <div class="equlist_block">
+                                <div class="equlist">
+                                    <!-- <img src="pic/equipment/icon01.png" alt="">                    -->
+                                    <h3>
+                                    <a class="level2 green1" href="">所有商品</a></h3>
+                                </div>        
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a  class="level2 green1" href="">露營帳篷</a></h3>
+                                    <div v-for="tent in tents"><a class="level2 gray1 minsorts" href="">{{tent}}</a></div>    
+                                </div>
+                                <hr>        
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a class="level2 green1" href="">睡袋</a></h3>
+                                    <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
+                                </div>  
+                                <hr>      
+                                <div class="equlist">                   
+                                    <h3>
+                                    <a class="level2 green1" href="">其他</a></h3>
+                                    <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
+                                </div>
+                            </div>
+                            
+                        </div>    
+                    </div>
+
+                    <div class="equmain_all">
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                        <div class="equ_card1">
+                            <a href="./equipment_product.html">
+                                <div class="equ_img1">
+                                    <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                </div>            
+                            </a>
+                            <div class="equ_text">
+                                <a href="./equipment_product.html">
+                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                </a>
+                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
+                            </div>       
+                        </div>
+                    </div>       
+                </div>                       
+            </div>
+        </section>
+        
+        </div>  
+
+        <footer>
+            <div class="footer_bgc">
+                <div class="wrap">
+                    <div class="footerarrange">
+                        <div class="footright">
+                            <div class="level2 green1">聯絡資訊 |</div>
+                            <div class="level0 green1">
+                                電子信箱|ShanSen@gmail.com<br>
+                                營業時間|週二至週日 10:00~20:00(國定假日休假)
+                            </div>
+                        </div>
+                        <div class="footercenter">
+                            <a href="./shansen.html">
+                                <img src="./pic/commom/電腦版_header.svg">
+                            </a>
+                        </div>
+                        <div class="footerright">
+                            <div class="link">
+                                <div class="level2 green1">相關連結 |</div>
+                                <div class="footer_icon">
+                                    <img src="./pic/commom/foot_line.svg" alt="">
+                                    <img src="./pic/commom/foot_ig.svg" alt="">
+                                    <img src="./pic/commom/foot_fb.svg" alt="">
+                                    <img src="./pic/commom/foot_email.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">Copyright &copy; 2020ShanSen</div>
+        </footer>
+    </div>
+    
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {  
+                tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
+                sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
+                others: ['桌椅','炊具','小物'],       
+                
+            },
+            methods: {
+
+            },
+            computed: {
+            },
+            watch: { 
+            },
+        });
+    </script>
+    <script>
+        $(function(){
+            
+            // hamburger icon 的切換
+            $("button.hamburger").on("click", function(){
+                $(this).toggleClass("is-active");
+                $('.nav_list').slideToggle();
+
+                });
+            });
+    </script>
+
+
+</body>
+</html>

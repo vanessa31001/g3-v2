@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>規範</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+
+        .rule{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin:20px auto;
+            width: 850px;
+            background-color: #fff;
+            opacity: 0.8;
+        }
+        .rule legend._text{
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .Heading {
+            display: flex;
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .Heading p{
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .Logotype img{
+            width: 120px;
+            display: block;
+        }
+        .Logotype{
+            display: block;
+        }
+        .type{
+            display: flex;
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .type1 p{
+            font-size: 30px;
+            font-weight: 600;
+            width: 500px;
+            margin: 10px 0;
+        }
+        .Regular ,.Bold{
+            width: 500px;
+        }
+        .each_title{
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .each_title p{
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .each_button{
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .each_button ._text{
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .each_button p{
+            margin: 10px 0;
+        }
+        .rule_search_bar{
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .rule_search_bar p{
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .rule_collect{
+            width: 1000px;
+            border-bottom: 2px dotted black;
+            margin: 0 auto;
+        }
+        .rule_collect ._text{
+            font-size: 30px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .rule_collect p{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <fieldset class="rule">
+        <legend class="_text">規範</legend>
+    <div class="type">
+        <div class="type1">
+            <p>Logotype</p>
+            <img src="../pic/commom/電腦版_header.svg">
+        </div>
+        <div class="type1">
+            <p>Fonts</p>
+            <div class="level11">思源黑體  Noto Sans CJK TC</div>
+            <div class="level11 bold">思源黑體  Noto Sans CJK TC</div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------- -->
+    <div class="Heading">
+        <div class="Regular">
+            <p>Regular</p> 
+            <div class="level0">Default 14px</div>
+            <div class="level1">最多上傳3張照片16px</div>
+            <div class="level2">內文 18px</div>
+            <div class="level5">選擇 24px</div>
+            <div class="level7">自訂篩選 28px</div>
+            <div class="level11">揪團露營 36px</div>
+            <div class="level17">揪團露營 48px</div>
+        </div>
+        
+        <div class="Bold">
+            <p>Bold</p> 
+            <div class="level0 bold">Default 14px</div>
+            <div class="level1 bold">最多上傳3張照片16px</div>
+            <div class="level2 bold">內文 18px</div>
+            <div class="level5 bold">選擇 24px</div>
+            <div class="level7 bold">自訂篩選 28px</div>
+            <div class="level11 bold">揪團露營 36px</div>
+            <div class="level17 bold">揪團露營 48px</div>
+        </div>
+
+    </div>
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="each_title">
+      <p>標題字體</p>
+      <div class="title">揪團露營(主標題)</div>
+      <div class="sub_title">填寫建團資訊(次標題)</div>
+      <div class="third_title">商品說明(3級標題)</div>
+      <div class="nav_title">導覽列標題</div>
+  </div>
+
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="each_button">
+    <p class="_text">按鈕樣式</p>
+    <p>
+        <button class="mainbtn1">我要參加</button>
+        <button class="mainbtn2">我要參加</button>
+    </p>
+    <p>
+        <button class="secondbtn1">查詢資料</button>
+        <button class="secondbtn2">檢舉揪團</button>
+    </p>
+    <p>
+        <button class="thirdbtn1_green">檢舉</button>
+        <button class="thirdbtn2_green">檢舉</button>
+    </p>
+    <p>
+        <button class="thirdbtn1_orange">揪團</button>
+        <button class="thirdbtn2_orange">揪團</button>
+    </p>
+  </div>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <div class="each_button">
+        <p class="_text">標籤樣式</p>
+        <p>
+            <button class="tagbtn_green">台中市</button>
+            <button class="tagbtn_yellow">帳篷</button>
+            <button class="tagbtn_gray">檢舉</button>
+        </p>
+    </div>
+    <!-- ----------------------------------------------------------------------- -->
+    <div class="rule_search_bar">
+        <p>搜尋Bar</p>
+        <div class="search_input">
+            <input type="text" placeholder="尋找地點、主揪、團名...">
+            <label>搜尋</label>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------- -->
+    <div class="rule_collect">
+        <p class="_text">收藏按鈕</p>
+        <p>
+            <div class="collect_checkbox">
+              <input type="checkbox" id="collect_checkbox">
+              <label for="collect_checkbox" id="the_label">收藏</label>
+          </div>
+        </p>
+    </div>
+</fieldset>
+    
+</body>
+</html>

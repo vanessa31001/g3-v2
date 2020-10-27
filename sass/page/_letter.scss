@@ -1,0 +1,213 @@
+.wrap{
+    .stepBreadcrumbs{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 3%;
+        .cardStep{
+            background-color: $yellowColor2;
+            padding: 1.2rem;
+            border-radius: 50%;
+            p{
+                text-align: center;
+            }
+        }
+        .chooseCardStep{
+            background-color: $orangeColor1;
+            padding: 1.2rem;
+            border-radius: 50%;
+            p{
+                text-align: center;
+            }
+        }        
+    }
+    .postcard_content{
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        
+        .postcard{
+            display: block;
+            margin-right: 15px;
+            width: 840px;
+            height: 560px;
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
+            
+            .pdContentImg{
+                width: 15%;
+                position: absolute;
+                bottom: 0%;
+                left: 43%;
+                border-radius: 50%;
+                padding: 15px 25px 15px 25px;
+                display: block;
+                background-image: url("../pic/postcardMaterial/paper/paper1.png");
+            }
+
+
+            .putPhoto{
+                width: 96%;
+                height: 85%;
+                margin: 0 auto;
+                margin-top: 2%;
+                background-color: #1e1e1e;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        .leftPostcard1{
+            display: none;
+            margin-right: 15px;
+            width: 840px;
+            height: 560px;
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
+        }
+        .postcard2{
+            display: none;
+            margin-right: 15px;
+            width: 840px;
+            height: 560px;
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
+        }
+        .leftPostcard2{
+            display: block;
+            margin-right: 15px;
+            width: 840px;
+            height: 560px;
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
+        }
+        .rightPostcard{
+            width: 287px;
+            height: 560px;
+            background-image: url("../pic/postcardMaterial/leftBackground.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            p{
+                text-align: center;
+                margin-top: 10%;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            .stylePostcard{
+                display: none;
+                flex-direction: column;
+                height: 400px;
+                width: 100%;
+                margin: 0 auto;
+                overflow: auto;
+                text-align: center;
+                .paperTexture{
+                    height: 30%;
+                    width: 100%;
+                    
+                    p{
+                        text-align: center;
+                        margin-top: 0%;
+                        margin-bottom: 6%;
+                    }
+                    .posBackground{
+                        width: 60%;
+                        height: 50%;
+                        margin: 0 auto;
+                        .postcardPaper{
+                            width: 100%;
+                            height: 100%;
+                            border: 5px solid rgba(255, 0, 0, 0);
+                        }
+                        .postcardPaper:hover{
+                            transition: all .3s;
+                            transform: scale(1.2,1.2);
+                    
+                        }
+                        #paper1{
+                            background-image: url("../pic/postcardMaterial/paper/paper1.png");
+                            background-size: cover;
+                            border: 5px solid rgba(255, 0, 0, 0.4);
+                        }
+                        #paper2{
+                            background-image: url("../pic/postcardMaterial/paper/paper2.png");
+                            background-size: cover;
+                        }
+                        #paper3{
+                            background-image: url("../pic/postcardMaterial/paper/paper3.png");
+                            background-size: cover;
+                        }
+                    }
+                }
+                .photoChoose{
+                    height: 120px;
+                    width: 100%;
+                    position: relative;
+                    .postPhoto{
+                        width: 65%;
+                        position: absolute;
+                        left: 20%;
+                        top: 20%;
+                        border: 5px solid rgba(255, 0, 0, 0);
+                    }
+                    .postPhoto:hover{
+                        transition: all .3s;
+                        transform: scale(1.2,1.2);
+                    }
+                }
+                label{
+                    display: inline-block;
+                    height: 120px;
+                    margin: 0 auto;
+                    margin-top: 10%;
+                    width: 55%;
+                    margin-left: 6%;
+                    #upPhoto1{
+                        display: none;
+                    }
+                    .updatePicPos{
+                        display: block;
+                        cursor: pointer;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            #rightStep3{
+                text-align: center;
+            }
+                    .stepContent{
+                        display: flex;
+                        justify-content: space-evenly;
+                        margin: 0 auto;
+                        width: 90%;
+                        margin-top: 2%;
+                    }
+                    .stepHover{
+                        background-color: #FFFFFF;
+                        color: #00A5A3;
+                        width: 120px;
+                        height: 45px;
+                        font-size: 16px;
+                        border-radius: 8px;
+                        border-color: #00A5A3;
+                        border-width: 3px;
+                        font-weight: bold;
+                        position: relative;
+                    }
+            
+        }
+    }
+
+
+}

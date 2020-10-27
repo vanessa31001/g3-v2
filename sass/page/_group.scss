@@ -1,0 +1,1215 @@
+
+*{
+    box-sizing: border-box;
+}
+$grayColor3: #EFEFEF;
+
+
+//檢舉按鈕
+.reportbtnMsg, .reportbtngGroup{
+    background-color: $white; 
+    color: $greenColor3;
+    padding: 0 10px;
+    height: $tagbtnheight;
+    font-size: font(0);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    font-weight: $weight_btn;
+}
+input[type="submit"], button{
+    cursor: pointer;
+}
+//燈箱
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+    article{
+        background-color: #fff;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 5px;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .report_title{
+            text-align: center;
+        }
+        .report_form{
+            margin-top: 20px;
+            .report_reason1{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        color: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+                
+            }
+            .report_reason2{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        olor: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+            }
+            .report_reason3{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        olor: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+            }
+            .report_close_btn{
+                text-align: center;
+                margin: 30px 0 0 0;
+                .submit_btn{
+                    margin-right: 20px;
+                }
+                .btn_modal_close{
+                    cursor: pointer;
+                    
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+        }
+    }
+}
+.overlay.-on{
+    opacity: 1;
+    z-index: 1;
+}
+
+.overlay.-opacity-zero{
+    opacity: 0;
+}
+
+// #app{
+    //麵包屑
+    .breadcrumbs{
+        ul{
+            text-align: left;
+            padding: 30px 0;
+            height: auto;
+            
+            li{
+                margin: 0px;
+                line-height: auto;
+                height: auto;
+                a{
+                    font-weight:bold;
+                    &:hover{
+                        color: $greenColor3;
+                    }
+                }
+                &::after{
+                    content: ">";
+                    color: #007E85;
+                    margin: 10px;
+                }
+                &:last-child::after{
+                    content: "";
+                }
+            }
+        }
+    }
+    //第一區
+    .section1, .section2{
+        padding-bottom: 60px;
+        .level11{
+            font-weight:bold;
+        }
+        .level1, .level0{
+            font-weight:normal;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            li{
+                display: inline-block;
+            }
+        }
+    }
+    //建立揪團按鈕
+    .startNewGroup{
+        position: fixed;
+        z-index: 1;
+        right: -33px;
+        top:80px;
+        width: 200px;
+        transition: right 0.3s;
+        &:hover{
+            right: -5px;
+        }
+        .mainbtn1{
+            position: static;
+            display: none;
+        }
+        img{
+            width: 100%;
+        }
+
+    }
+    //側邊攔
+    .nav{
+            display: inline-block;
+            width: 243px;
+            margin-right: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: $white;
+            .level7{
+                margin: 0 0 20px;
+            }
+            .serchGroup{ 
+                padding: 10px 0;
+                border-top: 1px solid $grayColor1;
+                label{
+                    display: block;
+                    margin: 10px;
+                    width: 100%;
+                }
+                select{
+                    display: block;
+                    margin: 10px;
+                    height: 30px;
+                    width:150px;
+                    border-radius: 5px;
+                }
+            }
+            .serchGroup:nth-child(3){
+                border-top: 0px solid $grayColor1;    
+            }
+        }
+
+    .groups{
+        display: inline-block;
+        vertical-align: top;
+        width: calc( 100% - 277px);
+    }
+    .groupBlock{
+        margin-bottom:65px;
+        .group{
+            background-color: $white;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            // height: 550px;
+            padding: 30px;
+            position: relative;
+            .hot{
+                background-color:  $orangeColor2; 
+                width: 170px;
+                height: 170px;
+                position: absolute;
+                left: -85px;
+                top: -85px;
+                transform: rotate(45deg);
+                z-index:1;
+                p{
+                    font-size: 16px;
+                    position: absolute;
+                    right: 5px;
+                    bottom: 50%;
+                    transform: rotate(-45deg);
+                }
+            }
+            .gLeft{
+                width:40%;
+                margin-right: 40px;   
+                display: inline-block;
+                // height: 100%;
+                position: relative;
+                .groupBinImg{
+                    // border: 1px solid red;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    height: 350px;
+                    margin-bottom: 30px;
+                    border-radius: 10px;
+                    position: relative;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                .maphashtag{
+                    margin: 30px 0 ;
+                    input{
+                        margin: 0 15px 0 0;
+                    }
+                }
+                // .maphashtagI{
+                //     margin: 0px 0 ;
+                // }
+                .mainbtn1{
+                    position: static;
+                    width: 100%;
+                    // bottom: 0;
+                    // left: 0;
+                }
+            }
+            .gRight{
+                display: inline-block;
+                width: calc(100% - 40% - 45px);
+                vertical-align: top;
+                overflow: hidden;
+                position: relative;
+                color: $grayColor1;
+                .headLine{
+                    display: flex;
+                    // flex-wrap: wrap;
+                    justify-content:space-between;
+                    // align-items:center; 
+                    H3{
+                        margin: 0;
+                        vertical-align: top;
+                        display: inline-block;
+                        line-height: 28px;
+                    }
+                    .smallInfo{
+                        text-align: right;
+                        display: inline-block;
+                        H6{
+                            font-weight:normal;
+                            margin: 0 0 10px;
+                        }
+                    }
+                }
+                p{
+                    margin: 0 0 10px ;
+                    font-size: 16px;
+                    line-height: 25px;
+                    font-weight: 30px;
+                }
+                .info{
+                    height: 70px;
+                    overflow: hidden;
+                }
+                .infomore{
+                    height: auto;
+                }
+                span{
+                    color: $greenColor1;
+                }
+                //會員資訊
+                .poster_inform{
+                    border: 1px solid $greenColor3;
+                    border-radius: $radius;
+                    padding: 10px 20px;
+                    margin: 0 0 10px;
+                    .poster{
+                        // margin: 0 10px;
+                        padding:0 10px;
+                    }
+                    .inform_block{        
+                        .inform_pic{
+                            vertical-align: middle;
+                            width:46px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            margin-right: 15px;
+                            display: inline-block;
+                            img{
+                                width:100%;
+                            }
+                        }
+                        .inform_text{
+                            vertical-align: middle;
+                            display: inline-block;
+                            p{
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+                .aboutPepole{
+                    display: flex;
+                    // justify-content:space-between;
+                    align-items:center ;
+                    .right{
+                        width: calc(100% / 2 );
+                        text-align: center;
+                        .note{
+                            color: $orangeColor2;
+                        }
+                    }
+
+                }
+                .equthing{
+                    margin: 0 0 25px ;
+                    div{
+                        display: inline;
+                        .equ{
+                            display: inline-block;
+                            margin: 0;
+                            margin-right: 15px;
+                        }
+                    }
+
+                }
+            }
+            .more{
+                display: flex;
+                justify-content: space-between; 
+                .mainbtn1{
+                    position: static;
+                    width: 40%;
+                }
+
+            }
+        }
+        .ginside{
+            border-radius: 10px;
+        }
+        .msg{
+            display: block;
+            border-radius: 0 0 10px 10px;
+
+            padding: 10px 30px;
+            background-color: $grayColor3;
+            overflow: hidden;
+            .third_title{
+                margin-bottom: 10px;
+                display: block;
+            }
+            .msgInfo{ 
+                display: flex;  
+                justify-content: space-between;   
+                align-items:center ;
+                .inform_block{ 
+                    .inform_pic{
+                        vertical-align: middle;
+                        width:46px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        margin-right: 15px;
+                        display: inline-block;
+                        img{
+                            width:100%;
+                        }
+                    }
+                    .inform_text{
+                        
+                        vertical-align: middle;
+                        display: inline-block;
+                        a{
+                            margin: 0;
+                        }
+                    }
+                }
+                .level1{
+                    flex:1;
+                    margin: 0 40px;
+                    span{
+                        vertical-align: top;
+                        display: inline-block;
+                        font-weight: bold;
+                        padding-right:10px ;
+                    }
+                    p{
+                        display: inline-block;
+                    }
+                }
+            }            
+        }
+    }
+    .groupBlockI{
+        margin: 0;
+    }
+    //section2 團員
+    .gPepole{
+        background-color: $white;
+        padding: 30px;
+        margin: 30px 0 0;
+        border-radius: 10px;
+        
+        .inform_block{  
+            font-size: 0; 
+            display: inline-block; 
+            width: calc((100% - 30px )/ 4 ); 
+            margin-right: 10px; 
+            margin-bottom: 10px;
+            &:last-child{
+                margin-right: 0px; 
+            }  
+            .inform_pic{
+                vertical-align: middle;
+                width:46px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 15px;
+                display: inline-block;
+                img{
+                    width:100%;
+                }
+            }
+            .inform_text{
+                vertical-align: middle;
+                display: inline-block;
+                p{
+                    margin: 0;
+                }
+            }
+        }
+    }
+    //留言
+    .gMessage{
+        padding: 0;
+        overflow: hidden;
+        .msgInfo{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            border-bottom: 2px solid $greenColor3;
+            &:last-child{
+                border-bottom: 0px solid $greenColor3;
+            }
+            .inform_pic{
+                // vertical-align: middle;
+                width:46px;
+                height: 46px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 15px;
+                display: inline-block;
+                img{
+                    width:100%;
+                }
+            }
+            .inform_text{
+                vertical-align: middle;
+                display: inline-block;
+                p{
+                    margin: 0;
+                }
+            }
+            .level1{
+                flex:1;
+            }
+            .level0{
+                margin: 0 30px;
+            }
+            .grouper{
+                background-color: $grayColor3;
+            }
+        }
+        .grouper{
+            background-color: $grayColor3;
+        }
+    }
+    .myMsg{
+        text-align: center;
+        margin-top: 30px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-around;
+        textarea{
+            vertical-align: middle;
+            font-size: 16px;
+            padding: 10px;
+            width: 80%;
+            border: 3px solid $greenColor3;
+            border-radius: 10px;
+
+            color: $grayColor1;
+            
+        }
+    }
+    //看更多
+    .moreGroups{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        button{
+            height: 60px;
+        }
+        #leftBtn{
+            background-color:#C4C4C4;
+            border-color: #C4C4C4;
+            border-style:solid;
+        }
+        .oGroups{
+            background-color: $grayColor3;
+            border-radius:10px;
+            padding: 10px;
+            // border:1px solid black;
+            width:900px;
+            height: 380px;
+            font-size: 0;
+            overflow: hidden;
+            div{
+                margin-top : 5px;
+                font-weight: bold;
+            }
+            .allGroup{
+                position: relative;
+                .group{
+                    font-size: 0;
+                    width: 420px;
+                    margin: 10px;
+                    display: inline-block;
+                    height: auto;
+                    text-align: center;
+                    padding: 0;
+                    // border:1px solid red;
+                    border-radius: 10px;
+                    .img{
+                        width: 100%;
+                        margin:0;
+                        display: inline-block;
+                        vertical-align: middle;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;    
+                        }
+                    }
+                    .info{
+                        .btns{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .maphashtagI{
+                                display: inline-block;
+                                input{
+                                    margin: 10px 10px 0 0;
+                                }
+                            }
+                            .more{
+                                display: inline-block;
+                                margin:10px;
+                            }
+                        }
+                    }
+        
+                }
+            }
+        }
+    }
+    //頁數
+    .groupsPage{
+        ul{
+            font-weight: bold;
+            text-align: center;;
+            // text-align: center;
+            // display: flex;
+            li{
+                margin: 0 15px;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                a{
+                    display: inline-block;
+                    line-height: 40px;
+                    width: 100%;
+                    height: 100%;
+                    &:hover{
+                        background-color: $greenColor3;
+                        color: $white;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+        //所在頁
+        .thisPage{
+            background-color: $greenColor3;
+            color: $white;
+            border-radius: 5px;
+}
+    }
+    //我要揪團頁
+    .groupNewStart{
+        background-color: $white;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 45px;
+        // height: 880px;
+        .top{
+            margin-bottom: 10px;
+        }
+        .left{
+            width: 49%;
+            padding-right: 45px;
+            display: inline-block; 
+            .maphashtag{
+                margin: 30px 0 ;
+                input{
+                    margin: 10px 15px 0 0;
+                }
+            }  
+
+        }
+        .right{
+            width: 50%;
+            padding-left: 45px;
+            display: inline-block;
+            vertical-align: top;
+            border-left: 3px solid $greenColor3;
+            table{
+                margin: 10px 0;
+                height: 300px;
+                border-collapse: collapse;
+                // border:1px solid red;
+                width: 100%;
+                td{
+                    // border:1px solid red; 
+                    vertical-align: middle;
+                }
+                .textinfo{
+                    vertical-align: text-top;
+                }
+                input[type="text"], textarea{
+                    width: 100%;
+                }
+                input, select, textarea {
+                    border: 1px solid $greenColor3;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+            }
+            .btn{
+                width: 100%;
+                font-size: 0;
+                input[type="button"]{
+                    width: calc((100% - 20px) / 2);
+                    display: inline-block;
+                    margin:5px;
+                }
+            }
+        }  
+        .checkright{
+                .headLine{
+                    display: flex;
+                    // flex-wrap: wrap;
+                    justify-content:space-between;
+                    // align-items:center; 
+                    H3{
+                        margin: 0;
+                        vertical-align: top;
+                        display: inline-block;
+                        line-height: 28px;
+                    }
+                    .smallInfo{
+                        text-align: right;
+                        display: inline-block;
+                        H6{
+                            font-weight:normal;
+                            margin: 0 0 10px;
+                        }
+                    }
+                }
+                p{
+                    margin: 0 0 10px ;
+                    font-size: 16px;
+                    line-height: 25px;
+                    font-weight: 30px;
+                }
+                .info{
+                    height: 70px;
+                    overflow: hidden;
+                }
+                .infomore{
+                    height: auto;
+                }
+                span{
+                    color: $greenColor1;
+                }
+                //會員資訊
+                .poster_inform{
+                    border: 1px solid $greenColor3;
+                    border-radius: $radius;
+                    padding: 10px 20px;
+                    margin: 0 0 10px;
+                    .poster{
+                        // margin: 0 10px;
+                        padding:0 10px;
+                    }
+                    .inform_block{        
+                        .inform_pic{
+                            vertical-align: middle;
+                            width:46px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            margin-right: 15px;
+                            display: inline-block;
+                            img{
+                                width:100%;
+                            }
+                        }
+                        .inform_text{
+                            vertical-align: middle;
+                            display: inline-block;
+                            p{
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+                .aboutPepole{
+                    // display: flex;
+                    // // justify-content:space-between;
+                    // align-items:center ;
+                    p{
+                        display: inline-block;
+                    }
+                    .note{
+                        padding-left: 30px ;
+                        color: $orangeColor2;
+                    }
+
+
+                }
+                .equthing{
+                    margin: 0 0 25px ;
+                    div{
+                        display: inline;
+                        .equ{
+                            display: inline-block;
+                            margin: 0;
+                            margin-right: 15px;
+                        }
+                    }
+
+                }
+                .more{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+        
+    }
+    .group{
+        .pic{
+            margin: 10px auto;
+            font-size: 0;
+            vertical-align: middle;
+            .uploadImg{
+                display: inline-block;
+                border: 3px solid $greenColor3;
+                width: 100%;
+                height: 250px;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 10px;
+                text-align: center;
+                // font-size: 16px;
+                cursor: pointer;
+                img{
+                    display: block;
+                    width: 45%;
+                    margin: 30px auto 10px;
+                }
+                #theFile{
+                    display:none;
+                }
+                
+            }
+            .uploadImgI{
+                border: 0;
+                border-radius: 10px;
+                overflow: hidden;
+                .nowPic{
+                    width: 100%;
+                    margin: 0;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .ginsideImg{
+                cursor: default;
+            }
+            .imgs{
+                font-size: 0;
+                .img{
+                    width: 100px;
+                    height: 100px;
+                    margin: 10px 10px 0 0;
+                    display: inline-block;
+                    vertical-align: middle;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover; 
+                            
+                    }
+                }
+                .now{
+                    border: 5px solid $greenColor3;
+                    text-align: left;  
+                    font-size: 0;
+    
+                }
+            }
+        }
+        .picI{
+            .imgs{
+                cursor: pointer;
+            }
+        }
+    }
+    
+    
+    
+@media screen and (max-width: 1199px){
+    .groupMain{
+        .nav{
+            font-size: 0;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 30px;
+            h2{
+                display: inline;
+
+            }
+            .serchGroup{
+                vertical-align: top;
+                margin: 0 30px;
+                h3{
+                    display: inline-block;
+                    width: calc(100% / 5);
+                }
+                select{
+                    display: inline-block;
+                    margin:0;
+                }
+                label{
+                    display: inline-block;
+                    width: calc(100% / 5);
+                    margin:0;
+                    font-size: 16px;
+                }
+                
+            }
+        }
+        .groups{
+            width: 100%;
+        }
+    }
+    // .groupBlockI{
+        .group{
+            height: auto;
+            .pic .imgs .img{
+                width:60px;
+                height:60px;
+            }
+        }
+    // }
+    .moreGroups .oGroups{
+        width: 460px;
+    }
+    
+}
+@media screen and (max-width: 991px){
+    .startNewGroup{
+        width:150px;
+        right: -24px;
+        &:hover{
+            right: -5px;
+        }
+    }
+    .groupMain{
+        .group {
+            .gRight{
+                .headLine{
+                    display: block;
+                    h3{
+                        display: block;
+                        margin-bottom: 10px;
+                        // width: 100%;
+                    }
+                    .smallInfo{
+                        // width: 100%;
+                        text-align: left;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        h6,input{
+
+                            margin: 0 ;
+                        }
+                    }
+                }
+            }
+        }  
+        .groupBlock{
+            .msg{
+                .msgInfo{
+                    display: block;
+                    position: relative;
+                    div{
+                        margin: 10px 0;
+                    }
+                    .level0{
+                        position: absolute;
+                        right: 0;
+                        top:0;
+                    }
+                }
+            }
+        }      
+    }
+    .gPepole{
+        .inform_block{
+            text-align: center;
+        }
+    }
+    .groupNewStart {
+        .checkright{
+            .equthing{
+                div{
+                    display: block;
+                    .equ{
+                        margin:5px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+@media screen and (max-width: 767px){
+    .groupMain{
+        .nav{
+            .serchGroup{
+                label, select{
+                    display: inline;
+                    margin-right: 5px ;
+                }
+                
+            }
+        }
+        .groupBlock{
+            .group {
+                // height: 600px;
+                .gLeft{
+                    .maphashtag {
+                        input{
+                            margin: 15px 0 0 ;
+                        }
+                    }
+                }
+                .gRight{
+                    .aboutPepole{
+                        display: block;
+                        .right{
+                            width: 100%;
+                            text-align:left
+                        }
+                    }
+                    .equthing{
+                        div{
+                            display: block;
+                        }
+                    }
+                }
+        }
+        }
+        
+        .ginside{
+            height: auto;
+            .mainbtn1{
+                position: static;
+                width: 100%;
+            }
+        }
+    }
+    .gPepole{
+        .inform_block{
+            text-align: left;
+            display: block;
+            width: auto;
+        }
+        .msgInfo{
+            text-align: left;
+            display: block;
+            width: auto;
+            .level0{
+                display: inline-block;
+                margin: 10px 10px 0 0;
+            }
+        }
+    }
+    section.section2:nth-child(5){
+        display: none;
+    }
+    .groupNewStart {
+        display: flex;
+        flex-direction: column;
+        .left{
+            width: 100%;
+            padding: 0;
+        }
+        .right{
+            width: 100%;
+            padding: 0;
+            border: 0;
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    .grouninfostyle{
+        display: flex;
+        justify-content: space-between;
+    }
+    .startNewGroup{
+        position: static;
+        .mainbtn1{
+            position: static;
+            display: block;
+            width: 100%;
+            margin: 0 0 10px;
+        }
+        img{
+            display: none;
+        }
+
+    }
+    .groupMain{
+        .nav{
+            .serchGroup{
+                margin: 0;
+                h3{
+                    display: block;
+                    width: auto;
+                }
+                label{
+                    display: inline-block;
+                    margin-right: 5px ;
+                    width: 110px;
+                }
+                
+            }
+        }
+        .group {
+            height: auto;
+            .gLeft{
+              width: 100%;
+              height: auto;
+              margin: 0;  
+              .mainbtn1 {
+                  position: static;
+                  margin-bottom: 30px;
+              }
+            }
+            .gRight{
+                width: 100%;
+                height: auto;
+                margin: 0;
+                .equthing{
+                    div{
+                        .equ{
+                            margin:5px;
+                        }
+                    }
+                }
+                .secondbtn1{
+                    position: relative;
+                //   margin-bottom: 30px;
+                }
+            }
+            .more{
+                display: block;
+                .mainbtn1{
+                    display: inline-block;
+                    position: static;
+                    width: 300px;
+                }
+                .secondbtn1{
+                    display: inline-block;
+                    margin: 15px 0 0 0;
+                }
+            }
+        }
+
+        
+        .groupBlock{
+            .msg{
+                .msgInfo{
+
+                    .level0{
+                        position: relative;
+                        
+                    }
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,911 @@
+*{
+    box-sizing: border-box;
+}
+
+.bg_dis{
+    padding: 0 0 40px 0;
+}
+
+.breadcrumbs{
+    ul{
+        text-align: left;
+        padding: 50px 0;
+        height: auto;
+        
+        li{
+            display: inline-block;
+            margin: 0px;
+            line-height: auto;
+            height: auto;
+            a{
+                font-weight:bold;
+                &:hover{
+                    color: $greenColor3;
+                }
+            }
+            &::after{
+                content: ">";
+                color: #007E85;
+                margin: 10px;
+            }
+            &:last-child::after{
+                content: "";
+            }
+        }
+    }
+}
+
+.equ_container{
+    display: flex;
+}
+
+.equbar{
+    margin-right: 30px;
+    vertical-align: top;
+}
+
+.equbar > .nav{
+    width: 243px;
+    padding: 30px;
+    border-radius: $radius;
+    background-color: $white;
+    
+}
+
+.post_btn{
+    margin-bottom: 20px;
+    // text-align: center;
+}
+
+.equlist_block{
+    margin-top: 30px;
+}
+
+.equlist{
+    padding: 10px 10px 10px 0;
+}
+
+.equlist > h3 > a , .equlist > h3 > div , .equlist > div > a ,
+.equlist > div > a , .inform_block02_text > h4 > a ,
+.change_min_block01_text > h4 > a , .equ_text > a{
+    text-decoration: none;
+}
+
+.equmain{
+    width: calc(100% - 277px);
+    padding: 30px;
+    background-color: $white;
+    border-radius: $radius;
+}
+
+// .equmain , .equbar{
+//     display: flex;
+// }
+
+.equpic{
+    width: 50%;
+    border-right: 1px solid $greenColor1;
+}
+
+.minimg{
+    margin-top: 45px;
+    margin-right: 10px;
+}
+
+.bigimg > img{
+    width: 100%;
+}
+
+.minimg > img{
+    width: 60px;
+}
+
+.btn_block{
+    margin-right: 20px;
+    margin-top: 15px;
+}
+
+button.reportbtn{
+    background-color: $white;
+    color: $greenColor3;
+    padding: 0 10px;
+    height: $tagbtnheight;
+    font-size: font(0);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    font-weight: $weight_btn;
+}
+
+button.reportbtn , .equ_collect_checkbox{
+    float: right;
+}
+
+//檢舉燈箱
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+}
+.overlay.-on{
+    opacity: 1;
+    z-index: 1;
+}
+
+.overlay.-opacity-zero{
+    opacity: 0;
+}
+
+.overlay > article{
+    background-color: #fff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.report_form{
+    border: 1px solid $greenColor1;
+    margin-top: 10px;
+}
+
+.report_reason{
+    padding: 10px;
+}
+
+.report_close_btn{
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
+
+article button.btn_modal_close{
+    cursor: pointer;
+}
+
+article button.btn_modal_close:focus{
+    outline: none;
+}
+
+.equ_collect_btn{
+    margin: 5px;
+}
+
+.btn_block > .equ_collect_checkbox {
+    margin-top: 10px;
+}
+
+.equdescribe{
+    vertical-align: top;
+    width: 49%;
+    padding: 0px 0px 0px 20px;
+}
+
+.equpic , .equdescribe{
+    display: inline-block;
+}
+
+.equ_third{
+    margin-top: 20px;
+}
+
+.equdescribe > p {
+    line-height: 25px;
+    margin-top: 10px;
+    // font-weight: 30px;
+}
+
+.apply_change_btn_block{
+    text-align: center;
+}
+
+.apply_change_btn{
+    margin-top: 45px;
+}
+
+.poster_inform{
+    padding: 0 20px 0 0;
+    margin-top: 80px;
+}
+
+.inform_block01{
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid $greenColor1;
+    border-radius: $radius;
+}
+
+.inform_block02 , .inform_block02_pic{
+    margin-right: 15px;
+}
+
+.inform_block02_pic > a > img{
+    width: 60px;
+    border-radius: 50%;
+}
+
+.inform_block02_pic , .inform_block02_text{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.inform_block02 , .mes_btn{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.other_equ{
+    background-color: $white;
+    border-radius: $radius;
+    max-width: 1140px;
+    width: 100%;
+    text-align: center;
+}
+
+.other_equ_block{
+    max-width: 280px;
+    display: inline-block;
+    padding: 20px;
+    margin-right: 40px;
+}
+
+.other_equ_block > a > img{
+    width: 100%;
+}
+
+.other_equ_block > a{
+    text-decoration: none;
+}
+
+.change_min_block01{
+    background-color: $white;
+    border-radius: $radius;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.change_min_block01_num{
+    width: 90px;
+    text-align: center;
+    padding: 20px;
+    // margin-right: 20px;
+}
+
+.change_min_block01_pic{
+    padding: 20px;
+    margin-right: 40px;
+}
+
+.change_min_block01_pic > img{
+    width: 234px;
+}
+
+.change_min_block01_desc{
+    border-right: 1.5px solid $greenColor1;
+    width: 440px;
+    margin-right: 40px ;
+    padding: 20px;
+}
+
+.equ_num{
+    margin-top: 20px;
+}
+
+.change_min_block01_mem_pic{
+    margin-right: 15px;
+}
+
+.change_min_block01_mem_pic > a > img{
+    width: 60px;
+    border-radius: 50%;
+}
+
+.change_min_block01_mem_pic , .change_min_block01_text{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+//=====原PO btn=====
+.change_btn_block{
+    text-align: end;
+}
+
+.change_btn{
+    margin-top: 30px;
+}
+
+//======設備瀏覽 all======
+
+.equ_select{
+    margin-left: 220px;
+    margin-bottom: 40px;
+}
+
+.select01 , .select02{
+    display: inline-block;
+}
+
+.select01{
+    margin-right: 50px;
+}
+
+.equ_select_bar{
+    width: 200px;
+    height: 30px;
+    border-radius: $radius2;
+}
+
+.equ_bar , .select_text1 ,.select_text2{
+    vertical-align: middle;
+}
+
+.select_text1{
+    width: 180px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.select_text2{
+    width: 200px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+// .equ_partcontainer{
+//     display: flex;
+//     flex-direction: row;
+// }
+
+.equmain_all{
+    width: calc(100% - 277px);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.equ_card1{
+    background-color: $white;
+    text-align: center ;
+    width: 265px;
+    margin:0 14px 30px 0;
+}
+
+.equ_img1 > img {
+    width: 265px;
+}
+
+.equ_text{
+    padding: 15px;
+    margin-top: 15px;
+}
+
+
+//=====設備刊登 post====
+
+.equpost_block{
+    background-color: $white;
+    border-radius: $radius;
+    // display: flex;
+}
+
+.equpost_pic , .equpost_inform{
+    display: inline-block;
+}
+
+.equpost_pic{
+    margin: 30px 0 30px 30px;
+    padding: 0 20px 0 0;
+}
+
+.post_bigimg{
+    width: 400px;
+    margin: 0 0 20px 0;
+}
+
+.post_bigimg > img{
+    width: 400px;
+}
+
+.post_minimg > img{
+    width: 70px;
+    margin: 20px 10px 0 0;
+}
+
+.preview_btn{
+    margin-top: 30px;
+    text-align: center;
+}
+
+//right
+
+.equpost_inform{
+    // border-left: 1px solid $greenColor1;
+    margin: 30px;
+    padding: 0 0 0 30px;
+    vertical-align: top;
+}
+
+.equ_info_name{
+    width: 150px;
+    vertical-align: top;
+}
+
+#sort_select , #equname01 ,
+#sort_select_want01 ,#sort_select_want02,
+#sort_select_want03{
+    border-radius: $radius2;
+    width: 200px;
+    height: 30px;
+}
+
+#sort_select_want01 , #sort_select_want02 
+,#sort_select_want03 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+td{
+    vertical-align: top;
+    padding: 10px;
+}
+
+textarea{
+    resize: none;
+    // width: 100%;
+    border-radius: $radius;
+}
+
+textarea:focus ,
+#sort_select:focus ,#sort_select_want01:focus ,
+#sort_select_want02:focus , #sort_select_want03:focus{
+    border: 3px solid $greenColor1;
+}
+
+.check_btn{
+    margin-top: 30px;
+}
+
+.pre_check_btn{
+    margin-right: 15px;
+}
+
+
+//===rwd====
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    //equipment頁
+    .mes_btn{
+        margin-top: 20px;
+        margin-left: 70px;
+
+    }
+
+    .other_equ_block {
+        margin-right: 35px;
+    }
+
+    .change_btn_block{
+        text-align: initial;
+    }
+
+    //all頁面
+    .equ_select{
+        margin-left: 85px;
+    }
+
+    //post 頁面
+    .equpost_block{
+        display: flex;
+        .equpost_pic{
+            .post_bigimg{
+                width: 350px;
+                img{
+                    // width: 100%;
+                    
+                }
+            }
+        }
+        .equpost_inform{
+            form{
+                .check_btn{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .pre_check_btn{
+                        margin: 0 0 15px 0;
+                    }
+                }
+            }
+            
+        }
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .equ_select{
+        display: flex;
+        text-align: center;
+        margin: 0 0 40px 0;
+    }
+    .equ_container{
+        display: block;
+        .equmain_all{
+            width: 100%;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+        .equbar {
+            display: block;
+            margin:0;
+            .nav{
+                width: 100%;
+                padding: 20px;
+                .title_btn_block{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .equlist_block{
+                    // display: flex;
+                    justify-content: space-around;
+                    // width: 80%;
+                    margin: 0;
+                    .equlist{
+                        display: flex;
+                        flex-wrap: wrap;
+                        // justify-content: space-around;
+                        h3{
+                            width: 100%;
+                        }
+                        .minsorts{
+                            margin: 20px 30px 0 0;
+                        }
+                        
+                        
+                    }
+                }
+            }
+
+        }
+        .equmain{
+            width: 100%;
+            margin-top: 20px;
+            .mes_btn{
+                margin-top: 20px;
+                margin-left: 70px;
+            }
+        }
+    }
+
+    .other_equ_block{
+        max-width: 197px;
+        width: 100%;
+    }
+
+    .change_block{
+        .change_min_block01{
+            .change_min_block01_num{
+                width: 60px;
+            }            
+            .change_min_block01_pic{
+                margin-right: 30px;
+
+                img{
+                    width: 200px;
+                }
+            }
+            .change_min_block01_desc{
+                width: 300px;
+            }
+            .change_min_block01_mem{
+                .change_btn_block{
+                    text-align: initial;
+                }
+            }
+        }
+    }
+    //post頁面
+    .equpost_block{
+        .equpost_pic{
+            width: 100%;
+            text-align: center;
+            .post_bigimg{
+                // width: 100%;
+                max-width: 650px;
+                // border: 1px solid red;
+                margin: 0 0 00;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px){
+    .equ_select{
+        // border: 1px solid black;
+        width: 260px;
+        margin: 0 auto 20px;
+        display: block;
+        .select01{
+            width: 260px;
+            margin: 0 auto;
+            label{
+                display: block;
+                text-align: left;
+            }
+        }
+        .select02{
+            // border: 1px solid blue;
+            width: 260px;
+            margin: 10px auto 0;
+            label{
+                display: block;
+                text-align: left;
+            }
+        }
+    }
+    .equ_container{
+        display: block;
+        .equmain_all{
+            width: 100%;
+            margin-top: 20px;
+            justify-content: center;
+            .equ_card1{
+                width: 255px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        .equbar {
+            display: block;
+            margin:0;
+            .nav{
+                width: 100%;
+                padding: 20px;
+                margin: 0;
+                .title_btn_block{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                
+                .equlist_block{
+                    // display: flex;
+                    justify-content: space-around;
+                    // width: 80%;
+                    margin: 0;
+                    .equlist{
+                        display: flex;
+                        flex-wrap: wrap;
+                        // justify-content: space-around;
+                        h3{
+                            width: 100%;
+                        }
+                        .minsorts{
+                            margin: 20px 30px 0 0;
+                        }
+                        
+                        
+                    }
+                    .equpost_pic{
+                        .post_bigimg{
+                        // width: 100%;
+                            img{
+                                    // max-width: 680px;
+                                    // width: 100%;
+                            }
+                        }
+                    }   
+                }
+            }
+
+        }
+        .equmain{
+            width: 100%;
+            margin-top: 20px;
+            display: inline-grid;
+            .mes_btn{
+                margin-top: 20px;
+                margin-left: 70px;
+            }
+            .equpic{
+                width: 100%;
+                border: none;
+            }
+            .equdescribe{                
+                width: 100%;
+                margin-top: 30px;
+            }
+        }
+
+    }
+
+    .other_equ_block{
+        width: 100%;
+    }
+
+    .change_block{
+        .change_min_block01{
+            .change_min_block01_num{
+                width: 40px;
+            }            
+            .change_min_block01_pic{
+                padding: 20px 0 20px 0;
+
+                img{
+                    width: 200px;
+                }
+            }
+            .change_min_block01_desc{
+                width: 300px;
+                padding:  0;
+                margin-right: 0px;
+            }
+            .change_min_block01_mem{
+                padding: 10px;
+                .change_btn_block{
+                    text-align: initial;
+                }
+            }
+        }
+    }
+}
+
+    //post頁面
+    .equpost_block{    
+        .equpost_pic{
+            .post_bigimg{
+                width: 100%;
+                img{
+                    // max-width: 680px;
+                    // width: 100%;
+                }
+            }
+        }    
+
+        .equpost_inform{
+            // margin: 10px;
+                .check_btn{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .pre_check_btn{
+                        margin: 0 0 15px 0;
+                    }
+                }
+            }
+        }
+
+@media screen and (max-width: 576px){
+    .equ_container{
+        .equmain_all{
+            .equ_card1{
+                width: 250px;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    //poster
+    .change_block{
+        .change_min_block01{
+            display: flex;
+            flex-wrap: wrap;
+            .change_min_block01_num{
+                width: 10%;
+            }
+            .change_min_block01_pic{
+                width: 40%;
+                margin-right: 20px;
+                img{
+                    max-width: 200px;
+                    width: 100%;
+                }
+            }
+            .change_min_block01_desc{
+                width: 40%;
+                border: none;
+            }
+            .change_min_block01_mem{
+                display: flex;
+                justify-content: center;
+                vertical-align: middle;
+                margin: 10px auto;
+                width: 100%;
+                .change_btn{
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    //post頁面
+    .equpost_block{
+        .equpost_pic{
+            .post_bigimg{
+                // width: 100%;
+                img{
+                    // width: 100%;
+                }
+            }
+        }
+
+        .equpost_inform{
+            margin: 10px;
+            padding: 0;
+            form{
+                table{
+                    tr{
+                        td{
+                            textarea{
+                                width: 200px;
+                            }
+                        }
+                    }
+                }
+            }
+            .check_btn{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .pre_check_btn{
+                    margin: 0 0 15px 0;
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 376px){
+    //poster頁面
+
+
+    //post頁面
+    .equpost_block{
+        .equpost_pic{
+            .post_bigimg{
+                // width: 100%;
+                img{
+                    // width: 100%;
+                }
+            }
+        }
+
+        .equpost_inform{
+            margin: 10px;
+            padding: 0;
+            form{
+                table{
+                    tr{
+                        td{
+                            textarea{
+                                width: 200px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

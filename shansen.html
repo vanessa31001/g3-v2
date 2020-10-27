@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山森有幸</title>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header >
+        <div class="forphone">
+        <button class="hamburger hamburger--spring" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        </div>
+        <nav class="wrap">
+            <div class="nav_logo">
+                <a href="#" class="logo_link -bottom">
+                    <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                </a>
+                <a class="changelogo" href="./shansen.html">
+                <img class="phone" src="./pic/commom/手機_header.svg">
+                </a>
+                <div class="middle_bg"></div>
+                <a href="./shansen.html" class="logo_link -up">
+                    <img class="desk" src="./pic/commom/電腦版_header.svg">
+                </a>
+            </div>
+            <div class="nav_list">
+                <ul >
+                    <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                    <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
+                    <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                    <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                    <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                    <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="homepage_bgcolor">
+        <!-- 物件-雲 -->
+        <div class="clouds">
+            <div class="cloud">
+                <img src="./pic/index/cloud-01.svg">
+            </div>
+            <div class="cloud2">
+                <img src="./pic/index/cloud-02.svg">
+            </div>
+            <div class="cloud3">
+                <img src="./pic/index/cloud-01.svg">
+            </div>
+        </div>
+
+        <!-- 首頁形象圖 -->
+        <section class="home">
+            <img src="./pic/index/1020_bg_logo.svg" class="bg_logo">
+            <div id="container" class="container">
+                <div id="scene" class="scene">
+                    <div data-depth="0.20">
+                        <div class="tent_1"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="wrap">
+            </div>
+        </section>
+
+        <!-- 揪團 -->
+        <section class="home_group">
+            <div class="wrap">
+                <div class="homepage_title">
+                    <div class="title_area">
+                        <div class="img">
+                            <img src="./pic/index/1020_icon_group.svg" alt="尚未載入">
+                        </div>
+                        <div class="title_text title">揪團露營</div>
+                    </div>
+                    <div class="homepage_sub_title">
+                        <div class="sub_text green3 level1 blod">
+                            與其自己手忙腳亂自己搭帳篷，不如跟隨專業露營團隊出遊。好隊友自己挑，給你完美揪團體驗。
+                        </div>
+                        <div class="search_input home_search">
+                            <input type="text" placeholder="尋找地點、主揪、團名...">
+                            <label>搜尋</label>
+                        </div>
+                            
+                    </div>
+                </div>
+                <div class="content1">
+                    <div class="gMainBottom level5 green1">
+                        <div class="sub_title">最新揪團資訊</div>
+                        
+                        <div class="gMainGroups">
+                            <a href="./groupInfo.html">
+                                <div class="gMainGroup">
+                                    <div class="img">
+                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
+                                    </div>
+                                    <div class="gMainGroupInfo">
+                                        <div class="gMainName level2 green1">
+                                            五寶露營鎮盟
+                                        </div>
+                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./groupInfo.html">
+                                <div class="gMainGroup">
+                                    <div class="img">
+                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
+                                    </div>
+                                    <div class="gMainGroupInfo">
+                                        <div class="gMainName level2 green1">
+                                            五寶露營鎮盟
+                                        </div>
+                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./groupInfo.html">
+                                <div class="gMainGroup">
+                                    <div class="img">
+                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
+                                    </div>
+                                    <div class="gMainGroupInfo">
+                                        <div class="gMainName level2 green1">
+                                            五寶露營鎮盟
+                                        </div>
+                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./groupInfo.html">
+                                <div class="gMainGroup">
+                                    <div class="img">
+                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
+                                    </div>
+                                    <div class="gMainGroupInfo">
+                                        <div class="gMainName level2 green1">
+                                            五寶露營鎮盟
+                                        </div>
+                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 設備交換 -->
+        <section class="home_equipment">
+            <div class="wrap">
+                <div class="homepage_title">
+                    <div class="title_area">
+                        <div class="img">
+                            <img src="./pic/index/1020_icon_equipment.svg" alt="尚未載入">
+                        </div>
+                        <div class="title_text title">設備交換</div>
+                    </div>
+                    <div class="homepage_sub_title">
+                        <div class="sub_text green3 level1 blod">
+                            露營設備放到生灰塵了嗎?想要換其他的設備看看嗎?山森有幸-前所未有的露營裝備交換空間。
+                        </div>
+                        <div class="search_input home_search">
+                            <input type="text" placeholder="尋找地點、主揪、團名...">
+                            <label>搜尋</label>
+                        </div>
+                            
+                    </div>
+                </div>
+                <div class="content2">
+                    <div class="home_equ_step">
+                        <div class="equ_step01">
+                            <div class="equ_step01_num">
+                                <p>1</p>
+                            </div>
+                            <div class="equ_step_line"></div>    
+                            <div class="equ_step01_desc">
+                                <p class="bold green1">尋找物品</p>
+                            </div>
+                        </div>
+                        <div class="equ_step01">
+                            <div class="equ_step01_num">
+                                <p>2</p>
+                            </div>
+                            <div class="equ_step_line"></div>    
+                            <div class="equ_step01_desc">
+                                <p class="bold green1">申請交換</p>
+                            </div>
+                        </div>
+                        <div class="equ_step01">
+                            <div class="equ_step01_num">
+                                <p>3</p>
+                            </div>
+                            <div class="equ_step_line"></div>    
+                            <div class="equ_step01_desc">
+                                <p class="bold green1">聯絡對方</p>
+                            </div>
+                        </div>
+                        <div class="equ_step01">
+                            <div class="equ_step01_num">
+                                <p>4</p>
+                            </div>  
+                            <div class="equ_step01_desc">
+                                <p class="bold green1">交換成功</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+        
+                    <div class="sub_title home_equ_pic_title">最新刊登設備</div>
+                    
+                    <div class="home_equ_pic">
+                        <button class="tagbtn_yellow" id="equ_leftBtn">&lt;</button>
+                        <div class="home_equ_block">
+                            <ul class="allequ">
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent03.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent04.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent03.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent04.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent03.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent04.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent02.jpg" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                                <li class="euq_min_list">
+                                    <div class="home_equ_img">
+                                        <img src="pic/main/f_tent03.png" alt="">
+                                    </div>
+                                    <div class="home_equ_info">
+                                        <div class="home_equ_text">
+                                            <a href="./equipment.html">
+                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
+                                            </a>
+                                            <a class="bold level1 gray1 hime_poster_text" href="">刊登者：Yong Hwa</a>
+                                        </div>                         
+                                    </div>                            
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="tagbtn_yellow" id="equ_rightBtn">&gt;</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 營區攻略 -->
+        <section class="home_camping">
+            <div class="wrap">
+                <div class="homepage_title">
+                    <div class="title_area">
+                        <div class="img">
+                            <img src="./pic/index/1020_icon_camping.svg" alt="尚未載入">
+                        </div>
+                        <div class="title_text title">營區攻略</div>
+                    </div>
+                    <div class="homepage_sub_title">
+                        <div class="sub_text green3 level1 blod">
+                            迫不及待想跟家人朋友一起去露營嗎?快來查詢山森有幸為您精選的露營地點喔!。
+                        </div>
+                    </div>
+                </div>
+                <div class="content3">
+                    <div class="home_map">
+                        <div id="app"></div>
+                        <div class="home_map_layout">
+                            <div id="map" class="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 明信片 -->
+        <section class="home_postcard">
+            <div class="wrap">
+                <div class="homepage_title">
+                    <div class="title_area">
+                        <div class="img">
+                            <img src="./pic/index/1020_icon_postcard.svg" alt="尚未載入">
+                        </div>
+                        <div class="title_text title">來去寫信</div>
+                    </div>
+                    <div class="homepage_sub_title">
+                        <div class="sub_text green3 level1 blod">
+                            分享美美的露營照給朋友~呼朋引伴一起揪團露營。
+                        </div>
+                    </div>
+                </div>
+                <div class="content4">
+                    
+                    <div class="postcardHomeLeft">
+                        <div class="posHomePutPhoto">
+                            
+                        </div>
+                        <div class="posHomeLogo">
+                            <img  src="./pic/postcardMaterial/LOGO/logoUse.svg">
+                        </div>
+                    </div>
+                    <div class="postcardHomeRight">
+                        <div class="posHomeWords">
+                            <h1 class="level3">Dear:</h1>
+                            <p class="level3">半年後的你，一定會更有魅力，更有能力，
+                            讓自己發光，也讓更多人看見你的夢想。
+                            那時的你，也能找到那份等待多時的幸福。</p>
+                            <img class="HomePosLittle" id="Poslittle1" src="./pic/postcardMaterial/littlePic/pic-01.svg">
+                            <img class="HomePosLittle" id="Poslittle2" src="./pic/postcardMaterial/littlePic/pic-02.svg">
+                            <img class="HomePosLittle" id="Poslittle3" src="./pic/postcardMaterial/littlePic/pic-03.svg">
+                        </div>
+                            <div class="posFromTo">
+                                <p class="level2">From: 阿銘</p>
+                                <p class="level2">To: 小美</p>
+                            </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="linkPostcard">
+                    <a href="./letter.html">
+                        <button class="secondbtn1 posHomeBtn">馬上寫信</button>
+                        </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 小遊戲 -->
+        <section class="home_game">
+            <div class="wrap">
+                <div class="homepage_title">
+                    <div class="title_area">
+                        <div class="img">
+                            <img src="./pic/index/1020_icon_game.svg" alt="尚未載入">
+                        </div>
+                        <div class="title_text title">露營小知識</div>
+                    </div>
+                    <div class="homepage_sub_title">
+                        <div class="sub_text green3 level1 blod">
+                            挑戰露營知識智慧王!答對一題即可獲得200分!
+                        </div>
+                    </div>
+                </div>
+                <div class="content5">
+                    <div class="game_table">
+
+
+                        <form action="#">
+                            <div class="sub_title game_title_question01">
+                                Q1:請問露營時遇到熊怎麼辦?
+                            </div>
+                            
+                            <div class="game_button">
+                                <button class="mainbtn2" id="game_button_answer01"> A:爬到樹上</button>
+                            </div>
+                            
+                            <div class="game_button">
+                                <button class="mainbtn2" id="game_button_answer01"> B:躺在地上裝死</button>
+                            </div>
+                            
+                            <div class="game_button">
+                                <button class="mainbtn2" id="game_button_answer01"> C:與熊搏鬥</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer_bgc">
+            <div class="wrap">
+                <div class="footerarrange">
+                    <div class="footright">
+                        <div class="level2 green1">聯絡資訊 |</div>
+                        <div class="level0 green1">
+                            電子信箱|ShanSen@gmail.com<br>
+                            營業時間|週二至週日 10:00~20:00(國定假日休假)
+                        </div>
+                    </div>
+                    <div class="footercenter">
+                        <a href="./shansen.html">
+                            <img src="./pic/commom/電腦版_header.svg">
+                        </a>
+                    </div>
+                    <div class="footerright">
+                        <div class="link">
+                            <div class="level2 green1">相關連結 |</div>
+                            <div class="footer_icon">
+                                <img src="./pic/commom/foot_line.svg" alt="">
+                                <img src="./pic/commom/foot_ig.svg" alt="">
+                                <img src="./pic/commom/foot_fb.svg" alt="">
+                                <img src="./pic/commom/foot_email.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">Copyright &copy; 2020ShanSen</div>
+    </footer>
+
+    <!-- 地圖 -->
+    <script>
+        var map;
+
+        map =L.map('map', {
+                center: [ 24.926455,121.526396], // 中心點座標
+                zoom: 12, // 0 - 18
+                attributionControl: true, // 是否秀出「leaflet」的貢獻標記
+                zoomControl: true , // 是否秀出 - + 按鈕
+                });
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+
+        //建立地標
+        var marker = L.marker([ 24.926455,121.526396]);
+        marker.addTo(map);
+        marker.bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>確幸莊園</a><br>目前開團:2組");
+        
+
+        //讀取 GeoJSON，加入行政區邊界
+        // $.getJSON('https://1999.noob.tw/data/kaohsiung.json', function(r){
+        //     L.geoJSON(r, {color: '#333', weight: 0.7}).addTo(map);
+        // })
+        function onlick(){
+            $(marker).openPopup();
+        }
+
+    </script>
+    <script src="https://unpkg.com/jquery"></script>
+    <!-- 地區下拉選單 -->
+    <script src="cities.js"></script>
+    <script>
+        Vue.component('Select', {
+            props: ['value', 'options', 'label'],
+            computed: {
+            index: {
+                get() {
+                return this.value;
+                },
+                set(val) {
+                this.$emit("input", val);
+                }
+            }
+            },
+            methods: {
+            optionText(item) {    	
+                if( this.label === 'text' ) {
+                return item["text"];
+                }
+                else {
+                return eval("item." + this.label);
+                }
+                
+            }
+            },
+            template: 
+            `  	
+            <select class="selectstyle" v-model="index">    	
+                <option v-for="(item, index) in options" :value="index">{{optionText(item)}}</option>
+            </select>    	
+            `
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+            cityIndex: 0,
+            areaIndex: 0,
+            },
+            watch: {
+            areaIndex() {
+                this.cityIndex = 0;
+            }
+            },
+            computed: {
+            areas() {
+                return spots;
+            },
+            cities() {
+                return spots[this.areaIndex].city;
+            },
+
+            },
+            template: 
+            `
+            <div class="home_weather_layout">
+                <!-- 地區搜尋 -->
+                <div class="search_area">
+                    <p>
+                        <label class="third_title" for="">選擇地區:</label>
+                        <Select v-model="areaIndex" :options="spots" label="area" ></Select>
+                    </p>
+                    <p>
+                        <label class="third_title" for="">選擇營地:</label>
+                        <Select v-model="cityIndex" :options="cities" label="text"></Select>
+                    </p>
+                    <!--<div>{{ this.areaIndex }} - {{ this.cityIndex }} </div>-->
+                </div>
+                    
+                <!-- 溫度、降雨、濕度 -->
+                <div class="infos">
+                    <div class="NowT infosbox">
+                        <p class="title">22oC</p>
+                        <div class="TtoT">
+                            <span id=MinT>19oC</span>~
+                            <span id=MaxT>23oC</span>
+                        </div>
+                    </div>
+                    <div class="PoP infosbox">
+                        降雨機率
+                        <p id="PoP">20%</p>
+                    </div>
+                    <div class="RH infosbox">
+                        相對溼度
+                        <p id="RH">78%</p>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+    </script>
+    <!-- 交換設備 -->
+    <script>
+        
+        //設備交換 最新刊設備
+        $(document).ready(function(){
+                let imgCount = $('.allequ .euq_min_list').length;
+                let divWidth = $('.home_equ_block').width();
+
+                $('.allequ').width(Math.ceil(imgCount / 5) * divWidth);
+                let allwidth = (Math.ceil(imgCount / 5));
+                let count=1;
+                $('#equ_leftBtn').click(function(){
+                if(count == 0){
+                    $('#equ_leftBtn').css('background-color', '#FFCD43');
+                    $('#equ_leftBtn').css('border-color', '#FFCD43');
+                    $('#equ_leftBtn').css('border-style', 'inset');
+                }
+                else{
+                    count--; 
+                    $('.allequ').animate({
+                        right: divWidth * count,
+                    });
+                    console.log(count);
+                    if(count == 0){
+                        $('#equ_leftBtn').css('background-color', '#C4C4C4');
+                        $('#equ_leftBtn').css('border-color', '#C4C4C4');
+                        $('#equ_leftBtn').css('border-style', 'solid');
+                        $('#equ_rightBtn').css('background-color', '#FFCD43');
+                        $('#equ_rightBtn').css('border-color', '#FFCD43');
+                        $('#equ_rightBtn').css('border-style', 'inset');
+                    }
+
+                }
+                
+            });
+            $('#equ_rightBtn').click(function(){
+                if(count < allwidth-1){       
+                    count++;
+                    $('.allequ').animate({
+                        right: divWidth * count,
+                    });
+                    console.log(count);
+                    if(count == allwidth-1){
+                        $('#equ_rightBtn').css('background-color', '#C4C4C4');
+                        $('#equ_rightBtn').css('border-color', '#C4C4C4');
+                        $('#equ_rightBtn').css('border-style', 'solid');
+                    }
+                    else{
+                        $('#equ_rightBtn').css('background-color', '#FFCD43');
+                        $('#equ_rightBtn').css('border-color', '#FFCD43');
+                        $('#equ_rightBtn').css('border-style', 'inset');
+                    }
+                    if(count != 0){
+                        $('#equ_leftBtn').css('background-color', '#FFCD43');
+                        $('#equ_leftBtn').css('border-color', '#FFCD43');
+                        $('#equ_leftBtn').css('border-style', 'inset');
+                    }
+                    console.log(count);
+                }
+                
+            });
+        });    
+    </script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

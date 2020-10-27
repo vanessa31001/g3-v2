@@ -1,0 +1,487 @@
+.page{
+    padding: 0px 0px 20px 0px;
+}
+.camping_block{
+    background-color: white;
+    border-radius: 10px;
+    padding:20px;
+    margin: 0px 0px 20px 0px;
+}
+//麵包穴
+.section1{
+    .breadcrumbs{
+        ul{
+            text-align: left;
+            padding: 30px 0;
+            height: auto;
+            
+            li{
+                display: inline-block;
+                margin: 0px;
+                line-height: auto;
+                height: auto;
+                a{
+                    font-weight:bold;
+                    text-decoration: none;
+                    &:hover{
+                        color: $greenColor3;
+                    }
+                }
+                &::after{
+                    content: ">";
+                    color: #007E85;
+                    margin: 10px;
+                }
+                &:last-child::after{
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+.spot{
+    display: flex;
+}
+#weatherbox{
+    border-right: 2px solid $grayColor2;
+}
+.map{
+    height: 550px;
+    background: #333;
+    display: inline-block;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 0 0 20px;
+}
+//地圖的tooltip
+.leaflet-popup-content-wrapper{
+    width: 200px;
+}
+.leaflet-popup-content{
+    margin: 18px 16px;
+    a{
+        img{
+            width: 167px;
+            border-radius: 5px;
+        }
+    }
+}
+.weather{
+    padding: 0 20px 0 0;
+}
+//搜尋bar
+.search_area{
+    margin: 10px auto;
+    border-bottom: 2px solid $grayColor2;
+    max-width: 350px;
+    width: 100%;
+    p{
+        margin: 10px 0;
+        line-height: 30px;
+        text-align: center;
+        label{
+            display: inline-block;
+            width: calc(100%-250px);
+        }
+        select{
+            width: 250px;
+            height: 30px;
+        }
+    }
+}
+
+//溫度、降雨、濕度
+.infos{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 10px 0 20px 0;
+    border-bottom: 2px solid $grayColor2;
+    .NowT{
+        padding:0 12px ;
+        .TtoT{
+            color: $greenColor3;
+        }
+    }
+    .PoP{
+        vertical-align: center;
+        padding: 20px 8px;
+        color: $greenColor3;
+        p{
+            padding-top: 10px;
+            color: $greenColor1;;
+        }
+    }
+    .RH{
+        vertical-align: center;
+        padding: 20px 8px ;
+        color: $greenColor3;
+        p{
+            padding-top: 10px;
+            color: $greenColor1;;
+        }
+    }
+}
+.infosbox{
+    border: 3px solid $greenColor1;
+    border-radius: 5px;
+    background-color: $greenColor4;
+    font-weight: bold;
+}
+
+.weatherweek{ 
+    display: flex;
+    text-align: center;
+    justify-content:center;
+    margin: 20px auto;
+    max-width: 350px;
+    width: 100%;    
+    .week{
+        max-width: 50px;
+        width: 100%;
+        border-right:1px solid white ;
+    }
+    .day{
+        border-bottom:1px solid white ;
+        background-color: $greenColor3;
+        color: white;
+        padding: 6px 8px;
+    }
+    .temp{
+        border-bottom:1px solid white ;
+        background-color: $greenColor2;
+        color: white;
+        padding: 9px 8px;
+    }
+}
+
+.weatherdesc{
+    margin: 0 auto;
+    width: 360px;
+}
+
+//熱門營區
+.popular_area{
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    .coll_num{
+        float: right;
+    }
+    .area_pic{
+        padding-right: 20px;
+        img{
+            width: 400px;
+            border-radius: $radius;
+        }
+    }
+
+    .hot{
+        background-color:  $orangeColor2; 
+        width: 170px;
+        height: 170px;
+        position: absolute;
+        left: -85px;
+        top: -85px;
+        transform: rotate(45deg);
+        z-index:1;
+        p{
+            font-size: 16px;
+            position: absolute;
+            right: 5px;
+            bottom: 50%;
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+//其他熱門營區
+.other_popular_area{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    .card{
+        .content{
+            text-align: left;
+            margin: 0 auto;
+            max-width: 250px;
+            width: 100%;
+            img{
+                max-width: 250px;
+                width: 100%;
+                border-radius: $radius;
+            }
+        }
+    }
+    .card:nth-child(1){
+        margin-right: 20px;
+    }
+    .card:nth-child(2){
+        margin-right: 20px;
+    }
+    .card:nth-child(3){
+        margin-right: 20px;
+    }
+}
+//近期揪團
+.currently_gruop{
+    border-bottom: 2px solid $grayColor2;
+    padding: 0 0 30px 0;
+    display: flex;
+    justify-content: space-evenly;
+    .card{
+        max-width: 350px;
+        box-shadow: 3px 3px 3px 0px #888,-1px 0px 3px 0px #cccccc;
+        border-radius: 10px;
+        width: 100%;
+        text-align: left;
+        overflow: hidden;
+        img{
+            max-width: 350px;
+            width: 100%;
+        }
+        .text{
+            padding: 3px;
+            .detail{
+                text-align: right;
+                button{
+                    display:inline-block;
+                    margin: 5px;
+                }
+            }
+        }
+    }
+    .card:nth-child(1){
+        margin-right: 30px;
+    }
+    .card:nth-child(2){
+        margin-right: 30px;
+    }
+}
+.camping_btn{
+    .more_btn{
+        display: block;
+        margin: 20px auto 10px;
+    }
+}
+//------------------------------------------------------------
+//camping2
+.location{
+    .titlearea{
+        .like{
+            float: right;
+        }
+    }
+    .big_pic{
+        width: 100%;
+        border-radius: 5px;
+    }
+    .introduction{
+        padding: 5px 0px;
+    }
+}
+
+//營地資訊
+.location_inf{
+    .content{
+        display: flex;
+        justify-content: space-around;
+        .location_map{
+            flex-basis: 55%;
+            img{
+                max-width: 660px;
+                width: 100%;
+                border-radius: $radius;
+            }
+        }
+        .location_text{
+            flex-basis: 40%;
+            .text{
+                padding-bottom: 5px;
+            }
+        }
+    }
+    .note{
+        border: 1px solid $greenColor1;
+        border-radius: $radius;
+        padding: 10px;
+        margin:10px 10px 0px 10px;
+        .text{
+            text-align: center;
+        }
+    }
+}
+
+//rwd
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .search_area{
+        p{
+            label{
+                width: calc(100%-200px);
+            }
+            select{
+                width: 200px;
+            }
+        }
+    }
+    .infos{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+    .weatherweek{     
+        .day{
+            padding: 6px 4px;
+        }
+        .temp{
+            padding: 9px 4px;
+        }
+    }
+    .weatherdesc{
+        max-width: 300px;
+        width: 100%;
+    }
+    //熱門營區
+    .popular_area{
+        .area_pic{
+            img{
+                width: 350px;
+            }
+        }
+    }
+    //其他熱門營區
+    .other_popular_area{
+        flex-wrap: wrap;
+        .card{
+            flex: 40%;
+        }
+        .card:nth-child(2){
+            margin-right: 0px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px){
+    .spot{
+        display: block;
+    }
+    #weatherbox{
+        border-right: none;
+    }
+    .map{
+        margin-left:0px ;
+        height: 350px;
+    }
+    
+    .weather{
+        padding: 0 0 10px 0;
+    }
+    .search_area{
+        p{
+            label{
+                width: calc(100%-215px);
+            }
+            select{
+                width: 215px;
+            }
+        }
+    }
+    .infos{
+        max-width: 350px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .weatherweek{     
+        .day{
+            padding: 6px 4px;
+        }
+        .temp{
+            padding: 9px 4px;
+        }
+    }
+    .weatherdesc{
+        max-width: 350px;
+        width: 100%;
+    }
+
+    //熱門營區
+    .popular_area{
+        display: block;
+        .area_pic{
+            padding-right: 0px;
+            img{
+                width: 100%;
+            }
+        }
+    }
+
+    //其他熱門營區
+    .other_popular_area{
+        flex-wrap: wrap;
+        .card{
+            flex: 40%;
+        }
+        .card:nth-child(2){
+            margin-right: 0px;
+        }
+    }
+
+    //近期揪團
+    .currently_gruop{
+        border-bottom: none;
+        display: block;
+        .card:nth-child(1){
+            margin: 0 auto 20px;
+        }
+        .card:nth-child(2){
+            margin: 0 auto 20px;
+        }
+        .card:nth-child(3){
+            margin: 0 auto;
+        }
+    }
+    //page2-營區介紹-營區資訊
+    .location_inf{
+        .content{
+            display: block;
+            .location_text{
+                padding: 10px;
+            }
+        }
+        .note{
+            border: 1px solid $greenColor1;
+            border-radius: $radius;
+            padding: 10px;
+            margin:10px 10px 0px 10px;
+            .text{
+                text-align: center;
+            }
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    //其他熱門營區
+    .other_popular_area{
+        display: block;
+        .card{
+            .content{
+                max-width: 500px;
+                width: 100%;
+                img{
+                    max-width: 500px;
+                    width: 100%;
+                }
+            }
+        }
+        .card:nth-child(1){
+            margin-right: 0px;
+        }
+        .card:nth-child(2){
+            margin-right: 0px;
+        }
+        .card:nth-child(3){
+            margin-right: 0px;
+        }
+    }
+}

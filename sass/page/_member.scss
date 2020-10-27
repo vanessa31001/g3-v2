@@ -1,0 +1,588 @@
+.member_section{
+    height: auto;
+    padding-bottom: 36px;
+}
+.app_anyway{
+    display: flex;
+}
+// 側邊欄
+.app_left_aside{
+    width: 30%;
+    background-color: white;
+    border-radius: 10px 0 0 10px;
+    padding: 16px;
+}
+.buttonClassification{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+}
+.buttonClassification > button{
+    cursor: pointer; 
+    width: 100px;
+    margin-left: 16px;
+}
+.aside_subtitle{
+    text-align: left;
+}
+
+.imgSize{ //左側圖片大小
+    width: 60px;
+}
+
+//主要顯示
+//會員資訊標題
+.app_right_aside{
+    width: 70%;
+    padding: 14px;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+}
+.app_left_aside_selector{
+    display: none;
+    // background-color: #007E85;
+    text-align: center;
+    margin: 16px 0;
+    select{
+        width: 90%;
+        border: 3px solid #007E85;
+        height: 45px;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+    
+}
+.member_information_title{
+    text-align: left;
+    .memberTitle_img{
+    width: 60px;
+    }
+}
+.member_information_detail{
+    .member_image{
+        text-align: center;
+        margin: 36px 0;
+        img{
+            display: inline-block;
+            border-radius: 50%;
+        }
+        .member_imageButton{
+            display: inline-block;
+            button{
+                cursor: pointer; 
+            }
+        }
+    }
+}
+
+.member_information_main{
+    margin: 0 auto;
+    width: 50%;
+    text-align: left;
+    span{
+        margin-left: 16px;
+    }
+    .edit_block{
+        text-align: center;
+    }
+    button{
+        cursor: pointer; 
+    }
+    
+}
+
+
+//悄悄話
+.member_message_alldetail{
+    border: 3px solid #007E85;
+    .member_message_detail{
+        border: 1px solid #007E85;
+        margin: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        img{
+            width: 150px;
+            border-radius: 50%;
+            padding: 10px;
+        }
+    }
+    .message_edit_block{
+        margin-bottom: 10px;
+        button{
+            cursor: pointer;
+        }
+    }
+}
+
+
+//揪團露營
+.member_Group_detail{
+    text-align: left;
+}
+.startGroupManage_page{
+    ul{
+        padding: 16px;
+        .group_everyRow{
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            align-items: center;
+            height: 150px;
+            margin: 16px 0 ;
+            background-color: white;
+            padding: 16px;
+            border-radius: 8px;
+            img{
+                width: 200px;
+            }
+            ul{
+                line-height: 0;
+                height: auto;
+                font-size: 0;
+                display: block;
+                text-align: left;
+                width: 60%;
+                padding-left: 32px;
+                li{
+                    margin: 0;
+                    text-align: left;
+                    overflow : hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                }
+            }
+            button{
+                min-width: 66px;
+            }
+        }
+        .unlockRow::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba($color: #000000, $alpha: .4);
+        }
+    }
+}
+
+.group_page{
+    text-align: center;
+    padding: 0;
+    li{
+        display: inline-block;
+        a{
+            text-decoration: none;
+            font-size: 16px;
+            color: #007e85;
+        }
+    }
+}
+
+//交換設備
+.Equipment_record_page{
+    .Equipment_record{
+        li{
+            margin: 16px 0;
+            position: relative;
+            width: 100%;
+            *{
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+            }
+            img{
+                width: 130px;
+            }
+            :first-child{
+                width: 10%;
+
+            }
+            :nth-child(2){
+                width: 30%;
+            }
+            :nth-child(3){
+                width: 40%;
+                text-align: left;
+            }
+            :last-child{
+                width: 15%;
+                
+            }
+        }
+        li:first-child{
+            background-color: #FFAE08;
+            :nth-child(3){
+                text-align: center;
+            }
+        }
+    }
+    .lookEquipment::after{
+        content: '';
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: .4);
+    }
+}
+
+
+//設備交換
+.group_button{
+    display: flex;
+}
+.publicationRecord{
+    font-size: 18px;
+    color: #626262;
+    border: 1px solid black;
+    th{
+        background-color: #FFAE08;
+    }
+    tr{
+        position: relative;
+        height: 150px;
+        td{
+            font-size: 16px;
+            padding: 0;
+            line-height: 16px;
+            
+            border: 1px solid black;
+            vertical-align: middle;
+            img{
+                width: 150px;
+            }
+        }
+        td:nth-child(3){
+            width: 50%;
+            text-align: left;
+            padding: 0 16px;
+        }
+    }
+}
+//營區收藏
+.camptotal_page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.campItem{
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px;
+    position: relative;
+    img{
+        width: 100%;
+    }
+    div{
+        text-align: left;
+        padding: 8px;
+    }
+    span{
+        position: absolute;
+        right: 10px;
+        top: 0;
+        cursor: pointer;
+        img{
+            width: 30px;
+        }
+    }
+}
+
+//rwd
+@media screen and (min-width: 1200px){
+
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .app_anyway{
+        display: block;
+        .app_left_aside{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: 1px solid black;
+            .aside_subtitle{
+                display: none;
+            }
+        }
+        .app_right_aside{
+            width: 100%;
+            //個人資訊
+            .member_information_detail{
+                .member_information_main{
+                    width: 45%;
+                }
+                .member_image > img, .member_imageButton{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+            //揪團
+            .camptotal_page{
+                justify-content: flex-start;
+            }
+        
+        }
+    }
+
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+    
+    .app_anyway{
+        display: block;
+        .app_left_aside{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: 1px solid black;
+            .aside_subtitle{
+                display: none;
+            }
+            .buttonClassification{
+                flex-direction: column;
+                justify-content: flex-end;
+                img{
+                    cursor: pointer;
+                }
+                button{
+                    margin: 0;
+                }
+            }
+        }
+        .app_right_aside{
+            width: 100%;
+            //個人資訊
+            .member_information_detail{
+                .member_information_main{
+                    width: 45%;
+                }
+                .member_image > img, .member_imageButton{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }//悄悄話
+            
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .app_anyway{
+        display: block;
+        .app_left_aside{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: 1px solid black;
+            .aside_subtitle{
+                display: none;
+            }
+            .buttonClassification{
+                flex-direction: column;
+                justify-content: flex-end;
+                img{
+                    cursor: pointer;
+                }
+                button{
+                    margin: 0;
+                }
+            }
+        }
+        .app_right_aside{
+            width: 100%;
+            //個人資訊
+            .member_information_detail{
+                .member_information_main{
+                    width: 60%;
+                }
+                .member_image > img, .member_imageButton{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }//悄悄話
+            .member_message_alldetail{
+                border: 3px solid #007E85;
+                .member_message_detail{
+                    display: inline-block;
+                    padding: 32px;
+                    img{
+                        width: 150px;
+                        border-radius: 50%;
+                        padding: 10px;
+                    }
+                }
+                .message_edit_block{
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: space-around;
+                    button{
+                        cursor: pointer;
+                    }
+                }
+            }
+            //設備交換
+            .Equipment_record_page{
+                .Equipment_record{
+                    li{
+                        img{
+                            width: 100%;
+                        }
+                        :first-child{
+                            width: 20%;
+                        }
+                        :nth-child(2){
+                            width: 50%;
+                        }
+                        :nth-child(3){
+                            display: none;
+                        }
+                        :last-child{
+                            width: 25%;
+                            
+                        }
+                    }
+                }
+            }
+            .group_everyRow{
+                img{
+                    width: 100px;
+                }
+                ul{
+                    width: 80%;
+                    padding: 0;
+                    li{
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 576px){
+    .app_anyway{
+        display: block;
+        .app_left_aside{
+            display: none;
+            // justify-content: space-around;
+            // width: 100%;
+            // border-bottom: 1px solid black;
+            // .aside_subtitle{
+            //     display: none;
+            // }
+            // .buttonClassification{
+            //     flex-direction: column;
+            //     justify-content: flex-end;
+            //     img{
+            //         cursor: pointer;
+            //     }
+            //     button{
+            //         margin: 0;
+            //     }
+            // }
+        }
+        .app_left_aside_selector{
+            display: block;
+        }
+        .app_right_aside{
+            border-radius: 10px;
+            width: 100%;
+            //個人資訊
+            .member_information_detail{
+                .member_information_main{
+                    width: 80%;
+                    span{
+                        display: block;
+                        border-bottom: 1px solid #70c9ce7c;
+                        word-break:break-all;
+                    }
+                }
+                .member_image > img, .member_imageButton{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }//悄悄話
+            .member_message_alldetail{
+                border: 3px solid #007E85;
+                .member_message_detail{
+                    display: inline-block;
+                    padding: 16px;
+                    text-align: center;
+                    width: calc(100% - 20px);
+                    img{
+                        width: 150px;
+                        border-radius: 50%;
+                        padding: 10px;
+                    }
+                }
+                .message_edit_block{
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: space-around;
+                    button{
+                        cursor: pointer;
+                        min-width: 66px;
+                    }
+                }
+            }
+        }
+        //開團露營
+        .group_everyRow{
+            display: block;
+            height: auto;
+            text-align: center;
+            img{
+                display: none;
+            }
+            ul{
+                height: auto;
+                padding: 0;
+                width: 100%;
+                li{
+                    text-align: left;
+                }
+            }
+            button{
+                text-align: center;
+            }
+        }
+        //設備交換
+        .Equipment_record_page{
+            .Equipment_record{
+                li{
+                    padding: 8px;
+                    img{
+                        width: 100%;
+                    }
+                    :first-child{
+                        display: none;
+                    }
+                    :nth-child(2){
+                        width: 60%;
+                    }
+                    :last-child{
+                        width: 30%;
+                        
+                    }
+                }
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 1199px){
+    .app_left_aside{
+        border-radius: 10px 10px 0 0;
+    }
+    .app_right_aside{
+
+        border-radius: 0 0 10px 10px;
+    }
+}

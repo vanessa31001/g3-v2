@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備交換</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header >
+            <div class="forphone">
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            </div>
+            <nav class="wrap">
+                <div class="nav_logo">
+                    <a href="#" class="logo_link -bottom">
+                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                    </a>
+                    <a class="changelogo" href="./shansen.html">
+                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    </a>
+                    <div class="middle_bg"></div>
+                    <a href="./shansen.html" class="logo_link -up">
+                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                    </a>
+                </div>
+                <div class="nav_list">
+                    <ul >
+                        <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                        <li><a class="nav_title orange2" href="./equipment.html">設備交換</a></li>
+                        <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                        <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                        <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="bgcColor bg_dis">
+        <section class="section1 bgcColor">
+            <div class="wrap">
+                <div class="title">
+                    設備刊登
+                </div>
+
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>          
+                        <li><a href="./equipment.html" class="level0 green1">設備交換</a></li>
+                        <li>設備刊登</li>
+                    </ul>    
+                </div>
+
+                <div class="equpost_block">
+                    <div class="equpost_pic">
+                        <div class="post_bigimg">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        </div>
+                        <div class="posttext_block">
+                            <p class="level1 gray1">(限GIF、PNG、JPEG檔，建議大小為400 × 400)</p>
+                        </div>
+                        <div class="post_minimg">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        </div>
+                        <div class="preview_btn">
+                            <button class="thirdbtn1_green prev_btn">預覽檔案</button>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="equpost_inform">
+                        <div class="sub_title green1 level7">填寫刊登設備資訊</div>
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
+                                    <td><input type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="equ_post_select" class="third_title equ_info_name">我的設備類別：</label>
+                                    </td>
+                                    <td>
+                                        <select name="equ_info_sort_sel" id="sort_select">
+                                            <optgroup label="帳篷">
+                                                <option value="" disabled selected hidden>請選擇設備類別</option>
+                                                <option value="family">家庭帳</option>
+                                                <option value="small">小型帳</option>
+                                                <option value="livingroom">客廳帳</option>
+                                                <option value="cloth">更衣帳</option>
+                                                <option value="cook">炊事帳</option>
+                                            </optgroup>
+                                            <optgroup label="睡袋">
+                                                <option value="adult">成人睡袋</option>
+                                                <option value="kid">兒童睡袋</option>
+                                                <option value="couple">雙人睡袋</option>
+                                            </optgroup>
+                                            <optgroup label="其他">
+                                                <option value="tabchai">桌椅</option>
+                                                <option value="cooing">炊具</option>
+                                                <option value="material">小物</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="equ_name" class="third_title equ_info_name">我想要的設備類別：</label>
+                                    </td>
+                                    <td>
+                                        <select name="equ_info_sort_sel" id="sort_select_want01">
+                                            <optgroup label="帳篷">
+                                                <option value="" disabled selected hidden>請選擇設備類別</option>
+                                                <option value="family">家庭帳</option>
+                                                <option value="small">小型帳</option>
+                                                <option value="livingroom">客廳帳</option>
+                                                <option value="cloth">更衣帳</option>
+                                                <option value="cook">炊事帳</option>
+                                            </optgroup>
+                                            <optgroup label="睡袋">
+                                                <option value="adult">成人睡袋</option>
+                                                <option value="kid">兒童睡袋</option>
+                                                <option value="couple">雙人睡袋</option>
+                                            </optgroup>
+                                            <optgroup label="其他">
+                                                <option value="tabchai">桌椅</option>
+                                                <option value="cooing">炊具</option>
+                                                <option value="material">小物</option>
+                                            </optgroup>
+                                        </select>
+                                        <select name="equ_info_sort_sel" id="sort_select_want02">
+                                            <optgroup label="帳篷">
+                                                <option value="" disabled selected hidden>請選擇設備類別</option>
+                                                <option value="family">家庭帳</option>
+                                                <option value="small">小型帳</option>
+                                                <option value="livingroom">客廳帳</option>
+                                                <option value="cloth">更衣帳</option>
+                                                <option value="cook">炊事帳</option>
+                                            </optgroup>
+                                            <optgroup label="睡袋">
+                                                <option value="adult">成人睡袋</option>
+                                                <option value="kid">兒童睡袋</option>
+                                                <option value="couple">雙人睡袋</option>
+                                            </optgroup>
+                                            <optgroup label="其他">
+                                                <option value="tabchai">桌椅</option>
+                                                <option value="cooing">炊具</option>
+                                                <option value="material">小物</option>
+                                            </optgroup>
+                                        </select>
+                                        <select name="equ_info_sort_sel" id="sort_select_want03">
+                                            <optgroup label="帳篷">
+                                                <option value="" disabled selected hidden>請選擇設備類別</option>
+                                                <option value="family">家庭帳</option>
+                                                <option value="small">小型帳</option>
+                                                <option value="livingroom">客廳帳</option>
+                                                <option value="cloth">更衣帳</option>
+                                                <option value="cook">炊事帳</option>
+                                            </optgroup>
+                                            <optgroup label="睡袋">
+                                                <option value="adult">成人睡袋</option>
+                                                <option value="kid">兒童睡袋</option>
+                                                <option value="couple">雙人睡袋</option>
+                                            </optgroup>
+                                            <optgroup label="其他">
+                                                <option value="tabchai">桌椅</option>
+                                                <option value="cooing">炊具</option>
+                                                <option value="material">小物</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="equ_name" class="third_title equ_info_name">商品說明：</label>
+                                    </td>
+                                    <td>
+                                        <textarea name="equ_desc" id="equdescribe01" cols="40" rows="15" placeholder="請描述設備資訊..."></textarea>
+                                    </td>
+                                </tr>    
+                            </table>
+
+                            <div class="check_btn">
+                                <button class="mainbtn2 pre_check_btn">預覽設備</button>
+                                <button class="mainbtn1">確認刊登</button>
+                            </div>
+
+                        
+                        </form>
+                        
+                        
+                    </div>
+
+                    
+                </div>                       
+            </div>
+        </section>
+        
+        </div>  
+
+        <footer>
+            <div class="footer_bgc">
+                <div class="wrap">
+                    <div class="footerarrange">
+                        <div class="footright">
+                            <div class="level2 green1">聯絡資訊 |</div>
+                            <div class="level0 green1">
+                                電子信箱|ShanSen@gmail.com<br>
+                                營業時間|週二至週日 10:00~20:00(國定假日休假)
+                            </div>
+                        </div>
+                        <div class="footercenter">
+                            <a href="./shansen.html">
+                                <img src="./pic/commom/電腦版_header.svg">
+                            </a>
+                        </div>
+                        <div class="footerright">
+                            <div class="link">
+                                <div class="level2 green1">相關連結 |</div>
+                                <div class="footer_icon">
+                                    <img src="./pic/commom/foot_line.svg" alt="">
+                                    <img src="./pic/commom/foot_ig.svg" alt="">
+                                    <img src="./pic/commom/foot_fb.svg" alt="">
+                                    <img src="./pic/commom/foot_email.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">Copyright &copy; 2020ShanSen</div>
+        </footer>
+    </div>
+    <script>
+        $(function(){
+            
+            // hamburger icon 的切換
+            $("button.hamburger").on("click", function(){
+                $(this).toggleClass("is-active");
+                $('.nav_list').slideToggle();
+
+                });
+            });
+    </script>
+    
+    
+
+
+</body>
+</html>

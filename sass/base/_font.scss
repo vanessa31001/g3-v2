@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+//Add variables here:
+$baseSize: 14px;
+$baseLineSize: 10px;
+$sizeLevel: 2px;
+$paddingLevel: 1.2;
+
+
+@function font($level: 0) {
+  @if $level < 0 {
+    $level: 0;
+  }
+  @return $baseSize + $sizeLevel * round($level);
+  //12+4*1=16
+}
+
+@function rhythm($size) {
+  @return ceil($size * $paddingLevel / $baseLineSize) * $baseLineSize;
+  //16*1.2/10
+}
+
+@mixin font($level: 1, $line-height: auto) {
+  $size: font($level);
+  $line: rhythm($size);
+//   color: $greenColor1;
+
+  font-size: $size;
+  @if $line-height == auto or $line-height < $line {
+    line-height: $line;
+  } @else {
+    line-height: $line-height;
+  }
+}
+@function line($count: 1, $baseLineHeight: 10px) {
+    @return $baseLineHeight * $count;
+  }
+
+@mixin title(){
+    color: $greenColor1;
+    width: $textwidth;
+    height: $height;
+    font-size: font(11);
+    font-weight: bold;
+    line-height: 36px*1.5;
+}
+@mixin sub_title(){
+    color: $greenColor1;
+    width: $textwidth;
+    height: $height;
+    font-size: font(7);
+    font-weight: bold;
+    line-height: 28px*1.5;
+}
+@mixin third_title(){
+    color: $greenColor1;
+    // width: $textwidth;
+    height: $height;
+    font-size: font(1);
+    font-weight: bold;
+    line-height: 16px*1.5;
+}
+
+
+
+@mixin nav_title(){
+    color: $greenColor1;
+    font-size: font(2);
+    font-weight: bold;
+}

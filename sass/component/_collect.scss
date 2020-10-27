@@ -1,0 +1,28 @@
+.collect_checkbox{
+    label{
+        font-size: 16px;
+        font-weight: bold;
+        margin:0px 20px 0 10px;
+        color: $orangeColor1;
+    }
+    input[type="checkbox"]{
+        display: none;
+    }
+    input[type="checkbox"]+label::before{
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    
+        
+        background-image: url("../../pic/icon/like.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translate(0, -1px);
+    }
+    input[type="checkbox"]:checked + label::before{
+        background-image: url("../../pic/icon/like_check.png");
+    }
+}

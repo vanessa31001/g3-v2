@@ -1,0 +1,207 @@
+@mixin mainbtn1(){
+    background-color: $greenColor3;
+    color: $white;
+    width: $mainbtnwidth;
+    height: $mainbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    border-width: $border;
+    font-weight: $weight_btn;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$white;
+        color: $greenColor3;
+    }
+    &:active{
+        top: $btn_move;
+        left: $btn_move;
+        box-shadow: none;
+    }
+}
+@mixin mainbtn2(){
+    background-color: $white;
+    color: $greenColor3;
+    width: $mainbtnwidth;
+    height: $mainbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    border-width: $border;
+    font-weight: $weight_btn;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$greenColor3;
+        color: $white;
+    }
+    &:active{
+        top: $btn_move;
+        left: $btn_move;
+        box-shadow: none;
+    }
+}
+@mixin secondbtn1(){
+    background-color: $greenColor3; 
+    color: $white;
+    width: $secondbtnwidth;
+    height: $secondbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    border-width: $border;
+    font-weight: $weight_btn;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$white;
+        color: $greenColor3;
+    }
+    &:active{
+        top: $btn_move;
+        left: $btn_move;
+        box-shadow: none;
+    }
+}
+@mixin secondbtn2(){
+    background-color: $white; 
+    color: $greenColor3;
+    width: $secondbtnwidth;
+    height: $secondbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-color: $greenColor3;
+    border-width: $border;
+    font-weight: $weight_btn;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$greenColor3;
+        color: $white;
+    }
+    &:active{
+        top: $btn_move;
+        left: $btn_move;
+        box-shadow: none;
+    }
+}
+@mixin thirdbtn1_green(){
+    background-color: $greenColor3; 
+    color: $white; 
+    padding: $padding_btn;
+    height: $thirdbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-width: 2px;
+    border-color: $greenColor3;
+    font-weight: $weight_btn;
+    outline: none;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$white;
+        color: $greenColor3;
+    }
+}
+@mixin thirdbtn2_green(){
+    background-color: $white; 
+    color: $greenColor3; 
+    padding: $padding_btn;
+    height: $thirdbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-width: 2px;
+    border-color: $greenColor3;
+    font-weight: $weight_btn;
+    outline: none;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$greenColor3;
+        color: $white;
+    }
+}
+
+@mixin thirdbtn1_orange(){
+    background-color: $orangeColor1; 
+    color: $white;
+    padding: $padding_btn;
+    height: $thirdbtnheight;
+    font-size: font(1);
+    border-radius: $radius; 
+    border-width: 2px;
+    border-color: $orangeColor1;
+    font-weight: $weight_btn;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$white;
+        color: $orangeColor1;
+    }
+}
+@mixin thirdbtn2_orange(){
+    background-color: $white; 
+    color: $orangeColor1;
+    padding: $padding_btn;
+    height: $thirdbtnheight;
+    font-size: font(1);
+    border-radius: $radius;
+    border-width: 2px;
+    border-color: $orangeColor1;
+    font-weight: $weight_btn;
+    cursor: pointer;
+
+    &:hover{
+        background-color:$orangeColor1;
+        color: $white;
+    }
+}
+
+@mixin tagbtn_green(){
+    background-color: $greenColor2; 
+    color: $white;
+    padding: $padding_btn;
+    height: $tagbtnheight;
+    font-size: font(0);
+    border-radius: $radius2;
+    border-color: $greenColor2;
+    font-weight: $weight_btn;
+    border: none;
+    cursor: pointer;
+}
+@mixin tagbtn_yellow(){
+    background-color: $yellowColor2; 
+    color: $black;
+    padding: $padding_btn;
+    height: $tagbtnheight;
+    font-size: font(0);
+    border-radius: $radius2;
+    border-color: $yellowColor2;
+    font-weight: $weight_btn;
+    border: none;
+    cursor: pointer;
+}    
+@mixin tagbtn_gray(){
+    background-color: $grayColor2; 
+    color: $black;
+    padding: $padding_btn;
+    height: $tagbtnheight;
+    font-size: font(0);
+    border-radius: $radius2;
+    border-color: $grayColor2;
+    font-weight: $weight_btn;
+    border: none;
+    cursor: pointer;
+}    
+
+
+

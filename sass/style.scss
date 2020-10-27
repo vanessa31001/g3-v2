@@ -1,0 +1,134 @@
+//base
+@import "base/var";
+@import "base/color";
+@import "base/font";
+@import "base/reset";
+
+//compontent
+@import "component/collect";
+@import "component/input";
+@import "component/hamburgers";
+
+
+//layout
+@import "layout/header";
+@import "layout/footer";
+
+//page
+
+@import "page/InitialScreen";
+@import "page/aboutus";
+@import "page/camping";
+@import "page/equipment";
+@import "page/group";
+@import "page/letter";
+@import "page/main";
+@import "page/member";
+@import "page/backstage_login";
+
+//mixin
+@import "mixin/gird";
+@import "mixin/button";
+@import "mixin/rwd";
+
+
+
+@for $i from 0 through 20{
+.level#{$i}{
+    @include font($i);
+}
+}
+//font
+.title{
+    @include title();
+}
+.sub_title{
+    @include sub_title();
+}
+.third_title{
+    @include third_title();
+}
+.nav_title{
+    @include nav_title();
+}
+
+.bold{
+    font-weight: bold;
+}
+
+//button
+.mainbtn1{
+    @include mainbtn1();
+}
+.mainbtn2{
+    @include mainbtn2();
+}
+
+.secondbtn1{
+    @include secondbtn1();
+}
+.secondbtn2 {
+    @include secondbtn2();
+}
+
+.thirdbtn1_green {
+    @include thirdbtn1_green();
+}
+.thirdbtn2_green {
+    @include thirdbtn2_green();
+}
+
+.thirdbtn1_orange {
+    @include thirdbtn1_orange();
+}
+.thirdbtn2_orange {
+    @include thirdbtn2_orange();
+}
+
+.tagbtn_green {
+    @include tagbtn_green();
+}
+.tagbtn_yellow {
+    @include tagbtn_yellow();
+}
+.tagbtn_gray {
+    @include tagbtn_gray();
+}
+
+//color
+.green1{
+    color: $greenColor1;
+}
+.green2{
+    color: $greenColor2;
+}
+.green3{
+    color: $greenColor3;
+}
+.green4{
+    color: $greenColor4;
+}
+.gray1{
+    color: $grayColor1;
+}
+.gray2{
+    color: $grayColor2;
+}
+.orange1{
+    color: $orangeColor1;
+}
+.orange2{
+    color: $orangeColor2;
+}
+.white{
+    color: $white;
+}
+.bgcColor{
+    background-color: $bgcColor;
+}
+
+@include grids(12);
+
+.section1{
+    padding-top: 140px;
+}

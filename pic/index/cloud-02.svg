@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="536.175px" height="62.373px" viewBox="0 0 536.175 62.373" enable-background="new 0 0 536.175 62.373"
+	 xml:space="preserve">
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="233.1504" y1="0" x2="233.1504" y2="33.1943">
+		<stop  offset="0" style="stop-color:#EBF1F2"/>
+		<stop  offset="1" style="stop-color:#C9E4F0"/>
+	</linearGradient>
+	<path fill="url(#SVGID_1_)" d="M266.743,13.207c-2.499,0-4.896,0.459-7.113,1.271C255.375,5.915,246.562,0,236.354,0
+		c-11.3,0-20.878,7.218-24.471,17.281c-3.445-2.553-7.7-4.074-12.322-4.074c-11.219,0-20.329,8.879-20.754,19.987h108.688
+		C287.074,22.086,277.957,13.207,266.743,13.207z"/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="76.0732" y1="15.9048" x2="76.0732" y2="62.373">
+		<stop  offset="0" style="stop-color:#EBF1F2"/>
+		<stop  offset="1" style="stop-color:#C9E4F0"/>
+	</linearGradient>
+	<path fill="url(#SVGID_2_)" d="M123.094,34.388c-3.496,0-6.852,0.645-9.958,1.785c-5.951-11.993-18.291-20.269-32.579-20.269
+		c-15.814,0-29.223,10.102-34.251,24.188c-4.823-3.571-10.785-5.705-17.253-5.705C13.355,34.388,0.59,46.82,0,62.373h152.146
+		C151.555,46.82,138.794,34.388,123.094,34.388z"/>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="460.1016" y1="15.9048" x2="460.1016" y2="62.373">
+		<stop  offset="0" style="stop-color:#EBF1F2"/>
+		<stop  offset="1" style="stop-color:#C9E4F0"/>
+	</linearGradient>
+	<path fill="url(#SVGID_3_)" d="M507.125,34.388c-3.502,0-6.857,0.645-9.961,1.785c-5.953-11.993-18.293-20.269-32.574-20.269
+		c-15.822,0-29.228,10.102-34.256,24.188c-4.825-3.571-10.787-5.705-17.255-5.705c-15.698,0-28.463,12.432-29.05,27.984h152.146
+		C535.581,46.82,522.82,34.388,507.125,34.388z"/>
+</g>
+</svg>
