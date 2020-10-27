@@ -67,22 +67,22 @@
                         <li class="level0 gray1">九甲林冬天露營團</li>
                     </ul>
                 </div>
-                <!-- 檢舉留言 -->
+                <!-- 檢舉lightbox -->
                 <div class="overlay">
                     <article>
                         <div class="level7 bold green1 report_title">檢舉原因</div>                        
                         <form class="report_form" action="">
                             <div class="report_reason1 level1 gray1">
-                                <input type="radio" name="reason0" id="report_group1">
-                                <label for="report_equ1">此留言與露營不相關</label>
+                                <input type="radio" name="reason0" id="report_equ1">
+                                <label for="report_equ1">1</label>
                             </div>
                             <div class="report_reason2 level1 gray1">
-                                <input type="radio" name="reason0" id="report_group2">
-                                <label for="report_equ2">此留言為不當發言</label>
+                                <input type="radio" name="reason0" id="report_equ2">
+                                <label for="report_equ2">2</label>
                             </div>
                             <div class="report_reason3 level1 gray1">
-                                <input type="radio" name="reason0" id="report_group3">
-                                <label for="report_equ3">此留言含污辱文字</label>
+                                <input type="radio" name="reason0" id="report_equ3">
+                                <label for="report_equ3">3</label>
                             </div>
                             <div class="report_close_btn">
                                 <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
@@ -91,29 +91,6 @@
                         </form>                      
                     </article>
                 </div>
-                <!-- <div class="overlay reportbtngGroupBox">
-                    <article>
-                        <div class="level7 bold green1 report_title">檢舉原因</div>                        
-                        <form class="report_form" action="">
-                            <div class="report_reason1 level1 gray1">
-                                <input type="radio" name="reason0" id="report_equ1">
-                                <label for="report_equ1">此揪團與露營不相關</label>
-                            </div>
-                            <div class="report_reason2 level1 gray1">
-                                <input type="radio" name="reason0" id="report_equ2">
-                                <label for="report_equ2">此揪團含有色情內容</label>
-                            </div>
-                            <div class="report_reason3 level1 gray1">
-                                <input type="radio" name="reason0" id="report_equ3">
-                                <label for="report_equ3">此揪團含違法內容</label>
-                            </div>
-                            <div class="report_close_btn">
-                                <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
-                                <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
-                            </div>                                        
-                        </form>                      
-                    </article>
-                </div> -->
                 <div class="groupMain">
                     <div class="groupBlock groupBlockI">
                         <div class="ginside group gray1 ">
@@ -288,7 +265,7 @@
                     <div class="myMsg level5">
                         我要留言
                         <div>
-                            <textarea name="" id="leaveMsg" cols="60" rows="3" placeholder="任何想說或是想問的嗎?" ></textarea>
+                            <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="任何想說或是想問的嗎?" ></textarea>
                             <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg">
                         </div>
                         
@@ -400,8 +377,10 @@
             });
             //留言
             $('#sendMsg').click(function(){
-                let msg = $('#leaveMsg').val();
+                if($('#leaveMsg').val()!= ""){
+                    let msg = $('#leaveMsg').val();
                 // alert(msg);
+                // let date = new Date();
                 $('#massages').append(`
                 <div class="msgInfo">
                     <div class="inform_block">
@@ -415,19 +394,23 @@
                     </div>
                     <div class="level1">
                         <span class="third_title">留言:</span>
-                        <p class="gray1">${msg}</p>
+                        <pre class="gray1">${msg}</pre>
                     </div>
                     <div class="level0 gray1">
-                        留言日期:2020-09-20   
+                        留言日期:2020-09-30
                     </div>
                     <input type="submit" class="reportbtnMsg" value="檢舉">
                 </div>`);
+                }
+                
                 $('#leaveMsg').val("");
             });
-            
             // 檢舉留言
             $(".reportbtnMsg").on("click", function(){
                 $(".overlay").addClass("-on");
+                $(".report_reason1 label").html("此留言與露營不相關");
+                $(".report_reason2 label").html("此留言為不當發言");
+                $(".report_reason3 label").html("此留言含污辱文字");
             });
             $(".btn_modal_close").on("click", function(){
                 $(".overlay").addClass("-opacity-zero");
@@ -438,16 +421,35 @@
                     $(".overlay").removeClass("-on -opacity-zero");
                 }, 1000);
             });
+            $(".reportbtngGroup").on("click", function(){
+                $(".overlay").addClass("-on");
+                // alert($(".report_reason2 label").html()); 
+                $(".report_reason1 label").html("此揪團與露營不相關");
+                $(".report_reason2 label").html("此揪團含有色情內容");
+                $(".report_reason3 label").html("此揪團含違法內容");
+            });
+            $(".reportbtngGroup").on("click", function(){
+                
+            }
+            // $(".btn_modal_close").on("click", function(){
+            //     $(".overlay").addClass("-opacity-zero");
+            //     $("input[name=reason0]").each(function(){
+            //         $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+            //     }); 
+            //     setTimeout(function(){
+            //         $(".overlay").removeClass("-on -opacity-zero");
+            //     }, 1000);
+            // });
             //更多揪團
             imgCount = $('.allGroup .group').length;
             divWidth = $('.oGroups').width(); 
             if(divWidth == 880){
-                    $('.allGroup').width(Math.ceil(imgCount / 2) * divWidth);
-                    allwidth =(Math.ceil(imgCount / 2));
-                }else{
-                    $('.allGroup').width(Math.ceil(imgCount) * divWidth);
-                    allwidth =(Math.ceil(imgCount));
-                }
+                $('.allGroup').width(Math.ceil(imgCount / 2) * divWidth);
+                allwidth =(Math.ceil(imgCount / 2));
+            }else{
+                $('.allGroup').width(Math.ceil(imgCount) * divWidth);
+                allwidth =(Math.ceil(imgCount));
+            }
                 
             
             if(allwidth ==1){

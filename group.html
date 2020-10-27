@@ -59,24 +59,46 @@
                         <li class="level0 gray1">揪團露營</li>
                     </ul>
                 </div>
-                
+                <div class="overlay">
+                    <article>
+                        <div class="level7 bold green1 report_title">檢舉原因</div>                        
+                        <form class="report_form" action="">
+                            <div class="report_reason1 level1 gray1">
+                                <input type="radio" name="reason0" id="report_equ1">
+                                <label for="report_equ1">此揪團與露營不相關</label>
+                            </div>
+                            <div class="report_reason2 level1 gray1">
+                                <input type="radio" name="reason0" id="report_equ2">
+                                <label for="report_equ2">此揪團含有色情內容</label>
+                            </div>
+                            <div class="report_reason3 level1 gray1">
+                                <input type="radio" name="reason0" id="report_equ3">
+                                <label for="report_equ3">此揪團含違法內容</label>
+                            </div>
+                            <div class="report_close_btn">
+                                <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
+                                <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
+                            </div>                                        
+                        </form>                      
+                    </article>
+                </div>
                 <div class="groupMain">
                     <div class="nav">
                         <a href="./groupNewStart.html" class="startNewGroup"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
                         <h2 class="level7 green1">自訂篩選</h2>
                          <div class="serchGroup">
                             <h3 class="level2 green1">選擇地區</h3> 
-                            <select class= "gray1" name="loca">
+                            <select class= "gray1 inputstyle" name="loca">
                              <option class= "gray1" v-for="city in citys">{{city}}</option>
                             </select>
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">剩餘名額</h3> 
-                             <label class= "gray1" v-for="person in people"><input type="radio" name="people">{{person}}</label>
+                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people">{{person}}</label>
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">出團日期</h3> 
-                             <label class= "gray1" v-for="date in dates"><input type="radio" name="date">{{date}}</label>
+                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date">{{date}}</label>
                          </div>
                     </div>
                     <div class="groups">
@@ -100,7 +122,7 @@
                                         <h3 class="level7 green1">{{gname}}</h3>
                                         <div class="smallInfo">
                                             <h6 class="level0 gray1">開團日期 :{{now}}</h6>
-                                            <input type="submit" class="reportbtn" value="檢舉">
+                                            <input type="submit" class="reportbtngGroup" value="檢舉">
                                         </div>
                                     </div>
                                     <fieldset class="poster_inform">
@@ -233,6 +255,20 @@
 
     </div>
     <script>
+        $(document).ready(function(){
+            $(".reportbtngGroup").on("click", function(){
+                    $(".overlay").addClass("-on");
+                });
+                $(".btn_modal_close").on("click", function(){
+                    $(".overlay").addClass("-opacity-zero");
+                    $("input[name=reason0]").each(function(){
+                        $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+                    }); 
+                    setTimeout(function(){
+                        $(".overlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+            });
+        });
         new Vue({
             el: '#groupAllList',
             data: {  

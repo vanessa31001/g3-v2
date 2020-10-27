@@ -90,7 +90,7 @@ input[type="submit"], button{
 
                     &:hover{
                         background-color: $orangeColor1;
-                        olor: $white;
+                        color: $white;
                     }
                 }
                 input[type="radio"]:checked + label{
@@ -144,7 +144,7 @@ input[type="submit"], button{
 }
 .overlay.-on{
     opacity: 1;
-    z-index: 1;
+    z-index: 5;
 }
 
 .overlay.-opacity-zero{
@@ -240,9 +240,10 @@ input[type="submit"], button{
                 select{
                     display: block;
                     margin: 10px;
-                    height: 30px;
+                    // height: 30px;
                     width:150px;
                     border-radius: 5px;
+                    font-size: 16px;
                 }
             }
             .serchGroup:nth-child(3){
@@ -581,9 +582,9 @@ input[type="submit"], button{
             font-size: 16px;
             padding: 10px;
             width: 80%;
-            border: 3px solid $greenColor3;
-            border-radius: 10px;
-
+            // border: 3px solid $greenColor3;
+            // border-radius: 10px;
+            height: 80px;
             color: $grayColor1;
             
         }
@@ -704,7 +705,8 @@ input[type="submit"], button{
         .left{
             width: 49%;
             padding-right: 45px;
-            display: inline-block; 
+            display: inline-block;
+            vertical-align: middle; 
             .maphashtag{
                 margin: 30px 0 ;
                 input{
@@ -717,7 +719,7 @@ input[type="submit"], button{
             width: 50%;
             padding-left: 45px;
             display: inline-block;
-            vertical-align: top;
+            vertical-align: middle;
             border-left: 3px solid $greenColor3;
             table{
                 margin: 10px 0;
@@ -728,6 +730,10 @@ input[type="submit"], button{
                 td{
                     // border:1px solid red; 
                     vertical-align: middle;
+                    &:first-child{
+                        width: 110px;
+                        display: block;
+                    }
                 }
                 .textinfo{
                     vertical-align: text-top;
@@ -737,8 +743,8 @@ input[type="submit"], button{
                 }
                 input, select, textarea {
                     border: 1px solid $greenColor3;
-                    border-radius: 5px;
                     padding: 5px;
+                    font-size: 16px;
                 }
             }
             .btn{
@@ -973,6 +979,24 @@ input[type="submit"], button{
     // }
     .moreGroups .oGroups{
         width: 460px;
+    }
+    .groupNewStart {
+        display: flex;
+        flex-direction: column;
+        .left{
+            width: 100%;
+            padding: 0;
+            .uploadImg{
+                img{
+                    width: 30%;
+                }
+            }
+        }
+        .right{
+            width: 100%;
+            padding: 0;
+            border: 0;
+        }
     }
     
 }
