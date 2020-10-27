@@ -735,15 +735,18 @@ input[type="submit"], button{
                         display: block;
                     }
                 }
+                textarea.inputstyle{
+                    height: 80px;
+                }
                 .textinfo{
-                    vertical-align: text-top;
+                    vertical-align: text-top;   
                 }
                 input[type="text"], textarea{
                     width: 100%;
                 }
                 input, select, textarea {
-                    border: 1px solid $greenColor3;
-                    padding: 5px;
+                    // border: 1px solid $greenColor3;
+                    // padding: 5px;
                     font-size: 16px;
                 }
             }
@@ -980,24 +983,7 @@ input[type="submit"], button{
     .moreGroups .oGroups{
         width: 460px;
     }
-    .groupNewStart {
-        display: flex;
-        flex-direction: column;
-        .left{
-            width: 100%;
-            padding: 0;
-            .uploadImg{
-                img{
-                    width: 30%;
-                }
-            }
-        }
-        .right{
-            width: 100%;
-            padding: 0;
-            border: 0;
-        }
-    }
+    
     
 }
 @media screen and (max-width: 991px){
@@ -1052,6 +1038,24 @@ input[type="submit"], button{
     .gPepole{
         .inform_block{
             text-align: center;
+        }
+    }
+    .groupNewStart {
+        display: flex;
+        flex-direction: column;
+        .left{
+            width: 100%;
+            padding: 0;
+            .uploadImg{
+                img{
+                    width: 30%;
+                }
+            }
+        }
+        .right{
+            width: 100%;
+            padding: 0;
+            border: 0;
         }
     }
     .groupNewStart {
