@@ -13,12 +13,11 @@
 
     //建立地標
     let shansenIcon = new L.Icon({
-        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
+        iconUrl: 'pic/camping/mapmarker.svg',
+        // shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [20, 30],
+        iconAnchor: [10, 35],
         popupAnchor: [1, -34],
-        shadowSize: [41, 41]
         });
     //N1 確幸莊園
     marker = L.marker([ 24.926455,121.526396], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>確幸莊園</a><br>目前開團:2組");
