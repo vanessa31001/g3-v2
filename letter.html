@@ -89,12 +89,16 @@
                     <div class="postcard2 " id="postcard2Id">
                         <div class="posOutsideContent">
                             <div class="postcardContent" id="posContentLeft">
-                                
+                                <p class="postContLeftWord" id="postcardLeftWord1"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord2"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord3"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord4"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord5"></p>
                             </div>
                             <div class="postcardContent" id="posContentRight">
                                 <div class="posFromTo">
-                                    <p class="posFromToText level7" id="posFrom">From:<span></span></p>
-                                    <p class="posFromToText level7" id="posTo">To:</p>
+                                    <p class="posFromToText level5" id="posFrom">From:</p>
+                                    <p class="posFromToText level5" id="posTo">To:</p>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +149,7 @@
                             </div>
                             <label class="photoUpdate1">
                                 <input type="file" id="upPhoto1" >
-                                <img class="updatePicPos" id="updatePhotoHere" src="./pic/updatePicPos.svg">
+                                <img class="updatePicPos" id="updatePhotoHere" src="./pic/postcardMaterial/updatePicPos.svg">
                             </label>
                         </div>
                         <div class="stylePostcard" id="rightStep3">
@@ -177,13 +181,16 @@
                         </div>
                         <div class="stylePostcard" id="rightStep4">
                             <div class="step4TopContent">
-                                <textarea class="" id="postcardInsideText" rows="9" cols="27" placeholder="請在這裡輸入內文"></textarea>
+                                <textarea  id="postcardInsideText" rows="9" cols="27" placeholder="請在這裡輸入內文"></textarea>
                             </div>
                             <div class="postcardWordCreate">
-                                <div class="posWordColor" id="posWordBlue">
-                                    
+                                <div class="posColorTitle">
+                                    文字顏色
                                 </div>
-                                <div class="posWordColor" id="posWordGreen">
+                                <div class="posWordColor" id="posWordBlue">
+                                
+                                </div>
+                                <div class="posWordColor" id="posWordOrange">
 
                                 </div>
                                 <div class="posWordColor" id="posWordBlack">
@@ -192,7 +199,7 @@
                                 <div class="posWordColor" id="posWordYellow">
 
                                 </div>
-                                <button class="thirdbtn1_green">
+                                <button class="thirdbtn2_green" id='createWordFromTo'>
                                     生成文字
                                 </button>
                             </div>
@@ -274,6 +281,10 @@
             let posLittlePicList =  document.querySelectorAll('.posLittlePic');
             let littlePicIdCount = 0; 
             let dragArray = [];
+            let posWordColorList = document.querySelectorAll('.posWordColor');
+            let createWordFromTo = document.getElementById('createWordFromTo');
+            let wordColor
+            
             
             
             //預設內容
@@ -291,6 +302,7 @@
             previousStep.addEventListener('click',changeStepBack);
             nextStep.addEventListener('click',changeStepNext);
             updatePhotoHere.addEventListener('change',PhotoPut);   //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
+            createWordFromTo.addEventListener('click', newWordNow);
             for(let i =0; i<paperList.length; i++){
                 paperList[i].addEventListener('click',function(){
                     let paperPassId = this.id;
@@ -309,24 +321,13 @@
                     createPic(posLittlePicId);
                 });
             }
-            for(let i = 0; i<dragArray.length;i++){
-                document.getElementById(`${dragArray[i]}`).addEventListener('dragstart',e=>{
-                    let imgStyle =  window.getComputedStyle(e.target);
-                    e.dataTransfer.setData("image/SVG",
-                    (parseInt(imgStyle.getPropertyValue('left')) - e.clientX) + ',' + (parseInt(imgStyle.getPropertyValue('top'))-e.clientY));
-                    
-                });
-                postcard2Id.addEventListener("dragover", e => {
-                    e.preventDefault();
-                });
-                postcard2Id.addEventListener("drop", e=>{
-                    let offset = e.dataTransfer.getData("image/SVG").split(',');
-                    document.getElementById(`${dragArray[i]}`).style.left = (e.clientX + parseInt(offset[0])) + 'px';
-                    document.getElementById(`${dragArray[i]}`).style.top = (e.clientY + parseInt(offset[1])) + 'px';
-                    e.preventDefault();
+            for(let i=0;i<posWordColorList.length; i++){
+                posWordColorList[i].addEventListener('click',function(){
+                    let posWordColorId = this.id;
+                    posWordColorChange(posWordColorId);
                 });
             }
-    
+            
             
             //函式區
             function changeStepBack(){
@@ -455,8 +456,20 @@
                     document.getElementById(`${dragArray[i]}`).style.left = (e.clientX + parseInt(offset[0])) + 'px';
                     document.getElementById(`${dragArray[i]}`).style.top = (e.clientY + parseInt(offset[1])) + 'px';
                     e.preventDefault();
-                });
+                    });
+                }
             }
+            function posWordColorChange(posWordColorId){
+                for(let i =0; i<posWordColorList.length;i++){
+                    posWordColorList[i].style.borderColor = "rgba(0, 0, 0, 0)";
+                }
+                document.getElementById(`${posWordColorId}`).style.borderColor ="rgba(255, 0, 0, 0.4)";
+                
+            }
+            function newWordNow(){
+                let textValue = document.getElementById('postcardInsideText').value;
+                document.getElementById('postcardLeftWord1').innerText = textValue;
+                document.getElementById('postcardLeftWord1').style.color = "rgba(255, 0, 0, 0.4)";
             }
         }
         window.addEventListener('load',doFirst);
