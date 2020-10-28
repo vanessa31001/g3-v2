@@ -40,7 +40,7 @@
                         <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
                         <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                         <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                        <li><a id="login" class="nav_title" href="./member.html">登入|註冊</a></li>
                     </ul>
                 </div>
             </nav>
@@ -104,103 +104,98 @@
                         </div>    
                     </div>
 
-                    <div class="equmain">
-                        <div class="equpic">
-                            <div class="bigimg">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            </div>
-                            <div class="minimg">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            </div>
+                    
+                        <div class="equmain">
+                            <div class="equpic">
+                                <div class="bigimg">
+                                    <img class="noweqimg" src="pic/equipment/f_tent06.jpg" alt="">
+                                </div>
+                                <div class="minimg">
+                                    <img class="eqimg now" src="pic/equipment/f_tent06.jpg" alt="">
+                                    <img class="eqimg" src="pic/equipment/f_tent03.png" alt="">
+                                    <img class="eqimg" src="pic/equipment/f_tent08.jpg" alt="">
+                                </div>
 
-                            <!-- 檢舉燈箱 -->
-                            <div class="overlay">
-                                <article>
-                                    <div class="third_title report_title">檢舉原因</div>
-                                    
-                                    <form class="report_form" action="">
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason01" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason02" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason03" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason04" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason05" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                        <div class="report_reason level1 gray1">
-                                            <input type="radio" name="reason06" id="report_equ">
-                                            <label for="food_type">此為色情、暴力、危險設備</label>
-                                        </div>
-                                    </form>
-                                    <div class="report_close_btn">
-                                        <button type="button" class="thirdbtn1_green btn_modal_close">送出</button>
+                                <!-- 檢舉燈箱 -->
+                                <div class="overlay">
+                                    <article>
+                                        <div class="level7 bold green1 report_title">檢舉原因</div>
+                                        
+                                        <form class="report_form" action="">
+                                            <div class="report_reason1 level1 gray1">
+                                                <input type="radio" name="reason0" id="report_equ1">
+                                                <label for="report_equ1">此設備與本網站不相關</label>
+                                            </div>
+                                            <div class="report_reason2 level1 gray1">
+                                                <input type="radio" name="reason0" id="report_equ2">
+                                                <label for="report_equ2">此設備為危險物品</label>
+                                            </div>
+                                            <div class="report_reason3 level1 gray1">
+                                                <input type="radio" name="reason0" id="report_equ3">
+                                                <label for="report_equ3">此設備為不雅物品</label>
+                                            </div>
+                                            
+
+                                            <div class="report_close_btn">
+                                                <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
+                                                <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
+                                            </div>                                        
+                                        </form>
+                                        
+                                    </article>
+                                </div>  
+                                
+                                <div class="btn_block">
+                                    <button class="thirdbtn2_green reportbtn">檢舉</button>
+                                    <div class="collect_checkbox equ_collect_checkbox">
+                                        <input type="checkbox" id="collect_checkbox">
+                                        <label class="equ_collect_btn" for="collect_checkbox" id="the_label">收藏</label>
                                     </div>
-                                </article>
-                            </div>  
-                            
-                            <div class="btn_block">
-                                <button class="reportbtn">檢舉</button>
-                                <div class="collect_checkbox equ_collect_checkbox">
-                                    <input type="checkbox" id="collect_checkbox">
-                                    <label class="equ_collect_btn" for="collect_checkbox" id="the_label">收藏</label>
+                                </div>
+
+                                <div class="poster_inform">
+                                    <h4 class="third_title poster">刊登會員資訊</h4>
+                                    <div class="inform_block01">
+                                        <div class="inform_block02">
+                                            <div class="inform_block02_pic">
+                                                <a href=""><img src="pic/equipment/member.png" alt=""></a>
+                                            </div>
+                                            <div class="inform_block02_text">
+                                                <h4><a href="" class="third_title level2">Yong Hwa</a></h4>
+                                                <p class="level1 gray1">會員等級：鑽石</p>
+                                            </div>                               
+                                        </div>
+                                        
+                                        
+                                        <button class="thirdbtn1_green mes_btn" @click="equmsgbtn" id="equmsgbtn" >私訊上架者</button>
+                                        
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="poster_inform">
-                                <h4 class="third_title poster">刊登會員資訊</h4>
-                                <div class="inform_block01">
-                                    <div class="inform_block02">
-                                        <div class="inform_block02_pic">
-                                            <a href=""><img src="pic/equipment/member.png" alt=""></a>
-                                        </div>
-                                        <div class="inform_block02_text">
-                                            <h4><a href="" class="third_title level2">Yong Hwa</a></h4>
-                                            <p class="level1 gray1">會員等級：鑽石</p>
-                                        </div>                               
-                                    </div>
-                                    
-                                    <button class="thirdbtn1_green mes_btn">私訊上架者</button>
-                                    
+
+                            <div class="equdescribe">
+                                <div class="sub_title green1 level7">NUIT 家庭帳篷六人帳蓬</div>
+                                <div class="third_title level2 equ_third">商品說明</div>
+                                <p class="level1 gray1">✔270標準大內帳，搭配L號充氣床，小資族也能享受舒適露營。</p>
+                                <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
+                                <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
+                                <p class="level1 gray1">✔可收闔的兩頁式後門，全黑膠塗層，阻隔刺眼陽光。</p>
+                                <p class="level1 gray1">✔大片前延系統，強化遮光擋雨片。</p>
+                                <p class="level1 gray1">✔頂級3000mm耐水壓，高防水等級。</p>
+
+                                <div class="third_title level2 equ_third">商品規格</div>
+                                <p class="level1 gray1">✔外帳/75D 185T Polyester聚酯纖維 黑膠塗層、縫線防水貼條 耐水壓PU3000mm。</p>
+                                <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
+                                <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
+                                
+                                <div class="apply_change_btn_block">
+                                    <button class="mainbtn1 apply_change_btn">提出交換申請</button>
                                 </div>
-                            </div>
+                                
+                            </div>                        
                         </div>
-
-
-                        <div class="equdescribe">
-                            <div class="sub_title green1 level7">NUIT 家庭帳篷六人帳蓬</div>
-                            <div class="third_title level2 equ_third">商品說明</div>
-                            <p class="level1 gray1">✔270標準大內帳，搭配L號充氣床，小資族也能享受舒適露營。</p>
-                            <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
-                            <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
-                            <p class="level1 gray1">✔可收闔的兩頁式後門，全黑膠塗層，阻隔刺眼陽光。</p>
-                            <p class="level1 gray1">✔大片前延系統，強化遮光擋雨片。</p>
-                            <p class="level1 gray1">✔頂級3000mm耐水壓，高防水等級。</p>
-
-                            <div class="third_title level2 equ_third">商品規格</div>
-                            <p class="level1 gray1">✔外帳/75D 185T Polyester聚酯纖維 黑膠塗層、縫線防水貼條 耐水壓PU3000mm。</p>
-                            <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
-                            <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
-                            
-                            <div class="apply_change_btn_block">
-                                <button class="mainbtn1 apply_change_btn">提出交換申請</button>
-                            </div>
-                            
-                        </div>                        
-                    </div>
+                    
                 </div>                       
             </div>
         </section>
@@ -213,19 +208,19 @@
                 <div class="other_equ">
                     <div class="other_equ_block">
                         <a href="#" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent01.jpg" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
                     <div class="other_equ_block">
                         <a href="#" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent02.jpg" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
                     <div class="other_equ_block">
                         <a href="#" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent03.png" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
@@ -244,10 +239,10 @@
                             <h3 class="level1 green1 change_tit">#1</h3>
                         </div>
                         <div class="change_min_block01_pic">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img src="pic/equipment/f_tent04.png" alt="">
                         </div>
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品說明</div>
+                            <div class="third_title level1">商品名稱</div>
                             <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                             <div class="third_title level1 equ_num">商品數量</div>
                             <p class="level1 gray1">1個</p>
@@ -268,10 +263,10 @@
                             <h3 class="level1 green1 change_tit">#2</h3>
                         </div>
                         <div class="change_min_block01_pic">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img src="pic/equipment/f_tent01.jpg" alt="">
                         </div>
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品說明</div>
+                            <div class="third_title level1">商品名稱</div>
                             <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                             <div class="third_title level1 equ_num">商品數量</div>
                             <p class="level1 gray1">1個</p>
@@ -292,10 +287,10 @@
                             <h3 class="level1 green1 change_tit">#3</h3>
                         </div>
                         <div class="change_min_block01_pic">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img src="pic/equipment/f_tent02.jpg" alt="">
                         </div>                        
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品說明</div>
+                            <div class="third_title level1">商品名稱</div>
                             <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                             <div class="third_title level1 equ_num">商品數量</div>
                             <p class="level1 gray1">1個</p>
@@ -355,23 +350,52 @@
             data: {  
                 tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
                 sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
-                others: ['桌椅','炊具','小物'],       
-                
+                others: ['桌椅','炊具','小物'],     
+                contents: "equmsgbtn",
             },
             methods: {
+                equmsgbtn(){
 
+                }
             },
             computed: {
             },
             watch: { 
             },
         });
+
+         //私訊燈箱
+        Vue.component('equmsgbtn',{
+                template: `
+                <div class="msgoverlay">
+                    <article>
+                        <div class="level7 bold green1 equmsg_title">傳送訊息給Yong Hwa</div>
+                                    
+                            <form class="msg_form" action="">
+                                
+                                <div class="msg_block level1 gray1">
+                                    // <label for="msgclock"></label>
+                                    <input class="inputstyle" type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息...">
+                                </div>                            
+        
+
+                                <div class="msg_close_btn">
+                                    <input class="thirdbtn1_green msg_submit_btn" type="submit" name="SB" value="送出">
+                                    <button type="button" class="thirdbtn1_green btn_msg_close">取消</button>
+                                </div>                                        
+                            </form>
+                                    
+                    </article>
+                </div>  
+                `,
+            });
+
     </script>
 
     <script>
-        $(function(){
-            
             // hamburger icon 的切換
+            $(function(){
+
             $("button.hamburger").on("click", function(){
                 $(this).toggleClass("is-active");
                 $('.nav_list').slideToggle();
@@ -384,19 +408,55 @@
             $(function(){
 
                 $("button.reportbtn").on("click", function(){
-                $("div.overlay").addClass("-on");
+                $(".overlay").addClass("-on");
                 });
 
                 $("button.btn_modal_close").on("click", function(){
-                $("div.overlay").addClass("-opacity-zero");
+                $(".overlay").addClass("-opacity-zero");
                 
+                $("input[name=reason0]").each(function(){
+                    $(this).prop("checked",false);
+                });
+
                 setTimeout(function(){
-                    $("div.overlay").removeClass("-on -opacity-zero");
-                }, 1000);
+                    $(".overlay").removeClass("-on -opacity-zero");
+                    }, 1000);
                 });
 
             });
+
+            //私訊燈箱
+            $(function(){
+
+                $("button.mes_btn").on("click", function(){
+                $(".msgoverlay").addClass("-on");
+                });
+
+                $("button.btn_msg_close").on("click", function(){
+                $(".msgoverlay").addClass("-opacity-zero");
+
+                // $("input[name=reason0]").each(function(){
+                //     $(this).prop("checked",false);
+                // });
+
+                setTimeout(function(){
+                    $(".msgoverlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+                });
+
+            });
+
+
+            //更換圖片
+            $('.eqimg').click(function(){ 
+                let mig = $(this).attr("src");
+                $('.eqimg').removeClass("now");
+                $(this).addClass("now");
+                $(".noweqimg").attr("src", mig);      //要更換的圖片位置
+            });
     </script>
+
+
 
 
 </body>

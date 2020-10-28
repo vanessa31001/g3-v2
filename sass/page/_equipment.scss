@@ -98,6 +98,15 @@
 
 .minimg > img{
     width: 60px;
+    cursor: $cursor;
+
+}
+
+.now{
+    border: 5px solid $greenColor3;
+    text-align: left;  
+    font-size: 0;
+
 }
 
 .btn_block{
@@ -105,16 +114,6 @@
     margin-top: 15px;
 }
 
-button.reportbtn{
-    background-color: $white;
-    color: $greenColor3;
-    padding: 0 10px;
-    height: $tagbtnheight;
-    font-size: font(0);
-    border-radius: $radius;
-    border-color: $greenColor3;
-    font-weight: $weight_btn;
-}
 
 button.reportbtn , .equ_collect_checkbox{
     float: right;
@@ -131,57 +130,169 @@ button.reportbtn , .equ_collect_checkbox{
     opacity: 0;
     z-index: -1;
     transition: opacity 1s;
+    article{
+        background-color: #fff;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 5px;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .report_title{
+            text-align: center;
+        }
+        .report_form{
+            margin-top: 20px;
+            .report_reason1{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        color: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+                
+            }
+            .report_reason2{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        color: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+            }
+            .report_reason3{
+                text-align: center;
+                padding: 20px;
+                input[type="radio"]{
+                    display: none;
+                }
+                label{
+                    border-radius: 50px;
+                    border: 1px solid $orangeColor1;
+                    cursor: $cursor;
+                    padding: 15px;
+                    max-width: 200px;
+                    width: 100%;
+                    display: block;
+                    margin: auto;
+
+                    &:hover{
+                        background-color: $orangeColor1;
+                        color: $white;
+                    }
+                }
+                input[type="radio"]:checked + label{
+                    background-color: $orangeColor1;
+                    color: $white;
+                }
+            }
+            .report_close_btn{
+                text-align: center;
+                margin: 30px 0 0 0;
+                .submit_btn{
+                    margin-right: 20px;
+                }
+                .btn_modal_close{
+                    cursor: pointer;
+                    
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+        }
+    }
 }
 .overlay.-on{
     opacity: 1;
-    z-index: 1;
+    z-index: 99;
 }
 
 .overlay.-opacity-zero{
     opacity: 0;
 }
 
-.overlay > article{
-    background-color: #fff;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 5px;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+//私訊
+.msgoverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+    article{
+        background-color: #fff;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 5px;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
-.report_form{
-    border: 1px solid $greenColor1;
-    margin-top: 10px;
+.msgoverlay.-on{
+    opacity: 1;
+    z-index: 1;
 }
 
-.report_reason{
-    padding: 10px;
-}
-
-.report_close_btn{
-    margin: 20px 0 20px 0;
-    text-align: center;
+.msgoverlay.-opacity-zero{
+    opacity: 0;
 }
 
 
-article button.btn_modal_close{
-    cursor: pointer;
-}
 
-article button.btn_modal_close:focus{
-    outline: none;
-}
-
+//收藏
 .equ_collect_btn{
     margin: 5px;
 }
 
 .btn_block > .equ_collect_checkbox {
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 .equdescribe{
@@ -238,7 +349,7 @@ article button.btn_modal_close:focus{
     vertical-align: middle;
 }
 
-.inform_block02 , .mes_btn{
+.inform_block02 , #equoverlay{
     display: inline-block;
     vertical-align: middle;
 }
@@ -343,7 +454,7 @@ article button.btn_modal_close:focus{
 .equ_select_bar{
     width: 200px;
     height: 30px;
-    border-radius: $radius2;
+    // border-radius: $radius2;
 }
 
 .equ_bar , .select_text1 ,.select_text2{
@@ -464,12 +575,6 @@ textarea{
     resize: none;
     // width: 100%;
     border-radius: $radius;
-}
-
-textarea:focus ,
-#sort_select:focus ,#sort_select_want01:focus ,
-#sort_select_want02:focus , #sort_select_want03:focus{
-    border: 3px solid $greenColor1;
 }
 
 .check_btn{
