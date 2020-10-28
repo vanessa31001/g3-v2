@@ -90,6 +90,9 @@
     z-index: 7;
     margin: 0 auto 50px;
     .wrap{
+        a{
+            text-decoration: none;
+        }
         .homepage_title{
             border-bottom: 2px solid #707070;
             .title_area{
