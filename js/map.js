@@ -3,12 +3,12 @@
     var map;
 
     map =L.map('map', {
-            center: [ 24.4093121,120.904157], // 中心點座標
-            zoom: 8, // 0 - 18
+            center: [24.707975,121.223913], // 中心點座標
+            zoom: 9, // 0 - 18
             attributionControl: true, // 是否秀出「leaflet」的貢獻標記
             zoomControl: false , // 是否秀出 - + 按鈕
             });
-            L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 
     //建立地標

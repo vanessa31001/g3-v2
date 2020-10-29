@@ -273,12 +273,17 @@
 //camping2
 .location{
     .titlearea{
+        position: relative;
         .like{
-            float: right;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+
         }
     }
     .camp_slider{
-        .camp_pic{
+        width: 100%;
+        img{
             width: 100%;
             border-radius: 5px;
         }
