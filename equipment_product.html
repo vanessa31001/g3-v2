@@ -117,11 +117,12 @@
                                 </div>
 
                                 <!-- 檢舉燈箱 -->
-                                <div class="overlay">
+                                <div class="report_overlay">
                                     <article>
-                                        <div class="level7 bold green1 report_title">檢舉原因</div>
                                         
                                         <form class="report_form" action="">
+                                            <div class="level7 bold green1 report_title">檢舉原因</div>
+                                            
                                             <div class="report_reason1 level1 gray1">
                                                 <input type="radio" name="reason0" id="report_equ1">
                                                 <label for="report_equ1">此設備與本網站不相關</label>
@@ -171,8 +172,27 @@
                                         
                                     </div>
                                 </div>
-                            </div>
 
+                                <!-- 私訊燈箱 -->
+                
+                                <div class="msgoverlay">
+                                    <article>
+                                        <div class="level7 bold green1 equmsg_title">傳送訊息給Yong Hwa</div>
+                                                        
+                                        <form class="msg_form" action="">
+                                                    
+                                            <div class="msg_block level1 gray1">
+                                                <textarea  type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息..."></textarea>
+                                            </div>                       
+                
+                                            <div class="msg_close_btn">
+                                                <input class="thirdbtn1_green msg_submit_btn" type="submit" name="SB" value="送出">
+                                                <button type="button" class="thirdbtn1_green btn_msg_close">關閉</button>
+                                            </div>                                        
+                                        </form>
+                                    </article>
+                                </div>  
+                            </div>
 
                             <div class="equdescribe">
                                 <div class="sub_title green1 level7">NUIT 家庭帳篷六人帳蓬</div>
@@ -192,6 +212,37 @@
                                 <div class="apply_change_btn_block">
                                     <button class="mainbtn1 apply_change_btn">提出交換申請</button>
                                 </div>
+
+                                <!-- 提出交換申請燈箱 -->
+                                <div class="applyoverlay">
+                                    <article>
+                                        <div class="level7 bold green1 apply_title">我的換物列表</div>
+                                                        
+                                        <form class="apply_form" action="">
+                                                    
+                                            <div class="apply_item_block level1 gray1">
+                                                <div class="apply_item01">
+                                                    <img src="./pic/equipment/f_tent02.jpg" alt="">
+                                                    <span class="level1 gray1">NUIT 家庭帳篷六人帳蓬</span>
+                                                </div>
+                                                <div class="apply_item02">
+                                                    <img src="./pic/equipment/f_tent02.jpg" alt="">
+                                                    <span class="level1 gray1">NUIT 家庭帳篷六人帳蓬</span>
+                                                </div>
+                                                <div class="apply_item03">
+                                                    <img src="./pic/equipment/f_tent02.jpg" alt="">
+                                                    <span class="level1 gray1">NUIT 家庭帳篷六人帳蓬</span>
+                                                </div>
+                                            </div>                            
+                            
+                    
+                                            <div class="apply_close_btn">
+                                                <input class="thirdbtn1_green apply_submit_btn" type="submit" name="SB" value="送出">
+                                                <button type="button" class="thirdbtn1_green btn_apply_close">關閉</button>
+                                            </div>                                        
+                                        </form>
+                                    </article>
+                                </div>  
                                 
                             </div>                        
                         </div>
@@ -351,12 +402,12 @@
                 tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
                 sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
                 others: ['桌椅','炊具','小物'],     
-                contents: "equmsgbtn",
+                // contents: "equmsgbtn",
             },
             methods: {
-                equmsgbtn(){
+                // equmsgbtn(){
                     
-                }   
+                // }   
             },
             computed: {
             },
@@ -365,30 +416,30 @@
         });
 
          //私訊燈箱
-        Vue.component('equmsgbtn',{
-                template: `
-                <div class="msgoverlay">
-                    <article>
-                        <div class="level7 bold green1 equmsg_title">傳送訊息給Yong Hwa</div>
+        // Vue.component('equmsgbtn',{
+        //         template: `
+        //         <div class="msgoverlay">
+        //             <article>
+        //                 <div class="level7 bold green1 equmsg_title">傳送訊息給Yong Hwa</div>
                                     
-                            <form class="msg_form" action="">
+        //                     <form class="msg_form" action="">
                                 
-                                <div class="msg_block level1 gray1">
-                                    // <label for="msgclock"></label>
-                                    <input class="inputstyle" type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息...">
-                                </div>                            
+        //                         <div class="msg_block level1 gray1">
+        //                             // <label for="msgclock"></label>
+        //                             <input class="inputstyle" type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息...">
+        //                         </div>                            
         
 
-                                <div class="msg_close_btn">
-                                    <input class="thirdbtn1_green msg_submit_btn" type="submit" name="SB" value="送出">
-                                    <button type="button" class="thirdbtn1_green btn_msg_close">取消</button>
-                                </div>                                        
-                            </form>
+        //                         <div class="msg_close_btn">
+        //                             <input class="thirdbtn1_green msg_submit_btn" type="submit" name="SB" value="送出">
+        //                             <button type="button" class="thirdbtn1_green btn_msg_close">取消</button>
+        //                         </div>                                        
+        //                     </form>
                                     
-                    </article>
-                </div>  
-                `,
-            });
+        //             </article>
+        //         </div>  
+        //         `,
+        //     });
 
     </script>
 
@@ -408,18 +459,18 @@
             $(function(){
 
                 $("button.reportbtn").on("click", function(){
-                $(".overlay").addClass("-on");
+                $(".report_overlay").addClass("-on");
                 });
 
                 $("button.btn_modal_close").on("click", function(){
-                $(".overlay").addClass("-opacity-zero");
+                $(".report_overlay").addClass("-opacity-zero");
                 
                 $("input[name=reason0]").each(function(){
                     $(this).prop("checked",false);
                 });
 
                 setTimeout(function(){
-                    $(".overlay").removeClass("-on -opacity-zero");
+                    $(".report_overlay").removeClass("-on -opacity-zero");
                     }, 1000);
                 });
 
@@ -428,16 +479,30 @@
             //私訊燈箱
             $(function(){
 
+                $("button.apply_change_btn").on("click", function(){
+                $(".applyoverlay").addClass("-on");
+                });
+
+                $("button.btn_apply_close").on("click", function(){
+                $(".applyoverlay").addClass("-opacity-zero");
+
+                setTimeout(function(){
+                    $(".applyoverlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+                });
+
+            });
+
+
+            //申請交換燈箱
+            $(function(){
+
                 $("button.mes_btn").on("click", function(){
                 $(".msgoverlay").addClass("-on");
                 });
 
                 $("button.btn_msg_close").on("click", function(){
                 $(".msgoverlay").addClass("-opacity-zero");
-
-                // $("input[name=reason0]").each(function(){
-                //     $(this).prop("checked",false);
-                // });
 
                 setTimeout(function(){
                     $(".msgoverlay").removeClass("-on -opacity-zero");
