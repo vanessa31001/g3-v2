@@ -96,6 +96,7 @@
                                 <p class="postContLeftWord" id="postcardLeftWord5"></p>
                             </div>
                             <div class="postcardContent" id="posContentRight">
+                                <p id="testLeftWordLimit"></p>
                                 <div class="posFromTo">
                                     <p class="posFromToText level5" id="posFrom">From:</p>
                                     <p class="posFromToText level5" id="posTo">To:</p>
@@ -187,21 +188,36 @@
                                 <div class="posColorTitle">
                                     文字顏色
                                 </div>
-                                <div class="posWordColor" id="posWordBlue">
-                                
-                                </div>
-                                <div class="posWordColor" id="posWordOrange">
+                                <div class="ColorAndCreate">
+                                    <div class="posWordColor" id="posWordBlue">
+                                    
+                                    </div>
+                                    <div class="posWordColor" id="posWordOrange">
 
-                                </div>
-                                <div class="posWordColor" id="posWordBlack">
+                                    </div>
+                                    
+                                    <div class="posWordColor" id="posWordYellow">
 
-                                </div>
-                                <div class="posWordColor" id="posWordYellow">
+                                    </div>
+                                    <div class="posWordColor" id="posWordGray">
 
+                                    </div>
+                                    <div class="posWordColor" id="posWordBlack">
+
+                                    </div>
+                                    
                                 </div>
-                                <button class="thirdbtn2_green" id='createWordFromTo'>
-                                    生成文字
-                                </button>
+                                <div class="posButtonCorD">
+                                    <button class="thirdbtn2_green" id='createWordFromTo'>
+                                        生成文字
+                                    </button>
+                                    <button class="thirdbtn2_orange" id="deleteWordFromTo">
+                                        清除文字
+                                    </button>
+                                </div>
+                                <p id="posWarningSign">
+                                    不好意思，您寫的內容超過可容納範圍，可點選清除開始重新填寫。
+                                </p>
                             </div>
                         </div>
                         <div class="stylePostcard" id="rightStep5">
@@ -264,7 +280,7 @@
             let stepTitleSelect = document.getElementById('stepTitleName');
             let previousStep = document.getElementById('previousStep');
             let nextStep = document.getElementById('nextStep');
-            let stepTitle = stepTitleSelect.innerText.split('|');  //利用split生成標提陣列
+            let stepTitle = stepTitleSelect.innerText.split('|');  //利用split生成標題陣列
             let stepControl = 0;  //步驟控制器
             let firstStepText = stepTitle[stepControl];  //第一步標題
             let firstRightContent = document.getElementById('rightStep1');
@@ -280,10 +296,15 @@
             let postcard2Id = document.getElementById('postcard2Id');
             let posLittlePicList =  document.querySelectorAll('.posLittlePic');
             let littlePicIdCount = 0; 
-            let dragArray = [];
+            let dragArray = [];       //用來紀錄create小物件的ID,為了建立物件的事件聆聽
             let posWordColorList = document.querySelectorAll('.posWordColor');
             let createWordFromTo = document.getElementById('createWordFromTo');
-            let wordColor
+            let wordColor = "rgb(0, 165, 163)";     //預設點選文字方塊的顏色
+            let clickTimeOfWord =0;  //計算點擊送出文字次數
+            let deleteWordFromTo = document.getElementById('deleteWordFromTo');
+
+
+            
             
             
             
@@ -299,13 +320,14 @@
             
     
             //建立事件玲聽
-            previousStep.addEventListener('click',changeStepBack);
-            nextStep.addEventListener('click',changeStepNext);
+            previousStep.addEventListener('click',changeStepBack);   //點擊事件換上一步
+            nextStep.addEventListener('click',changeStepNext);       //點擊事件換下一步
             updatePhotoHere.addEventListener('change',PhotoPut);   //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
-            createWordFromTo.addEventListener('click', newWordNow);
-            for(let i =0; i<paperList.length; i++){
-                paperList[i].addEventListener('click',function(){
-                    let paperPassId = this.id;
+            createWordFromTo.addEventListener('click', newWordNow);   //點擊事件產生文字
+            deleteWordFromTo.addEventListener('click',delWordNow);
+            for(let i =0; i<paperList.length; i++){                   //建立材質的事件聆聽
+                paperList[i].addEventListener('click',function(){     
+                    let paperPassId = this.id;        //抓取材質ID
                     paperBackground(paperPassId);
                 });
             }
@@ -436,6 +458,7 @@
                 leftPostcardIcon.style.left = "0";
                 leftPostcardIcon.style.top = '0';
                 leftPostcardIcon.draggable = "true";
+                leftPostcardIcon.style.cursor = 'grab';
     
                 document.getElementById('postcard2Id').appendChild(leftPostcardIcon);
                 leftPostcardIconId = leftPostcardIcon.id;
@@ -445,7 +468,7 @@
                 
                 document.getElementById(`${dragArray[i]}`).addEventListener('dragstart',e=>{
                     e.dataTransfer.setData(`image${i}`,
-                    (parseInt( window.getComputedStyle(e.target).getPropertyValue('left')) - e.clientX) + ',' + (parseInt( window.getComputedStyle(e.target).getPropertyValue('top'))-e.clientY));
+                    (parseInt( window.getComputedStyle(e.target).getPropertyValue('left')) - e.clientX) + ',' + (parseInt( window.getComputedStyle(e.target).getPropertyValue('top'))-e.clientY));   //計算物件本身位置最左處到指標目前位置的距離，與物件本身位置最高處到指標目前位置的距離
                     
                 });
                 postcard2Id.addEventListener("dragover", e => {
@@ -461,15 +484,37 @@
             }
             function posWordColorChange(posWordColorId){
                 for(let i =0; i<posWordColorList.length;i++){
-                    posWordColorList[i].style.borderColor = "rgba(0, 0, 0, 0)";
+                    posWordColorList[i].style.borderColor = "rgba(0, 0, 0, 0)";    //重置顏色方塊的border轉為透明
                 }
-                document.getElementById(`${posWordColorId}`).style.borderColor ="rgba(255, 0, 0, 0.4)";
-                
+                document.getElementById(`${posWordColorId}`).style.borderColor ="rgba(255, 0, 0, 0.4)";    //將點擊的border顏色改變
+                wordColor = window.getComputedStyle(document.getElementById(`${posWordColorId}`)).getPropertyValue('background-color');  //將點擊的顏色背景輸入到全域的變數，方便其他函數做使用。
             }
             function newWordNow(){
-                let textValue = document.getElementById('postcardInsideText').value;
-                document.getElementById('postcardLeftWord1').innerText = textValue;
-                document.getElementById('postcardLeftWord1').style.color = "rgba(255, 0, 0, 0.4)";
+                let InsideWord = document.getElementById('postcardInsideText').value;
+                if(InsideWord == ''){
+                    
+                }else{
+                    clickTimeOfWord+=1;
+                    if(clickTimeOfWord<=5){
+                    document.getElementById('posWarningSign').style.display = 'none';
+                    let textValue = document.getElementById('postcardInsideText').value;
+                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;
+                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
+                    document.getElementById('postcardInsideText').value = '';
+                    }else{
+                    document.getElementById('posWarningSign').style.display = 'block';
+                    clickTimeOfWord-=1;
+                    
+                    }
+                }
+                
+                
+            }
+            function delWordNow(){
+                document.getElementById('posWarningSign').style.display = 'none';
+                document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText ='';
+                clickTimeOfWord-=1;
+                
             }
         }
         window.addEventListener('load',doFirst);

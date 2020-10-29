@@ -141,6 +141,8 @@
                 justify-content: center;
                 align-items: center;
                 border: 2px solid $greenColor2;
+                margin-top: 5px;
+                border-radius: 5px;
                 .postcardContent{
                     height: 95%;
                     width: 50%;
@@ -155,12 +157,17 @@
                 }
             }
             #posContentLeft{
-                
+                text-align: left;
             }
             #posContentRight{
                 border-left: 2px solid $greenColor2;
                 position: relative;
                 text-align: left;
+                #testLeftWordLimit{
+                    visibility: hidden;
+                    width: 80%;
+                    margin: 0 auto;
+                }
                 .posFromTo{
                     position: absolute;
                     left: 5%;
@@ -295,10 +302,12 @@
                     margin-top: 5%;
                 }
                 .postcardWordCreate{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-wrap: wrap;
+                    .ColorAndCreate{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-bottom: 5%;
+                    }
                     .posWordColor{
                         width: 25px;
                         height: 25px;
@@ -312,6 +321,7 @@
                         width: 100%;
                         font-size: 18px;
                         margin-bottom: 3%;
+                        
                     }
                     #posWordBlue{
                         background-color: $greenColor3;
@@ -325,6 +335,18 @@
                     }
                     #posWordYellow{
                         background-color: $yellowColor2;
+                    }
+                    #posWordGray{
+                        background-color: $grayColor1;
+                    }
+                    #posWarningSign{
+                        font-size: 14px;
+                        width: 72%;
+                        margin: 0 auto;
+                        text-align: left;
+                        margin-top: 10px;
+                        color: darkred;
+                        display: none;
                     }
                 }
             }
