@@ -362,6 +362,83 @@
 }
 
 
+//聯絡會員
+.contact_page{
+    .contact_mem{
+        display: flex;
+        position: relative;
+        img{
+            width: 60px;
+        }
+        .contact_title{
+            line-height: 60px;
+        }
+        .contact_btn{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
+    .camping_block{
+        .contact_list{
+            display: block;
+            .content{
+                display: block;
+                border: 1px solid $yellowColor2;
+                background-color: $yellowColor2;
+                color: $grayColor1;
+                border-radius: 5px;
+                margin: 0 auto;
+                line-height: 40px;
+                position: relative;
+                .icon{
+                    display: inline-block;
+                    .minus{
+                        display: block;
+                        padding: 0 8px 8px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        position: absolute;
+                        margin-bottom: 6px;
+                        right: 0;
+                        top: 0;
+                    }
+                    .plus{
+                        display: none;
+                        padding: 0 8px 8px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+                .iconremove{
+                    .minus{
+                            display: none;
+                    }
+                    .plus{
+                        display: block;
+                    }
+                
+                }
+                .txt{
+                    display: none;
+                    font-size: 16px;
+                    padding-top: 30px;
+                    text-align: left;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+            .secend{
+                margin: 20px auto;
+            }
+        }
+    }
+}
+
+
 //rwd
 @media screen and (min-width: 768px) and (max-width: 991px){
     .search_area{
