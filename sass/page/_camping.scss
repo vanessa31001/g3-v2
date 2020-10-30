@@ -377,6 +377,13 @@
             position: absolute;
             right: 0;
             bottom: 0;
+            border-style: none;
+            background-color: transparent;  
+            color: #F85619;
+            padding: 0 10px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: bold;
         }
     }
     .camping_block{
@@ -424,15 +431,61 @@
                 }
                 .txt{
                     display: none;
-                    font-size: 16px;
-                    padding-top: 30px;
-                    text-align: left;
-                    font-weight: 400;
-                    line-height: normal;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 0 0 5px 5px;
                 }
             }
             .secend{
                 margin: 20px auto;
+            }
+        }
+    }
+    .overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: hsla(0, 0%, 0%, .5);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 1s;
+        article{
+            background-color: #fff;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 5px;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            p{
+                margin: 10px auto;
+                .label_sender{
+                    display: inline-block;
+                    width: 60px;
+                }
+                .contact_sender{
+                    width: calc(100% - 80px);
+                }
+                .label_text{
+                    display: inline-block;
+                    width: 60px;
+                    vertical-align: top;
+                }
+                .contact_text{
+                    width: calc(100% - 80px);
+                    height: 200px;
+                    resize: none;
+                }
+            }
+            .contact_btn{
+                text-align: center;
+                input{
+                    margin-right: 20px;
+                }
             }
         }
     }

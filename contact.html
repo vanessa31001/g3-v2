@@ -69,43 +69,64 @@
                     <!-- 會員資訊標題 -->
                     <img src="./pic/member/avatar.png">
                     <div class="contact_title level5">會員資訊</div>
-                    <div class="contact_btn"><button class="secondbtn1">我要聯絡</button></div>
                     
+                    <input type="submit" id="contact_btn" class="contact_btn" value="十 我要聯絡">
+                </div>
+                <div class="overlay">
+                    <article>                   
+                        <form class="contact_form" action="">
+                            <p>
+                                <label for="contact_sender" class="label_sender">寄件人</label>
+                                <input type="text" class="inputstyle contact_sender" id="contact_sender">
+                            </p>
+                            <p>
+                                <label for="contact_text" class="label_text">內&emsp;容</label>
+                                <textarea class="textareastyle contact_text" name="" id="contact_text"></textarea>
+                            </p>
+
+                            <div class="contact_btn">
+                                <input class="thirdbtn1_green submit_contact" type="submit" name="" value="送出">
+                                <button class="thirdbtn2_green" id="contact_close_btn">取消</button>
+                            </div>                                        
+                        </form>                      
+                    </article>
                 </div>
                 <div class="camping_block">
                     <div class="contact_list">
-                        <div class="content">開團紀錄
+                        <div class="content">&emsp;開團紀錄
                             <div class="icon">
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt">
-                                在IMP Tattoo Studio，我們有兩種定價方法：按件或按小時計費。 我們的最低收費為2000元起。 請諮詢工作室以了解每位設計師的費率。
+                            <div class="txt level1">
+                                開團紀錄 內容寫在這
                             </div>
                         </div>
-                        <div class="secend content">參團紀錄
+                        <div class="secend content">&emsp;參團紀錄
                             <div class="icon">
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt">
-                                在IMP Tattoo Studio，我們有兩種定價方法：按件或按小時計費。 我們的最低收費為2000元起。 請諮詢工作室以了解每位設計師的費率。
+                            <div class="txt level1">
+                                參團紀錄 內容寫在這
                             </div>
                         </div>
-                        <div class="content">設備列表
+                        <div class="content">&emsp;設備列表
                             <div class="icon">
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt">
-                                在IMP Tattoo Studio，我們有兩種定價方法：按件或按小時計費。 我們的最低收費為2000元起。 請諮詢工作室以了解每位設計師的費率。
+                            <div class="txt level1">
+                                設備列表 內容寫在這
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-        </section>    
-        </div>
+        </section>  
+
+    </div>
 
     <footer>
         <div class="footer_bgc">
@@ -141,14 +162,29 @@
     </footer>
 
     <script>
-        $(function(){
-            $(function(){
-              $('.content').on("click",function(){
-                $(this).children('.icon').toggleClass("iconremove");
-                $(this).find('.txt').slideToggle();
-              });
-            });
-          });
+
+ 
+                $('.content').on('click',function(){
+                    $(this).children('.icon').toggleClass('iconremove');
+                    $(this).find('.txt').slideToggle();
+                });
+
+                $('#contact_btn').on('click', function(){
+                    $('.overlay').addClass('-on');
+                });
+                
+                $('#contact_close_btn').on("click", function(){
+                    $('.overlay').addClass('-opacity-zero');
+                    $('#contact_sender').val(''); 
+                    $('#contact_text').val(''); //把輸入內容都取消
+                    setTimeout(function(){
+                    $(".overlay").removeClass("-on -opacity-zero");
+                }, 1000);
+                });
+
+
+
+        
       </script>
 </body>
 </html>
