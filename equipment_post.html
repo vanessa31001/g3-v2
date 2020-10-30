@@ -57,25 +57,26 @@
                     <ul>
                         <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>          
                         <li><a href="./equipment.html" class="level0 green1">設備交換</a></li>
-                        <li>設備刊登</li>
+                        <li class="level0 gray1" >設備刊登</li>
                     </ul>    
                 </div>
 
-                <div class="equpost_block">
+                <form class="equpost_block">
                     <div class="equpost_pic">
-                        <div class="post_bigimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <div class="post_bigimg">                            
+                            <img id="upequimg0" src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>
                         <div class="posttext_block">
                             <p class="level1 gray1">(限GIF、PNG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
                         <div class="post_minimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg1" src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg2" src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg3" src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>
                         <div class="preview_btn">
-                            <button class="thirdbtn1_green prev_btn">預覽檔案</button>
+                            <input class="prev_btn" type="file" id="equFile" multiple="multiple">
+                            
                         </div>
                     </div>
 
@@ -84,18 +85,18 @@
 
                     <div class="equpost_inform">
                         <div class="sub_title green1 level7">填寫刊登設備資訊</div>
-                        <form action="">
+                        <div class="right_form">
                             <table>
                                 <tr>
                                     <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
-                                    <td><input type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
+                                    <td><input class="inputstyle" type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label for="equ_post_select" class="third_title equ_info_name">我的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select name="equ_info_sort_sel" id="sort_select">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -122,7 +123,7 @@
                                         <label for="equ_name" class="third_title equ_info_name">我想要的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select name="equ_info_sort_sel" id="sort_select_want01">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want01">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -162,7 +163,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select name="equ_info_sort_sel" id="sort_select_want03">
+                                        <select  class="selectstyle" name="equ_info_sort_sel" id="sort_select_want03">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -189,7 +190,7 @@
                                         <label for="equ_name" class="third_title equ_info_name">商品說明：</label>
                                     </td>
                                     <td>
-                                        <textarea name="equ_desc" id="equdescribe01" cols="40" rows="15" placeholder="請描述設備資訊..."></textarea>
+                                        <textarea class="textareastyle" name="equ_desc" id="equdescribe01" cols="40" rows="15" placeholder="請描述設備資訊..."></textarea>
                                     </td>
                                 </tr>    
                             </table>
@@ -200,13 +201,13 @@
                             </div>
 
                         
-                        </form>
+                        </div>
                         
                         
                     </div>
 
                     
-                </div>                       
+                </form>                       
             </div>
         </section>
         
@@ -255,6 +256,26 @@
 
                 });
             });
+
+
+        //上傳圖片
+        function doFirst(){
+    
+            document.getElementById('equFile').onchange = fileChange;
+        }
+        function fileChange(){
+            let file = document.getElementById('equFile').files[0];
+            let message = '';
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg0');
+                image.src = readFile.result;
+                image.style.maxWidth = '400px';
+                image.style.maxHeight = '400px';
+            });
+        }
+        window.addEventListener('load',doFirst);
     </script>
     
     
