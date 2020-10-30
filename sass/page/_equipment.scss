@@ -133,7 +133,7 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
+        max-width: 480px;
         border-radius: $radius;
         
         position: absolute;
@@ -141,6 +141,8 @@ button.reportbtn , .equ_collect_checkbox{
         left: 50%;
         transform: translate(-50%, -50%);
         background-image: url('../pic/equipment/1029_燈箱_檢舉.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
         .report_form{
             padding: 45px 0 45px 0;
                 .report_title{
@@ -266,7 +268,7 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
+        max-width: 480px;
         border-radius: $radius;
         padding: 45px 0 45px 0;
         position: absolute;
@@ -274,7 +276,8 @@ button.reportbtn , .equ_collect_checkbox{
         left: 50%;
         transform: translate(-50%, -50%);
         background-image: url('../pic/equipment/1029_燈箱_傳送訊息.svg');
-
+        background-position: bottom;
+        background-repeat: no-repeat;
         .equmsg_title{
             text-align: center;
         }
@@ -322,7 +325,7 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
+        max-width: 480px;
         border-radius: $radius;
         padding: 45px 0 45px 0;
         position: absolute;
@@ -330,7 +333,8 @@ button.reportbtn , .equ_collect_checkbox{
         left: 50%;
         transform: translate(-50%, -50%);
         background-image: url('../pic/equipment/1029_燈箱_我的換物列表.svg');
-
+        background-position: bottom;
+        background-repeat: no-repeat;
         .apply_title{
             text-align: center;
         }
@@ -401,19 +405,26 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
+        max-width: 480px;
         border-radius: $radius;
         padding: 45px 0 45px 0;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        background-image: url('../pic/equipment/1029_燈箱_交換成功.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
         .changebtn_title{
             text-align: center;
         }
         .changebtn_form{   
+            padding-top: 30px;
             .change_content{
-
+                text-align: center;
+                p{
+                    line-height: 1.5rem;
+                }
             }    
             .change_close_btn{
                 text-align: center;
@@ -684,6 +695,12 @@ button.reportbtn , .equ_collect_checkbox{
     text-align: center;
 }
 
+.prev_btn{
+    
+}
+
+
+
 //right
 
 .equpost_inform{
@@ -768,7 +785,7 @@ textarea{
             }
         }
         .equpost_inform{
-            form{
+            .right_form{
                 .check_btn{
                     display: flex;
                     flex-direction: column;
