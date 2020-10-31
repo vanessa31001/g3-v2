@@ -120,7 +120,7 @@ button.reportbtn , .equ_collect_checkbox{
 }
 
 //檢舉燈箱
-.overlay{
+.report_overlay{
     position: fixed;
     top: 0;
     left: 0;
@@ -133,121 +133,124 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
-        border-radius: 5px;
-        padding: 30px;
+        max-width: 480px;
+        border-radius: $radius;
+        
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        .report_title{
-            text-align: center;
-        }
+        background-image: url('../pic/equipment/1029_燈箱_檢舉.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
         .report_form{
-            margin-top: 20px;
-            .report_reason1{
-                text-align: center;
-                padding: 20px;
-                input[type="radio"]{
-                    display: none;
-                }
-                label{
-                    border-radius: 50px;
-                    border: 1px solid $orangeColor1;
-                    cursor: $cursor;
-                    padding: 15px;
-                    max-width: 200px;
-                    width: 100%;
-                    display: block;
-                    margin: auto;
-
-                    &:hover{
+            padding: 45px 0 45px 0;
+                .report_title{
+                    text-align: center;
+                }            
+                .report_reason1{
+                    text-align: center;
+                    padding-top: 30px;
+                    input[type="radio"]{
+                        display: none;
+                    }
+                    label{
+                        border-radius: 50px;
+                        border: 1px solid $orangeColor1;
+                        cursor: $cursor;
+                        padding: 10px;
+                        max-width: 200px;
+                        width: 100%;
+                        display: block;
+                        margin: auto;
+                        background-color: $white;
+                        &:hover{
+                            background-color: $orangeColor1;
+                            color: $white;
+                        }
+                    }
+                    input[type="radio"]:checked + label{
                         background-color: $orangeColor1;
                         color: $white;
                     }
-                }
-                input[type="radio"]:checked + label{
-                    background-color: $orangeColor1;
-                    color: $white;
-                }
-                
-            }
-            .report_reason2{
-                text-align: center;
-                padding: 20px;
-                input[type="radio"]{
-                    display: none;
-                }
-                label{
-                    border-radius: 50px;
-                    border: 1px solid $orangeColor1;
-                    cursor: $cursor;
-                    padding: 15px;
-                    max-width: 200px;
-                    width: 100%;
-                    display: block;
-                    margin: auto;
-
-                    &:hover{
-                        background-color: $orangeColor1;
-                        color: $white;
-                    }
-                }
-                input[type="radio"]:checked + label{
-                    background-color: $orangeColor1;
-                    color: $white;
-                }
-            }
-            .report_reason3{
-                text-align: center;
-                padding: 20px;
-                input[type="radio"]{
-                    display: none;
-                }
-                label{
-                    border-radius: 50px;
-                    border: 1px solid $orangeColor1;
-                    cursor: $cursor;
-                    padding: 15px;
-                    max-width: 200px;
-                    width: 100%;
-                    display: block;
-                    margin: auto;
-
-                    &:hover{
-                        background-color: $orangeColor1;
-                        color: $white;
-                    }
-                }
-                input[type="radio"]:checked + label{
-                    background-color: $orangeColor1;
-                    color: $white;
-                }
-            }
-            .report_close_btn{
-                text-align: center;
-                margin: 30px 0 0 0;
-                .submit_btn{
-                    margin-right: 20px;
-                }
-                .btn_modal_close{
-                    cursor: pointer;
                     
-                    &:focus{
-                        outline: none;
+                }
+                .report_reason2{
+                    text-align: center;
+                    padding-top: 20px;
+                    input[type="radio"]{
+                        display: none;
+                    }
+                    label{
+                        border-radius: 50px;
+                        border: 1px solid $orangeColor1;
+                        cursor: $cursor;
+                        padding: 10px;
+                        max-width: 200px;
+                        width: 100%;
+                        display: block;
+                        margin: auto;
+                        background-color: $white;
+                        &:hover{
+                            background-color: $orangeColor1;
+                            color: $white;
+                        }
+                    }
+                    input[type="radio"]:checked + label{
+                        background-color: $orangeColor1;
+                        color: $white;
                     }
                 }
-            }
+                .report_reason3{
+                    text-align: center;
+                    padding-top: 20px;
+                    input[type="radio"]{
+                        display: none;
+                    }
+                    label{
+                        border-radius: 50px;
+                        border: 1px solid $orangeColor1;
+                        cursor: $cursor;
+                        padding: 10px;
+                        max-width: 200px;
+                        width: 100%;
+                        display: block;
+                        margin: auto;
+                        background-color: $white;
+                        &:hover{
+                            background-color: $orangeColor1;
+                            color: $white;
+                        }
+                    }
+                    input[type="radio"]:checked + label{
+                        background-color: $orangeColor1;
+                        color: $white;
+                    }
+                }
+                .report_close_btn{
+                    text-align: center;
+                    padding-top: 30px;
+                    .submit_btn{
+                        margin-right: 20px;
+                    }
+                    .btn_modal_close{
+                        cursor: pointer;
+                        
+                        &:focus{
+                            outline: none;
+                        } 
+                    }
+                }
 
         }
     }
 }
-.overlay.-on{
+.report_overlay.-on{
     opacity: 1;
     z-index: 99;
 }
 
-.overlay.-opacity-zero{
+.report_overlay.-opacity-zero{
     opacity: 0;
 }
 
@@ -265,13 +268,36 @@ button.reportbtn , .equ_collect_checkbox{
     article{
         background-color: #fff;
         width: 90%;
-        max-width: 500px;
-        border-radius: 5px;
-        padding: 30px;
+        max-width: 480px;
+        border-radius: $radius;
+        padding: 45px 0 45px 0;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        background-image: url('../pic/equipment/1029_燈箱_傳送訊息.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
+        .equmsg_title{
+            text-align: center;
+        }
+        .msg_form{
+            padding-top: 30px;
+            text-align: center;
+            .msg_block{
+                textarea{
+                    border: 2px solid $orangeColor1;
+                    width: 300px;
+                    height: 20vh;
+                }
+            }
+            .msg_close_btn{
+                padding-top: 30px;
+                .msg_submit_btn{
+                    margin-right: 20px;
+                }
+            }
+        }
     }
 }
 
@@ -284,6 +310,138 @@ button.reportbtn , .equ_collect_checkbox{
     opacity: 0;
 }
 
+
+//提出交換申請燈箱
+.applyoverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+    article{
+        background-color: #fff;
+        width: 90%;
+        max-width: 480px;
+        border-radius: $radius;
+        padding: 45px 0 45px 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url('../pic/equipment/1029_燈箱_我的換物列表.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
+        .apply_title{
+            text-align: center;
+        }
+        .apply_form{
+            padding-top: 30px;
+            .apply_item_block{
+                margin: auto;
+                .apply_item01{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    img{
+                        width: 120px;
+                    }
+                }
+                .apply_item02{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    padding-top: 30px;
+                    img{
+                        width: 120px;
+                    }
+                }
+                .apply_item03{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    padding-top: 30px;
+                    img{
+                        width: 120px;
+                    }
+                }
+            }
+            .apply_close_btn{
+                text-align: center;
+                padding-top: 30px;
+                .apply_submit_btn{
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+.applyoverlay.-on{
+    opacity: 1;
+    z-index: 1;
+}
+
+.applyoverlay.-opacity-zero{
+    opacity: 0;
+}
+
+
+//poster頁面 確認交換燈箱
+//提出交換申請燈箱
+.changeoverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+    article{
+        background-color: #fff;
+        width: 90%;
+        max-width: 480px;
+        border-radius: $radius;
+        padding: 45px 0 45px 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url('../pic/equipment/1029_燈箱_交換成功.svg');
+        background-position: bottom;
+        background-repeat: no-repeat;
+        .changebtn_title{
+            text-align: center;
+        }
+        .changebtn_form{   
+            padding-top: 30px;
+            .change_content{
+                text-align: center;
+                p{
+                    line-height: 1.5rem;
+                }
+            }    
+            .change_close_btn{
+                text-align: center;
+                padding-top: 30px;
+            }
+        }
+    }
+}
+
+.changeoverlay.-on{
+    opacity: 1;
+    z-index: 1;
+}
+
+.changeoverlay.-opacity-zero{
+    opacity: 0;
+}
 
 
 //收藏
@@ -537,6 +695,12 @@ button.reportbtn , .equ_collect_checkbox{
     text-align: center;
 }
 
+.prev_btn{
+    
+}
+
+
+
 //right
 
 .equpost_inform{
@@ -621,7 +785,7 @@ textarea{
             }
         }
         .equpost_inform{
-            form{
+            .right_form{
                 .check_btn{
                     display: flex;
                     flex-direction: column;

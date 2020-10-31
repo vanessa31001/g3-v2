@@ -61,21 +61,22 @@
                     </ul>    
                 </div>
 
-                <div class="equpost_block">
+                <form class="equpost_block">
                     <div class="equpost_pic">
-                        <div class="post_bigimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <div class="post_bigimg">                            
+                            <img id="upequimg0" src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>
                         <div class="posttext_block">
                             <p class="level1 gray1">(限GIF、PNG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
                         <div class="post_minimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg1" src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg2" src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg3" src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>
                         <div class="preview_btn">
-                            <button class="thirdbtn1_green prev_btn">預覽檔案</button>
+                            <input class="prev_btn" type="file" id="equFile" multiple="multiple">
+                            
                         </div>
                     </div>
 
@@ -84,7 +85,7 @@
 
                     <div class="equpost_inform">
                         <div class="sub_title green1 level7">填寫刊登設備資訊</div>
-                        <form action="">
+                        <div class="right_form">
                             <table>
                                 <tr>
                                     <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
@@ -200,13 +201,13 @@
                             </div>
 
                         
-                        </form>
+                        </div>
                         
                         
                     </div>
 
                     
-                </div>                       
+                </form>                       
             </div>
         </section>
         
@@ -255,6 +256,26 @@
 
                 });
             });
+
+
+        //上傳圖片
+        function doFirst(){
+    
+            document.getElementById('equFile').onchange = fileChange;
+        }
+        function fileChange(){
+            let file = document.getElementById('equFile').files[0];
+            let message = '';
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg0');
+                image.src = readFile.result;
+                image.style.maxWidth = '400px';
+                image.style.maxHeight = '400px';
+            });
+        }
+        window.addEventListener('load',doFirst);
     </script>
     
     
