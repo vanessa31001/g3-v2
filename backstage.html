@@ -16,29 +16,29 @@
             
             <div class="back_list_title grayColor1">管理員管理</div>
 
-            <button class="back_list" @click="content='back_manger'">管理員管理</button>
+            <button class="back_list" @click="content='back-manger'">管理員管理</button>
 
 
             <div class="back_list_title grayColor1">會員管理</div>
-            <button class="back_list" @click="content='back_mem_manger'">會員管理</button>
-            <button class="back_list" @click="content='back_mem_grade'">會員等級管理</button>
+            <button class="back_list" @click="content='back-mem-manger'">會員管理</button>
+            <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
 
 
             <div class="back_list_title grayColor1">檢舉管理</div>
-            <button class="back_list" @click="content='back_rep_group'">揪團檢舉管理</button>
-            <button class="back_list" @click="content='back_rep_message'">揪團留言檢舉管理</button>
-            <button class="back_list" @click="content='back_rep_equ'">設備檢舉管理</button>
+            <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
+            <button class="back_list" @click="content='back-rep-message'">揪團留言檢舉管理</button>
+            <button class="back_list" @click="content='back-rep-equ'">設備檢舉管理</button>
 
 
             <div class="back_list_title grayColor1">小知識管理</div>
-            <button class="back_list" @click="content='back_game_manger'">小知識管理</button>
+            <button class="back_list" @click="content='back-game-manger'">小知識管理</button>
 
 
             <div class="back_list_title grayColor1">明信片管理</div>
-            <button class="back_list" @click="content='back_postcard_material'">素材管理</button>
+            <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
 
             <div class="back_list_title grayColor1">營區管理</div>
-            <button class="back_list" @click="content='back_spot_manger'">營區地點管理</button>
+            <button class="back_list" @click="content='back-spot-manger'">營區地點管理</button>
 
         </div>
 
@@ -61,13 +61,107 @@
 
         <script>
         //管理員管理
-        Vue.component('back_manger', { 
-            template: `
+        Vue.component('back-manger', { 
+            data(){
+                return{
+                    link : "allMangers",
+                    page1style: "secondbtn1",
+                    page2style: "secondbtn2",
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allMangers'
+                    this.page1style= "secondbtn1",
+                    this.page2style= "secondbtn2"
 
+                },
+                page2(){
+                    this.link = 'addManger'
+                    this.page1style= "secondbtn2",
+                    this.page2style= "secondbtn1"
+                }
+            },
+
+            template: `
+            <div>
+                <div v-if="link == 'allMangers'">
+                    <table class="back_mem_manger_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>會員名稱</th>
+                            <th>會員積分</th>
+                            <th>狀態</th>
+                            <th>開通時間</th>
+                            <th>是否停權</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>王大明</td>
+                            <td>7878</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>王中明</td>
+                            <td>9527</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>王小明</td>
+                            <td>5566</td>
+                            <td>停權</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </table>
+                </div>
+                <div  v-else-if="link == 'addManger'">
+                    <table class="back_mem_manger_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>會員名稱</th>
+                            <th>會員積分</th>
+                            <th>狀態</th>
+                            <th>開通時間</th>
+                            <th>是否停權</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>王大明</td>
+                            <td>7878</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>王中明</td>
+                            <td>9527</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>王小明</td>
+                            <td>5566</td>
+                            <td>停權</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             `,
         });
         //會員管理
-        Vue.component('back_mem_manger', { 
+        Vue.component('back-mem-manger', { 
             template: `
             <div>
                 <div class="back_mem_manger_area back_area">
@@ -114,13 +208,13 @@
             `,
         });
         //會員等級管理
-        Vue.component('back_mem_grade', {
+        Vue.component('back-mem-grade', {
             template: `
 
             `,
         });
         //揪團檢舉管理
-        Vue.component('back_rep_group', { 
+        Vue.component('back-rep-group', { 
             template: `
             <div>
                 <div class="back_rep_group_area back_area">
@@ -159,7 +253,7 @@
                 `,
         });
         //揪團留言檢舉管理
-        Vue.component('back_rep_message', { 
+        Vue.component('back-rep-message', { 
             template: `
             <div>
                 <div class="back_rep_message_area back_area">
@@ -198,7 +292,7 @@
             `,
         });
         //設備檢舉管理
-        Vue.component('back_rep_equ', { 
+        Vue.component('back-rep-equ', { 
             template: `
             <div>
                 <div class="back_rep_equ_area back_area">
@@ -237,7 +331,7 @@
             `,
         });
         //小知識管理
-        Vue.component('back_game_manger', { 
+        Vue.component('back-game-manger', { 
             template: `
             <div>
                 <div class="back_game_manger_area back_area">
@@ -273,7 +367,7 @@
             `,
         });
         //素材管理
-        Vue.component('back_postcard_material', { 
+        Vue.component('back-postcard-material', { 
             template: `
             <div>
                 <div class="back_postcard_material_area back_area">
@@ -312,7 +406,7 @@
             `,
         });
         //營區地點管理
-        Vue.component('back_spot_manger', { 
+        Vue.component('back-spot-manger', { 
             template: `
             <div>
                 <div class="back_spot_manger_area back_area">
@@ -354,7 +448,7 @@
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back_mem_manger',
+                content:'back-mem-manger',
             },
 
         });
