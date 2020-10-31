@@ -34,14 +34,16 @@
 
 //後台
 .back_page{
+    max-width: 1140px;
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    margin: 0 auto;
     .back_page_leftside{
-        flex-basis: 20%;
+        width: 300px;
         background-color: white;
         border-radius: 10px;
         padding:0px 20px;
-        margin: 20px 0px 0px 0px;
+        margin: 20px 30px 0px 0px;
         border: 1px solid red;
         .back_list_title{
             font-size: 1.4rem;
@@ -58,7 +60,8 @@
         }
     }
     .back_page_rightside{
-        flex-basis: 70%;
+        // flex-basis: 70%;
+        width: 800px;
         background-color: white;
         border-radius: 10px;
         padding:20px;
@@ -67,3 +70,50 @@
         
     }
 }
+
+//table
+.back_area{
+    margin: 0 auto;
+}
+.back_table{
+    margin: 30px auto;
+    width: 650px;
+    th{
+        padding: 10px;
+        background-color: $yellowColor1;
+    }
+    td{
+        border-bottom: 1px solid $yellowColor1;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+//管理員管理
+
+
+//會員管理
+.back_mem_manger_area{
+    .search_back_mem{
+        margin: 0 auto;
+    }
+    .back_mem_manger_table{
+        margin: 30px auto;
+        width: 650px;
+        th{
+            width: 80px;
+            padding: 10px;
+            background-color: $yellowColor1;
+        }
+        td{
+            border-bottom: 1px solid $yellowColor1;
+            width: 80px;
+            padding: 10px;
+            text-align: center;
+        }
+    }
+}
+
+ 
+
+
