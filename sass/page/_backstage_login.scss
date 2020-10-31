@@ -75,6 +75,7 @@
 .back_area{
     margin: 0 auto;
 }
+//公用-table
 .back_table{
     margin: 30px auto;
     width: 650px;
@@ -88,6 +89,7 @@
         text-align: center;
     }
 }
+//公用-頁籤btn
 .back_btn_style{
     font-size: 0;
     .back_btn1{
@@ -109,9 +111,42 @@
         padding: 5px 0;
     }
 }
+//公用-switch
+input[type="checkbox"].switch{
+    appearance: none;
+    width: 3.5em;
+    height: 1.5em;
+    background: #ddd;
+    border-radius: 3em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all .2s ease-in-out;
+        &:checked{
+            background: $yellowColor1;
+            &:after{
+                left: calc(100% - 1.5em);
+            }
+        }
+        &:after{
+            position: absolute;
+            content: "";
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 .25em rgba(0,0,0,.3);
+            transform: scale(.7);
+            left: 0;
+            transition: all .2s ease-in-out;
+        }
+}
+
+
 //管理員管理
 .back_manager_area{
     width: 650px;
+    margin-top: 30px;
     .back_manager_table1{
         margin-top: 0;
     }
@@ -137,6 +172,7 @@
 //會員等級管理
 .back_grade_area{
     width: 650px;
+    margin-top: 30px;
     .back_grade_table1{
         margin-top: 0;
     }
@@ -145,6 +181,13 @@
         p{
             text-align: center;
             margin: 20px auto;
+            .upimg{
+                width: 170px;
+            }
+            .add_grade_img{
+                width: 80px;
+                height: 80px;
+            }
         }
         button{
             display: block;

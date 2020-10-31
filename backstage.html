@@ -45,14 +45,10 @@
     
 
         <div class="back_page_rightside">
-            
-    
             <!--Vue開始-->
         
             <component :is="content"></component>
             <!-- 透過component元素，去指定其屬性is進行v-bind -->
-
-
 
     </div>
 </div><!--app尾-->
@@ -99,17 +95,17 @@
                             <tr>
                                 <td>001</td>
                                 <td>王大明</td>
-                                <td>--</td>
+                                <td><input type="checkbox" class="switch"></td>
                             </tr>
                             <tr>
                                 <td>002</td>
                                 <td>王中明</td>
-                                <td>--</td>
+                                <td><input type="checkbox" class="switch"></td>
                             </tr>
                             <tr>
                                 <td>003</td>
                                 <td>王小明</td>
-                                <td>--</td>
+                                <td><input type="checkbox" class="switch"></td>
                             </tr>
                         </table>
                     </div>
@@ -127,9 +123,8 @@
                                 <label for="">管理員密碼：</label>
                                 <input type="text">
                             </p>
-                            <button type="submit" class="thirdbtn1_green">送出</button>
-
-                    </form>
+                        </form>
+                        <button type="submit" class="thirdbtn1_green">送出</button>
                     </div>
                 </div>
             </div>
@@ -159,7 +154,7 @@
                             <td>7878</td>
                             <td>正常</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
@@ -167,7 +162,7 @@
                             <td>9527</td>
                             <td>正常</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
@@ -175,7 +170,7 @@
                             <td>5566</td>
                             <td>停權</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -189,6 +184,8 @@
                     link : "allGrade",
                     page1style: "back_btn1",
                     page2style: "back_btn2",
+                    preview: null,
+                    image: null
                 }
             },
             methods:{
@@ -202,7 +199,18 @@
                     this.link = 'addGrade'
                     this.page1style= "back_btn2",
                     this.page2style= "back_btn1"
-                }
+                },
+                previewImage(event) {
+                    var input = event.target;
+                    if (input.files) {
+                        var reader = new FileReader();
+                        reader.onload = (e) => {
+                        this.preview = e.target.result;
+                        }
+                        this.image=input.files[0];
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                },
             },
             template: `
             <div>
@@ -278,12 +286,14 @@
                                 <input type="text">
                             </p>
                             <p>
-                                <label for="my-file">等級圖片：</label>
-                                <input type="file" accept="image/*" @change="previewImage">
+                                <label for="">等級圖片：</label>
+                                <input class="upimg" type="file" accept="image/*" @change="previewImage">
                             </p>
-                            <button type="submit" class="thirdbtn1_green">確認新增</button>
-
-                    </form>
+                            <p v-if="preview">
+                                <img :src="preview" class="add_grade_img" />
+                            </p>
+                        </form>
+                        <button type="submit" class="thirdbtn1_green">確認新增</button>
                     </div>
                 </div>
             </div>
@@ -307,21 +317,21 @@
                             <td>飛向宇宙</td>
                             <td>7878</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>飛向宇宙</td>
                             <td>9527</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>王小明</td>
                             <td>5566</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -346,21 +356,21 @@
                             <td>7878</td>
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>5566</td>
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>9527</td>
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -385,21 +395,21 @@
                             <td>7878</td>
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>5566</td>
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>9527</td>
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -423,19 +433,19 @@
                             <td>001</td>
                             <td>詳細內容</td>
                             <td>C</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>詳細內容</td>
                             <td>A</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>詳細內容</td>
                             <td>D</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -460,21 +470,21 @@
                             <td>1:材質</td>
                             <td>大理石</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>2:圖樣</td>
                             <td>營火</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>1:材質</td>
                             <td>石頭</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -499,21 +509,21 @@
                             <td>阿里山露營地</td>
                             <td>嘉義縣番…</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>拉拉山露營地</td>
                             <td>桃園市華…</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>石門山露營地</td>
                             <td>桃園市實…</td>
                             <td>--</td>
-                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
                         </tr>
                     </table>
                 </div>
@@ -525,26 +535,8 @@
             el:'#app', 
             data:{
                 content:'back-manager',
-                // function() {
-                // return {
-                // preview: null,
-                // image: null
-                // };
             },
 
-            methods: {
-                previewImage: function(event) {
-                var input = event.target;
-                if (input.files) {
-                    var reader = new FileReader();
-                    reader.onload = (e) => {
-                    this.preview = e.target.result;
-                    }
-                    this.image=input.files[0];
-                    reader.readAsDataURL(input.files[0]);
-                }
-                }
-            }
         });
 
 
