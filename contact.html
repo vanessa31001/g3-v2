@@ -98,8 +98,8 @@
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt level1">
-                                開團紀錄 內容寫在這
+                            <div class="txt text1">
+                                開團紀錄 內容寫在這 text1
                             </div>
                         </div>
                         <div class="secend content">&emsp;參團紀錄
@@ -107,8 +107,8 @@
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt level1">
-                                參團紀錄 內容寫在這
+                            <div class="txt text2">
+                                參團紀錄 內容寫在這 text2
                             </div>
                         </div>
                         <div class="content">&emsp;設備列表
@@ -116,8 +116,8 @@
                                 <div class="minus">十</div>
                                 <div class="plus">一</div>
                             </div>
-                            <div class="txt level1">
-                                設備列表 內容寫在這
+                            <div class="txt text3">
+                                設備列表 內容寫在這 text3
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                         </a>
                     </div>
                     <div class="footerright">
-                        <div class="divnk">
+                        <div class="link">
                             <div class="level2 green1">相關連結 |</div>
                             <div class="footer_icon">
                                 <img src="./pic/commom/foot_line.svg" alt="">
@@ -162,30 +162,25 @@
     </footer>
 
     <script>
+        $('.content').on('click',function(){
+            $(this).children('.icon').toggleClass('iconremove');
+            $(this).find('.txt').slideToggle();
+        });
 
- 
-                $('.content').on('click',function(){
-                    $(this).children('.icon').toggleClass('iconremove');
-                    $(this).find('.txt').slideToggle();
-                });
-
-                $('#contact_btn').on('click', function(){
-                    $('.overlay').addClass('-on');
-                });
-                
-                $('#contact_close_btn').on("click", function(){
-                    $('.overlay').addClass('-opacity-zero');
-                    $('#contact_sender').val(''); 
-                    $('#contact_text').val(''); //把輸入內容都取消
-                    setTimeout(function(){
-                    $(".overlay").removeClass("-on -opacity-zero");
-                }, 1000);
-                });
-
-
-
+        $('#contact_btn').on('click', function(){
+            $('.overlay').addClass('-on');
+        });
         
-      </script>
+        $('#contact_close_btn').on("click", function(){
+            $('.overlay').addClass('-opacity-zero');
+            $('#contact_sender').val(''); 
+            $('#contact_text').val(''); //把輸入內容都取消
+            setTimeout(function(){
+            $(".overlay").removeClass("-on -opacity-zero");
+        }, 1000);
+        });
+
+    </script>
 </body>
 </html>
 

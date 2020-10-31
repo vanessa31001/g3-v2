@@ -1,3 +1,4 @@
+//後台登入頁
 .login_backstage_out{
     position: absolute;
     display: flex;
@@ -29,4 +30,40 @@
     border-radius: 4px;
     border: 1px solid #007E85;
     height: 30px;
+}
+
+//後台
+.back_page{
+    display: flex;
+    justify-content: space-evenly;
+    .back_page_leftside{
+        flex-basis: 20%;
+        background-color: white;
+        border-radius: 10px;
+        padding:0px 20px;
+        margin: 20px 0px 0px 0px;
+        border: 1px solid red;
+        .back_list_title{
+            font-size: 1.4rem;
+            margin: 20px 0 5px;
+        }
+        .back_list{
+            display: block;
+            border-style: none;
+            background-color: transparent;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $greenColor1;
+            margin: 5px 0;
+        }
+    }
+    .back_page_rightside{
+        flex-basis: 70%;
+        background-color: white;
+        border-radius: 10px;
+        padding:20px;
+        margin: 20px 0px 0px 0px;
+        border: 1px solid red;
+        
+    }
 }

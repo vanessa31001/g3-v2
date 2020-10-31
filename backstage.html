@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" backContent="width=device-width, initial-scale=1.0">
+    <title>後台</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+ <div id="app" class="back_page"><!--HTML DOM template-->
+        <div class="back_page_leftside">
+            
+            <div class="back_list_title grayColor1">管理員管理</div>
+
+            <button class="back_list" @click="backContent='back_manger'">管理員管理</button>
+
+
+            <div class="back_list_title grayColor1">會員管理</div>
+            <button class="back_list" @click="backContent='back_mem_manger'">會員管理</button>
+            <button class="back_list" @click="backContent='back_mem_grade'">會員等級管理</button>
+
+
+            <div class="back_list_title grayColor1">檢舉管理</div>
+            <button class="back_list" @click="backContent='back_rep_group'">揪團檢舉管理</button>
+            <button class="back_list" @click="backContent='back_rep_message'">揪團留言檢舉管理</button>
+            <button class="back_list" @click="backContent='back_rep_equ'">設備檢舉管理</button>
+
+
+            <div class="back_list_title grayColor1">小知識管理</div>
+            <button class="back_list" @click="backContent='back_game_manger'">小知識管理</button>
+
+
+            <div class="back_list_title grayColor1">明信片管理</div>
+            <button class="back_list" @click="backContent='back_postcard_material'">小知識管理</button>
+
+            <div class="back_list_title grayColor1">營區管理</div>
+            <button class="back_list" @click="backContent='back_area_manger'">營區地點管理</button>
+
+        </div>
+
+    
+
+        <div class="back_page_rightside">
+    
+            <!--Vue開始-->
+        
+            <component :is="backbackContent"></component>
+            <!-- 透過component元素，去指定其屬性is進行v-bind -->
+
+        </div>
+
+
+
+    </div><!--app尾-->
+
+
+
+        <script>
+        //管理員管理
+        Vue.component('back_manger', { 
+            template: `
+
+            `,
+        });
+        //會員管理
+        Vue.component('back_mem_manger', { 
+            template: `
+
+            `,
+        });
+        //會員等級管理
+        Vue.component('back_mem_grade', {
+            template: `
+
+            `,
+        });
+        //揪團檢舉管理
+        Vue.component('back_rep_group', { 
+            template: `
+
+                `,
+        });
+        //揪團留言檢舉管理
+        Vue.component('back_rep_message', { 
+            template: `
+            
+            `,
+        });
+        //設備檢舉管理
+        Vue.component('back_rep_equ', { 
+            template: `
+            
+            `,
+        });
+        //小知識管理
+        Vue.component('back_game_manger', { 
+            template: `
+            
+            `,
+        });
+        //素材管理
+        Vue.component('back_postcard_material', { 
+            template: `
+            
+            `,
+        });
+        //營區地點管理
+        Vue.component('back_area_manger', { 
+            template: `
+            
+            `,
+        });
+
+        new Vue({ 
+            el:'#app', 
+            data:{
+                content:'backContent',
+            },
+
+        });
+
+
+    </script>
+</body>
+</html>

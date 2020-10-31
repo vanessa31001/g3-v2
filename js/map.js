@@ -37,8 +37,8 @@
     marker = L.marker([24.0738248,120.9795118], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>樹不老露營區</a><br>目前開團:2組");
     //C3 逸境生態露營區
     marker = L.marker([23.7261695,120.6213536], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>逸境生態露營區</a><br>目前開團:2組");
-    //C4 倉伯露營區
-    marker = L.marker([23.4605817,120.6951795], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>倉伯露營區</a><br>目前開團:2組");
+    //C4 晨光露營區
+    marker = L.marker([23.4640832,120.7035768], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>晨光露營區</a><br>目前開團:2組");
     //S1 春園休閒農場
     marker = L.marker([23.119833,120.151722], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>春園休閒農場</a><br>目前開團:2組");
     //S2 荖濃有機農場露營區

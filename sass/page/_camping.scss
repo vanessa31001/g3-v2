@@ -393,7 +393,7 @@
                 display: block;
                 border: 1px solid $yellowColor2;
                 background-color: $yellowColor2;
-                color: $grayColor1;
+                color: $greenColor1;
                 border-radius: 5px;
                 margin: 0 auto;
                 line-height: 40px;
@@ -434,6 +434,15 @@
                     padding: 20px;
                     background-color: #fff;
                     border-radius: 0 0 5px 5px;
+                }
+                .text1{
+                    color: red;
+                }
+                .text2{
+                    color: red;
+                }
+                .text3{
+                    color: red;
                 }
             }
             .secend{
