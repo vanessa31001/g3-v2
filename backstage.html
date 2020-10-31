@@ -16,11 +16,11 @@
             
             <div class="back_list_title grayColor1">管理員管理</div>
 
-            <button class="back_list" @click="content='back-manger'">管理員管理</button>
+            <button class="back_list" @click="content='back-manager'">管理員管理</button>
 
 
             <div class="back_list_title grayColor1">會員管理</div>
-            <button class="back_list" @click="content='back-mem-manger'">會員管理</button>
+            <button class="back_list" @click="content='back-mem-manage'">會員管理</button>
             <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
 
 
@@ -31,27 +31,26 @@
 
 
             <div class="back_list_title grayColor1">小知識管理</div>
-            <button class="back_list" @click="content='back-game-manger'">小知識管理</button>
+            <button class="back_list" @click="content='back-game-manage'">小知識管理</button>
 
 
             <div class="back_list_title grayColor1">明信片管理</div>
             <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
 
             <div class="back_list_title grayColor1">營區管理</div>
-            <button class="back_list" @click="content='back-spot-manger'">營區地點管理</button>
+            <button class="back_list" @click="content='back-spot-manage'">營區地點管理</button>
 
         </div>
 
     
 
         <div class="back_page_rightside">
+            
     
             <!--Vue開始-->
         
             <component :is="content"></component>
             <!-- 透過component元素，去指定其屬性is進行v-bind -->
-
-
 
 
 
@@ -61,115 +60,91 @@
 
         <script>
         //管理員管理
-        Vue.component('back-manger', { 
+        Vue.component('back-manager', { 
             data(){
                 return{
-                    link : "allMangers",
-                    page1style: "secondbtn1",
-                    page2style: "secondbtn2",
+                    link : "allManagers",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
                 }
             },
             methods:{
                 page1(){
-                    this.link = 'allMangers'
-                    this.page1style= "secondbtn1",
-                    this.page2style= "secondbtn2"
+                    this.link = 'allManagers'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
 
                 },
                 page2(){
-                    this.link = 'addManger'
-                    this.page1style= "secondbtn2",
-                    this.page2style= "secondbtn1"
+                    this.link = 'addManager'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
                 }
             },
 
             template: `
             <div>
-                <div v-if="link == 'allMangers'">
-                    <table class="back_mem_manger_table back_table">
-                        <tr>
-                            <th>編號</th>
-                            <th>會員名稱</th>
-                            <th>會員積分</th>
-                            <th>狀態</th>
-                            <th>開通時間</th>
-                            <th>是否停權</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>王大明</td>
-                            <td>7878</td>
-                            <td>正常</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>王中明</td>
-                            <td>9527</td>
-                            <td>正常</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>王小明</td>
-                            <td>5566</td>
-                            <td>停權</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                    </table>
+                <div class="back_manager_area back_area">
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">管理員</button>
+                    <button :class="page2style" @click="page2">新增管理員</button>
                 </div>
-                <div  v-else-if="link == 'addManger'">
-                    <table class="back_mem_manger_table back_table">
-                        <tr>
-                            <th>編號</th>
-                            <th>會員名稱</th>
-                            <th>會員積分</th>
-                            <th>狀態</th>
-                            <th>開通時間</th>
-                            <th>是否停權</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>王大明</td>
-                            <td>7878</td>
-                            <td>正常</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>王中明</td>
-                            <td>9527</td>
-                            <td>正常</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>王小明</td>
-                            <td>5566</td>
-                            <td>停權</td>
-                            <td>--</td>
-                            <td>--</td>
-                        </tr>
-                    </table>
+                    <div v-if="link == 'allManagers'">
+                        <table class="back_manager_table1 back_table">
+                            <tr>
+                                <th>編號</th>
+                                <th>管理員名稱</th>
+                                <th>是否刪除</th>
+                            </tr>
+                            <tr>
+                                <td>001</td>
+                                <td>王大明</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>王中明</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>王小明</td>
+                                <td>--</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="add_manager" v-else-if="link == 'addManager'">
+                        <form action="">
+                            <p>
+                                <label for="">管理員帳號：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">管理員姓名：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">管理員密碼：</label>
+                                <input type="text">
+                            </p>
+                            <button type="submit" class="thirdbtn1_green">送出</button>
+
+                    </form>
+                    </div>
                 </div>
             </div>
             `,
         });
         //會員管理
-        Vue.component('back-mem-manger', { 
+        Vue.component('back-mem-manage', { 
             template: `
             <div>
-                <div class="back_mem_manger_area back_area">
+                <div class="back_mem_manage_area back_area">
                     <div class="search_input search_back_mem">
                         <input type="text">
                         <label>搜尋</label>
                     </div>
-                    <table class="back_mem_manger_table back_table">
+                    <table class="back_mem_manage_table back_table">
                         <tr>
                             <th>編號</th>
                             <th>會員名稱</th>
@@ -209,8 +184,109 @@
         });
         //會員等級管理
         Vue.component('back-mem-grade', {
-            template: `
+            data(){
+                return{
+                    link : "allGrade",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allGrade'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
 
+                },
+                page2(){
+                    this.link = 'addGrade'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
+                }
+            },
+            template: `
+            <div>
+                <div class="back_grade_area back_area">
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">等級</button>
+                    <button :class="page2style" @click="page2">新增等級員</button>
+                </div>
+                    <div v-if="link == 'allGrade'">
+                        <table class="back_grade_table1 back_table">
+                            <tr>
+                                <th>編號</th>
+                                <th>等級名稱</th>
+                                <th>等級上限</th>
+                                <th>等級下限</th>
+                                <th>等級圖片</th>
+                                <th>修改</th>
+                            </tr>
+                            <tr>
+                                <td>001</td>
+                                <td>鐵牌會員</td>
+                                <td>5999</td>
+                                <td>0</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>銅牌會員</td>
+                                <td>11999</td>
+                                <td>6000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>銀牌會員</td>
+                                <td>17999</td>
+                                <td>12000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>004</td>
+                                <td>金牌會員</td>
+                                <td>23999</td>
+                                <td>18000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>005</td>
+                                <td>鑽石會員</td>
+                                <td>30000</td>
+                                <td>24000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="add_grade" v-else-if="link == 'addGrade'">
+                        <form action="">
+                            <p>
+                                <label for="">等級名稱：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">等級上限：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">等級下限：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="my-file">等級圖片：</label>
+                                <input type="file" accept="image/*" @change="previewImage">
+                            </p>
+                            <button type="submit" class="thirdbtn1_green">確認新增</button>
+
+                    </form>
+                    </div>
+                </div>
+            </div>
             `,
         });
         //揪團檢舉管理
@@ -331,7 +407,7 @@
             `,
         });
         //小知識管理
-        Vue.component('back-game-manger', { 
+        Vue.component('back-game-manage', { 
             template: `
             <div>
                 <div class="back_game_manger_area back_area">
@@ -406,7 +482,7 @@
             `,
         });
         //營區地點管理
-        Vue.component('back-spot-manger', { 
+        Vue.component('back-spot-manage', { 
             template: `
             <div>
                 <div class="back_spot_manger_area back_area">
@@ -448,10 +524,29 @@
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back-mem-manger',
+                content:'back-manager',
+                // function() {
+                // return {
+                // preview: null,
+                // image: null
+                // };
             },
 
+            methods: {
+                previewImage: function(event) {
+                var input = event.target;
+                if (input.files) {
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                    this.preview = e.target.result;
+                    }
+                    this.image=input.files[0];
+                    reader.readAsDataURL(input.files[0]);
+                }
+                }
+            }
         });
+
 
 
     </script>

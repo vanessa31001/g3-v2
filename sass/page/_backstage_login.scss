@@ -71,7 +71,7 @@
     }
 }
 
-//table
+//公用
 .back_area{
     margin: 0 auto;
 }
@@ -88,32 +88,68 @@
         text-align: center;
     }
 }
-
-//管理員管理
-
-
-//會員管理
-.back_mem_manger_area{
-    .search_back_mem{
-        margin: 0 auto;
+.back_btn_style{
+    font-size: 0;
+    .back_btn1{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        border:1px solid $yellowColor1;
+        background-color:$yellowColor1 ;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 5px 0;
     }
-    .back_mem_manger_table{
-        margin: 30px auto;
-        width: 650px;
-        th{
-            width: 80px;
-            padding: 10px;
-            background-color: $yellowColor1;
-        }
-        td{
-            border-bottom: 1px solid $yellowColor1;
-            width: 80px;
-            padding: 10px;
+    .back_btn2{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        background-color:white;
+        border:1px solid $yellowColor1;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 5px 0;
+    }
+}
+//管理員管理
+.back_manager_area{
+    width: 650px;
+    .back_manager_table1{
+        margin-top: 0;
+    }
+    .add_manager{
+        border: 1px solid $yellowColor1;
+        p{
             text-align: center;
+            margin: 20px auto;
+        }
+        button{
+            display: block;
+            margin: 40px auto 20px;
         }
     }
 }
 
- 
-
+//會員管理
+.back_mem_manage_area{
+    .search_back_mem{
+        margin: 0 auto;
+    }
+}
+//會員等級管理
+.back_grade_area{
+    width: 650px;
+    .back_grade_table1{
+        margin-top: 0;
+    }
+    .add_grade{
+        border: 1px solid $yellowColor1;
+        p{
+            text-align: center;
+            margin: 20px auto;
+        }
+        button{
+            display: block;
+            margin: 40px auto 20px;
+        }
+    }
+}
 
