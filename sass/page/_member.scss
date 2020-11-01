@@ -11,26 +11,37 @@
     background-color: white;
     border-radius: 10px 0 0 10px;
     padding: 16px;
+    .buttonClassification{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 16px 0;
+        button{
+            cursor: pointer; 
+            width: 100px;
+            margin-left: 16px;
+        }
+        .imgSize{ //左側圖片大小
+            width: 60px;
+        }
+    }
+    .aside_subtitle{
+        text-align: left;
+    }
 }
-.buttonClassification{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.app_left_aside_selector{
+    display: none;
+    text-align: center;
     margin: 16px 0;
+    select{
+        width: 90%;
+        border: 3px solid $greenColor1;
+        height: 45px;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+    
 }
-.buttonClassification > button{
-    cursor: pointer; 
-    width: 100px;
-    margin-left: 16px;
-}
-.aside_subtitle{
-    text-align: left;
-}
-
-.imgSize{ //左側圖片大小
-    width: 60px;
-}
-
 //主要顯示
 //會員資訊標題
 .app_right_aside{
@@ -39,24 +50,11 @@
     background-color: white;
     border-radius: 0 10px 10px 0;
 }
-.app_left_aside_selector{
-    display: none;
-    // background-color: #007E85;
-    text-align: center;
-    margin: 16px 0;
-    select{
-        width: 90%;
-        border: 3px solid #007E85;
-        height: 45px;
-        border-radius: 8px;
-        font-size: 18px;
-    }
-    
-}
+
 .member_information_title{
     text-align: left;
     .memberTitle_img{
-    width: 60px;
+        width: 60px;
     }
 }
 .member_information_detail{
@@ -95,9 +93,9 @@
 
 //悄悄話
 .member_message_alldetail{
-    border: 3px solid #007E85;
+    border: 3px solid $greenColor1;
     .member_message_detail{
-        border: 1px solid #007E85;
+        border: 1px solid $greenColor1;
         margin: 10px;
         display: flex;
         justify-content: space-around;
@@ -122,18 +120,18 @@
     text-align: left;
 }
 .startGroupManage_page{
+    border: 3px solid $greenColor1;
+    padding: 16px;
     ul{
-        padding: 16px;
         .group_everyRow{
+            border: 1px solid $greenColor1;
             display: flex;
             position: relative;
             overflow: hidden;
             align-items: center;
-            height: 150px;
-            margin: 16px 0 ;
+            margin-bottom: 16px;
             background-color: white;
-            padding: 16px;
-            border-radius: 8px;
+            padding: 0 16px;
             img{
                 width: 200px;
             }
@@ -171,18 +169,18 @@
     }
 }
 .joinGroupManage_page{
+    border: 3px solid $greenColor1;
+    padding: 16px;
     ul{
-        padding: 16px;
         .group_everyRow{
+            border: 1px solid $greenColor1;
             display: flex;
             position: relative;
             overflow: hidden;
             align-items: center;
-            height: 150px;
-            margin: 16px 0 ;
+            margin-bottom: 16px;
             background-color: white;
-            padding: 16px;
-            border-radius: 8px;
+            padding: 0 16px;
             img{
                 width: 200px;
             }
@@ -219,7 +217,7 @@
         }
     }
 }
-.group_page{
+.groupsPage{
     text-align: center;
     padding: 0;
     li{
@@ -227,7 +225,7 @@
         a{
             text-decoration: none;
             font-size: 16px;
-            color: #007e85;
+            color:$greenColor1;
         }
     }
 }
@@ -236,6 +234,7 @@
 .Equipment_record_page{
     .Equipment_record{
         li{
+            border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
             *{
@@ -263,7 +262,7 @@
             }
         }
         li:first-child{
-            background-color: #FFAE08;
+            background-color:$yellowColor2;
             :nth-child(3){
                 text-align: center;
             }
@@ -282,6 +281,7 @@
 .exchange_record_page{
     .exchange_record{
         li{
+            border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
             *{
@@ -309,7 +309,7 @@
             }
         }
         li:first-child{
-            background-color: #FFAE08;
+            background-color: $yellowColor2;
             :nth-child(3){
                 text-align: center;
             }
@@ -328,6 +328,7 @@
 .favorites_recode_page{
     .favorites_record{
         li{
+            border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
             *{
@@ -355,7 +356,7 @@
             }
         }
         li:first-child{
-            background-color: #FFAE08;
+            background-color:$yellowColor2;
             :nth-child(3){
                 text-align: center;
             }
@@ -546,7 +547,7 @@
                 }
             }//悄悄話
             .member_message_alldetail{
-                border: 3px solid #007E85;
+                border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
                     padding: 32px;
@@ -648,7 +649,7 @@
                 }
             }//悄悄話
             .member_message_alldetail{
-                border: 3px solid #007E85;
+                border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
                     padding: 16px;

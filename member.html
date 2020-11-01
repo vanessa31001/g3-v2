@@ -303,7 +303,7 @@
                     
                     <div class="member_information_title sub_title">
                         <!-- 揪團露營標題 -->
-                        <!-- <img class="memberTitle_img" src="./pic/member/group.png"> -->
+                        <img class="memberTitle_img" src="./pic/member/group.png">
                         揪團露營
                     </div>
                     
@@ -314,7 +314,7 @@
                         </div>
                         <!-- 揪團露營主要切換面 -->
                         <div>
-                            <div class="startGroupManage_page bgcColor" v-if="link == 'startGroup'">
+                            <div class="startGroupManage_page" v-if="link == 'startGroup'">
                                 <ul>
                                     <li class="group_everyRow">
                                         <img src="./pic/member/member_group.jpg">
@@ -350,15 +350,14 @@
                                     </li>
             
                                 </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
+                                <ul class="level0 green3 groupsPage">
+                                    <li>&lt;</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
                                 </ul>
                             </div>
-                            <div class="joinGroupManage_page bgcColor"  v-else-if="link == 'joingroup'">
+                            <div class="joinGroupManage_page"  v-else-if="link == 'joingroup'">
                                 <ul>
                                     <li class="group_everyRow">
                                         <img src="./pic/member/member_group.jpg">
@@ -394,13 +393,15 @@
                                     </li>
             
                                 </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
+                                <div class="groupsPage">
+                                    <ul class="level0 green3">
+                                        <li><a href="#" class="level0 green3">&lt;</a></li>
+                                        <li>1</a></li>
+                                        <li class="thisPage">2</li>
+                                        <li>&gt;</li>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -454,7 +455,7 @@
                         </div>
                         <!-- 交換設備主要切換面 -->
                         <div>
-                            <div class="Equipment_record_page bgcColor" v-if="link == 'publication'">
+                            <div class="Equipment_record_page" v-if="link == 'publication'">
                                 <ul class="Equipment_record">
                                     <li>
                                         <div class="level1">設備編號</div>
@@ -489,7 +490,7 @@
                                     <li><a href="#">&gt;</a></li>
                                 </ul>
                             </div>
-                            <div class="exchange_record_page bgcColor" v-if="link == 'exchange'">
+                            <div class="exchange_record_page" v-if="link == 'exchange'">
                                 <ul class="exchange_record">
                                     <li>
                                         <div class="level1">設備編號</div>
@@ -524,7 +525,7 @@
                                     <li><a href="#">&gt;</a></li>
                                 </ul>
                             </div>
-                            <div class="favorites_recode_page bgcColor" v-if="link == 'favorites'">
+                            <div class="favorites_recode_page" v-if="link == 'favorites'">
                                 <ul class="favorites_record">
                                     <li>
                                         <div class="level1">設備編號</div>
@@ -551,13 +552,15 @@
                                         <span class="level2">已結束</span>
                                     </li>
                                 </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
+                                <div class="groupsPage">
+                                    <ul class="level0 green3">
+                                        <li><a href="#" class="level0 green3">&lt;</a></li>
+                                        <li><a href="#" class="level0 green3">1</a></li>
+                                        <li class="thisPage">2</li>
+                                        <li>&gt;</li>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -576,45 +579,45 @@
                     
                     <div class="member_Camp_detail">
                         <div>
-                            <div class="bgcColor">
-                                <ul class="camptotal_page">
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
+                            <ul class="camptotal_page">
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                            </ul>
+                            <div class="groupsPage">
+                                <ul class="level0 green3">
+                                    <li><a href="#" class="level0 green3">&lt;</a></li>
+                                    <li><a href="#" class="level0 green3">1</a></li>
+                                    <li class="thisPage">2</li>
+                                    <li>&gt;</li>
+
                                 </ul>
                             </div>
                         </div>
