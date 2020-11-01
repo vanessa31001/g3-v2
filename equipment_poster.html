@@ -107,12 +107,12 @@
                     <div class="equmain">
                         <div class="equpic">
                             <div class="bigimg">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                <img class="noweqimg" src="pic/equipment/f_tent02.jpg" alt="">
                             </div>
                             <div class="minimg">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                                <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                                <img class="eqimg now" src="pic/equipment/f_tent02.jpg" alt="">
+                                <img class="eqimg" src="pic/equipment/f_tent03.png" alt="">
+                                <img class="eqimg" src="pic/equipment/f_tent07.jpg" alt="">
                             </div>
 
                             <div class="poster_inform">
@@ -165,19 +165,19 @@
                 <div class="other_equ">
                     <div class="other_equ_block">
                         <a href="" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent01.jpg" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
                     <div class="other_equ_block">
                         <a href="" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent02.jpg" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
                     <div class="other_equ_block">
                         <a href="" class="level2 gray1">
-                        <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <img src="pic/equipment/f_tent03.png" alt="">
                         NUIT 家庭帳篷六人帳蓬
                         </a>
                     </div>
@@ -201,7 +201,7 @@
                                 <img src="pic/equipment/f_tent01-C.jpg" alt="">
                             </div>
                             <div class="change_min_block01_desc">
-                                <div class="third_title level1">商品說明</div>
+                                <div class="third_title level1">商品名稱</div>
                                 <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                                 <div class="third_title level1 equ_num">商品數量</div>
                                 <p class="level1 gray1">1個</p>
@@ -230,7 +230,7 @@
                             <img src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品說明</div>
+                            <div class="third_title level1">商品名稱</div>
                             <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                             <div class="third_title level1 equ_num">商品數量</div>
                             <p class="level1 gray1">1個</p>
@@ -245,7 +245,26 @@
                             </div>  
                             <div class="change_btn_block">
                                 <button class="secondbtn1 change_btn">交換</button>
-                            </div>                          
+                            </div>
+                            
+                            <div class="changeoverlay">
+                                <article>
+                                    <div class="level7 bold green1 changebtn_title">交換成功</div>
+                                    
+                                    <form class="changebtn_form" action="">
+                                                
+                                        <div class="change_content level1 gray1">
+                                            <p class="level1 gray1">您已確認交換此物品</p>
+                                            <p class="level1 gray1">記得再與交換者聯繫喔！</p>
+                                        </div>                       
+            
+                                        <div class="change_close_btn">
+                                            <button type="button" class="thirdbtn1_green btn_change_close">關閉</button>
+
+                                        </div>                                        
+                                    </form>
+                                </article>
+                            </div>  
                         </div>                        
                     </div>
 
@@ -257,7 +276,7 @@
                             <img src="pic/equipment/f_tent01-C.jpg" alt="">
                         </div>                        
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品說明</div>
+                            <div class="third_title level1">商品名稱</div>
                             <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
                             <div class="third_title level1 equ_num">商品數量</div>
                             <p class="level1 gray1">1個</p>
@@ -342,6 +361,33 @@
                 $('.nav_list').slideToggle();
 
                 });
+            });
+
+
+            //更換圖片
+            $('.eqimg').click(function(){ 
+                let mig = $(this).attr("src");
+                $('.eqimg').removeClass("now");
+                $(this).addClass("now");
+                $(".noweqimg").attr("src", mig);      //要更換的圖片位置
+            });
+
+
+             //確認交換燈箱
+            $(function(){
+
+                $("button.change_btn").on("click", function(){
+                $(".changeoverlay").addClass("-on");
+                });
+
+                $("button.btn_change_close").on("click", function(){
+                $(".changeoverlay").addClass("-opacity-zero");
+
+                setTimeout(function(){
+                    $(".changeoverlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+                });
+
             });
     </script>
 
