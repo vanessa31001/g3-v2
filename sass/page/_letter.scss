@@ -165,8 +165,11 @@
                 text-align: left;
                 #testLeftWordLimit{
                     visibility: hidden;
-                    width: 80%;
+                    width: auto;
+                    height: auto;
                     margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
                 }
                 .posFromTo{
                     position: absolute;

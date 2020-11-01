@@ -302,6 +302,7 @@
             let wordColor = "rgb(0, 165, 163)";     //預設點選文字方塊的顏色
             let clickTimeOfWord =0;  //計算點擊送出文字次數
             let deleteWordFromTo = document.getElementById('deleteWordFromTo');
+            let testLeftWordLimit = document.getElementById('testLeftWordLimit');
 
 
             
@@ -498,6 +499,8 @@
                     if(clickTimeOfWord<=5){
                     document.getElementById('posWarningSign').style.display = 'none';
                     let textValue = document.getElementById('postcardInsideText').value;
+                    testLeftWordLimit.innerText =textValue;
+                    console.log(testLeftWordLimit.offsetWidth);
                     document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;
                     document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
                     document.getElementById('postcardInsideText').value = '';
