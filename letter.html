@@ -497,13 +497,20 @@
                 }else{
                     clickTimeOfWord+=1;
                     if(clickTimeOfWord<=5){
-                    document.getElementById('posWarningSign').style.display = 'none';
-                    let textValue = document.getElementById('postcardInsideText').value;
-                    testLeftWordLimit.innerText =textValue;
-                    console.log(testLeftWordLimit.offsetWidth);
-                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;
-                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
-                    document.getElementById('postcardInsideText').value = '';
+                        document.getElementById('posWarningSign').style.display = 'none';
+                        let textValue = document.getElementById('postcardInsideText').value;
+                        testLeftWordLimit.innerText =textValue;
+                        if(document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit.offsetWidth){
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
+                            document.getElementById('postcardInsideText').value = '';
+                        }else{
+                            for(let i=0; i<textValue.length;i++){
+
+                            }
+                            
+                        }
+                    
                     }else{
                     document.getElementById('posWarningSign').style.display = 'block';
                     clickTimeOfWord-=1;
