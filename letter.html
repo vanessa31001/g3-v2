@@ -97,6 +97,8 @@
                             </div>
                             <div class="postcardContent" id="posContentRight">
                                 <p id="testLeftWordLimit"></p>
+                                <p id="testLeftWordLimit2"></p>
+                                <p id="testLeftWordLimit3"></p>
                                 <div class="posFromTo">
                                     <p class="posFromToText level5" id="posFrom">From:</p>
                                     <p class="posFromToText level5" id="posTo">To:</p>
@@ -303,6 +305,8 @@
             let clickTimeOfWord =0;  //計算點擊送出文字次數
             let deleteWordFromTo = document.getElementById('deleteWordFromTo');
             let testLeftWordLimit = document.getElementById('testLeftWordLimit');
+            let testLeftWordLimit2 = document.getElementById('testLeftWordLimit2');
+            let testLeftWordLimit3 = document.getElementById('testLeftWordLimit3');
 
 
             
@@ -496,19 +500,35 @@
                     
                 }else{
                     clickTimeOfWord+=1;
-                    if(clickTimeOfWord<=5){
-                        document.getElementById('posWarningSign').style.display = 'none';
-                        let textValue = document.getElementById('postcardInsideText').value;
-                        testLeftWordLimit.innerText =textValue;
-                        if(document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit.offsetWidth){
-                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;
-                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
-                            document.getElementById('postcardInsideText').value = '';
-                        }else{
-                            for(let i=0; i<textValue.length;i++){
-
-                            }
+                    if(clickTimeOfWord<=5){    //點擊次數小於五次做
+                        document.getElementById('posWarningSign').style.display = 'none';   //警告標語不顯示
+                        let textValue = document.getElementById('postcardInsideText').value;  //抓textarea內的值
+                        testLeftWordLimit.innerText =textValue;   //測試文字框
+                        if(document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit.offsetWidth){   //測試文字框的寬度若小於底線的寬度做
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;      //根據點擊次數判斷寫入哪個P
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;    //根據文字選擇顏色更改文字顏色
+                            document.getElementById('postcardInsideText').value = '';   //按下輸入後清空textarea
+                        }else{   //測試文字框的寬度若大於底線的寬度
+                            let i=0;
+                            let j= 0;
                             
+                            while(textValue.substring(0,i).length<textValue.length){   //當子字串的長度小於總長度時做
+                                testLeftWordLimit2.innerText =  textValue.substring(0,i);  //加入子字串從0到i到測試文字中
+                                i++;
+                                if( document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit2.offsetWidth){  //若測試文字寬度小於底線文字做
+                                    
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue.substring(0,i);
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).innerText =textValue.substring(i,textValue.length);
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).style.color = wordColor;
+                                    document.getElementById('postcardInsideText').value = '';
+                                }else{  //若測試文字寬度大於底線文字
+                                    
+                                    
+                                    
+                                }
+                            }
+                            clickTimeOfWord+=1;
                         }
                     
                     }else{

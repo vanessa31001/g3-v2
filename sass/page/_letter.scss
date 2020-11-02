@@ -131,7 +131,7 @@
             text-align: center;
             padding: 1%;
             border: 2px solid $greenColor3;
-            overflow: auto;
+            overflow: hidden;
             
             .posOutsideContent{
                 width: 98%;
@@ -164,6 +164,22 @@
                 position: relative;
                 text-align: left;
                 #testLeftWordLimit{
+                    visibility: hidden;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
+                }
+                #testLeftWordLimit2{
+                    visibility: hidden;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
+                }
+                #testLeftWordLimit3{
                     visibility: hidden;
                     width: auto;
                     height: auto;
