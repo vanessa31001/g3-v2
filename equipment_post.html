@@ -64,19 +64,19 @@
                 <form class="equpost_block">
                     <div class="equpost_pic">
                         <div class="post_bigimg">                            
-                            <img id="upequimg0" src="pic/equipment/f_tent01-C.jpg" alt="">
+                            <img id="upequimg0" src="pic/equipment/photo-camera.svg" alt="">
                         </div>
                         <div class="posttext_block">
-                            <p class="level1 gray1">(限GIF、PNG、JPEG檔，建議大小為400 × 400)</p>
+                            <p class="level1 gray1">(限PNG、JPG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
-                        <div class="post_minimg">
-                            <img id="upequimg1" src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img id="upequimg2" src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img id="upequimg3" src="pic/equipment/f_tent01-C.jpg" alt="">
-                        </div>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg">
+                            <img id="upequimg1" src="pic/equipment/plus.svg" alt="">
+                            <img id="upequimg2" src="pic/equipment/plus.svg" alt="">
+                            <img id="upequimg3" src="pic/equipment/plus.svg" alt="">
+                        </label>
                         <div class="preview_btn">
-                            <input class="prev_btn" type="file" id="equFile" multiple="multiple">
-                            
+                            <!-- <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg"> -->
                         </div>
                     </div>
 
@@ -143,7 +143,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select name="equ_info_sort_sel" id="sort_select_want02">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want02">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -259,13 +259,13 @@
 
 
         //上傳圖片
-        function doFirst(){
-    
+        function doFirst(){    
             document.getElementById('equFile').onchange = fileChange;
         }
+        
         function fileChange(){
             let file = document.getElementById('equFile').files[0];
-            let message = '';
+            // let message = '';
             let readFile = new FileReader();
             readFile.readAsDataURL(file);
             readFile.addEventListener('load',function(e){
@@ -274,6 +274,12 @@
                 image.style.maxWidth = '400px';
                 image.style.maxHeight = '400px';
             });
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg1');
+                image.src = readFile.result;
+                image.style.maxWidth = '70px';
+                image.style.maxHeight = '70px';
+            });        
         }
         window.addEventListener('load',doFirst);
     </script>
