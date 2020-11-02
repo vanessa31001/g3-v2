@@ -217,22 +217,38 @@
         }
     }
 }
-.groupsPage{
+.groups_Page{
+    font-weight: bold;
     text-align: center;
-    padding: 0;
     li{
-        display: inline-block;
+        margin: 0 15px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
         a{
-            text-decoration: none;
-            font-size: 16px;
-            color:$greenColor1;
+            display: inline-block;
+            line-height: 40px;
+            width: 100%;
+            height: 100%;
         }
+        &:hover{
+            background-color: $greenColor3;
+            color: $white;
+            border-radius: 5px;
+        }
+    }
+    .thisPage{
+        background-color: $greenColor3;
+        color: $white;
+        border-radius: 5px;
     }
 }
 
 //交換設備
 .Equipment_record_page{
     .Equipment_record{
+        margin-bottom: 16px;
         li{
             border: 1px solid $grayColor1;
             position: relative;
@@ -280,6 +296,7 @@
 }
 .exchange_record_page{
     .exchange_record{
+        margin-bottom: 16px;
         li{
             border: 1px solid $grayColor1;
             position: relative;
@@ -327,6 +344,7 @@
 }
 .favorites_recode_page{
     .favorites_record{
+        margin-bottom: 16px;
         li{
             border: 1px solid $grayColor1;
             position: relative;
