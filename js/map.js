@@ -3,22 +3,21 @@
     var map;
 
     map =L.map('map', {
-            center: [ 24.4093121,120.904157], // 中心點座標
-            zoom: 8, // 0 - 18
+            center: [24.707975,121.223913], // 中心點座標
+            zoom: 9, // 0 - 18
             attributionControl: true, // 是否秀出「leaflet」的貢獻標記
             zoomControl: false , // 是否秀出 - + 按鈕
             });
-            L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png').addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 
     //建立地標
     let shansenIcon = new L.Icon({
-        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
+        iconUrl: 'pic/camping/mapmarker.svg',
+        // shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [20, 30],
+        iconAnchor: [10, 35],
         popupAnchor: [1, -34],
-        shadowSize: [41, 41]
         });
     //N1 確幸莊園
     marker = L.marker([ 24.926455,121.526396], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>確幸莊園</a><br>目前開團:2組");
@@ -38,8 +37,8 @@
     marker = L.marker([24.0738248,120.9795118], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>樹不老露營區</a><br>目前開團:2組");
     //C3 逸境生態露營區
     marker = L.marker([23.7261695,120.6213536], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>逸境生態露營區</a><br>目前開團:2組");
-    //C4 倉伯露營區
-    marker = L.marker([23.4605817,120.6951795], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>倉伯露營區</a><br>目前開團:2組");
+    //C4 晨光露營區
+    marker = L.marker([23.4640832,120.7035768], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>晨光露營區</a><br>目前開團:2組");
     //S1 春園休閒農場
     marker = L.marker([23.119833,120.151722], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>春園休閒農場</a><br>目前開團:2組");
     //S2 荖濃有機農場露營區
