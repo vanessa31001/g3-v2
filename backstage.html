@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./pic/commom/browser.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <!-- <script src="./vender/vue/vue.min.js"></script> -->
+</head>
+<body>
+ <div id="app" class="back_page"><!--HTML DOM template-->
+        <div class="back_page_leftside">
+            
+            <div class="back_list_title grayColor1">管理員管理</div>
+
+            <button class="back_list" @click="content='back-manager'">管理員管理</button>
+
+
+            <div class="back_list_title grayColor1">會員管理</div>
+            <button class="back_list" @click="content='back-mem-manage'">會員管理</button>
+            <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
+
+
+            <div class="back_list_title grayColor1">檢舉管理</div>
+            <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
+            <button class="back_list" @click="content='back-rep-message'">揪團留言檢舉管理</button>
+            <button class="back_list" @click="content='back-rep-equ'">設備檢舉管理</button>
+
+
+            <div class="back_list_title grayColor1">小知識管理</div>
+            <button class="back_list" @click="content='back-game-manage'">小知識管理</button>
+
+
+            <div class="back_list_title grayColor1">明信片管理</div>
+            <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
+
+            <div class="back_list_title grayColor1">營區管理</div>
+            <button class="back_list" @click="content='back-spot-manage'">營區地點管理</button>
+
+        </div>
+
+    
+
+        <div class="back_page_rightside">
+            <!--Vue開始-->
+        
+            <component :is="content"></component>
+            <!-- 透過component元素，去指定其屬性is進行v-bind -->
+
+    </div>
+</div><!--app尾-->
+
+
+        <script>
+        //管理員管理
+        Vue.component('back-manager', { 
+            data(){
+                return{
+                    link : "allManagers",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allManagers'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
+
+                },
+                page2(){
+                    this.link = 'addManager'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
+                }
+            },
+
+            template: `
+            <div>
+                <div class="back_manager_area back_area">
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">管理員</button>
+                    <button :class="page2style" @click="page2">新增管理員</button>
+                </div>
+                    <div v-if="link == 'allManagers'">
+                        <table class="back_manager_table1 back_table">
+                            <tr>
+                                <th>編號</th>
+                                <th>管理員名稱</th>
+                                <th>是否刪除</th>
+                            </tr>
+                            <tr>
+                                <td>001</td>
+                                <td>王大明</td>
+                                <td><input type="checkbox" class="switch"></td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>王中明</td>
+                                <td><input type="checkbox" class="switch"></td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>王小明</td>
+                                <td><input type="checkbox" class="switch"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="add_manager" v-else-if="link == 'addManager'">
+                        <form action="">
+                            <p>
+                                <label for="">管理員帳號：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">管理員姓名：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">管理員密碼：</label>
+                                <input type="text">
+                            </p>
+                        </form>
+                        <button type="submit" class="thirdbtn1_green">送出</button>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+        //會員管理
+        Vue.component('back-mem-manage', { 
+            template: `
+            <div>
+                <div class="back_mem_manage_area back_area">
+                    <div class="search_input search_back_mem">
+                        <input type="text">
+                        <label>搜尋</label>
+                    </div>
+                    <table class="back_mem_manage_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>會員名稱</th>
+                            <th>會員積分</th>
+                            <th>狀態</th>
+                            <th>開通時間</th>
+                            <th>是否停權</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>王大明</td>
+                            <td>7878</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>王中明</td>
+                            <td>9527</td>
+                            <td>正常</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>王小明</td>
+                            <td>5566</td>
+                            <td>停權</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+        //會員等級管理
+        Vue.component('back-mem-grade', {
+            data(){
+                return{
+                    link : "allGrade",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
+                    preview: null,
+                    image: null
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allGrade'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
+
+                },
+                page2(){
+                    this.link = 'addGrade'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
+                },
+                previewImage(event) {
+                    var input = event.target;
+                    if (input.files) {
+                        var reader = new FileReader();
+                        reader.onload = (e) => {
+                        this.preview = e.target.result;
+                        }
+                        this.image=input.files[0];
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                },
+            },
+            template: `
+            <div>
+                <div class="back_grade_area back_area">
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">等級</button>
+                    <button :class="page2style" @click="page2">新增等級員</button>
+                </div>
+                    <div v-if="link == 'allGrade'">
+                        <table class="back_grade_table1 back_table">
+                            <tr>
+                                <th>編號</th>
+                                <th>等級名稱</th>
+                                <th>等級上限</th>
+                                <th>等級下限</th>
+                                <th>等級圖片</th>
+                                <th>修改</th>
+                            </tr>
+                            <tr>
+                                <td>001</td>
+                                <td>鐵牌會員</td>
+                                <td>5999</td>
+                                <td>0</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>銅牌會員</td>
+                                <td>11999</td>
+                                <td>6000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>銀牌會員</td>
+                                <td>17999</td>
+                                <td>12000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>004</td>
+                                <td>金牌會員</td>
+                                <td>23999</td>
+                                <td>18000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>005</td>
+                                <td>鑽石會員</td>
+                                <td>30000</td>
+                                <td>24000</td>
+                                <td>$</td>
+                                <td>--</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="add_grade" v-else-if="link == 'addGrade'">
+                        <form action="">
+                            <p>
+                                <label for="">等級名稱：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">等級上限：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">等級下限：</label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label for="">等級圖片：</label>
+                                <input class="upimg" type="file" accept="image/*" @change="previewImage">
+                            </p>
+                            <p v-if="preview">
+                                <img :src="preview" class="add_grade_img" />
+                            </p>
+                        </form>
+                        <button type="submit" class="thirdbtn1_green">確認新增</button>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+        //揪團檢舉管理
+        Vue.component('back-rep-group', { 
+            template: `
+            <div>
+                <div class="back_rep_group_area back_area">
+                    <table class="back_rep_group_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>揪團名稱</th>
+                            <th>開團會員</th>
+                            <th>檢舉原因</th>
+                            <th>處理狀態</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>飛向宇宙</td>
+                            <td>7878</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>飛向宇宙</td>
+                            <td>9527</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>王小明</td>
+                            <td>5566</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                `,
+        });
+        //揪團留言檢舉管理
+        Vue.component('back-rep-message', { 
+            template: `
+            <div>
+                <div class="back_rep_message_area back_area">
+                    <table class="back_rep_message_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>留言會員</th>
+                            <th>留言內容</th>
+                            <th>檢舉原因</th>
+                            <th>處理狀態</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>7878</td>
+                            <td>團主很爛，大家不要被他騙...</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>5566</td>
+                            <td>團主很爛，大家不要被他騙...</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>9527</td>
+                            <td>團主很爛，大家不要被他騙...</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+        //設備檢舉管理
+        Vue.component('back-rep-equ', { 
+            template: `
+            <div>
+                <div class="back_rep_equ_area back_area">
+                    <table class="back_rep_equ_table back_table">
+                        <tr>
+                            <th>編號</th>
+                            <th>刊登會員</th>
+                            <th>設備詳細</th>
+                            <th>檢舉原因</th>
+                            <th>處理狀態</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>7878</td>
+                            <td>可愛的二手娃娃</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>5566</td>
+                            <td>可愛的二手娃娃</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>9527</td>
+                            <td>可愛的二手娃娃</td>
+                            <td>不符合主題</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+        //小知識管理
+        Vue.component('back-game-manage', { 
+            template: `
+            <div>
+                <div class="back_game_manger_area back_area">
+                    <table class="back_game_manger_table back_table">
+                        <tr>
+                            <th>題目編號</th>
+                            <th>遊戲題目/選項</th>
+                            <th>正確解答</th>
+                            <th>狀態</th>
+
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>詳細內容</td>
+                            <td>C</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>詳細內容</td>
+                            <td>A</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>詳細內容</td>
+                            <td>D</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+        //素材管理
+        Vue.component('back-postcard-material', { 
+            template: `
+            <div>
+                <div class="back_postcard_material_area back_area">
+                    <table class="back_postcard_material_table back_table">
+                        <tr>
+                            <th>樣式編號</th>
+                            <th>樣式類別</th>
+                            <th>圖片/材質名稱</th>
+                            <th>圖片</th>
+                            <th>狀態</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>1:材質</td>
+                            <td>大理石</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>2:圖樣</td>
+                            <td>營火</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>1:材質</td>
+                            <td>石頭</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+        //營區地點管理
+        Vue.component('back-spot-manage', { 
+            template: `
+            <div>
+                <div class="back_spot_manger_area back_area">
+                    <table class="back_spot_manger_table back_table">
+                        <tr>
+                            <th>營區編號</th>
+                            <th>營區名稱</th>
+                            <th>營區地點</th>
+                            <th>營區照片</th>
+                            <th>狀態</th>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>阿里山露營地</td>
+                            <td>嘉義縣番…</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>拉拉山露營地</td>
+                            <td>桃園市華…</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>石門山露營地</td>
+                            <td>桃園市實…</td>
+                            <td>--</td>
+                            <td><input type="checkbox" class="switch"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
+
+        new Vue({ 
+            el:'#app', 
+            data:{
+                content:'back-manager',
+            },
+
+        });
+
+
+
+    </script>
+</body>
+</html>

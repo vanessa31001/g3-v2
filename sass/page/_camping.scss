@@ -5,7 +5,10 @@
     background-color: white;
     border-radius: 10px;
     padding:20px;
-    margin: 0px 0px 20px 0px;
+    margin: 20px 0px 0px 0px;
+}
+.camppart{
+    margin-bottom: 60px;
 }
 //麵包穴
 .section1{
@@ -48,7 +51,7 @@
 }
 .map{
     height: 550px;
-    background: #333;
+    background: #222;
     display: inline-block;
     max-width: 900px;
     width: 100%;
@@ -67,6 +70,7 @@
         }
     }
 }
+
 .weather{
     padding: 0 20px 0 0;
 }
@@ -86,7 +90,6 @@
         }
         select{
             width: 250px;
-            height: 30px;
         }
     }
 }
@@ -99,7 +102,7 @@
     padding: 10px 0 20px 0;
     border-bottom: 2px solid $grayColor2;
     .NowT{
-        padding:0 12px ;
+        padding:5px 12px 0;
         .TtoT{
             color: $greenColor3;
         }
@@ -108,6 +111,7 @@
         vertical-align: center;
         padding: 20px 8px;
         color: $greenColor3;
+
         p{
             padding-top: 10px;
             color: $greenColor1;;
@@ -269,13 +273,20 @@
 //camping2
 .location{
     .titlearea{
+        position: relative;
         .like{
-            float: right;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+
         }
     }
-    .big_pic{
+    .camp_slider{
         width: 100%;
-        border-radius: 5px;
+        img{
+            width: 100%;
+            border-radius: 5px;
+        }
     }
     .introduction{
         padding: 5px 0px;
@@ -312,6 +323,183 @@
         }
     }
 }
+//探訪相似的團
+.linkgroup{
+    .gMainGroups{
+        width:100%;
+        // border: 1px solid red;
+        height: 250px;
+        margin: 20px 0 40px 0;
+        font-size: 0;
+        a{
+            background-color: $white;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 100%;
+            width: 100%;
+            margin-right: 40px;
+            display: inline-block; 
+            width: calc( (100% - 120px) / 4);
+            &:last-child{
+                margin-right: 0px;
+            }    
+            .gMainGroup{
+                .img{
+                    width: 100%;
+                    height: 180px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+    .linktogroupbtn{
+        text-align: center;
+    }
+}
+
+
+//聯絡會員
+.contact_page{
+    .contact_mem{
+        display: flex;
+        position: relative;
+        img{
+            width: 60px;
+        }
+        .contact_title{
+            line-height: 60px;
+        }
+        .contact_btn{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border-style: none;
+            background-color: transparent;  
+            color: #F85619;
+            padding: 0 10px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+    .camping_block{
+        .contact_list{
+            display: block;
+            .content{
+                display: block;
+                border: 1px solid $yellowColor2;
+                background-color: $yellowColor2;
+                color: $greenColor1;
+                border-radius: 5px;
+                margin: 0 auto;
+                line-height: 40px;
+                position: relative;
+                .icon{
+                    display: inline-block;
+                    .minus{
+                        display: block;
+                        padding: 0 8px 8px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        position: absolute;
+                        margin-bottom: 6px;
+                        right: 0;
+                        top: 0;
+                    }
+                    .plus{
+                        display: none;
+                        padding: 0 8px 8px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+                .iconremove{
+                    .minus{
+                            display: none;
+                    }
+                    .plus{
+                        display: block;
+                    }
+                
+                }
+                .txt{
+                    display: none;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 0 0 5px 5px;
+                }
+                .text1{
+                    color: red;
+                }
+                .text2{
+                    color: red;
+                }
+                .text3{
+                    color: red;
+                }
+            }
+            .secend{
+                margin: 20px auto;
+            }
+        }
+    }
+    .overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: hsla(0, 0%, 0%, .5);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 1s;
+        article{
+            background-color: #fff;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 5px;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            p{
+                margin: 10px auto;
+                .label_sender{
+                    display: inline-block;
+                    width: 60px;
+                }
+                .contact_sender{
+                    width: calc(100% - 80px);
+                }
+                .label_text{
+                    display: inline-block;
+                    width: 60px;
+                    vertical-align: top;
+                }
+                .contact_text{
+                    width: calc(100% - 80px);
+                    height: 200px;
+                    resize: none;
+                }
+            }
+            .contact_btn{
+                text-align: center;
+                input{
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+
 
 //rwd
 @media screen and (min-width: 768px) and (max-width: 991px){
@@ -360,6 +548,20 @@
             margin-right: 0px;
         }
     }
+    .linkgroup{
+        .gMainGroups{
+            a{
+                width: calc( (100% - 80px) / 3);
+                &:nth-child(3){
+                    margin-right: 0px;
+                }
+                &:last-child{
+                    display: none;
+                    margin-right: 0px;
+                }    
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 767px){
@@ -376,16 +578,6 @@
     
     .weather{
         padding: 0 0 10px 0;
-    }
-    .search_area{
-        p{
-            label{
-                width: calc(100%-215px);
-            }
-            select{
-                width: 215px;
-            }
-        }
     }
     .infos{
         max-width: 350px;
@@ -459,8 +651,51 @@
             }
         }
     }
+    .linkgroup{
+        .gMainGroups{
+            margin: 10px 0;
+            a{
+                width: calc( (100% - 40px) / 2);
+                &:nth-child(2){
+                    margin-right: 0px;
+                }
+                &:last-child, &:nth-child(3){
+                    display: none;
+                    margin-right: 0px;
+                }    
+            }
+        }
+    }
 }
+
 @media screen and (max-width: 576px){
+//搜尋bar
+.search_area{
+    p{
+        select{
+            max-width: 190px;
+            width: 100%;
+        }
+    }
+}
+    //溫度、降雨、濕度
+.infos{
+    .NowT{
+        padding:0px 10px 0;
+    }
+    .PoP{
+        padding: 15px 4px;
+        p{
+            padding-top: 6px;
+        }
+    }
+    .RH{
+        padding: 15px 4px ;
+        p{
+            padding-top: 6px;
+        }
+    }
+}
     //其他熱門營區
     .other_popular_area{
         display: block;

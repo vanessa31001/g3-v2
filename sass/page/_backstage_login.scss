@@ -1,3 +1,4 @@
+//後台登入頁
 .login_backstage_out{
     position: absolute;
     display: flex;
@@ -30,3 +31,168 @@
     border: 1px solid #007E85;
     height: 30px;
 }
+
+//後台
+.back_page{
+    max-width: 1140px;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    .back_page_leftside{
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+        padding:0px 20px;
+        margin: 20px 30px 0px 0px;
+        border: 1px solid red;
+        .back_list_title{
+            font-size: 1.4rem;
+            margin: 20px 0 5px;
+        }
+        .back_list{
+            display: block;
+            border-style: none;
+            background-color: transparent;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $greenColor1;
+            margin: 5px 0;
+        }
+    }
+    .back_page_rightside{
+        // flex-basis: 70%;
+        width: 800px;
+        background-color: white;
+        border-radius: 10px;
+        padding:20px;
+        margin: 20px 0px 0px 0px;
+        border: 1px solid red;
+        
+    }
+}
+
+//公用
+.back_area{
+    margin: 0 auto;
+}
+//公用-table
+.back_table{
+    margin: 30px auto;
+    width: 650px;
+    th{
+        padding: 10px;
+        background-color: $yellowColor1;
+    }
+    td{
+        border-bottom: 1px solid $yellowColor1;
+        padding: 10px;
+        text-align: center;
+    }
+}
+//公用-頁籤btn
+.back_btn_style{
+    font-size: 0;
+    .back_btn1{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        border:1px solid $yellowColor1;
+        background-color:$yellowColor1 ;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 5px 0;
+    }
+    .back_btn2{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        background-color:white;
+        border:1px solid $yellowColor1;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 5px 0;
+    }
+}
+//公用-switch
+input[type="checkbox"].switch{
+    appearance: none;
+    width: 3.5em;
+    height: 1.5em;
+    background: #ddd;
+    border-radius: 3em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all .2s ease-in-out;
+        &:checked{
+            background: $yellowColor1;
+            &:after{
+                left: calc(100% - 1.5em);
+            }
+        }
+        &:after{
+            position: absolute;
+            content: "";
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 .25em rgba(0,0,0,.3);
+            transform: scale(.7);
+            left: 0;
+            transition: all .2s ease-in-out;
+        }
+}
+
+
+//管理員管理
+.back_manager_area{
+    width: 650px;
+    margin-top: 30px;
+    .back_manager_table1{
+        margin-top: 0;
+    }
+    .add_manager{
+        border: 1px solid $yellowColor1;
+        p{
+            text-align: center;
+            margin: 20px auto;
+        }
+        button{
+            display: block;
+            margin: 40px auto 20px;
+        }
+    }
+}
+
+//會員管理
+.back_mem_manage_area{
+    .search_back_mem{
+        margin: 0 auto;
+    }
+}
+//會員等級管理
+.back_grade_area{
+    width: 650px;
+    margin-top: 30px;
+    .back_grade_table1{
+        margin-top: 0;
+    }
+    .add_grade{
+        border: 1px solid $yellowColor1;
+        p{
+            text-align: center;
+            margin: 20px auto;
+            .upimg{
+                width: 170px;
+            }
+            .add_grade_img{
+                width: 80px;
+                height: 80px;
+            }
+        }
+        button{
+            display: block;
+            margin: 40px auto 20px;
+        }
+    }
+}
+
