@@ -3,166 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>明信片</title>
+    <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> 
     <script src="./vender/vue.min.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
     <script src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" href="./pic/commom/browser.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./pic/commom/1017_logo.png">
 </head>
-<script>
-    function doFirst(){
-        //建立變數
-        let stepTitleSelect = document.getElementById('stepTitleName');
-        let previousStep = document.getElementById('previousStep');
-        let nextStep = document.getElementById('nextStep');
-        let stepTitle = stepTitleSelect.innerText.split('|');  //利用split生成標提陣列
-        let stepControl = 0;  //步驟控制器
-        let firstStepText = stepTitle[stepControl];  //第一步標題
-        let firstRightContent = document.getElementById('rightStep1');
-        let contentList = document.querySelectorAll('.stylePostcard');
-        let paper1 = document.getElementById('paper1');
-        let paper2 = document.getElementById('paper2');
-        let paper3 = document.getElementById('paper3');
-        let paperList = document.querySelectorAll('.postcardPaper');
-        let postPhotoList = document.querySelectorAll('.postPhoto');
-        let postcardPhotoPut = document.getElementById('postcardPhotoPut');  //放置PHOTO的img標籤的ID
-        let updatePhotoHere =document.getElementById('upPhoto1');  //input的ID
-        let postcard1Id = document.getElementById('postcard1Id');
-        let postcard2Id = document.getElementById('postcard2Id');
-        
-        
-        
-        
-        
-        //預設內容
-        firstRightContent.style.display ='block';
-        stepTitleSelect.innerText = firstStepText;
-        previousStep.classList.remove('thirdbtn2_green');
-        previousStep.setAttribute("style","background-color: #FFFFFF; color: #00A5A3; padding: 0 15px;  height: 40px; font-size: 16px; border-radius: 8px; border-color: #00A5A3;  border-width:2px; font-weight: bold;");
-        document.getElementById(`cardStep${stepControl+1}`).className = "chooseCardStep";
-
-
-        
-        
-
-        //建立事件玲聽
-        previousStep.addEventListener('click',changeStepBack);
-        nextStep.addEventListener('click',changeStepNext);
-        for(let i =0; i<paperList.length; i++){
-            paperList[i].addEventListener('click',function(){
-                let paperPassId = this.id;
-                paperBackground(paperPassId);
-            });
-        }
-        for(let i =0; i<postPhotoList.length; i++){
-            postPhotoList[i].addEventListener('click',function(){
-                let photoPassId = this.id;
-                photoChange(photoPassId);
-            });
-        }
-        updatePhotoHere.addEventListener('change',PhotoPut);   //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
-        
-        //函式區
-        function changeStepBack(){
-            stepControl-=1;
-            if(stepControl==0){
-                previousStep.setAttribute("style","background-color: #FFFFFF; color: #00A5A3; padding: 0 15px;  height: 40px; font-size: 16px; border-radius: 8px; border-color: #00A5A3;  border-width:2px; font-weight: bold;");
-                previousStep.classList.remove('thirdbtn2_green');
-                let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
-                let nowRightNum =  nowStepNum+1;  //抓ID用
-                document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
-                stepTitleSelect.innerText =stepTitle[stepControl];
-                document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
-                document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
-                document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
-                
-            }else if(stepControl>0){
-                
-                let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
-                let nowRightNum =  nowStepNum+1; //抓ID用
-                document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
-                document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
-                stepTitleSelect.innerText =stepTitle[stepControl];
-                document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
-                document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
-                styleDisplayPre(stepTitleSelect.innerText);  //傳上一個標題文字給函數
-            }else if(stepControl<0){
-                stepControl+=1;
-            }
-        }
-        function changeStepNext(){
-            stepControl+=1;
-            let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
-            let nowRightNum =  nowStepNum+1; //抓ID用
-            if(stepTitle.length>stepControl>0){
-
-                previousStep.removeAttribute('style');
-                previousStep.classList.add('thirdbtn2_green');
-                if(nowStepNum<stepTitle.length-1){
-                    document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
-                    document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
-                    stepTitleSelect.innerText =stepTitle[stepControl];
-                    document.getElementById(`rightStep${nowRightNum+1}`).style.display = 'block';
-                    document.getElementById(`cardStep${nowRightNum+1}`).className = "chooseCardStep";
-                    styleDisplayNext(stepTitleSelect.innerText);   //傳下一個標題文字給函數
-                }
-            }else{
-                stepControl -=1;   //>=6 做-1 預防超過length
-            }
-        }
-        function paperBackground(paperNowId){
-                for(let j =1;j<=3;j++){
-                    document.getElementById(`paper${j}`).style.borderColor = "rgba(255, 0, 0, 0)";
-                }
-                document.getElementById(paperNowId).style.borderColor ="rgba(255, 0, 0, 0.4)";
-                document.getElementsByClassName('postcard')[0].style.backgroundImage = `url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
-                document.getElementsByClassName('pdContentImg')[0].style.display = "block";
-                document.getElementsByClassName('pdContentImg')[0].style.backgroundImage =`url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
-            
-        }
-        function photoChange(photoId){
-            for(let j =1;j<=postPhotoList.length;j++){
-                
-                document.getElementById(`postcardPhoto${j}`).style.borderColor ="rgba(0, 0, 255, 0)";  //重置Border透明度
-            }
-            document.getElementById(photoId).style.borderColor ="rgba(0, 0, 255, 0.4)";
-            document.getElementsByClassName('putPhoto')[0].style.backgroundImage = `url("./pic/postcardMaterial/presetPhoto/${photoId}.jpg")`;
-        }
-        function PhotoPut(){
-        let putPhotoFrom = updatePhotoHere.files[0];     //抓input內的FILE資訊為FILES陣列中的第一個
-        let readPhoto = new FileReader();       //將FileReader物件命名
-        readPhoto.readAsDataURL(putPhotoFrom);    //使用FileReader的物件方法
-        readPhoto.addEventListener('load',function(e){    //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
-            postcardPhotoPut.src = readPhoto.result;   //結果放入img標籤的src
-            postcardPhotoPut.style.width = '100%';   //設定寬
-            postcardPhotoPut.style.height = '100%';  //設定高
-        });
-
-        }
-        function styleDisplayNext(posTextTitle){
-            if(posTextTitle=="增加插圖"){
-               postcard1Id.classList.remove('postcard');
-               postcard1Id.classList.add('leftPostcard1');
-               postcard2Id.classList.remove('postcard2');
-               postcard2Id.classList.add('leftPostcard2');
-
-            }
-        }
-        function styleDisplayPre(posTextTitle){
-            
-            if(posTextTitle =='選擇照片'){
-                postcard1Id.classList.remove('leftPostcard1');
-                postcard1Id.classList.add('postcard');
-                postcard2Id.classList.remove('leftPostcard2');
-                postcard2Id.classList.add('postcard2');
-            }
-        }
-    }
-    window.addEventListener('load',doFirst);
-</script>
 <body>
     <header >
         <div class="forphone">
@@ -177,11 +25,11 @@
                 <a href="#" class="logo_link -bottom">
                     <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
                 </a>
-                <a class="changelogo" href="./shansen.html">
+                <a class="changelogo" href="./index.html">
                 <img class="phone" src="./pic/commom/手機_header.svg">
                 </a>
                 <div class="middle_bg"></div>
-                <a href="./shansen.html" class="logo_link -up">
+                <a href="./index.html" class="logo_link -up">
                     <img class="desk" src="./pic/commom/電腦版_header.svg">
                 </a>
             </div>
@@ -229,23 +77,39 @@
                 
             </div>
             <div class="postcard_content">
-                <div class="postcard " id="postcard1Id">
-                    <div class="pdContentImg">
-                        <img class="postcardLogo" src="./pic/postcardMaterial/LOGO/logoUse.svg">
+                <div id="canv">
+                    <div class="postcard " id="postcard1Id">
+                        <div class="pdContentImg">
+                            <img class="postcardLogo" src="./pic/postcardMaterial/LOGO/logoUse.svg">
+                        </div>
+                        <div class="putPhoto">
+                            <img id="postcardPhotoPut">
+                        </div>
                     </div>
-                    <div class="putPhoto">
-                        <img id="postcardPhotoPut">
+                    <div class="postcard2 " id="postcard2Id">
+                        <div class="posOutsideContent">
+                            <div class="postcardContent" id="posContentLeft">
+                                <p class="postContLeftWord" id="postcardLeftWord1"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord2"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord3"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord4"></p>
+                                <p class="postContLeftWord" id="postcardLeftWord5"></p>
+                            </div>
+                            <div class="postcardContent" id="posContentRight">
+                                <p id="testLeftWordLimit"></p>
+                                <p id="testLeftWordLimit2"></p>
+                                <p id="testLeftWordLimit3"></p>
+                                <div class="posFromTo">
+                                    <p class="posFromToText level5" id="posFrom">From:</p>
+                                    <p class="posFromToText level5" id="posTo">To:</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="postcard2 " id="postcard2Id">
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
                 </div>
                 <div class="rightPostcard">
                     <div class="rightPostcard_aside">
-                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|輸入內文|填寫收件人|分享社群</p>
+                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|傳遞心情|填寫收件人|分享社群</p>
                         <div class="stylePostcard" id="rightStep1">                            
                             <div class="paperTexture">
                                 <p>皺褶灰白</p>
@@ -292,16 +156,71 @@
                             </label>
                         </div>
                         <div class="stylePostcard" id="rightStep3">
-                            <div class="pictureChoose"></div>
-                            <div class="pictureChoose"></div>
-                            <div class="pictureChoose"></div>
-                            <div class="pictureChoose"></div>
+                            <input type="text" id="postcardArray" value="">
+                            <div class="posLittlePic" >
+                                <img id="LittlePic1" src="./pic/postcardMaterial/littlePic/LittlePic1.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic2" src="./pic/postcardMaterial/littlePic/LittlePic2.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic3" src="./pic/postcardMaterial/littlePic/LittlePic3.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic4" src="./pic/postcardMaterial/littlePic/LittlePic4.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic5" src="./pic/postcardMaterial/littlePic/LittlePic5.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic6" src="./pic/postcardMaterial/littlePic/LittlePic6.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic7" src="./pic/postcardMaterial/littlePic/LittlePic7.svg">
+                            </div>
+                            <div class="posLittlePic">
+                                <img id="LittlePic8" src="./pic/postcardMaterial/littlePic/LittlePic8.svg">
+                            </div>
                         </div>
                         <div class="stylePostcard" id="rightStep4">
-                            <div class="pictureChoose">9</div>
-                            <div class="pictureChoose">10</div>
-                            <div class="pictureChoose">11</div>
-                            <div class="pictureChoose">12</div>
+                            <div class="step4TopContent">
+                                <textarea  id="postcardInsideText" rows="9" cols="27" placeholder="請在這裡輸入內文"></textarea>
+                            </div>
+                            <div class="postcardWordCreate">
+                                <div class="posColorTitle">
+                                    文字顏色
+                                </div>
+                                <div class="ColorAndCreate">
+                                    <div class="posWordColor" id="posWordBlue">
+                                    
+                                    </div>
+                                    <div class="posWordColor" id="posWordOrange">
+
+                                    </div>
+                                    
+                                    <div class="posWordColor" id="posWordYellow">
+
+                                    </div>
+                                    <div class="posWordColor" id="posWordGray">
+
+                                    </div>
+                                    <div class="posWordColor" id="posWordBlack">
+
+                                    </div>
+                                    
+                                </div>
+                                <div class="posButtonCorD">
+                                    <button class="thirdbtn2_green" id='createWordFromTo'>
+                                        生成文字
+                                    </button>
+                                    <button class="thirdbtn2_orange" id="deleteWordFromTo">
+                                        清除文字
+                                    </button>
+                                </div>
+                                <p id="posWarningSign">
+                                    不好意思，您寫的內容超過可容納範圍，可點選清除開始重新填寫。
+                                </p>
+                            </div>
                         </div>
                         <div class="stylePostcard" id="rightStep5">
                             <div class="pictureChoose">13</div>
@@ -337,7 +256,7 @@
                         </div>
                     </div>
                     <div class="footercenter">
-                        <a href="./shansen.html">
+                        <a href="#">
                             <img src="./pic/commom/電腦版_header.svg">
                         </a>
                     </div>
@@ -355,7 +274,280 @@
                 </div>
             </div>
         </div>
-        <div class="copyright">Copyright &copy; 2020ShanSen</div>
+        <div class="level1 copyright">Copyright &copy; 2020ShanSen</div>
     </footer>
+    <script>
+        function doFirst(){
+            //建立變數
+            let stepTitleSelect = document.getElementById('stepTitleName');
+            let previousStep = document.getElementById('previousStep');
+            let nextStep = document.getElementById('nextStep');
+            let stepTitle = stepTitleSelect.innerText.split('|');  //利用split生成標題陣列
+            let stepControl = 0;  //步驟控制器
+            let firstStepText = stepTitle[stepControl];  //第一步標題
+            let firstRightContent = document.getElementById('rightStep1');
+            let contentList = document.querySelectorAll('.stylePostcard');
+            let paper1 = document.getElementById('paper1');
+            let paper2 = document.getElementById('paper2');
+            let paper3 = document.getElementById('paper3');
+            let paperList = document.querySelectorAll('.postcardPaper');
+            let postPhotoList = document.querySelectorAll('.postPhoto');
+            let postcardPhotoPut = document.getElementById('postcardPhotoPut');  //放置PHOTO的img標籤的ID
+            let updatePhotoHere =document.getElementById('upPhoto1');  //input的ID
+            let postcard1Id = document.getElementById('postcard1Id');
+            let postcard2Id = document.getElementById('postcard2Id');
+            let posLittlePicList =  document.querySelectorAll('.posLittlePic');
+            let littlePicIdCount = 0; 
+            let dragArray = [];       //用來紀錄create小物件的ID,為了建立物件的事件聆聽
+            let posWordColorList = document.querySelectorAll('.posWordColor');
+            let createWordFromTo = document.getElementById('createWordFromTo');
+            let wordColor = "rgb(0, 165, 163)";     //預設點選文字方塊的顏色
+            let clickTimeOfWord =0;  //計算點擊送出文字次數
+            let deleteWordFromTo = document.getElementById('deleteWordFromTo');
+            let testLeftWordLimit = document.getElementById('testLeftWordLimit');
+            let testLeftWordLimit2 = document.getElementById('testLeftWordLimit2');
+            let testLeftWordLimit3 = document.getElementById('testLeftWordLimit3');
+
+
+            
+            
+            
+            
+            //預設內容
+            firstRightContent.style.display ='block';
+            stepTitleSelect.innerText = firstStepText;
+            previousStep.classList.remove('thirdbtn2_green');
+            previousStep.setAttribute("style","background-color: #FFFFFF; color: #00A5A3; padding: 0 15px;  height: 35px; font-size: 16px; border-radius: 8px; border-color: #00A5A3;  border-width:2px; font-weight: bold;");
+            document.getElementById(`cardStep${stepControl+1}`).className = "chooseCardStep";
+    
+    
+            
+            
+    
+            //建立事件玲聽
+            previousStep.addEventListener('click',changeStepBack);   //點擊事件換上一步
+            nextStep.addEventListener('click',changeStepNext);       //點擊事件換下一步
+            updatePhotoHere.addEventListener('change',PhotoPut);   //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
+            createWordFromTo.addEventListener('click', newWordNow);   //點擊事件產生文字
+            deleteWordFromTo.addEventListener('click',delWordNow);
+            for(let i =0; i<paperList.length; i++){                   //建立材質的事件聆聽
+                paperList[i].addEventListener('click',function(){     
+                    let paperPassId = this.id;        //抓取材質ID
+                    paperBackground(paperPassId);
+                });
+            }
+            for(let i =0; i<postPhotoList.length; i++){
+                postPhotoList[i].addEventListener('click',function(){
+                    let photoPassId = this.id;
+                    photoChange(photoPassId);
+                });
+            }
+            for(let i=0; i<posLittlePicList.length; i++){
+                posLittlePicList[i].addEventListener('click',function(){
+                    let posLittlePicId = posLittlePicList[i].getElementsByTagName('img')[0].id;
+                    createPic(posLittlePicId);
+                });
+            }
+            for(let i=0;i<posWordColorList.length; i++){
+                posWordColorList[i].addEventListener('click',function(){
+                    let posWordColorId = this.id;
+                    posWordColorChange(posWordColorId);
+                });
+            }
+            
+            
+            //函式區
+            function changeStepBack(){
+                stepControl-=1;
+                if(stepControl==0){
+                    previousStep.setAttribute("style","background-color: #FFFFFF; color: #00A5A3; padding: 0 15px;  height: 35px; font-size: 16px; border-radius: 8px; border-color: #00A5A3;  border-width:2px; font-weight: bold;");
+                    previousStep.classList.remove('thirdbtn2_green');
+                    let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
+                    let nowRightNum =  nowStepNum+1;  //抓ID用
+                    document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
+                    stepTitleSelect.innerText =stepTitle[stepControl];
+                    document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
+                    document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
+                    document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
+                    
+                }else if(stepControl>0){
+                    
+                    let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
+                    let nowRightNum =  nowStepNum+1; //抓ID用
+                    document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
+                    document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
+                    stepTitleSelect.innerText =stepTitle[stepControl];
+                    document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
+                    document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
+                    styleDisplayPre(stepTitleSelect.innerText);  //傳上一個標題文字給函數
+                }else if(stepControl<0){
+                    stepControl+=1;
+                }
+            }
+            function changeStepNext(){
+                stepControl+=1;
+                let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
+                let nowRightNum =  nowStepNum+1; //抓ID用
+                if(stepTitle.length>stepControl>0){
+    
+                    previousStep.removeAttribute('style');
+                    previousStep.classList.add('thirdbtn2_green');
+                    if(nowStepNum<stepTitle.length-1){
+                        document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
+                        document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
+                        stepTitleSelect.innerText =stepTitle[stepControl];
+                        document.getElementById(`rightStep${nowRightNum+1}`).style.display = 'block';
+                        document.getElementById(`cardStep${nowRightNum+1}`).className = "chooseCardStep";
+                        styleDisplayNext(stepTitleSelect.innerText);   //傳下一個標題文字給函數
+                    }
+                }else{
+                    stepControl -=1;   //>=6 做-1 預防超過length
+                }
+            }
+            function paperBackground(paperNowId){
+                    for(let j =1;j<=3;j++){
+                        document.getElementById(`paper${j}`).style.borderColor = "rgba(255, 0, 0, 0)";
+                    }
+                    document.getElementById(paperNowId).style.borderColor ="rgba(255, 0, 0, 0.4)";
+                    document.getElementsByClassName('postcard')[0].style.backgroundImage = `url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
+                    document.getElementsByClassName('pdContentImg')[0].style.display = "block";
+                    document.getElementsByClassName('pdContentImg')[0].style.backgroundImage =`url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
+                
+            }
+            function photoChange(photoId){
+                for(let j =1;j<=postPhotoList.length;j++){
+                    
+                    document.getElementById(`postcardPhoto${j}`).style.borderColor ="rgba(0, 0, 255, 0)";  //重置Border透明度
+                }
+                document.getElementById(photoId).style.borderColor ="rgba(0, 0, 255, 0.4)";
+                document.getElementsByClassName('putPhoto')[0].style.backgroundImage = `url("./pic/postcardMaterial/presetPhoto/${photoId}.jpg")`;
+            }
+            function PhotoPut(){
+            let putPhotoFrom = updatePhotoHere.files[0];     //抓input內的FILE資訊為FILES陣列中的第一個
+            let readPhoto = new FileReader();       //將FileReader物件命名
+            readPhoto.readAsDataURL(putPhotoFrom);    //使用FileReader的物件方法
+            readPhoto.addEventListener('load',function(e){    //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
+                postcardPhotoPut.src = readPhoto.result;   //結果放入img標籤的src
+                postcardPhotoPut.style.width = '100%';   //設定寬
+                postcardPhotoPut.style.height = '100%';  //設定高
+            });
+    
+            }
+            function styleDisplayNext(posTextTitle){
+                if(posTextTitle=="增加插圖"){
+                   postcard1Id.classList.remove('postcard');
+                   postcard1Id.classList.add('leftPostcard1');
+                   postcard2Id.classList.remove('postcard2');
+                   postcard2Id.classList.add('leftPostcard2');
+    
+                }
+            }
+            function styleDisplayPre(posTextTitle){
+                
+                if(posTextTitle =='選擇照片'){
+                    postcard1Id.classList.remove('leftPostcard1');
+                    postcard1Id.classList.add('postcard');
+                    postcard2Id.classList.remove('leftPostcard2');
+                    postcard2Id.classList.add('postcard2');
+                }
+            }
+            function createPic(littlePicId){
+                littlePicIdCount+=1;
+                let leftPostcardIcon = document.createElement('img');
+                leftPostcardIcon.setAttribute('id',`left${littlePicId+littlePicIdCount}`);
+                leftPostcardIcon.src = `./pic/postcardMaterial/littlePic/${littlePicId}.svg`;
+                leftPostcardIcon.classList.add('leftPostcardIconClass');
+                leftPostcardIcon.style.width = "100px";
+                leftPostcardIcon.style.height = '100px';
+                leftPostcardIcon.style.position = 'absolute';
+                leftPostcardIcon.style.left = "0";
+                leftPostcardIcon.style.top = '0';
+                leftPostcardIcon.draggable = "true";
+                leftPostcardIcon.style.cursor = 'grab';
+    
+                document.getElementById('postcard2Id').appendChild(leftPostcardIcon);
+                leftPostcardIconId = leftPostcardIcon.id;
+                dragArray.push(leftPostcardIconId);   //陣列測試
+                document.getElementById('postcardArray').value = dragArray;
+                for(let i = 0; i<dragArray.length;i++){
+                
+                document.getElementById(`${dragArray[i]}`).addEventListener('dragstart',e=>{
+                    e.dataTransfer.setData(`image${i}`,
+                    (parseInt( window.getComputedStyle(e.target).getPropertyValue('left')) - e.clientX) + ',' + (parseInt( window.getComputedStyle(e.target).getPropertyValue('top'))-e.clientY));   //計算物件本身位置最左處到指標目前位置的距離，與物件本身位置最高處到指標目前位置的距離
+                    
+                });
+                postcard2Id.addEventListener("dragover", e => {
+                    e.preventDefault();
+                });
+                postcard2Id.addEventListener("drop", e=>{
+                    let offset = e.dataTransfer.getData(`image${i}`).split(',');
+                    document.getElementById(`${dragArray[i]}`).style.left = (e.clientX + parseInt(offset[0])) + 'px';
+                    document.getElementById(`${dragArray[i]}`).style.top = (e.clientY + parseInt(offset[1])) + 'px';
+                    e.preventDefault();
+                    });
+                }
+            }
+            function posWordColorChange(posWordColorId){
+                for(let i =0; i<posWordColorList.length;i++){
+                    posWordColorList[i].style.borderColor = "rgba(0, 0, 0, 0)";    //重置顏色方塊的border轉為透明
+                }
+                document.getElementById(`${posWordColorId}`).style.borderColor ="rgba(255, 0, 0, 0.4)";    //將點擊的border顏色改變
+                wordColor = window.getComputedStyle(document.getElementById(`${posWordColorId}`)).getPropertyValue('background-color');  //將點擊的顏色背景輸入到全域的變數，方便其他函數做使用。
+            }
+            function newWordNow(){
+                let InsideWord = document.getElementById('postcardInsideText').value;
+                if(InsideWord == ''){
+                    
+                }else{
+                    clickTimeOfWord+=1;
+                    if(clickTimeOfWord<=5){    //點擊次數小於五次做
+                        document.getElementById('posWarningSign').style.display = 'none';   //警告標語不顯示
+                        let textValue = document.getElementById('postcardInsideText').value;  //抓textarea內的值
+                        testLeftWordLimit.innerText =textValue;   //測試文字框
+                        if(document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit.offsetWidth){   //測試文字框的寬度若小於底線的寬度做
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;      //根據點擊次數判斷寫入哪個P
+                            document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;    //根據文字選擇顏色更改文字顏色
+                            document.getElementById('postcardInsideText').value = '';   //按下輸入後清空textarea
+                        }else{   //測試文字框的寬度若大於底線的寬度
+                            let i=0;
+                            let j= 0;
+                            
+                            while(textValue.substring(0,i).length<textValue.length){   //當子字串的長度小於總長度時做
+                                testLeftWordLimit2.innerText =  textValue.substring(0,i);  //加入子字串從0到i到測試文字中
+                                i++;
+                                if( document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit2.offsetWidth){  //若測試文字寬度小於底線文字做
+                                    
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue.substring(0,i);
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).innerText =textValue.substring(i,textValue.length);
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).style.color = wordColor;
+                                    document.getElementById('postcardInsideText').value = '';
+                                }else{  //若測試文字寬度大於底線文字
+                                    
+                                    
+                                    
+                                }
+                            }
+                            clickTimeOfWord+=1;
+                        }
+                    
+                    }else{
+                    document.getElementById('posWarningSign').style.display = 'block';
+                    clickTimeOfWord-=1;
+                    
+                    }
+                }
+                
+                
+            }
+            function delWordNow(){
+                document.getElementById('posWarningSign').style.display = 'none';
+                document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText ='';
+                clickTimeOfWord-=1;
+                
+            }
+        }
+        window.addEventListener('load',doFirst);
+    </script>
 </body>
 </html>
