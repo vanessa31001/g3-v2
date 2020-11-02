@@ -116,7 +116,41 @@
                                             </div>                                                                     
                                         </div>
                                     </fieldset>
+                                    <span>相關介紹 :</span>
                                     <p class="info">
+                                        想吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空這裡環境優美，想呼吸新鮮空氣，看美的歡迎參加。吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空的。
+                                    </p>
+                                    <p>
+                                        <span>出團日期 :</span> 2020年10月15日
+                                    </p>
+                                    <p>
+                                        <span>結束日期 :</span> 2020年10月17日
+                                    </p>
+                                    <div class="aboutPepole">
+                                        <div>
+                                            <p>
+                                                <span>人數上限 :</span> {{limPepole}}人
+                                            </p>
+                                        </div>
+                                        <div class="right">
+                                            <p class="note">
+                                                目前只剩{{leastPepole}}個名額囉~
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="equthing">
+                                        <span>須具備設備 :</span>
+                                        <div>
+                                            <a href="#" v-for="equ in equs" class="equ">
+                                                <button class="tagbtn_yellow">{{equ}}</button>
+                                            </a>
+                                        </div>
+                                        <p class="gray2 ">
+                                            (標籤可到設備交換區)
+                                        </p>
+                                    </div>
+                                    <!-- <p class="info">
                                         想吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空這裡環境優美，想呼吸新鮮空氣，看美的歡迎參加。吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空的。
                                     </p>
                                     <p>
@@ -148,7 +182,7 @@
                                         <p class="gray2">
                                             (標籤可到設備交換區)
                                         </p>
-                                    </div>
+                                    </div> -->
                                     <div class="more">
                                         <a href="./groupInfo.html"><input type="submit" class="secondbtn1" value="查看詳情"></a>
                                     </div>
@@ -188,14 +222,6 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="bgcColor">
-            <div class="wrap">
-                <div class="title">
-                    內容寫在這裡2
-                </div>
-            </div>
-        </section> -->
-
         <footer>
             <div class="footer_bgc">
                 <div class="wrap">

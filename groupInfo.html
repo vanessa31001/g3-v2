@@ -68,10 +68,10 @@
                     </ul>
                 </div>
                 <!-- 檢舉lightbox -->
-                <div class="overlay">
+                <div class="report_overlay">
                     <article>
-                        <div class="level7 bold green1 report_title">檢舉原因</div>                        
                         <form class="report_form" action="">
+                            <div class="level7 bold green1 report_title">檢舉原因</div>                        
                             <div class="report_reason1 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ1">
                                 <label for="report_equ1">1</label>
@@ -407,13 +407,13 @@
             });
             // 檢舉留言
             $(".reportbtnMsg").on("click", function(){
-                $(".overlay").addClass("-on");
+                $(".report_overlay").addClass("-on");
                 $(".report_reason1 label").html("此留言與露營不相關");
                 $(".report_reason2 label").html("此留言為不當發言");
                 $(".report_reason3 label").html("此留言含污辱文字");
             });
             $(".btn_modal_close").on("click", function(){
-                $(".overlay").addClass("-opacity-zero");
+                $(".report_overlay").addClass("-opacity-zero");
                 $("input[name=reason0]").each(function(){
                     $(this).prop("checked",false);//把所有的核方框的property都取消勾選
                 }); 
@@ -422,7 +422,7 @@
                 }, 1000);
             });
             $(".reportbtngGroup").on("click", function(){
-                $(".overlay").addClass("-on");
+                $(".report_overlay").addClass("-on");
                 // alert($(".report_reason2 label").html()); 
                 $(".report_reason1 label").html("此揪團與露營不相關");
                 $(".report_reason2 label").html("此揪團含有色情內容");
