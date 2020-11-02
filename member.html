@@ -72,20 +72,20 @@
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/message.png">
-                                <button class="thirdbtn1_green" @click="content='memberMessage'">悄悄話</button>    
+                                <button class="thirdbtn2_green" @click="content='memberMessage'">悄悄話</button>    
                             </div>
                             <div class="level5 grayColor1 aside_subtitle">會員足跡</div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/group.png">
-                                <button class="thirdbtn1_green" @click="content='memberGroup'">揪團露營</button>
+                                <button class="thirdbtn2_green" @click="content='memberGroup'">揪團露營</button>
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize"src="./pic/member/change.png">
-                                <button class="thirdbtn1_green" @click="content='memberEquipment'">設備交換</button>
+                                <button class="thirdbtn2_green" @click="content='memberEquipment'">設備交換</button>
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/campsite.png">
-                                <button class="thirdbtn1_green" @click="content='memberCamp'">營區攻略</button>
+                                <button class="thirdbtn2_green" @click="content='memberCamp'">營區攻略</button>
                             </div>
                         </div>
                         <div class="app_left_aside_selector" @change="onChange($event)">
@@ -103,7 +103,6 @@
                         </div>
                         <!--自己的第一區塊以上-->
                     
-
                         <div class="app_right_aside">
                     
                             <!--Vue開始-->
@@ -112,7 +111,6 @@
                             <!-- 透過component元素，去指定其屬性is進行v-bind -->
 
                         </div>
-
 
                     </div> <!--app尾-->
 
@@ -391,7 +389,6 @@
                                             <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
                                         </ul>
                                     </li>
-            
                                 </ul>
                                 <ul class="level0 green3 groups_Page">
                                     <li>&lt;</li>
@@ -619,6 +616,8 @@
             el: '#app',
             data: {
                 content: 'memberInformation',
+                now_page: 'thirdbtn1_green',
+                other_page: 'thirdbtn2_green',
             },
             methods:{
                 onChange(event){
