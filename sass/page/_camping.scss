@@ -389,6 +389,7 @@
     .camping_block{
         .contact_list{
             display: block;
+            
             .content{
                 display: block;
                 border: 1px solid $yellowColor2;
@@ -436,13 +437,155 @@
                     border-radius: 0 0 5px 5px;
                 }
                 .text1{
-                    color: red;
+                    padding: 16px;
+                    p{
+                        font-size: $baseSize;
+                        color:$orangeColor2;
+                    }
+                    ul{
+                        .group_everyRow{
+                            border: 1px solid $greenColor1;
+                            display: flex;
+                            position: relative;
+                            overflow: hidden;
+                            align-items: center;
+                            margin-bottom: 16px;
+                            background-color: white;
+                            img{
+                                width: 300px;
+                            }
+                            ul{
+                                text-align: left;
+                                padding-left: 32px;
+                                width: 70%;
+                                li{
+                                    margin-bottom: 8px;
+                                    text-align: left;
+                                    overflow : hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 1;
+                                    -webkit-box-orient: vertical;
+                                }
+                                :last-child{
+                                    margin: 0;
+                                }
+                            }
+                            div{
+                                min-width: 150px;
+                                color: $orangeColor2;
+                            }
+                        }
+                        .unlockRow::after{
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            background-color: rgba($color: #000000, $alpha: .4);
+                        }
+                    }
                 }
                 .text2{
-                    color: red;
+                    padding: 16px;
+                    p{
+                        font-size: $baseSize;
+                        color:$orangeColor2;
+                    }
+                    ul{
+                        .group_everyRow{
+                            border: 1px solid $greenColor1;
+                            display: flex;
+                            position: relative;
+                            overflow: hidden;
+                            align-items: center;
+                            margin-bottom: 16px;
+                            background-color: white;
+                            img{
+                                width: 300px;
+                            }
+                            ul{
+                                text-align: left;
+                                padding-left: 32px;
+                                width: 70%;
+                                li{
+                                    margin-bottom: 8px;
+                                    text-align: left;
+                                    overflow : hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 1;
+                                    -webkit-box-orient: vertical;
+                                }
+                                :last-child{
+                                    margin: 0;
+                                }
+                            }
+                            div{
+                                min-width: 150px;
+                                color: $orangeColor2;
+                            }
+                        }
+                        .unlockRow::after{
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            background-color: rgba($color: #000000, $alpha: .4);
+                        }
+                    }
                 }
                 .text3{
-                    color: red;
+                    .Equipment_record{
+                        margin-bottom: 16px;
+                        li{
+                            border: 1px solid $grayColor1;
+                            position: relative;
+                            width: 100%;
+                            *{
+                                display: inline-block;
+                                vertical-align: middle;
+                                text-align: center;
+                            }
+                            img{
+                                width: 130px;
+                            }
+                            :first-child{
+                                width: 10%;
+                
+                            }
+                            :nth-child(2){
+                                width: 30%;
+                            }
+                            :nth-child(3){
+                                width: 40%;
+                                text-align: left;
+                            }
+                            :last-child{
+                                width: 15%;
+                                
+                            }
+                        }
+                        li:first-child{
+                            background-color:$greenColor2;
+                            color: black;
+                            :nth-child(3){
+                                text-align: center;
+                            }
+                        }
+                    }
+                    .lookEquipment::after{
+                        content: '';
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        position: absolute;
+                        background-color: rgba($color: #000000, $alpha: .4);
+                    }
                 }
             }
             .secend{
@@ -562,6 +705,52 @@
             }
         }
     }
+    .contact_page{
+        .camping_block{
+            .contact_list{
+                .content{
+                    .text1{
+                        ul{
+                            .group_everyRow{
+                                img{
+                                    width: 200px;
+                                }
+                                ul{
+                                    text-align: left;
+                                    padding: 8px 8px 8px 32px;
+                                    width: 70%;
+                                }
+                                div{
+                                    min-width: 100px;
+                                    font-size: 18px;
+                                }
+                            }
+                            
+                        }
+                    }
+                    .text2{
+                        ul{
+                            .group_everyRow{
+                                img{
+                                    width: 200px;
+                                }
+                                ul{
+                                    text-align: left;
+                                    padding: 8px 8px 8px 32px;
+                                    width: 70%;
+                                }
+                                div{
+                                    min-width: 100px;
+                                    font-size: 18px;
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 767px){
@@ -666,6 +855,99 @@
             }
         }
     }
+    .contact_page{
+        .camping_block{
+            .contact_list{
+                .content{
+                    .text1{
+                        ul{
+                            .group_everyRow{
+                                img{
+                                    display: none;
+                                }
+                                ul{
+                                    text-align: left;
+                                    padding: 8px 8px 8px 16px;
+                                    width: 80%;
+                                }
+                                div{
+                                    min-width: 100px;
+                                    font-size: 18px;
+                                }
+                            }
+                            
+                        }
+                    }
+                    .text2{
+                        ul{
+                            .group_everyRow{
+                                img{
+                                    display: none;
+                                }
+                                ul{
+                                    text-align: left;
+                                    padding: 8px 8px 8px 16px;
+                                    width: 80%;
+                                }
+                                div{
+                                    min-width: 100px;
+                                    font-size: 18px;
+                                }
+                            }
+                            
+                        }
+                    }
+                    .text3{
+                        .Equipment_record{
+                            margin-bottom: 16px;
+                            li{
+                                border: 1px solid $grayColor1;
+                                position: relative;
+                                width: 100%;
+                                *{
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    text-align: center;
+                                }
+                                img{
+                                    display: none;
+                                }
+                                :first-child{
+                                    width: 10%;
+                                }
+                                :nth-child(2){
+                                    display: none;
+                                }
+                                :nth-child(3){
+                                    width: 65%;
+                                }
+                                :last-child{
+                                    width: 20%;
+                                        
+                                }
+                            }
+                            li:first-child{
+                                background-color:$greenColor2;
+                                color: black;
+                                :nth-child(3){
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        .lookEquipment::after{
+                            content: '';
+                            top: 0;
+                            right: 0;
+                            left: 0;
+                            bottom: 0;
+                            position: absolute;
+                            background-color: rgba($color: #000000, $alpha: .4);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -717,6 +999,48 @@
         }
         .card:nth-child(3){
             margin-right: 0px;
+        }
+    }
+    .contact_page{
+        .camping_block{
+            .contact_list{
+                .content{
+                    .text1{
+                        ul{
+                            .group_everyRow{
+                                display: block;
+                                ul{
+                                    text-align: left;
+                                    padding: 8px;
+                                    width: 100%;
+                                    border: 1px solid $greenColor2;
+                                }
+                                div{
+                                    text-align: center;
+                                }
+                            }
+                            
+                        }
+                    }
+                    .text2{
+                        ul{
+                            .group_everyRow{
+                                display: block;
+                                ul{
+                                    text-align: left;
+                                    padding: 8px;
+                                    width: 100%;
+                                    border: 1px solid $greenColor2;
+                                }
+                                div{
+                                    text-align: center;
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
         }
     }
 }

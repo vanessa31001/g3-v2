@@ -11,26 +11,37 @@
     background-color: white;
     border-radius: 10px 0 0 10px;
     padding: 16px;
+    .buttonClassification{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 16px 0;
+        button{
+            cursor: pointer; 
+            width: 100px;
+            margin-left: 16px;
+        }
+        .imgSize{ //左側圖片大小
+            width: 60px;
+        }
+    }
+    .aside_subtitle{
+        text-align: left;
+    }
 }
-.buttonClassification{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.app_left_aside_selector{
+    display: none;
+    text-align: center;
     margin: 16px 0;
+    select{
+        width: 90%;
+        border: 3px solid $greenColor1;
+        height: 45px;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+    
 }
-.buttonClassification > button{
-    cursor: pointer; 
-    width: 100px;
-    margin-left: 16px;
-}
-.aside_subtitle{
-    text-align: left;
-}
-
-.imgSize{ //左側圖片大小
-    width: 60px;
-}
-
 //主要顯示
 //會員資訊標題
 .app_right_aside{
@@ -39,24 +50,11 @@
     background-color: white;
     border-radius: 0 10px 10px 0;
 }
-.app_left_aside_selector{
-    display: none;
-    // background-color: #007E85;
-    text-align: center;
-    margin: 16px 0;
-    select{
-        width: 90%;
-        border: 3px solid #007E85;
-        height: 45px;
-        border-radius: 8px;
-        font-size: 18px;
-    }
-    
-}
+
 .member_information_title{
     text-align: left;
     .memberTitle_img{
-    width: 60px;
+        width: 60px;
     }
 }
 .member_information_detail{
@@ -95,9 +93,9 @@
 
 //悄悄話
 .member_message_alldetail{
-    border: 3px solid #007E85;
+    border: 3px solid $greenColor1;
     .member_message_detail{
-        border: 1px solid #007E85;
+        border: 1px solid $greenColor1;
         margin: 10px;
         display: flex;
         justify-content: space-around;
@@ -122,18 +120,18 @@
     text-align: left;
 }
 .startGroupManage_page{
+    border: 3px solid $greenColor1;
+    padding: 16px;
     ul{
-        padding: 16px;
         .group_everyRow{
+            border: 1px solid $greenColor1;
             display: flex;
             position: relative;
             overflow: hidden;
             align-items: center;
-            height: 150px;
-            margin: 16px 0 ;
+            margin-bottom: 16px;
             background-color: white;
-            padding: 16px;
-            border-radius: 8px;
+            padding: 0 16px;
             img{
                 width: 200px;
             }
@@ -170,25 +168,89 @@
         }
     }
 }
-
-.group_page{
-    text-align: center;
-    padding: 0;
-    li{
-        display: inline-block;
-        a{
-            text-decoration: none;
-            font-size: 16px;
-            color: #007e85;
+.joinGroupManage_page{
+    border: 3px solid $greenColor1;
+    padding: 16px;
+    ul{
+        .group_everyRow{
+            border: 1px solid $greenColor1;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            align-items: center;
+            margin-bottom: 16px;
+            background-color: white;
+            padding: 0 16px;
+            img{
+                width: 200px;
+            }
+            ul{
+                line-height: 0;
+                height: auto;
+                font-size: 0;
+                display: block;
+                text-align: left;
+                width: 60%;
+                padding-left: 32px;
+                li{
+                    margin: 0;
+                    text-align: left;
+                    overflow : hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                }
+            }
+            button{
+                min-width: 66px;
+            }
         }
+        .unlockRow::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba($color: #000000, $alpha: .4);
+        }
+    }
+}
+.groups_Page{
+    font-weight: bold;
+    text-align: center;
+    li{
+        margin: 0 15px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        a{
+            display: inline-block;
+            line-height: 40px;
+            width: 100%;
+            height: 100%;
+        }
+        &:hover{
+            background-color: $greenColor3;
+            color: $white;
+            border-radius: 5px;
+        }
+    }
+    .thisPage{
+        background-color: $greenColor3;
+        color: $white;
+        border-radius: 5px;
     }
 }
 
 //交換設備
 .Equipment_record_page{
     .Equipment_record{
+        margin-bottom: 16px;
         li{
-            margin: 16px 0;
+            border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
             *{
@@ -216,7 +278,7 @@
             }
         }
         li:first-child{
-            background-color: #FFAE08;
+            background-color:$yellowColor2;
             :nth-child(3){
                 text-align: center;
             }
@@ -232,7 +294,102 @@
         background-color: rgba($color: #000000, $alpha: .4);
     }
 }
+.exchange_record_page{
+    .exchange_record{
+        margin-bottom: 16px;
+        li{
+            border: 1px solid $grayColor1;
+            position: relative;
+            width: 100%;
+            *{
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+            }
+            img{
+                width: 130px;
+            }
+            :first-child{
+                width: 10%;
 
+            }
+            :nth-child(2){
+                width: 30%;
+            }
+            :nth-child(3){
+                width: 40%;
+                text-align: left;
+            }
+            :last-child{
+                width: 15%;
+                
+            }
+        }
+        li:first-child{
+            background-color: $yellowColor2;
+            :nth-child(3){
+                text-align: center;
+            }
+        }
+    }
+    .lookexchange::after{
+        content: '';
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: .4);
+    }
+}
+.favorites_recode_page{
+    .favorites_record{
+        margin-bottom: 16px;
+        li{
+            border: 1px solid $grayColor1;
+            position: relative;
+            width: 100%;
+            *{
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+            }
+            img{
+                width: 130px;
+            }
+            :first-child{
+                width: 10%;
+
+            }
+            :nth-child(2){
+                width: 30%;
+            }
+            :nth-child(3){
+                width: 40%;
+                text-align: left;
+            }
+            :last-child{
+                width: 15%;
+                
+            }
+        }
+        li:first-child{
+            background-color:$yellowColor2;
+            :nth-child(3){
+                text-align: center;
+            }
+        }
+    }
+    .lookfavorites::after{
+        content: '';
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: .4);
+    }
+}
 
 //設備交換
 .group_button{
@@ -408,7 +565,7 @@
                 }
             }//悄悄話
             .member_message_alldetail{
-                border: 3px solid #007E85;
+                border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
                     padding: 32px;
@@ -510,7 +667,7 @@
                 }
             }//悄悄話
             .member_message_alldetail{
-                border: 3px solid #007E85;
+                border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
                     padding: 16px;
