@@ -33,52 +33,96 @@
 }
 
 //後台
+.back_header{
+    top: 0;
+    position: fixed;
+    img{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .back_login{
+        display: block;
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        .back_username{
+            font-size: 18px;
+            color: $greenColor1;
+            margin-right: 10px;
+        }
+    }
+}
+.bgcColor{
+    background-color:$bgcColor;
+}
 .back_page{
     max-width: 1140px;
     width: 100%;
     display: flex;
-    margin: 0 auto;
+    margin: 75px auto 0;
     .back_page_leftside{
-        width: 300px;
+        width: 220px;
         background-color: white;
         border-radius: 10px;
-        padding:0px 20px;
+        padding:15px 20px;
         margin: 20px 30px 0px 0px;
-        border: 1px solid red;
         .back_list_title{
-            font-size: 1.4rem;
-            margin: 20px 0 5px;
-        }
-        .back_list{
-            display: block;
-            border-style: none;
-            background-color: transparent;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 20px;
+            margin: 15px 0 15px;
+            padding: 10px 0 0 0;
             color: $greenColor1;
-            margin: 5px 0;
+            font-weight: bold;
+            border-top: 2px solid $grayColor2;
+            .back_list{
+                display: block;
+                border-style: none;
+                background-color: transparent;
+                font-size: 18px;
+                font-weight: bold;
+                color: $grayColor1;
+                margin: 10px 0;
+                padding: 0;
+            }
+        }
+        .back_list_title:first-child{
+            border-top: none;
+            padding-top: 0;
         }
     }
     .back_page_rightside{
-        // flex-basis: 70%;
-        width: 800px;
+        width: 900px;
         background-color: white;
         border-radius: 10px;
         padding:20px;
         margin: 20px 0px 0px 0px;
-        border: 1px solid red;
-        
     }
 }
 
 //公用
 .back_area{
     margin: 0 auto;
+    width: 750px;
+    //公用-title
+    position: relative;
+    .back_title{
+        font-size: 20px;
+        color: $grayColor1;
+        margin: 5px auto 20px;
+        margin-left: 0;
+        color: $grayColor1;
+        font-weight: bold;
+    }
+    .back_add{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 }
 //公用-table
 .back_table{
-    margin: 30px auto;
-    width: 650px;
+    margin: 20px auto;
+    width: 750px;
     th{
         padding: 10px;
         background-color: $yellowColor1;
@@ -110,6 +154,15 @@
         font-weight: bold;
         padding: 5px 0;
     }
+}
+//公用-orangebtn
+.back_loginbtn{
+    border: 1px solid $orangeColor1;
+    background-color: $orangeColor2;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px 7px;
+    cursor: pointer;
 }
 //公用-switch
 input[type="checkbox"].switch{
@@ -145,8 +198,8 @@ input[type="checkbox"].switch{
 
 //管理員管理
 .back_manager_area{
-    width: 650px;
-    margin-top: 30px;
+    width: 750px;
+    margin-top: 5px;
     .back_manager_table1{
         margin-top: 0;
     }
@@ -156,7 +209,7 @@ input[type="checkbox"].switch{
             text-align: center;
             margin: 20px auto;
         }
-        button{
+        .back_send{
             display: block;
             margin: 40px auto 20px;
         }
@@ -166,13 +219,50 @@ input[type="checkbox"].switch{
 //會員管理
 .back_mem_manage_area{
     .search_back_mem{
-        margin: 0 auto;
+        font-size: 0;
+        width:270px;
+        position: relative;
+        input{
+            border: 1px solid #ced4da;
+            vertical-align: top;
+            padding:  0px 0px 0px 6px;
+            width: 100%;
+            height: 30px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            margin: 10; /* Safari */
+            &:focus{
+                background-color: #F3F8F4;
+            }
+        }
+        label{
+            display: inline-block;
+            border: 3px solid #00A5A3;
+            background-color: #00A5A3;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            width: 60px;
+            text-align: center;
+            border-radius:8px;
+            position: absolute;
+            top: 0px;
+            right:0px;
+            
+        }
+    }
+    .back_mem_manage_table{
+        select{
+            height: 25px;
+            width: 100px;
+        }
     }
 }
 //會員等級管理
 .back_grade_area{
-    width: 650px;
-    margin-top: 30px;
+    width: 750px;
+    margin-top: 5px;
     .back_grade_table1{
         margin-top: 0;
     }
@@ -189,7 +279,7 @@ input[type="checkbox"].switch{
                 height: 80px;
             }
         }
-        button{
+        .back_send{
             display: block;
             margin: 40px auto 20px;
         }

@@ -75,7 +75,8 @@
                 </div>
                 <div class="location camping_block">
                     <div class="titlearea">
-                        <div class="sub_title">確幸莊園
+                        <div class="sub_title">
+                            <span name="CAM_NAME" id="CAM_NAME">確幸莊園</span>
                             <div class="collect_checkbox like">
                                 <input type="checkbox" id="collect_checkbox">
                                 <label for="collect_checkbox" id="the_label">收藏</label>
@@ -284,6 +285,24 @@
         });
     });
 </script> 
+<script>
+    $(document).ready(function() {
+      $.ajax({
+        url : "php/camping/camping2.php",//後臺請求的資料，用的是PHP
+        dataType : "json",//資料格式
+        type : "post",//請求方式
+        async : false,//是否非同步請求
+        success : function(data) {  //如果請求成功，返回資料。
+        var html = "";
+        for(var i=0;i<data.length;i++){  //遍歷data陣列
+            var ls = data[i];  
+            html +="<span>測試："+CAM_NAME+"</span>";
+          }
+          $("#CAM_NAME").html(html); //在html頁面id=test的標籤裡顯示html內容
+        },
+      })
+    })
+</script>
 
 
 </body>
