@@ -904,7 +904,6 @@ input[type="submit"], button{
                 cursor: default;
             }
             .imgs{
-                font-size: 0;
                 .img{
                     width: 100px;
                     height: 100px;
@@ -913,6 +912,7 @@ input[type="submit"], button{
                     vertical-align: middle;
                     border-radius: 10px;
                     overflow: hidden;
+                    font-size: 0;
                     img{
                         width: 100%;
                         height: 100%;
@@ -922,7 +922,7 @@ input[type="submit"], button{
                 }
                 .now{
                     border: 5px solid $greenColor3;
-                    text-align: left;  
+                    vertical-align: middle; 
                     font-size: 0;
     
                 }
@@ -938,6 +938,13 @@ input[type="submit"], button{
     
     
 @media screen and (max-width: 1199px){
+    .startNewGroup{
+        width:150px;
+        right: -24px;
+        &:hover{
+            right: -5px;
+        }
+    }
     .groupMain{
         .nav{
             font-size: 0;
@@ -988,13 +995,7 @@ input[type="submit"], button{
     
 }
 @media screen and (max-width: 991px){
-    .startNewGroup{
-        width:150px;
-        right: -24px;
-        &:hover{
-            right: -5px;
-        }
-    }
+    
     .groupMain{
         .group {
             .gRight{
