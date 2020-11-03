@@ -99,6 +99,9 @@
                                 <p id="testLeftWordLimit"></p>
                                 <p id="testLeftWordLimit2"></p>
                                 <p id="testLeftWordLimit3"></p>
+                                <p id="testLeftWordLimit4"></p>
+                                <p id="testLeftWordLimit5"></p>
+                                <p id="testLeftWordLimit6"></p>
                                 <div class="posFromTo">
                                     <p class="posFromToText level5" id="posFrom">From:</p>
                                     <p class="posFromToText level5" id="posTo">To:</p>
@@ -307,6 +310,9 @@
             let testLeftWordLimit = document.getElementById('testLeftWordLimit');
             let testLeftWordLimit2 = document.getElementById('testLeftWordLimit2');
             let testLeftWordLimit3 = document.getElementById('testLeftWordLimit3');
+            let testLeftWordLimit4 = document.getElementById('testLeftWordLimit4');
+            let testLeftWordLimit5 = document.getElementById('testLeftWordLimit5');
+            let testLeftWordLimit6 = document.getElementById('testLeftWordLimit6');
 
 
             
@@ -504,31 +510,75 @@
                         document.getElementById('posWarningSign').style.display = 'none';   //警告標語不顯示
                         let textValue = document.getElementById('postcardInsideText').value;  //抓textarea內的值
                         testLeftWordLimit.innerText =textValue;   //測試文字框
-                        if(document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit.offsetWidth){   //測試文字框的寬度若小於底線的寬度做
+                        if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit.clientWidth){   //測試文字框的寬度若小於底線的寬度做
                             document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue;      //根據點擊次數判斷寫入哪個P
                             document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;    //根據文字選擇顏色更改文字顏色
                             document.getElementById('postcardInsideText').value = '';   //按下輸入後清空textarea
                         }else{   //測試文字框的寬度若大於底線的寬度
-                            let i=0;
-                            let j= 0;
+                            let i=0;      //總字數
+                            let j= 0;     //第一行的字數 (若超過第一行，j則為第一行的最大容納字數)
+                            let k =0;     //第二行的字數 (若超過第二行，k則為第二行的最大容納字數)
+                            let l =0;     //第三行的字數 (若超過第三行，l則為第三行的最大容納字數)
+                            let m =0;     //第四行的字數 (若超過第四行，m則為第二行的最大容納字數)
+                            let n =0;     //第五行的字數 (若超過第五行，n則為第五行的最大容納字數)
                             
                             while(textValue.substring(0,i).length<textValue.length){   //當子字串的長度小於總長度時做
-                                testLeftWordLimit2.innerText =  textValue.substring(0,i);  //加入子字串從0到i到測試文字中
+                                testLeftWordLimit2.innerText =  textValue.substring(0,j);  //加入子字串從0到i到測試文字中
                                 i++;
-                                if( document.getElementById('postcardLeftWord1').offsetWidth>testLeftWordLimit2.offsetWidth){  //若測試文字寬度小於底線文字做
+                                if( document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit2.clientWidth){    //若測試文字行數的寬度小於底線文字寬度做
+                                    j++;
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue.substring(0,j);   //將文字加入第一行，直到超過可容納字數
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;                //將文字顏色依照所選擇之顏色而改變
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).innerText =textValue.substring(i,textValue.length);  //將剩下的文字加入下一行
+                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).style.color = wordColor;    //將剩下的文字的顏色改變
+                                    document.getElementById('postcardInsideText').value = '';     //將textarea的文字清空
+                                }else{    //若測試文字寬度大於底線文字
                                     
-                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText = textValue.substring(0,i);
-                                    document.getElementById(`postcardLeftWord${clickTimeOfWord}`).style.color = wordColor;
-                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).innerText =textValue.substring(i,textValue.length);
-                                    document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).style.color = wordColor;
-                                    document.getElementById('postcardInsideText').value = '';
-                                }else{  //若測試文字寬度大於底線文字
-                                    
-                                    
-                                    
+                                    testLeftWordLimit3.innerText = textValue.substring(j,j+k);   //若j無法容納則所有字數則加k 
+                                    if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit3.clientWidth){
+                                        k++;
+                                        document.getElementById(`postcardLeftWord${clickTimeOfWord+1}`).innerText = textValue.substring(j,j+k);
+                                    }else{
+                                        testLeftWordLimit4.innerText = textValue.substring(j+k,j+k+l);
+                                        if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit4.clientWidth){
+                                            l++;
+                                            document.getElementById(`postcardLeftWord${clickTimeOfWord+2}`).innerText = textValue.substring(j+k,j+k+l);
+                                            document.getElementById(`postcardLeftWord${clickTimeOfWord+2}`).style.color = wordColor;
+                                        }else{
+                                            testLeftWordLimit5.innerText = textValue.substring(j+k+l,j+k+l+m);
+                                            if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit5.clientWidth){
+                                                m++;
+                                                document.getElementById(`postcardLeftWord${clickTimeOfWord+3}`).innerText = textValue.substring(j+k+l,j+k+l+m);
+                                                document.getElementById(`postcardLeftWord${clickTimeOfWord+3}`).style.color = wordColor;
+                                            }else{
+                                                testLeftWordLimit6.innerText = textValue.substring(j+k+l+m,j+k+l+m+n);
+                                                if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit6.clientWidth){
+                                                n++;
+                                                document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).innerText = textValue.substring(j+k+l+m,j+k+l+m+n);
+                                                document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).style.color = wordColor;
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                             }
-                            clickTimeOfWord+=1;
+                            if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
+                            testLeftWordLimit4.innerHTML=='' && testLeftWordLimit5.innerHTML =='' && testLeftWordLimit6.innerHTML=='' ){
+                                clickTimeOfWord+=1;
+                            }
+                            if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
+                            testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML =='' && testLeftWordLimit6.innerHTML=='' ){
+                                clickTimeOfWord+=2;
+                            }
+                            if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
+                            testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML !='' && testLeftWordLimit6.innerHTML=='' ){
+                                clickTimeOfWord+=3;
+                            }
+                            if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
+                            testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML !='' && testLeftWordLimit6.innerHTML!='' ){
+                                clickTimeOfWord+=4;
+                            }
                         }
                     
                     }else{
