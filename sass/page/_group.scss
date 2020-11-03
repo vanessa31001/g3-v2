@@ -882,7 +882,7 @@ input[type="submit"], button{
                 img{
                     display: block;
                     width: 45%;
-                    margin: 30px auto 10px;
+                    margin: 0 auto;
                 }
                 #theFile{
                     display:none;
@@ -1109,9 +1109,8 @@ input[type="submit"], button{
                         }
                     }
                 }
+            }
         }
-        }
-        
         .ginside{
             height: auto;
             .mainbtn1{
@@ -1139,12 +1138,19 @@ input[type="submit"], button{
     section.section2:nth-child(5){
         display: none;
     }
+    
     .groupNewStart {
         display: flex;
         flex-direction: column;
         .left{
             width: 100%;
             padding: 0;
+            .uploadImg{
+                img{
+                    width: 45%;
+                }
+            }
+            
         }
         .right{
             width: 100%;
@@ -1170,6 +1176,29 @@ input[type="submit"], button{
             display: none;
         }
 
+    }
+    .groupNewStart {
+        padding: 10px;
+        .left{
+           .uploadImg{
+                img{
+                    margin-top: 8%;
+                    width: 45%;
+                }
+            } 
+        }
+        .right{
+            table{
+                td:first-child{
+                    width: auto;
+                }
+                td{
+                    width: auto;
+                }
+            }
+            
+
+        }
     }
     .groupMain{
         .nav{
@@ -1219,7 +1248,7 @@ input[type="submit"], button{
                 .mainbtn1{
                     display: inline-block;
                     position: static;
-                    width: 300px;
+                    width: 100%;
                 }
                 .secondbtn1{
                     display: inline-block;
@@ -1228,7 +1257,15 @@ input[type="submit"], button{
             }
         }
 
-        
+        .groupNewStart {
+            .left{
+               .uploadImg{
+                    img{
+                        width: 80%;
+                    }
+                } 
+            }
+        }
         .groupBlock{
             .msg{
                 .msgInfo{
