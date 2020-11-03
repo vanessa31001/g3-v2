@@ -187,7 +187,7 @@
                         </div>
                         <div class="stylePostcard" id="rightStep4">
                             <div class="step4TopContent">
-                                <textarea  id="postcardInsideText" rows="9" cols="27" placeholder="請在這裡輸入內文"></textarea>
+                                <textarea  id="postcardInsideText" rows="11" cols="27" placeholder="請在這裡輸入內文"></textarea>
                             </div>
                             <div class="postcardWordCreate">
                                 <div class="posColorTitle">
@@ -556,6 +556,8 @@
                                                 n++;
                                                 document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).innerText = textValue.substring(j+k+l+m,j+k+l+m+n);
                                                 document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).style.color = wordColor;
+                                                }else{
+                                                    document.getElementById('posWarningSign').style.display = 'block';
                                                 }
                                             }
                                         }
@@ -566,18 +568,30 @@
                             if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
                             testLeftWordLimit4.innerHTML=='' && testLeftWordLimit5.innerHTML =='' && testLeftWordLimit6.innerHTML=='' ){
                                 clickTimeOfWord+=1;
+                                if(clickTimeOfWord>5){
+                                    clickTimeOfWord ==5;
+                                }
                             }
                             if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
                             testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML =='' && testLeftWordLimit6.innerHTML=='' ){
                                 clickTimeOfWord+=2;
+                                if(clickTimeOfWord>5){
+                                    clickTimeOfWord ==5;
+                                }
                             }
                             if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
                             testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML !='' && testLeftWordLimit6.innerHTML=='' ){
                                 clickTimeOfWord+=3;
+                                if(clickTimeOfWord>5){
+                                    clickTimeOfWord ==5;
+                                }
                             }
                             if(testLeftWordLimit2.innerHTML!=''&& testLeftWordLimit3.innerHTML!=''&& 
                             testLeftWordLimit4.innerHTML!='' && testLeftWordLimit5.innerHTML !='' && testLeftWordLimit6.innerHTML!='' ){
                                 clickTimeOfWord+=4;
+                                if(clickTimeOfWord>5){
+                                    clickTimeOfWord ==5;
+                                }
                             }
                         }
                     
