@@ -10,35 +10,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <!-- <script src="./vender/vue/vue.min.js"></script> -->
 </head>
-<body>
+<body class="bgcColor">
+<header class="back_header">
+    <img src="./pic/commom/手機_header.svg">
+    <div class="back_login">
+        <span class="back_username">斯斯感冒膠囊</span>
+        <span class="back_loginbtn">登出</span>
+    </div>
+</header>
+
  <div id="app" class="back_page"><!--HTML DOM template-->
         <div class="back_page_leftside">
             
-            <div class="back_list_title grayColor1">管理員管理</div>
 
-            <button class="back_list" @click="content='back-manager'">管理員管理</button>
+                <div class="back_list_title">管理員管理
+                    <button class="back_list" @click="content='back-manager'">管理員管理</button>
+                </div>
 
+                <div class="back_list_title">會員管理
+                    <button class="back_list" @click="content='back-mem-manage'">會員管理</button>
+                    <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
+                </div>
 
-            <div class="back_list_title grayColor1">會員管理</div>
-            <button class="back_list" @click="content='back-mem-manage'">會員管理</button>
-            <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
+                <div class="back_list_title">檢舉管理
+                    <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
+                    <button class="back_list" @click="content='back-rep-message'">揪團留言檢舉管理</button>
+                    <button class="back_list" @click="content='back-rep-equ'">設備檢舉管理</button>
+                </div>
 
+                <div class="back_list_title">小知識管理
+                    <button class="back_list" @click="content='back-game-manage'">小知識管理</button>
+                </div>
 
-            <div class="back_list_title grayColor1">檢舉管理</div>
-            <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
-            <button class="back_list" @click="content='back-rep-message'">揪團留言檢舉管理</button>
-            <button class="back_list" @click="content='back-rep-equ'">設備檢舉管理</button>
+                <div class="back_list_title">明信片管理
+                    <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
+                </div>
 
-
-            <div class="back_list_title grayColor1">小知識管理</div>
-            <button class="back_list" @click="content='back-game-manage'">小知識管理</button>
-
-
-            <div class="back_list_title grayColor1">明信片管理</div>
-            <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
-
-            <div class="back_list_title grayColor1">營區管理</div>
-            <button class="back_list" @click="content='back-spot-manage'">營區地點管理</button>
+                <div class="back_list_title">營區管理
+                    <button class="back_list" @click="content='back-spot-manage'">營區地點管理</button>
+                </div>
 
         </div>
 
@@ -52,6 +62,7 @@
 
     </div>
 </div><!--app尾-->
+
 
 
         <script>
@@ -77,10 +88,11 @@
                     this.page2style= "back_btn1"
                 }
             },
-
+            
             template: `
             <div>
                 <div class="back_manager_area back_area">
+                <div class="back_title">管理員管理</div>
                 <div class="back_btn_style">
                     <button :class="page1style" @click="page1">管理員</button>
                     <button :class="page2style" @click="page2">新增管理員</button>
@@ -123,8 +135,8 @@
                                 <label for="">管理員密碼：</label>
                                 <input type="text">
                             </p>
+                        <input type="submit" class="thirdbtn1_green back_send" value="送出"></input>
                         </form>
-                        <button type="submit" class="thirdbtn1_green">送出</button>
                     </div>
                 </div>
             </div>
@@ -132,10 +144,17 @@
         });
         //會員管理
         Vue.component('back-mem-manage', { 
+            data(){
+                return {
+                    selectedTime:'',
+                    times:['停權1天','停權3天','停權5天','停權7天','停權10天','停權14天'],
+                    }
+            },
             template: `
             <div>
                 <div class="back_mem_manage_area back_area">
-                    <div class="search_input search_back_mem">
+                    <div class="back_title">會員管理</div>
+                    <div class=" search_back_mem">
                         <input type="text">
                         <label>搜尋</label>
                     </div>
@@ -146,31 +165,37 @@
                             <th>會員積分</th>
                             <th>狀態</th>
                             <th>開通時間</th>
-                            <th>是否停權</th>
+                            <th>修改</th>
                         </tr>
                         <tr>
                             <td>001</td>
                             <td>王大明</td>
                             <td>7878</td>
                             <td>正常</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
+                            <td><select v-model="selectedTime">
+                                <option v-for="time in times">{{time}}</option></select>
+                            </td>
+                            <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                         </tr>
                         <tr>
                             <td>002</td>
                             <td>王中明</td>
                             <td>9527</td>
                             <td>正常</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
+                            <td><select v-model="selectedTime">
+                                <option v-for="time in times">{{time}}</option></select>
+                            </td>
+                            <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                         </tr>
                         <tr>
                             <td>003</td>
                             <td>王小明</td>
                             <td>5566</td>
                             <td>停權</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
+                            <td><select v-model="selectedTime">
+                                <option v-for="time in times">{{time}}</option></select>
+                            </td>
+                            <td><input type="submit" class="back_loginbtn" value="確認"></input></td>
                         </tr>
                     </table>
                 </div>
@@ -215,9 +240,10 @@
             template: `
             <div>
                 <div class="back_grade_area back_area">
+                <div class="back_title">會員等級管理</div>
                 <div class="back_btn_style">
                     <button :class="page1style" @click="page1">等級</button>
-                    <button :class="page2style" @click="page2">新增等級員</button>
+                    <button :class="page2style" @click="page2">新增等級</button>
                 </div>
                     <div v-if="link == 'allGrade'">
                         <table class="back_grade_table1 back_table">
@@ -235,7 +261,7 @@
                                 <td>5999</td>
                                 <td>0</td>
                                 <td>$</td>
-                                <td>--</td>
+                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
                             <tr>
                                 <td>002</td>
@@ -243,7 +269,7 @@
                                 <td>11999</td>
                                 <td>6000</td>
                                 <td>$</td>
-                                <td>--</td>
+                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
                             <tr>
                                 <td>003</td>
@@ -251,7 +277,7 @@
                                 <td>17999</td>
                                 <td>12000</td>
                                 <td>$</td>
-                                <td>--</td>
+                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
                             <tr>
                                 <td>004</td>
@@ -259,7 +285,7 @@
                                 <td>23999</td>
                                 <td>18000</td>
                                 <td>$</td>
-                                <td>--</td>
+                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
                             <tr>
                                 <td>005</td>
@@ -267,7 +293,7 @@
                                 <td>30000</td>
                                 <td>24000</td>
                                 <td>$</td>
-                                <td>--</td>
+                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
                         </table>
                     </div>
@@ -292,8 +318,8 @@
                             <p v-if="preview">
                                 <img :src="preview" class="add_grade_img" />
                             </p>
+                        <input type="submit" class="thirdbtn1_green back_send" value="確認新增"></input>
                         </form>
-                        <button type="submit" class="thirdbtn1_green">確認新增</button>
                     </div>
                 </div>
             </div>
@@ -304,6 +330,7 @@
             template: `
             <div>
                 <div class="back_rep_group_area back_area">
+                    <div class="back_title">揪團檢舉管理</div>
                     <table class="back_rep_group_table back_table">
                         <tr>
                             <th>編號</th>
@@ -311,6 +338,7 @@
                             <th>開團會員</th>
                             <th>檢舉原因</th>
                             <th>處理狀態</th>
+                            <th>揪團狀態</th>
                         </tr>
                         <tr>
                             <td>001</td>
@@ -318,6 +346,7 @@
                             <td>7878</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>002</td>
@@ -325,6 +354,7 @@
                             <td>9527</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>003</td>
@@ -332,6 +362,7 @@
                             <td>5566</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                     </table>
                 </div>
@@ -343,6 +374,7 @@
             template: `
             <div>
                 <div class="back_rep_message_area back_area">
+                <div class="back_title">揪團留言檢舉管理</div>
                     <table class="back_rep_message_table back_table">
                         <tr>
                             <th>編號</th>
@@ -350,6 +382,7 @@
                             <th>留言內容</th>
                             <th>檢舉原因</th>
                             <th>處理狀態</th>
+                            <th>留言狀態</th>
                         </tr>
                         <tr>
                             <td>001</td>
@@ -357,6 +390,7 @@
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>002</td>
@@ -364,6 +398,7 @@
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>003</td>
@@ -371,6 +406,7 @@
                             <td>團主很爛，大家不要被他騙...</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                     </table>
                 </div>
@@ -382,6 +418,7 @@
             template: `
             <div>
                 <div class="back_rep_equ_area back_area">
+                    <div class="back_title">設備檢舉管理</div>
                     <table class="back_rep_equ_table back_table">
                         <tr>
                             <th>編號</th>
@@ -389,6 +426,7 @@
                             <th>設備詳細</th>
                             <th>檢舉原因</th>
                             <th>處理狀態</th>
+                            <th>設備狀態</th>
                         </tr>
                         <tr>
                             <td>001</td>
@@ -396,6 +434,7 @@
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>002</td>
@@ -403,6 +442,7 @@
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                         <tr>
                             <td>003</td>
@@ -410,6 +450,7 @@
                             <td>可愛的二手娃娃</td>
                             <td>不符合主題</td>
                             <td><input type="checkbox" class="switch"></td>
+                            <td>已下架</td>
                         </tr>
                     </table>
                 </div>
@@ -421,29 +462,46 @@
             template: `
             <div>
                 <div class="back_game_manger_area back_area">
+                    <div class="back_title">小知識管理</div>
+                    <sapn class="back_loginbtn back_add">新增</sapn>
                     <table class="back_game_manger_table back_table">
                         <tr>
                             <th>題目編號</th>
-                            <th>遊戲題目/選項</th>
+                            <th>遊戲題目</th>
+                            <th>選項</th>
                             <th>正確解答</th>
                             <th>狀態</th>
-
                         </tr>
                         <tr>
                             <td>001</td>
-                            <td>詳細內容</td>
+                            <td>請問露營遇到熊怎麼辦？</td>
+                            <td>
+                            <p>A：與熊搏鬥</p>
+                            <p>B：爬到樹上</p>
+                            <p>C：趕緊逃跑</p>
+                            </td>
                             <td>C</td>
                             <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>002</td>
-                            <td>詳細內容</td>
+                            <td>請問露營遇到熊怎麼辦？</td>
+                            <td>
+                            <p>A：與熊搏鬥</p>
+                            <p>B：爬到樹上</p>
+                            <p>C：趕緊逃跑</p>
+                            </td>
                             <td>A</td>
                             <td><input type="checkbox" class="switch"></td>
                         </tr>
                         <tr>
                             <td>003</td>
-                            <td>詳細內容</td>
+                            <td>請問露營遇到熊怎麼辦？</td>
+                            <td>
+                            <p>A：與熊搏鬥</p>
+                            <p>B：爬到樹上</p>
+                            <p>C：趕緊逃跑</p>
+                            </td>
                             <td>D</td>
                             <td><input type="checkbox" class="switch"></td>
                         </tr>
@@ -457,6 +515,8 @@
             template: `
             <div>
                 <div class="back_postcard_material_area back_area">
+                    <div class="back_title">素材管理</div>
+                    <sapn class="back_loginbtn back_add">新增</sapn>
                     <table class="back_postcard_material_table back_table">
                         <tr>
                             <th>樣式編號</th>
@@ -496,6 +556,8 @@
             template: `
             <div>
                 <div class="back_spot_manger_area back_area">
+                    <div class="back_title">營區地點管理</div>
+                    <sapn class="back_loginbtn back_add">新增</sapn>
                     <table class="back_spot_manger_table back_table">
                         <tr>
                             <th>營區編號</th>
@@ -534,7 +596,7 @@
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back-manager',
+                content:'back-game-manage',
             },
 
         });

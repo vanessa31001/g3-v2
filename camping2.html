@@ -75,7 +75,8 @@
                 </div>
                 <div class="location camping_block">
                     <div class="titlearea">
-                        <div class="sub_title">確幸莊園
+                        <div class="sub_title">
+                            <span name="CAM_NAME" id="CAM_NAME">確幸莊園</span>
                             <div class="collect_checkbox like">
                                 <input type="checkbox" id="collect_checkbox">
                                 <label for="collect_checkbox" id="the_label">收藏</label>
@@ -284,6 +285,38 @@
         });
     });
 </script> 
+<script>
+    function $id(id){
+	return document.getElementById(id);
+}	
+function sendForm(){
+    //=====使用Ajax 回server端,取回登入者姓名, 放到頁面上 
+    let CAM_NAME = $id("CAM_NAME").value;  
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+    member = JSON.parse(xhr.responseText);
+    if(member.memId){
+        $id("memName").innerText = member.memName;
+        $id('spanLogin').innerHTML = '登出';
+        
+    }else{
+        window.alert("帳密錯誤~");
+    }
+    }
+
+    xhr.open("Post", "ajaxLogin.php", true);
+    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    let data_info = `memId=${memId}&memPsw=${memPsw}`;
+    xhr.send(data_info); 
+}
+
+function cancelLogin(){
+    //將登入表單上的資料清空，並將燈箱隱藏起來
+    $id('lightBox').style.display = 'none';
+    $id('memId').value = '';
+    $id('memPsw').value = '';
+}
+</script>
 
 
 </body>
