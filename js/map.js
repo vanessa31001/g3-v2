@@ -20,39 +20,43 @@
         popupAnchor: [1, -34],
         });
     //N1 確幸莊園
-    marker = L.marker([ 24.926455,121.526396], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>確幸莊園</a><br>目前開團:2組");
+    marker = L.marker([ 24.926455,121.526396], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='1'><br>確幸莊園<br>目前開團:2組</div>");
     //N2 森森親子露營
-    marker = L.marker([24.8289596,121.2616928], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>森森親子露營</a><br>目前開團:2組");
+    marker = L.marker([24.8289596,121.2616928], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='2'><br>森森親子露營<br>目前開團:2組</div>");
     //N3 溪口台露營區
-    marker = L.marker([24.8028153,121.3420361], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>溪口台露營區</a><br>目前開團:2組");
+    marker = L.marker([24.8028153,121.3420361], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='3'><br>溪口台露營區<br>目前開團:2組</div>");
     //N4 綠果子休憩站
-    marker = L.marker([24.881858,121.299778], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>綠果子休憩站</a><br>目前開團:2組");
+    marker = L.marker([24.881858,121.299778], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='4'><br>綠果子休憩站<br>目前開團:2組</div>");
     //N5 相思園露營區
-    marker = L.marker([24.707975,121.223913], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>相思園露營區</a><br>目前開團:2組");
+    marker = L.marker([24.707975,121.223913], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='5'><br>相思園露營區<br>目前開團:2組</div>");
     //N6 紮營趣露營區
-    marker = L.marker([24.4093121,120.904157], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>紮營趣露營區</a><br>目前開團:2組");
+    marker = L.marker([24.4093121,120.904157], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='6'><br>紮營趣露營區<br>目前開團:2組</div>");
     //C1 梅林親水岸露營區
-    marker = L.marker([24.153056,120.811028], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>梅林親水岸露營區</a><br>目前開團:2組");
+    marker = L.marker([24.153056,120.811028], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='7'><br>梅林親水岸露營區<br>目前開團:2組</div>");
     //C2 樹不老露營區
-    marker = L.marker([24.0738248,120.9795118], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>樹不老露營區</a><br>目前開團:2組");
+    marker = L.marker([24.0738248,120.9795118], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='8'><br>樹不老露營區<br>目前開團:2組</div>");
     //C3 逸境生態露營區
-    marker = L.marker([23.7261695,120.6213536], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>逸境生態露營區</a><br>目前開團:2組");
+    marker = L.marker([23.7261695,120.6213536], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='9'><br>逸境生態露營區<br>目前開團:2組</div>");
     //C4 晨光露營區
-    marker = L.marker([23.4640832,120.7035768], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>晨光露營區</a><br>目前開團:2組");
+    marker = L.marker([23.4640832,120.7035768], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='10'><br>晨光露營區<br>目前開團:2組</div>");
     //S1 春園休閒農場
-    marker = L.marker([23.119833,120.151722], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>春園休閒農場</a><br>目前開團:2組");
+    marker = L.marker([23.119833,120.151722], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='11'><br>春園休閒農場<br>目前開團:2組</div>");
     //S2 荖濃有機農場露營區
-    marker = L.marker([23.0719824,120.6711424], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>荖濃有機農場露營區</a><br>目前開團:2組");
+    marker = L.marker([23.0719824,120.6711424], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='12'><br>荖濃有機農場露營區<br>目前開團:2組</div>");
     //S3 海豚茉莉灣
-    marker = L.marker([22.2446846,120.6605232], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>海豚茉莉灣</a><br>目前開團:2組");
+    marker = L.marker([22.2446846,120.6605232], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='13'><br>海豚茉莉灣<br>目前開團:2組</div>");
     //E1 松蘿園林露營區
-    marker = L.marker([24.6542071,121.5615935], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>松蘿園林露營區</a><br>目前開團:2組");
+    marker = L.marker([24.6542071,121.5615935], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='14'><br>松蘿園林露營區<br>目前開團:2組</div>");
     //E2  Ocean Chill 海憩露營區 
-    marker = L.marker([24.1093449,121.626496], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'> Ocean Chill 海憩露營區 </a><br>目前開團:2組");
+    marker = L.marker([24.1093449,121.626496], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='15'><br> Ocean Chill 海憩露營區 <br>目前開團:2組</div>");
     //E3  老麥農場露營區
-    marker = L.marker([22.874927,121.0958605], {icon: shansenIcon}).addTo(map).bindPopup("<a href=''><img src='./pic/camping/北1-1.jpg'></a><br> <a href='camping2.html'>老麥農場露營區</a><br>目前開團:2組");
+    marker = L.marker([22.874927,121.0958605], {icon: shansenIcon}).addTo(map).bindPopup("<div class='spot' data='16'><br>老麥農場露營區<br>目前開團:2組</div>");
 
     function onlick(){
         $(marker).openPopup();
     }
+    document.querySelectorAll('.spot').forEach(element=>element.addEventListener('click',function(e){
+        let where = e.target.getAttribute('data');
+        location.href=`http://localhost/g3-v2/camping2.html?${where}`;
+    }))
 
