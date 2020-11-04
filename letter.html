@@ -226,10 +226,61 @@
                             </div>
                         </div>
                         <div class="stylePostcard" id="rightStep5">
-                            <div class="pictureChoose">13</div>
-                            <div class="pictureChoose">14</div>
-                            <div class="pictureChoose">15</div>
-                            <div class="pictureChoose">16</div>
+                            <p class="posFromToTitle">填寫收件人</p>
+                            <input type="text" class="posWriteFromTo" id="writeFrom"></input>
+                            <div class="toColorTitle">
+                                收件人文字顏色
+                            </div>
+                            <div class="fromToColor">
+                                <div class="fromWordColor" id="fromWordBlue">
+                                
+                                </div>
+                                <div class="fromWordColor" id="fromWordOrange">
+
+                                </div>
+                                
+                                <div class="fromWordColor" id="fromWordYellow">
+
+                                </div>
+                                <div class="fromWordColor" id="fromWordGray">
+
+                                </div>
+                                <div class="fromWordColor" id="fromWordBlack">
+
+                                </div>
+                            </div>
+                            <p class="posFromToTitle">填寫寄件人</p>
+                            <input type="text" class="posWriteFromTo" id="writeTo"></input>
+                            <div class="fromColorTitle">
+                                寄件人文字顏色
+                            </div>
+                            <div class="fromToColor">
+                                <div class="toWordColor" id="toWordBlue">
+                                
+                                </div>
+                                <div class="toWordColor" id="toWordOrange">
+
+                                </div>
+                                
+                                <div class="toWordColor" id="toWordYellow">
+
+                                </div>
+                                <div class="toWordColor" id="toWordGray">
+
+                                </div>
+                                <div class="toWordColor" id="toWordBlack">
+
+                                </div>
+                                
+                            </div>
+                            <div class="posButtonSend">
+                                <button class="thirdbtn2_green" id='posSendFromTo'>
+                                    確認送出
+                                </button>
+                                <button class="thirdbtn2_orange" id="posDelFromTo">
+                                    重新填寫
+                                </button>
+                            </div>    
                         </div>
                         <div class="stylePostcard" id="rightStep6">
                             <div class="pictureChoose">17</div>
@@ -313,10 +364,12 @@
             let testLeftWordLimit4 = document.getElementById('testLeftWordLimit4');
             let testLeftWordLimit5 = document.getElementById('testLeftWordLimit5');
             let testLeftWordLimit6 = document.getElementById('testLeftWordLimit6');
-
-
-            
-            
+            let posSendFromTo = document.getElementById('posSendFromTo');
+            let fromWordColorList = document.getElementsByClassName('fromWordColor');
+            let fromWordColorVar = "#FC8F24";
+            let toWordColorList = document.getElementsByClassName('toWordColor');
+            let toWordColorVar = "#FC8F24";
+            let posDelFromTo = document.getElementById('posDelFromTo');
             
             
             //預設內容
@@ -336,6 +389,8 @@
             updatePhotoHere.addEventListener('change',PhotoPut);   //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
             createWordFromTo.addEventListener('click', newWordNow);   //點擊事件產生文字
             deleteWordFromTo.addEventListener('click',delWordNow);
+            posSendFromTo.addEventListener('click',sendFromToJs);
+            posDelFromTo.addEventListener('click',posDelFromToJs);
             for(let i =0; i<paperList.length; i++){                   //建立材質的事件聆聽
                 paperList[i].addEventListener('click',function(){     
                     let paperPassId = this.id;        //抓取材質ID
@@ -360,7 +415,18 @@
                     posWordColorChange(posWordColorId);
                 });
             }
-            
+            for(let i=0; i<fromWordColorList.length; i++){
+                fromWordColorList[i].addEventListener('click',function(){
+                    let fromWordColorId = this.id;
+                    fromColorChange(fromWordColorId);
+                });
+            }
+            for(let i=0; i<toWordColorList.length; i++){
+                toWordColorList[i].addEventListener('click',function(){
+                    let toWordColorId = this.id;
+                    toColorChange(toWordColorId);
+                });
+            }
             
             //函式區
             function changeStepBack(){
@@ -441,10 +507,10 @@
             }
             function styleDisplayNext(posTextTitle){
                 if(posTextTitle=="增加插圖"){
-                   postcard1Id.classList.remove('postcard');
-                   postcard1Id.classList.add('leftPostcard1');
-                   postcard2Id.classList.remove('postcard2');
-                   postcard2Id.classList.add('leftPostcard2');
+                    postcard1Id.classList.remove('postcard');
+                    postcard1Id.classList.add('leftPostcard1');
+                    postcard2Id.classList.remove('postcard2');
+                    postcard2Id.classList.add('leftPostcard2');
     
                 }
             }
@@ -609,6 +675,40 @@
                 document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText ='';
                 clickTimeOfWord-=1;
                 
+            }
+            function sendFromToJs(){
+                let fromText = document.getElementById('writeFrom').value;
+                let toText = document.getElementById('writeTo').value;
+                document.getElementById('posFrom').innerHTML = document.getElementById('posFrom').innerText + fromText;
+                document.getElementById('posTo').innerHTML = document.getElementById('posTo').innerText + toText;
+                document.getElementById('posFrom').style.color = fromWordColorVar;
+                document.getElementById('posTo').style.color = toWordColorVar;
+                
+            }
+            function fromColorChange(fromWordColorId){
+                for(let i=0; i<fromWordColorList.length;i++){
+                    fromWordColorList[i].style.borderColor= "rgba(0, 0, 0, 0)";
+                }
+                document.getElementById(fromWordColorId).style.borderColor ="rgba(255, 0, 0, 0.4)";
+                let wordColorFrom = window.getComputedStyle(document.getElementById(fromWordColorId)).getPropertyValue('background-color');
+                fromWordColorVar = wordColorFrom;
+                
+            }
+            function toColorChange(toWordColorId){
+                for(let i=0; i<toWordColorList.length;i++){
+                    toWordColorList[i].style.borderColor= "rgba(0, 0, 0, 0)";
+                }
+                document.getElementById(toWordColorId).style.borderColor ="rgba(255, 0, 0, 0.4)";
+                let wordColorTo = window.getComputedStyle(document.getElementById(toWordColorId)).getPropertyValue('background-color');
+                toWordColorVar = wordColorTo;
+                
+            }
+            function posDelFromToJs(){
+                
+                document.getElementById('posFrom').innerHTML = 'From:';
+                document.getElementById('posTo').innerHTML = 'To:';
+                document.getElementById('posFrom').style.color = fromWordColorVar;
+                document.getElementById('posTo').style.color = toWordColorVar;
             }
         }
         window.addEventListener('load',doFirst);

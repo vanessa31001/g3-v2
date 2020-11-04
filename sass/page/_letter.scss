@@ -221,6 +221,10 @@
                     width: 90%;
                     #posFrom{
                         margin-bottom: 5%;
+                        color: $orangeColor1;
+                    }
+                    #posTo{
+                        color: $orangeColor1;
                     }
                 }
             }
@@ -391,6 +395,75 @@
                         color: darkred;
                         display: none;
                     }
+                }
+            }
+            #rightStep5{
+                .posFromToTitle{
+                    margin-top: 2%;
+                }
+                .posWriteFromTo{
+                    margin-bottom: 10px;
+                }
+                .fromWordColor{
+                    width: 25px;
+                        height: 25px;
+                        display: inline-block;
+                        margin: 3px;
+                        border: 2px;
+                        border-radius: 50%;
+                        border: 3px solid rgba(0, 0, 0, 0);
+                }
+                #fromWordBlue{
+                    background-color: $greenColor3;
+                    
+                }
+                #fromWordOrange{
+                    background-color: $orangeColor1;
+                    border-color: rgba(255, 0, 0, 0.4)
+                }
+                #fromWordBlack{
+                    background-color: $black;
+                }
+                #fromWordYellow{
+                    background-color: $yellowColor2;
+                }
+                #fromWordGray{
+                    background-color: $grayColor1;
+                }
+                .toColorTitle{
+                    margin-bottom: 4%;
+                }
+                .fromColorTitle{
+                    margin-bottom: 4%;
+                }
+                .toWordColor{
+                    width: 25px;
+                        height: 25px;
+                        display: inline-block;
+                        margin: 3px;
+                        border: 2px;
+                        border-radius: 50%;
+                        border: 3px solid rgba(0, 0, 0, 0);
+                }
+                #toWordBlue{
+                    background-color: $greenColor3;
+                    
+                }
+                #toWordOrange{
+                    background-color: $orangeColor1;
+                    border-color: rgba(255, 0, 0, 0.4);
+                }
+                #toWordBlack{
+                    background-color: $black;
+                }
+                #toWordYellow{
+                    background-color: $yellowColor2;
+                }
+                #toWordGray{
+                    background-color: $grayColor1;
+                }
+                .posButtonSend{
+                    margin-top: 3%;
                 }
             }
                     .stepContent{
