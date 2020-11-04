@@ -139,8 +139,6 @@
             </div>
         </section>
 
-
-
         <section class="section2 bgcColor gray1 linkgroup">
             <div class="wrap">
                 <div class="title">
@@ -207,9 +205,7 @@
             </div>
         </section>
 
-    
         </div>
-
     <footer>
         <div class="footer_bgc">
             <div class="wrap">
@@ -243,46 +239,40 @@
         <div class="copyright">Copyright &copy; 2020ShanSen</div>
     </footer>
 
-  <!--輪播JQ-->
-  <script>
-     window.addEventListener('load',function(){
-        let y = location.href.split('?')[1];
-        console.log(y)
-        //資料庫把這個數字的資料撈出來
-        
-
-
-    })
-   
-</script> 
+<!--輪播JQ-->
+<!-- <script>
+    const request = new XMLHttpRequest()
+    request.onload = function() {
+    if(request.status >= 200 && request.status < 400) {
+        console.log(request.responseText);
+    }else {
+        console.log('err');
+    }
+    }
+    request.onerror = function() {
+    console.log('error');
+    }
+    request.open('post', 'php/camping/camping2.php',true);
+    request.send();
+</script> -->
 
 <script>
-  
 function $id(id){
 return document.getElementById(id);
 }
 
-let CAM_NAME = $id("CAM_NAME").value;  
-let CAM_INTRODUCTION = $id("CAM_INTRODUCTION").value;  
-let CAM_ALTITUDE = $id("CAM_ALTITUDE").value;  
-let CAM_BATHROOM = $id("CAM_BATHROOM").value;  
-let CAM_FACILITY = $id("CAM_FACILITY").value;  
-let CAM_ADDRESS = $id("CAM_ADDRESS").value;  
-let CAM_PRECAUTIONS = $id("CAM_PRECAUTIONS").value; 
-let CAM_PIC1 = $id("camping_pic_1").value; 
-let CAM_PIC2 = $id("camping_pic_2").value; 
-let CAM_PIC3 = $id("camping_pic_3").value; 
-let CAM_PIC4 = $id("camping_pic_4").value; 
+window.addEventListener('load',function(){
+    let CAM_NO = location.href.split('?')[1];
+    spotNum(CAM_NO);
+})
 
-// let memPsw = $id("memPsw").value; 
-let xhr = new XMLHttpRequest();
-
-//註冊callback function
-xhr.onreadystatechange = function(){
-  if(xhr.readyState == XMLHttpRequest.DONE){ //server端已處理完畢
-      if(xhr.status === 200){ //xhr.status為200時表示, server端有正常的處理完畢
-        // console.log(xhr.responseText);
-        camping = JSON.parse(xhr.responseText);
+let spotNum = (CAM_NO) => {
+    // console.log(CAM_NO)
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        if( xhr.status == 200 ){
+        let camping = JSON.parse(xhr.responseText);
+        console.log(camping);
         $id("CAM_NAME").innerText = camping.CAM_NAME;
         $id("camping_pic_1").src = `./pic/camping/camping_spot_img/${camping.CAM_PIC1}.jpg`;
         $id("camping_pic_2").src = `./pic/camping/camping_spot_img/${camping.CAM_PIC2}.jpg`;
@@ -291,26 +281,28 @@ xhr.onreadystatechange = function(){
         $id("CAM_INTRODUCTION").innerText = camping.CAM_INTRODUCTION;
         $id("CAM_ALTITUDE").innerText = camping.CAM_ALTITUDE;
         $id("CAM_BATHROOM").innerText = camping.CAM_BATHROOM;
+        if(camping.CAM_PET == 1){
+            $id("CAM_PET").innerText="可以帶寵物";
+        }else{
+            $id("CAM_PET").innerText ="不可以帶寵物";
+        };
+
         $id("CAM_FACILITY").innerText = camping.CAM_FACILITY;
         $id("CAM_ADDRESS").innerText = camping.CAM_ADDRESS;
         $id("CAM_PRECAUTIONS").innerText = camping.CAM_PRECAUTIONS;
-        innerText = xhr.responseText;
-      }else{
-         alert(xhr.statusText);
-      }
-  }
+    }else{
+    console.log( xhr.status );
+    }
 }
 
-//設定好所要連結的程式
-let url = "php/camping/camping2.php";
-xhr.open("get", url, true);
-
-//送出資料
-xhr.send(null);
+    var url = `php/camping/camping3.php?cam_no=${CAM_NO}`;
+    xhr.open("Get", url, true);
+    xhr.send( null );
+}
 
 
+</script> 
 
-</script>
 
 <script>
      $(document).ready(function() {

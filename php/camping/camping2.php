@@ -1,10 +1,17 @@
 <?
 try{
+
     require_once("../connectBooks.php");
+
+    
     $sql = "select * from `camping`";
     $camping = $pdo->query($sql);
+    // $camping->bindValue(":CAM_NO", $_POST["CAM_NO"]);
     $campRow = $camping->fetch(PDO::FETCH_ASSOC);
     $camping->execute();
+// echo $_SERVER['QUERY_STRING'];
+// echo $_SERVER['REQUEST_URI']." \n";
+
     // print_r($campRow);
 
     $result = array("CAM_NO"=>$campRow["CAM_NO"], 
