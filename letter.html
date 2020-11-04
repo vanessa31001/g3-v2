@@ -77,7 +77,7 @@
                 
             </div>
             <div class="postcard_content">
-                <div id="canv">
+                <div class="postcardLeftAll" id="canv">
                     <div class="postcard " id="postcard1Id">
                         <div class="pdContentImg">
                             <img class="postcardLogo" src="./pic/postcardMaterial/LOGO/logoUse.svg">
@@ -370,6 +370,7 @@
             let toWordColorList = document.getElementsByClassName('toWordColor');
             let toWordColorVar = "#FC8F24";
             let posDelFromTo = document.getElementById('posDelFromTo');
+            let postcard_content = document.getElementsByClassName('postcard_content')[0];
             
             
             //預設內容
@@ -511,7 +512,10 @@
                     postcard1Id.classList.add('leftPostcard1');
                     postcard2Id.classList.remove('postcard2');
                     postcard2Id.classList.add('leftPostcard2');
-    
+                }else if(posTextTitle=="分享社群"){
+                    let postcardLeftAll = document.getElementsByClassName('postcardLeftAll')[0].cloneNode(true);
+                    postcardLeftAll.style.display = 'block';
+                    postcard_content.append(postcardLeftAll);
                 }
             }
             function styleDisplayPre(posTextTitle){
