@@ -714,7 +714,6 @@ input[type="submit"], button{
                     margin: 10px 15px 0 0;
                 }
             }  
-
         }
         .right{
             width: 50%;
@@ -722,22 +721,23 @@ input[type="submit"], button{
             display: inline-block;
             vertical-align: middle;
             border-left: 3px solid $greenColor3;
-            table{
-                margin: 10px 0;
-                height: 300px;
-                border-collapse: collapse;
-                // border:1px solid red;
-                width: 100%;
-                td{
-                    // border:1px solid red; 
-                    vertical-align: middle;
-                    &:first-child{
-                        width: 110px;
-                        display: block;
-                    }
+            .block{
+                font-size: 0;
+                margin: 10px 0px;
+                div{
+                    margin: 0px;
+                    display: inline-block;
+                    width: calc(100% - 100px);
+                    vertical-align: top;
+                }
+                .green1{
+                    width:100px;
                 }
                 textarea.inputstyle{
                     height: 80px;
+                }
+                select.inputstyle{
+                    margin-right: 5px;
                 }
                 .textinfo{
                     vertical-align: text-top;   
@@ -1188,16 +1188,12 @@ input[type="submit"], button{
             } 
         }
         .right{
-            table{
-                td:first-child{
-                    width: auto;
-                }
-                td{
-                    width: auto;
+            .block{
+                div{
+                    display: block;
+                    width:100%;
                 }
             }
-            
-
         }
     }
     .groupMain{
