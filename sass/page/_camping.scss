@@ -43,7 +43,7 @@
     }
 }
 
-.spot{
+.waethermap{
     display: flex;
 }
 #weatherbox{
@@ -63,11 +63,14 @@
 }
 .leaflet-popup-content{
     margin: 18px 16px;
-    a{
+    .spot{
+        cursor: pointer;
         img{
-            width: 167px;
+            max-width: 167px;
+            width: 100%;
             border-radius: 5px;
         }
+
     }
 }
 
@@ -283,9 +286,35 @@
     }
     .camp_slider{
         width: 100%;
-        img{
+        height: 100%;
+        overflow: hidden;
+        padding-bottom: 20px;
+        #content{			
+            position: relative;
+            li{
+                float: left;
+                img{
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+        }
+        #contentButton{
+            text-align: center;
             width: 100%;
-            border-radius: 5px;
+            height: 40px;
+            li{
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #ccc;
+            
+                display: inline-block;
+                margin: 5px;
+            }
+            .clickMe{
+                background: #888;
+            }
         }
     }
     .introduction{
@@ -755,7 +784,7 @@
 }
 
 @media screen and (max-width: 767px){
-    .spot{
+    .waethermap{
         display: block;
     }
     #weatherbox{

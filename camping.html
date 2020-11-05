@@ -55,7 +55,7 @@
                     <li class="level0 gray1">營區攻略</li>
                 </ul>
             </div>
-            <div class="spot camping_block">
+            <div class="waethermap camping_block">
                 <div id="weatherbox">
                     <div class="sub_title">尋找營區</div>
                     <div class="weather">
@@ -147,7 +147,7 @@
                         </div>
                 </div>
                 
-                <div id="map" class="map"></div>
+                <div id="map" class="map spot"></div>
             </div>
         </div>
     </section>
@@ -285,7 +285,26 @@
         </div>
         <div class="copyright">Copyright &copy; 2020ShanSen</div>
     </footer>
+<script>
+function $id(id){
+    return document.getElementById(id);
+}
+var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        if( xhr.status == 200 ){
+        let camping = JSON.parse(xhr.responseText);
+        console.log(camping);
+        $id("CAM_NAME_brower").innerText = camping.CAM_NAME;
 
+    }else{
+    console.log( xhr.status );
+    }
+}
+
+    var url = `php/camping/camping1.php`;
+    xhr.open("Get", url, true);
+    xhr.send( null );
+</script>
 
 <script src="./js/map.js"></script>
 <script src="https://unpkg.com/jquery"></script>
