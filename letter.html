@@ -8,6 +8,7 @@
     <script src="./vender/vue.min.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/html2canvas.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/1017_logo.png">
 </head>
@@ -72,7 +73,7 @@
                     </div>
                     <div class="cardStep" id="cardStep6">
                         <p class="level2">STEP6</p>
-                        <p class="level2">分享社群</p></p>
+                        <p class="level2">下載明信片</p></p>
                     </div>
                 
             </div>
@@ -81,7 +82,7 @@
                 <div class="postcardLeftAll" id="canv">
                     <div class="postcard " id="postcard1Id">
                         <div class="pdContentImg">
-                            <img class="postcardLogo" src="./pic/postcardMaterial/LOGO/logoUse.svg">
+                            <img class="postcardLogo" src="./pic/postcardMaterial/LOGO/logoUse.png" style="width: 100%">
                         </div>
                         <div class="putPhoto">
                             <img id="postcardPhotoPut">
@@ -113,7 +114,7 @@
                 </div>
                 <div class="rightPostcard">
                     <div class="rightPostcard_aside">
-                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|傳遞心情|填寫收件人|分享社群</p>
+                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|傳遞心情|填寫收件人|下載明信片</p>
                         <div class="stylePostcard" id="rightStep1">                            
                             <div class="paperTexture">
                                 <p>皺褶灰白</p>
@@ -284,10 +285,16 @@
                             </div>    
                         </div>
                         <div class="stylePostcard" id="rightStep6">
-                            <div class="pictureChoose">17</div>
-                            <div class="pictureChoose">18</div>
-                            <div class="pictureChoose">19</div>
-                            <div class="pictureChoose">20</div>
+                            <div class="posButtonContentBack">
+                                <button class="thirdbtn2_green" id="downloadBack" style="margin-top: 15%;">
+                                    下載背面
+                                </button>
+                            </div>
+                            <div class="posButtonContentFront">
+                                <button class="thirdbtn2_green" id="downloadFront" style="margin-top: 15%;">
+                                    下載封面
+                                </button>
+                            </div>
                         </div>
                         <div class="stepContent">
                             <button class="thirdbtn2_green" id="previousStep" >上一步</button>
@@ -372,6 +379,9 @@
             let toWordColorVar = "#FC8F24";
             let posDelFromTo = document.getElementById('posDelFromTo');
             let postcard_content = document.getElementsByClassName('postcard_content')[0];
+            let downloadBack = document.getElementById('downloadBack');
+            let downloadFront = document.getElementById('downloadFront');
+            let paperBackgroundNow = 'url("./pic/postcardMaterial/paper/paper1.png")';
             
             
             //預設內容
@@ -393,6 +403,14 @@
             deleteWordFromTo.addEventListener('click',delWordNow);
             posSendFromTo.addEventListener('click',sendFromToJs);
             posDelFromTo.addEventListener('click',posDelFromToJs);
+            downloadBack.addEventListener('click',function(){
+                let downloadId = 'canv';
+                downloadPostcardFunc(downloadId);
+            });
+            downloadFront.addEventListener('click',function(){
+                let downloadId = 'canv1';
+                downloadPostcardFunc(downloadId);
+            });
             for(let i =0; i<paperList.length; i++){                   //建立材質的事件聆聽
                 paperList[i].addEventListener('click',function(){     
                     let paperPassId = this.id;        //抓取材質ID
@@ -484,6 +502,7 @@
                     }
                     document.getElementById(paperNowId).style.borderColor ="rgba(255, 0, 0, 0.4)";
                     document.getElementsByClassName('postcard')[0].style.backgroundImage = `url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
+                    paperBackgroundNow = `url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
                     document.getElementsByClassName('pdContentImg')[0].style.display = "block";
                     document.getElementsByClassName('pdContentImg')[0].style.backgroundImage =`url("./pic/postcardMaterial/paper/${paperNowId}.png")`;
                 
@@ -513,26 +532,29 @@
                     postcard1Id.classList.add('leftPostcard1');
                     postcard2Id.classList.remove('postcard2');
                     postcard2Id.classList.add('leftPostcard2');
-                }else if(posTextTitle=="分享社群"){
+                    document.getElementsByClassName('leftPostcard2')[0].style.backgroundImage = paperBackgroundNow;
+                    
+                }else if(posTextTitle=="下載明信片"){
                     let postcardLeftAll = document.getElementsByClassName('postcardLeftAll')[0].cloneNode(true);
                     postcardLeftAll.style.display = 'block';
+                    postcardLeftAll.id = 'canv1';
                     postcardLeftAll.childNodes[1].classList.add('postcard');
                     postcardLeftAll.childNodes[1].style.display = 'block';
                     postcardLeftAll.childNodes[3].style.display = 'none';
                     insertAfter(postcardLeftAll,document.getElementsByClassName('rightPostcard')[0]);
                     let posCover = document.createElement('p');
                     posCover.classList.add('level4','posCover');
-                    posCover.innerText = '封面';
+                    posCover.innerText = '背面';
                     posCover.display = 'block';
                     document.getElementsByClassName('posWrap')[0].insertBefore(posCover,postcard_content);
                     let posBack = document.createElement('p');
                     posBack.classList.add('level4','posCover');
-                    posBack.innerText = '背面';
+                    posBack.innerText = '封面';
                     posBack.display = 'block';
                     posBack.style.flex="100%";
                     posBack.id = 'posBackId';
                     insertAfter(posBack,document.getElementsByClassName('rightPostcard')[0]);
-                    DownloadImageToCanvas();
+                    nextStep.style.display = 'none';
                 }
             }
             function styleDisplayPre(posTextTitle){
@@ -546,7 +568,7 @@
                     document.getElementsByClassName('postcardLeftAll')[1].remove();
                     document.getElementsByClassName('posCover')[0].remove();
                     document.getElementById('posBackId').remove();
-                    
+                    nextStep.style.display = 'block';
                 }
             }
             function createPic(littlePicId){
@@ -709,6 +731,8 @@
                 document.getElementById('posTo').innerHTML = document.getElementById('posTo').innerText + toText;
                 document.getElementById('posFrom').style.color = fromWordColorVar;
                 document.getElementById('posTo').style.color = toWordColorVar;
+                document.getElementById('writeFrom').value = '';
+                document.getElementById('writeTo').value = '';
                 
             }
             function fromColorChange(fromWordColorId){
@@ -739,14 +763,36 @@
             function insertAfter(postcardLeftAll,rightPostcard){
                 rightPostcard.parentNode.insertBefore(postcardLeftAll,rightPostcard.nextSibling);
             }
-            function DownloadImageToCanvas(){
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 840;
-                canvas.height = 560;
+            function downloadPostcardFunc(downloadId){
+                let shareContent = document.getElementById(downloadId);
+                let width = shareContent.scrollWidth;
+                let height = shareContent.scrollHeight;
+                var scale = 1;
+                var rect = shareContent.getBoundingClientRect();
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                let opts = {
+                x: rect.left,
+                y: rect.top,
+                scrollY: -scrollTop,
+                scale: scale, 
+                width: width, 
+                height: height,
+                useCORS: true
+                }
                 
-
-
+                html2canvas(shareContent, opts).then(function (canvas) {
+                    let context = canvas.getContext('2d');
+                    canvas.getContext('2d').scale(scale, scale);
+                    context.mozImageSmoothingEnabled = false;
+                    context.msImageSmoothingEnabled = false;
+                    context.imageSmoothingEnabled = false;
+                    document.body.append(canvas);
+                    var a = document.createElement('a');
+                    a.href = canvas.toDataURL('image/jpeg').replace("image/jpeg", "image/octet-stream");
+                    a.download ='image.jpg';
+                    a.click();
+                    document.getElementsByTagName('canvas')[0].remove();
+                });
             }
         }
         window.addEventListener('load',doFirst);
