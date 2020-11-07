@@ -27,27 +27,51 @@
 
 .wrap{
     .stepBreadcrumbs{
-        display: flex;
-        justify-content: space-between;
         width: 100%;
-        margin: 0 auto;
         margin-bottom: 3%;
-        .cardStep{
-            background-color: $yellowColor2;
-            padding: 1.2rem;
-            border-radius: 50%;
-            p{
-                text-align: center;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-around;
+        position: relative;
+        .cardStepContent{
+            text-align: -webkit-center;
+            float: left;
+            .cardStep{
+                background-color: $white;
+                padding: 1.2rem;
+                border-radius: 50%;
+                margin-bottom: 30px;
+                width: 80px;
+                border: 6px solid $grayColor2;
+                display: inline-block;  
+                p{
+                    text-align: center;
+                    font-size: 28px;
+                }
             }
+            .chooseCardStep{
+                width: 80px;
+                background-color: $yellowColor1;
+                padding: 1.2rem;
+                border-radius: 50%;
+                margin-bottom: 30px;
+                border: 6px solid $orangeColor1;
+                display: inline-block;
+                p{
+                    text-align: center;
+                    font-size: 28px;
+                    color: #FFFFFF;
+                }
+            }  
         }
-        .chooseCardStep{
-            background-color: $orangeColor1;
-            padding: 1.2rem;
-            border-radius: 50%;
-            p{
-                text-align: center;
-            }
-        }        
+        .stepLine{
+            width: 100px;
+            border: 1px;
+            float: left;
+            height: 1px;
+            border: 1px solid;
+            position: absolute;
+        }
     }
     .posCover{
         margin: 20px;
@@ -493,4 +517,10 @@
     }
 
 
+}
+@media screen and (min-width: 1200px){
+
+}
+@media screen and (min-width: 1081px){
+    
 }

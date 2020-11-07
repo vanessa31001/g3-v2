@@ -50,31 +50,57 @@
     <section class="section1 bgcColor">
         <div class="wrap posWrap">
             <div class="stepBreadcrumbs">
-                
+                <div class="cardStepContent">
                     <div class="cardStep" id="cardStep1">
-                        <p class="level2">STEP1</p>  
-                        <p class="level2">選擇材質</p>
+                        <p>1</p>
                     </div>
+                    <p class="level4">選擇材質</p>
+                </div>
+                <div class="stepLine" id="stepLine1">
+
+                </div>
+                <div class="cardStepContent">    
                     <div class="cardStep" id="cardStep2">
-                        <p class="level2">STEP2</p>
-                        <p class="level2">上傳照片</p></p>
+                        <p>2</p>
                     </div>
+                    <p class="level4">上傳照片</p>
+                </div>
+                <div class="stepLine" id="stepLine2">
+                    
+                </div>
+                <div class="cardStepContent">
                     <div class="cardStep" id="cardStep3">
-                        <p class="level2">STEP3</p>
-                        <p class="level2">增加插圖</p>
+                        <p>3</p>
                     </div>
+                    <p class="level4">增加插圖</p>
+                </div>
+                <div class="stepLine" id="stepLine3">
+                    
+                </div>
+                <div class="cardStepContent">
                     <div class="cardStep" id="cardStep4">
-                        <p class="level2">STEP4</p>
-                        <p class="level2">輸入內文 </p>
+                        <p>4</p>
                     </div>
+                    <p class="level4">輸入內文 </p>
+                </div>
+                <div class="stepLine" id="stepLine4">
+                    
+                </div>
+                <div class="cardStepContent">
                     <div class="cardStep" id="cardStep5">
-                        <p class="level2">STEP5</p>
-                        <p class="level2">寄給朋友</p></p>
+                        <p>5</p>
                     </div>
+                    <p class="level4">寄給朋友</p>
+                </div>
+                <div class="stepLine" id="stepLine5">
+                    
+                </div>
+                <div class="cardStepContent">
                     <div class="cardStep" id="cardStep6">
-                        <p class="level2">STEP6</p>
-                        <p class="level2">下載明信片</p></p>
+                        <p>6</p>
                     </div>
+                    <p class="level4">下載明信片</p>
+                </div>
                 
             </div>
             <div class="postcard_content">
@@ -765,8 +791,8 @@
             }
             function downloadPostcardFunc(downloadId){
                 let shareContent = document.getElementById(downloadId);
-                let width = shareContent.scrollWidth;
-                let height = shareContent.scrollHeight;
+                let width = shareContent.offsetWidth;
+                let height = shareContent.offsetHeight;
                 var scale = 1;
                 var rect = shareContent.getBoundingClientRect();
                 let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
