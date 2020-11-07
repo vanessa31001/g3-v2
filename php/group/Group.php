@@ -9,8 +9,8 @@ try{
    FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
               JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
               WHERE a.GROUP_STATUS = 0";
-  $products = $pdo->prepare($sql);
-  $products = $pdo->bindValue(":memId", $memId);
+  $products = $pdo->query($sql);
+  // $products = $pdo->bindValue(":memId", $memId);
   while( $groupRow = $products->fetch(PDO::FETCH_ASSOC)){
     echo $groupRow["GROUP_NO"];
     echo "<br>";
