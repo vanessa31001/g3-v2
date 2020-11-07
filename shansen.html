@@ -633,15 +633,35 @@
     <script src="./js/main.js"></script>
     <!-- 揪團 -->
     <script>
-        $.ajax({
-            url:"",
-            method:"GET",
-            dataType:,
-            data:
-            
-            success:function(res){console.log(res)},
-            error:function(err){console.log(err)},
-        });
+        let groupDatas;
+        function dofirst(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                groupDatas = JSON.parse(xhr.responseText);
+                // if(xhr.status == 200){ //success
+                //     groupDatas = JSON.parse(xhr.responseText);
+                //     // alert(xhr.status);
+                // }else{ //error
+                //     alert(xhr.status);
+                // }
+            }
+
+            xhr.open("get", "./php/group/groupindex.php", true);
+            xhr.send(null);
+        }
+        window.addEventListener("load",dofirst,false);
+        // $.ajax({
+        //     url:"./php/group/groupindex.php",
+        //     method:"GET",
+        //     dataType:"JSON",
+        //     success:function(res){
+        //        let groups = JSON.parse(res);
+        //        alert("正常！");
+
+
+        //     },
+        //     error:function(err){console.log(err);alert("異常！");},
+        // });
     </script>
 </body>
 </html>
