@@ -147,7 +147,7 @@
                         </div>
                 </div>
                 
-                <div id="map" class="map spot"></div>
+                <div id="map" class="map"></div>
             </div>
         </div>
     </section>
@@ -163,7 +163,7 @@
                     <img src="./pic/camping/北1-1.jpg" alt="">
                 </div>
                 <div class="area_info">
-                    <div class="sub_title">確幸莊園
+                    <div class="sub_title" id="hot_camp_name">確幸莊園
                         <div class="third_title coll_num">收藏數：888</div>
                     </div>
                     <div class="level1">位於新北市新店區的「確幸莊園」
@@ -294,7 +294,7 @@ var xhr = new XMLHttpRequest();
         if( xhr.status == 200 ){
         let camping = JSON.parse(xhr.responseText);
         console.log(camping);
-        $id("CAM_NAME_brower").innerText = camping.CAM_NAME;
+        $id("hot_camp_name").innerText = camping.CAM_NAME;
 
     }else{
     console.log( xhr.status );
