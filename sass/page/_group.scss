@@ -1241,14 +1241,17 @@ input[type="submit"], button{
             }
             .more{
                 display: block;
+                text-align: center;
                 .mainbtn1{
                     display: inline-block;
                     position: static;
                     width: 100%;
+                    max-width: 300px;
                 }
                 .secondbtn1{
                     display: inline-block;
                     margin: 15px 0 0 0;
+                    
                 }
             }
         }
