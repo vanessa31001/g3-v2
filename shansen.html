@@ -637,13 +637,18 @@
         function dofirst(){
             let xhr = new XMLHttpRequest();
             xhr.onload = function(){
-                groupDatas = JSON.parse(xhr.responseText);
-                // if(xhr.status == 200){ //success
-                //     groupDatas = JSON.parse(xhr.responseText);
-                //     // alert(xhr.status);
-                // }else{ //error
-                //     alert(xhr.status);
-                // }
+                if(xhr.status == 200){ //success
+                   
+                    groupDatas = JSON.parse(xhr.responseText);
+                    console.log(groupDatas.length);
+                    for(let i =0; i< groupDatas.length ; i++){
+                        console.log(groupDatas[0].GROUP_NAME);
+                    }
+                    
+
+                }else{ //error
+                    alert(xhr.status);
+                }
             }
 
             xhr.open("get", "./php/group/groupindex.php", true);

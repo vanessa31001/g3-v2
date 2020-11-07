@@ -11,12 +11,16 @@ try{
   where GROUP_STATUS = 0
   order by 收藏數 desc";
   $products = $pdo->query($sql);
+  // $groupRow = $products->fetch(PDO::FETCH_ASSOC);
+  // $result = array("GROUP_NAME"=>$groupRow["GROUP_NAME"],"GROUP_START_DATE"=>$groupRow["開團日期"],"likeNum"=>$groupRow["收藏數"]);
+  // echo json_encode($result);
+  $result=[];
   while( $groupRow = $products->fetch(PDO::FETCH_ASSOC)){
     // echo "團名:".$groupRow["GROUP_NAME"]. "<br>開團日期:". $groupRow["開團日期"] ."<br>收藏數:". $groupRow["收藏數"]."<br>";
     // echo "<br>";
-    $result = array("GROUP_NAME"=>$groupRow["GROUP_NAME"],"GROUP_START_DATE"=>$groupRow["開團日期"],"likeNum"=>$groupRow["收藏數"]);
-    echo json_encode($result);
+    $result[] = array("GROUP_NAME"=>$groupRow["GROUP_NAME"],"GROUP_START_DATE"=>$groupRow["開團日期"],"likeNum"=>$groupRow["收藏數"]);
   }
+  echo json_encode($result);
    
     
 }catch(PDOException $e){
