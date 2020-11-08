@@ -1,10 +1,10 @@
 <?
 try{
     require_once("../connectBooks.php");
-    $sql = "select CAM_NAME from `camping`";
-    $camping = $pdo->query($sql);
-    print_r($camping);
-    // $camping->bindValue(":CAM_NAME", $_POST['CAM_NAME']);
+    $sql = "select * from member";
+    $members = $pdo->query($sql);
+    $mem = $members->fetch(PDO::FETCH_ASSOC);
+    print_r($mem);
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";
     echo "錯誤訊息:", $e->getMessage(),"<br>";
