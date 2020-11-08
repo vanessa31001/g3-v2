@@ -151,17 +151,30 @@
                     <div class="gMainBottom level5 green1">
                         <div class="sub_title">最新揪團資訊</div>
                         
-                        <div class="gMainGroups">
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup" id="group1">
+                        <div class="gMainGroups" id="gMainGroups">
+                            <!-- <a href="./groupInfo.html">
+                                <div class="gMainGroup" id="group0">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
                                     <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
+                                        <div class="gMainName level2 green1" id="gMainName0">
+                                            
                                         </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                        <div class="level1 orange1" id="gMaindate0">開團日期:2020-10-30</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./groupInfo.html">
+                                <div class="gMainGroup"  id="group1">
+                                    <div class="img">
+                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
+                                    </div>
+                                    <div class="gMainGroupInfo">
+                                        <div class="gMainName level2 green1" id="gMainName1">
+                                            
+                                        </div>
+                                        <div class="level1 orange1" id="gMaindate1">開團日期:2020-10-30</div>
                                     </div>
                                 </div>
                             </a>
@@ -171,39 +184,26 @@
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
                                     <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
+                                        <div class="gMainName level2 green1" id="gMainName2">
+                                            
                                         </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                        <div class="level1 orange1" id="gMaindate2">開團日期:2020-10-30</div>
                                     </div>
                                 </div>
                             </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup"  id="group3">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
-                                        </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html"  id="group4">
+                            <a href="./groupInfo.html"  id="group3">
                                 <div class="gMainGroup">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
                                     <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
+                                        <div class="gMainName level2 green1" id="gMainName3">
+                                            
                                         </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
+                                        <div class="level1 orange1"id="gMaindate3">開團日期:2020-10-30</div>
                                     </div>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                         <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
                     </div>
@@ -684,21 +684,52 @@
     <script src="./js/main.js"></script>
     <!-- 揪團 -->
     <script>
-        let groupDatas;
+        function showgroups(jason){
+            groupDatas = JSON.parse(jason);
+            console.log(groupDatas[0]);
+            let grouparrleng=0;
+            if(groupDatas.length > 4){
+                grouparrleng=4;
+            }
+            else{
+                grouparrleng=groupDatas.length;
+            }   
+            let gMainGroups = document.getElementById(`gMainGroups`);
+            for(let i =0; i< grouparrleng ; i++){
+                let linkGroup =  document.createElement("a");
+                linkGroup.href = `./groupInfo.html?GROUP_NO=${groupDatas[i].GROUP_NO}`;
+                gMainGroups.appendChild(linkGroup);
+                let gMainGroup =  document.createElement("div");
+                gMainGroup.className = "gMainGroup";
+                linkGroup.appendChild(gMainGroup);
+                let pic =  document.createElement("div");
+                pic.className = "img";
+                gMainGroup.appendChild(pic);
+                let img =  document.createElement("img");
+                img.src=groupDatas[i].GROUP_PIC1;
+                pic.appendChild(img);
+                let gMainGroupInfo =  document.createElement("div");
+                gMainGroupInfo.className = "gMainGroupInfo";
+                gMainGroup.appendChild(gMainGroupInfo);
+                let gMainName =  document.createElement("div");
+                gMainName.className = "gMainName level2 green1";
+                gMainName.innerText = groupDatas[i].GROUP_NAME;
+                gMainGroupInfo.appendChild(gMainName);
+                let gMaindate =  document.createElement("div");
+                gMaindate.className = "level1 orange1";
+                gMaindate.innerText = "開團日期:" + groupDatas[i].GROUP_START_DATE;
+                gMainGroupInfo.appendChild(gMaindate);
+                // document.getElementById(`gMainName${i}`).innerText=groupDatas[i].GROUP_NAME;
+                // dateText=groupDatas[i].GROUP_START_DATE;
+                // document.getElementById(`gMaindate${i}`).innerText="開團日期:" + dateText;
+
+            } 
+        }
         function dofirst(){
             let xhr = new XMLHttpRequest();
             xhr.onload = function(){
                 if(xhr.status == 200){ //success
-                   
-                    groupDatas = JSON.parse(xhr.responseText);
-                    // console.log(groupDatas.length);
-                    for(let i =0; i< groupDatas.length ; i++){
-                        groupX = document.getElementById(`group${i}`);
-                        groupX.getElementsByClassName('gMainName').innerText = groupDatas[i].GROUP_NAME;
-                        console.log(groupDatas[i].GROUP_NAME);
-                    }
-                    
-
+                    showgroups(xhr.responseText);
                 }else{ //error
                     alert(xhr.status);
                 }
