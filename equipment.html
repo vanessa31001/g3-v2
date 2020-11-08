@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,14 +23,14 @@
             <nav class="wrap">
                 <div class="nav_logo">
                     <a href="#" class="logo_link -bottom">
-                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                        <img class="desk sun" src="./pic/commom/sun.svg" alt="">
                     </a>
                     <a class="changelogo" href="./shansen.html">
-                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    <img class="phone" src="./pic/commom/phone_header.svg">
                     </a>
                     <div class="middle_bg"></div>
                     <a href="./shansen.html" class="logo_link -up">
-                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                        <img class="desk" src="./pic/commom/pc_header.svg">
                     </a>
                 </div>
                 <div class="nav_list">
@@ -40,12 +40,62 @@
                         <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
                         <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                         <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                        <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title" href="#" id="spanLogin">登入|註冊</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-
+    <!-- 燈箱開始 -->
+    <div id="outerDiv">
+        <div id="lightBox">
+                <input type="checkbox" id="login_img_control" name="login">
+                <div class="login_container">
+                <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                    </a></td></tr>
+                    <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                    <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                    <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                    <tr><td colspan="2" align="center">
+                            <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                            <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                    </td></tr>
+                    <tr><td colspan="2" align="center" class="level1">
+                        <label for="login_img_control">
+                            <span id="to_register_btn">還沒申請帳號?</span>
+                        </label>
+                    </td></tr>
+                </table>
+                <form id="reiMember">
+                    <table align="center" cellspacing="0" id="register" class="login_block_right">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                        <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email" value="text@gmail.com"></td></tr>
+                        <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)" value="12345"></td></tr>
+                        <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼" value="12345"></td></tr>
+                        <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名" value="測試"></td></tr>
+                        <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱" value="阿貓"></td></tr>
+                        <tr><td colspan="2" align="center">
+                                <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
+                                <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <label for="login_img_control">
+                                <span id="to_login_btn">已有會員帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </form>
+                <div class="login_block_mid">
+                    <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                </div>
+            </div>
+            <!-- 燈箱結束 -->
+        </div>
+    </div>
         <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
@@ -289,7 +339,7 @@
                         </div>
                         <div class="footercenter">
                             <a href="./shansen.html">
-                                <img src="./pic/commom/電腦版_header.svg">
+                                <img src="./pic/commom/pc_header.svg">
                             </a>
                         </div>
                         <div class="footerright">
@@ -309,7 +359,7 @@
             <div class="copyright">Copyright &copy; 2020ShanSen</div>
         </footer>
     </div>
-    
+    <script src="./js/logintext.js"></script>
     <script>
         let vm = new Vue({
             el: '#equipment',

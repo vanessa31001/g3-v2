@@ -23,14 +23,14 @@
             <nav class="wrap">
                 <div class="nav_logo">
                     <a href="#" class="logo_link -bottom">
-                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                        <img class="desk sun" src="./pic/commom/sun.svg" alt="">
                     </a>
                     <a class="changelogo" href="./shansen.html">
-                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    <img class="phone" src="./pic/commom/phone_header.svg">
                     </a>
                     <div class="middle_bg"></div>
                     <a href="./shansen.html" class="logo_link -up">
-                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                        <img class="desk" src="./pic/commom/pc_header.svg">
                     </a>
                 </div>
                 <div class="nav_list">
@@ -40,12 +40,62 @@
                         <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
                         <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                         <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                        <li><a id="login" class="nav_title" href="./member.html">登入|註冊</a></li>
+                        <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title" href="#" id="spanLogin">登入|註冊</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-
+    <!-- 燈箱開始 -->
+    <div id="outerDiv">
+        <div id="lightBox">
+                <input type="checkbox" id="login_img_control" name="login">
+                <div class="login_container">
+                <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                    </a></td></tr>
+                    <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                    <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                    <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                    <tr><td colspan="2" align="center">
+                            <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                            <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                    </td></tr>
+                    <tr><td colspan="2" align="center" class="level1">
+                        <label for="login_img_control">
+                            <span id="to_register_btn">還沒申請帳號?</span>
+                        </label>
+                    </td></tr>
+                </table>
+                <form id="reiMember">
+                    <table align="center" cellspacing="0" id="register" class="login_block_right">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                        <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email" value="text@gmail.com"></td></tr>
+                        <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)" value="12345"></td></tr>
+                        <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼" value="12345"></td></tr>
+                        <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名" value="測試"></td></tr>
+                        <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱" value="阿貓"></td></tr>
+                        <tr><td colspan="2" align="center">
+                                <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
+                                <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <label for="login_img_control">
+                                <span id="to_login_btn">已有會員帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </form>
+                <div class="login_block_mid">
+                    <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                </div>
+            </div>
+            <!-- 燈箱結束 -->
+        </div>
+    </div>
         <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
@@ -201,10 +251,19 @@
                                 <p class="level1 gray1">✔大片前延系統，強化遮光擋雨片。</p>
                                 <p class="level1 gray1">✔頂級3000mm耐水壓，高防水等級。</p>
 
-                                <div class="third_title level2 equ_third">商品規格</div>
-                                <p class="level1 gray1">✔外帳/75D 185T Polyester聚酯纖維 黑膠塗層、縫線防水貼條 耐水壓PU3000mm。</p>
-                                <p class="level1 gray1">✔頂級遮光黑膠材質，遮光率達99.7%。</p>
-                                <p class="level1 gray1">✔Air Convection 氣流循環系統，有像降低悶熱、結露。</p>
+                                <div class="third_title level2 equ_third">我想要的設備類別</div>
+                                <div class="want01_sort_equ">
+                                    <p class="want_number level1 gray1">1.</p>
+                                    <p class="want_sort_name level1 gray1">帳篷：家庭帳</p>
+                                </div>
+                                <div class="want02_sort_equ">
+                                    <p class="want_number level1 gray1">2.</p>
+                                    <p class="want_sort_name level1 gray1">睡袋：成人睡袋</p>
+                                </div>
+                                <div class="want03_sort_equ">
+                                    <p class="want_number level1 gray1">3.</p>
+                                    <p class="want_sort_name level1 gray1">其他：桌椅</p>
+                                </div>
                                 
                                 <div class="apply_change_btn_block">
                                     <button class="mainbtn1 apply_change_btn">提出交換申請</button>
@@ -371,7 +430,7 @@
                         </div>
                         <div class="footercenter">
                             <a href="./shansen.html">
-                                <img src="./pic/commom/電腦版_header.svg">
+                                <img src="./pic/commom/pc_header.svg">
                             </a>
                         </div>
                         <div class="footerright">
@@ -391,6 +450,7 @@
             <div class="copyright">Copyright &copy; 2020ShanSen</div>
         </footer>
     </div>
+    <script src="./js/logintext.js"></script>
     
     <script>
         let vm = new Vue({
