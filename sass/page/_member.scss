@@ -120,7 +120,7 @@
     text-align: left;
 }
 .startGroupManage_page{
-    border: 3px solid $greenColor1;
+    border: 2px solid $greenColor2;
     padding: 16px;
     ul{
         .group_everyRow{
@@ -169,7 +169,7 @@
     }
 }
 .joinGroupManage_page{
-    border: 3px solid $greenColor1;
+    border: 2px solid $greenColor2;
     padding: 16px;
     ul{
         .group_everyRow{
@@ -394,6 +394,25 @@
 //設備交換
 .group_button{
     display: flex;
+    .mem_page1{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        border:1px solid $greenColor2;
+        border-bottom: 0;
+        background-color:$greenColor2 ;
+        font-size: 1rem;
+        padding: 5px 0;
+    }
+    .mem_page2{
+        width: 120px;
+        border-radius: 5px 5px 0 0;
+        background-color:white;
+        border:1px solid $greenColor2;
+        border-bottom: 0;
+        font-size: 1rem;
+        padding: 5px 0;
+
+    }
 }
 .publicationRecord{
     font-size: 18px;

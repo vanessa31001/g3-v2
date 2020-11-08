@@ -14,15 +14,15 @@ function cancelLogin(){
 //燈箱的RWD
 function toRegister(){
     if(document.body.clientWidth < 767){
-        // document.getElementById('tableLogin').style.display = 'none';
-        // document.getElementById('register').style.display = 'block';
+        document.getElementById('logiMember').style.display = 'none';
+        document.getElementById('reiMember').style.display = 'block';
     }
 }
 //燈箱的RWD
 function toLogin(){
     if(document.body.clientWidth < 767){
-        // document.getElementById('tableLogin').style.display = 'block';
-        // document.getElementById('register').style.display = 'none';
+        document.getElementById('logiMember').style.display = 'block';
+        document.getElementById('reiMember').style.display = 'none';
     }
 }
 function $id(id){
@@ -30,12 +30,6 @@ function $id(id){
 }	
 //跳燈箱
 function showLoginForm(){
-	//檢查登入bar面版上 spanLogin 的字是登入或登出
-	//如果是登入，就顯示登入用的燈箱(lightBox)
-	//如果是登出
-	//將登入bar面版上，登入者資料清空 
-	//spanLogin的字改成登入
-	//將頁面上的使用者資料清掉
 	if($id('spanLogin').innerHTML == "登入|註冊"){
 		$id('outerDiv').style.display = 'flex';
 

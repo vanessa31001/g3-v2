@@ -29,14 +29,14 @@
         <nav class="wrap">
             <div class="nav_logo">
                 <a href="#" class="logo_link -bottom">
-                    <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                    <img class="desk sun" src="./pic/commom/sun.svg" alt="">
                 </a>
                 <a class="changelogo" href="./shansen.html">
-                <img class="phone" src="./pic/commom/手機_header.svg">
+                <img class="phone" src="./pic/commom/phone_header.svg">
                 </a>
                 <div class="middle_bg"></div>
                 <a href="./shansen.html" class="logo_link -up">
-                    <img class="desk" src="./pic/commom/電腦版_header.svg">
+                    <img class="desk" src="./pic/commom/pc_header.svg">
                 </a>
             </div>
             <div class="nav_list">
@@ -137,7 +137,7 @@
                 </div>
                 <div class="footercenter">
                     <a href="./shansen.html">
-                        <img src="./pic/commom/電腦版_header.svg">
+                        <img src="./pic/commom/pc_header.svg">
                     </a>
                 </div>
                 <div class="footerright">
@@ -279,21 +279,21 @@
             data(){
                 return{
                     link : "startGroup",
-                    page1style: "secondbtn1",
-                    page2style: "secondbtn2",
+                    page1style: "mem_page1",
+                    page2style: "mem_page2",
                 }
             },
             methods:{
                 page1(){
                     this.link = 'startGroup'
-                    this.page1style= "secondbtn1",
-                    this.page2style= "secondbtn2"
+                    this.page1style= "mem_page1",
+                    this.page2style= "mem_page2"
 
                 },
                 page2(){
                     this.link = 'joingroup'
-                    this.page1style= "secondbtn2",
-                    this.page2style= "secondbtn1"
+                    this.page1style= "mem_page2",
+                    this.page2style= "mem_page1"
                 }
             },
             template: `
@@ -615,7 +615,7 @@
         new Vue({
             el: '#app',
             data: {
-                content: 'memberInformation',
+                content: 'memberGroup',
                 now_page: 'thirdbtn1_green',
                 other_page: 'thirdbtn2_green',
             },
