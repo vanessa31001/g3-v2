@@ -54,7 +54,7 @@
                     <div class="cardStep" id="cardStep1">
                         <p>1</p>
                     </div>
-                    <p class="level4">選擇材質</p>
+                    <p class="level4 cardStepTitle cardStepTitle1 " id="cardStepId1">選擇材質</p>
                 </div>
                 <div class="stepLine" id="stepLine1">
 
@@ -63,7 +63,7 @@
                     <div class="cardStep" id="cardStep2">
                         <p>2</p>
                     </div>
-                    <p class="level4">上傳照片</p>
+                    <p class="level4 cardStepTitle" id="cardStepId2">上傳照片</p>
                 </div>
                 <div class="stepLine" id="stepLine2">
                     
@@ -72,7 +72,7 @@
                     <div class="cardStep" id="cardStep3">
                         <p>3</p>
                     </div>
-                    <p class="level4">增加插圖</p>
+                    <p class="level4 cardStepTitle" id="cardStepId3">增加插圖</p>
                 </div>
                 <div class="stepLine" id="stepLine3">
                     
@@ -81,7 +81,7 @@
                     <div class="cardStep" id="cardStep4">
                         <p>4</p>
                     </div>
-                    <p class="level4">輸入內文 </p>
+                    <p class="level4 cardStepTitle" id="cardStepId4">輸入內文 </p>
                 </div>
                 <div class="stepLine" id="stepLine4">
                     
@@ -90,7 +90,7 @@
                     <div class="cardStep" id="cardStep5">
                         <p>5</p>
                     </div>
-                    <p class="level4">寄給朋友</p>
+                    <p class="level4 cardStepTitle" id="cardStepId5">寄給朋友</p>
                 </div>
                 <div class="stepLine" id="stepLine5">
                     
@@ -99,7 +99,7 @@
                     <div class="cardStep" id="cardStep6">
                         <p>6</p>
                     </div>
-                    <p class="level4">下載明信片</p>
+                    <p class="level4 cardStepTitle" id="cardStepId6">下載明信片</p>
                 </div>
                 
             </div>
@@ -415,7 +415,7 @@
             stepTitleSelect.innerText = firstStepText;
             previousStep.classList.remove('thirdbtn2_green');
             previousStep.setAttribute("style","background-color: #FFFFFF; color: #00A5A3; padding: 0 15px;  height: 35px; font-size: 16px; border-radius: 8px; border-color: #00A5A3;  border-width:2px; font-weight: bold;");
-            document.getElementById(`cardStep${stepControl+1}`).className = "chooseCardStep";
+            document.getElementById(`cardStep${stepControl+1}`).className = "chooseCardStep";   
     
     
             
@@ -487,7 +487,10 @@
                     document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
                     document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
                     document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
-                    
+                    document.getElementById(`stepLine${nowRightNum-1}`).style.borderTopColor = '#C4C4C4';
+                    document.getElementById(`cardStepId${nowRightNum}`).classList.remove('cardStepTitle1');
+                    document.getElementById(`cardStepId${nowRightNum-1}`).classList.add('cardStepTitle1');
+                    document.getElementById(`cardStepId${nowRightNum-1}`).classList.remove('cardStepTitleHistory');
                 }else if(stepControl>0){
                     
                     let nowStepNum = stepTitle.indexOf(stepTitleSelect.innerText);
@@ -497,6 +500,11 @@
                     stepTitleSelect.innerText =stepTitle[stepControl];
                     document.getElementById(`rightStep${nowRightNum-1}`).style.display = 'block';
                     document.getElementById(`cardStep${nowRightNum-1}`).className = "chooseCardStep";
+                    document.getElementById(`stepLine${nowRightNum-1}`).style.borderTopColor = '#C4C4C4';
+                    document.getElementById(`cardStepId${nowRightNum}`).classList.remove('cardStepTitle1');
+                    document.getElementById(`cardStepId${nowRightNum-1}`).classList.add('cardStepTitle1');
+                    document.getElementById(`cardStepId${nowRightNum-1}`).classList.remove('cardStepTitleHistory');
+                    
                     styleDisplayPre(stepTitleSelect.innerText);  //傳上一個標題文字給函數
                 }else if(stepControl<0){
                     stepControl+=1;
@@ -512,10 +520,14 @@
                     previousStep.classList.add('thirdbtn2_green');
                     if(nowStepNum<stepTitle.length-1){
                         document.getElementById(`rightStep${nowRightNum}`).style.display = 'none';
-                        document.getElementById(`cardStep${nowRightNum}`).className = "cardStep";
+                        document.getElementById(`cardStep${nowRightNum}`).className = "chooseCardStep";
+                        document.getElementById(`stepLine${nowRightNum}`).style.borderTopColor = '#FFAE08';
                         stepTitleSelect.innerText =stepTitle[stepControl];
                         document.getElementById(`rightStep${nowRightNum+1}`).style.display = 'block';
                         document.getElementById(`cardStep${nowRightNum+1}`).className = "chooseCardStep";
+                        document.getElementById(`cardStepId${nowRightNum}`).classList.remove('cardStepTitle1');
+                        document.getElementById(`cardStepId${nowRightNum}`).classList.add('cardStepTitleHistory');
+                        document.getElementById(`cardStepId${nowRightNum+1}`).classList.add('cardStepTitle1');
                         styleDisplayNext(stepTitleSelect.innerText);   //傳下一個標題文字給函數
                     }
                 }else{
@@ -647,7 +659,7 @@
                 }else{
                     clickTimeOfWord+=1;
                     if(clickTimeOfWord<=5){    //點擊次數小於五次做
-                        document.getElementById('posWarningSign').style.display = 'none';   //警告標語不顯示
+                        document.getElementById('posWarningSign').style.visibility = 'hidden';   //警告標語不顯示
                         let textValue = document.getElementById('postcardInsideText').value;  //抓textarea內的值
                         testLeftWordLimit.innerText =textValue;   //測試文字框
                         if(document.getElementById('postcardLeftWord1').clientWidth-15>testLeftWordLimit.clientWidth){   //測試文字框的寬度若小於底線的寬度做
@@ -697,7 +709,7 @@
                                                 document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).innerText = textValue.substring(j+k+l+m,j+k+l+m+n);
                                                 document.getElementById(`postcardLeftWord${clickTimeOfWord+4}`).style.color = wordColor;
                                                 }else{
-                                                    document.getElementById('posWarningSign').style.display = 'block';
+                                                    document.getElementById('posWarningSign').style.visibility = 'visible';
                                                 }
                                             }
                                         }
@@ -736,7 +748,7 @@
                         }
                     
                     }else{
-                    document.getElementById('posWarningSign').style.display = 'block';
+                    document.getElementById('posWarningSign').style.visibility = 'visible';
                     clickTimeOfWord-=1;
                     
                     }
@@ -745,7 +757,7 @@
                 
             }
             function delWordNow(){
-                document.getElementById('posWarningSign').style.display = 'none';
+                document.getElementById('posWarningSign').style.visibility = 'hidden';
                 document.getElementById(`postcardLeftWord${clickTimeOfWord}`).innerText ='';
                 clickTimeOfWord-=1;
                 
