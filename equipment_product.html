@@ -40,7 +40,7 @@
                         <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
                         <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                         <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                        <li><a id="login" class="nav_title" href="./member.html">登入|註冊</a></li>
+                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
                     </ul>
                 </div>
             </nav>
@@ -137,7 +137,7 @@
 
                                             <div class="report_close_btn">
                                                 <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
-                                                <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
+                                                <button type="button" class="thirdbtn2_green btn_modal_close">關閉</button>
                                             </div>                                        
                                         </form>                                        
                                     </article>
@@ -174,9 +174,9 @@
                 
                                 <div class="msgoverlay">
                                     <article>
-                                        <div class="level7 bold green1 equmsg_title">傳送訊息給Yong Hwa</div>
-                                                        
+                                        
                                         <form class="msg_form" action="">
+                                            <div class="level7 bold green1 equmsg_title" id="equmsg_member">傳送訊息給Yong Hwa</div>
                                                     
                                             <div class="msg_block level1 gray1">
                                                 <textarea  type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息..."></textarea>
@@ -243,7 +243,7 @@
                             
                     
                                             <div class="apply_close_btn">
-                                                <input class="thirdbtn1_green apply_submit_btn" type="submit" name="SB" value="送出">
+                                                <input class="thirdbtn1_green apply_submit_btn" id="applysbbtn" type="submit" name="SB" value="送出">
                                                 <button type="button" class="thirdbtn2_green btn_apply_close">關閉</button>
                                             </div>                                        
                                         </form>
@@ -284,7 +284,7 @@
                 </div>
             </div>
         </section>
-        <section class="bgcColor">
+        <section class="bgcColor change_section">
             <div class="wrap">
                 <div class="title">
                     誰來交換
@@ -299,10 +299,10 @@
                             <img src="pic/equipment/f_tent04.png" alt="">
                         </div>
                         <div class="change_min_block01_desc">
-                            <div class="third_title level1">商品名稱</div>
-                            <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
-                            <div class="third_title level1 equ_num">商品數量</div>
-                            <p class="level1 gray1">1個</p>
+                            <div class="third_title level1 ">商品名稱</div>
+                            <p class="level1 gray1 equname">NUIT 家庭帳篷六人帳蓬</p>
+                            <!-- <div class="third_title level1 equ_num">商品數量</div> -->
+                            <!-- <p class="level1 gray1">1個</p> -->
                         </div>
                         <div class="change_min_block01_mem">
                             <div class="change_min_block01_mem_pic">
@@ -324,9 +324,9 @@
                         </div>
                         <div class="change_min_block01_desc">
                             <div class="third_title level1">商品名稱</div>
-                            <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
-                            <div class="third_title level1 equ_num">商品數量</div>
-                            <p class="level1 gray1">1個</p>
+                            <p class="level1 gray1 equname">NUIT 家庭帳篷六人帳蓬</p>
+                            <!-- <div class="third_title level1 equ_num">商品數量</div> -->
+                            <!-- <p class="level1 gray1">1個</p> -->
                         </div>
                         <div class="change_min_block01_mem">
                             <div class="change_min_block01_mem_pic">
@@ -348,9 +348,9 @@
                         </div>                        
                         <div class="change_min_block01_desc">
                             <div class="third_title level1">商品名稱</div>
-                            <p class="level1 gray1">NUIT 家庭帳篷六人帳蓬</p>
-                            <div class="third_title level1 equ_num">商品數量</div>
-                            <p class="level1 gray1">1個</p>
+                            <p class="level1 gray1 equname">NUIT 家庭帳篷六人帳蓬</p>
+                            <!-- <div class="third_title level1 equ_num">商品數量</div> -->
+                            <!-- <p class="level1 gray1">1個</p> -->
                         </div>
                         <div class="change_min_block01_mem">
                             <div class="change_min_block01_mem_pic">
@@ -525,6 +525,40 @@
                 $(this).addClass("now");
                 $(".noweqimg").attr("src", mig);      //要更換的圖片位置
             });
+
+
+
+
+            function $id(id){
+                return document.getElementById(id);
+            }	
+            function sendForm(){
+                //=====使用Ajax 回server端,取回登入者姓名, 放到頁面上 
+                let EQU_NAME = $id("EQU_NAME E").value;  
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function(){
+                member = JSON.parse(xhr.responseText);
+                if(member.memId){
+                    $id("memName").innerText = member.memName;
+                    $id('spanLogin').innerHTML = '登出';
+                    
+                }else{
+                    window.alert("帳密錯誤~");
+                }
+                }
+
+                xhr.open("Post", "equipment_product.php", true);
+                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                let data_info = `memId=${memId}&memPsw=${memPsw}`;
+                xhr.send(data_info); 
+            }
+
+            function cancelLogin(){
+                //將登入表單上的資料清空，並將燈箱隱藏起來
+                $id('lightBox').style.display = 'none';
+                $id('memId').value = '';
+                $id('memPsw').value = '';
+            }
     </script>
 
 

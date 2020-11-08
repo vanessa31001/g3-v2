@@ -103,7 +103,8 @@
 }
 
 .now{
-    border: 5px solid $greenColor3;
+    border: 3px solid $greenColor3;
+    border-radius: $radius2;
     text-align: left;  
     font-size: 0;
 
@@ -278,13 +279,13 @@ button.reportbtn , .equ_collect_checkbox{
         background-image: url('../pic/equipment/1029_燈箱_傳送訊息.svg');
         background-position: bottom;
         background-repeat: no-repeat;
-        .equmsg_title{
-            text-align: center;
-        }
         .msg_form{
-            padding-top: 30px;
             text-align: center;
+            .equmsg_title{
+                text-align: center;
+            }
             .msg_block{
+                padding-top: 30px;
                 textarea{
                     border: 2px solid $orangeColor1;
                     width: 300px;
@@ -346,6 +347,7 @@ button.reportbtn , .equ_collect_checkbox{
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
+                    cursor: $cursor;
                     img{
                         width: 120px;
                     }
@@ -355,6 +357,7 @@ button.reportbtn , .equ_collect_checkbox{
                     align-items: center;
                     justify-content: space-around;
                     padding-top: 30px;
+                    cursor: $cursor;
                     img{
                         width: 120px;
                     }
@@ -364,6 +367,7 @@ button.reportbtn , .equ_collect_checkbox{
                     align-items: center;
                     justify-content: space-around;
                     padding-top: 30px;
+                    cursor: $cursor;
                     img{
                         width: 120px;
                     }
@@ -529,6 +533,7 @@ button.reportbtn , .equ_collect_checkbox{
     max-width: 1140px;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
 }
 
 .other_equ_block{
@@ -544,6 +549,14 @@ button.reportbtn , .equ_collect_checkbox{
 
 .other_equ_block > a{
     text-decoration: none;
+}
+
+.change_section{
+    padding-top: 80px;
+}
+
+.change_block{
+    margin-top: 20px;
 }
 
 .change_min_block01{
@@ -577,8 +590,13 @@ button.reportbtn , .equ_collect_checkbox{
     padding: 20px;
 }
 
-.equ_num{
-    margin-top: 20px;
+// .equ_num{
+//     margin-top: 20px;
+    
+// }
+
+.equname{
+    margin-top: 15px;
 }
 
 .change_min_block01_mem_pic{
@@ -702,7 +720,7 @@ button.reportbtn , .equ_collect_checkbox{
 
 .post_minimg{
     width: 70px;
-    display: flex;
+    display: inline-block;
     cursor: $cursor;
 } 
 
@@ -723,9 +741,7 @@ button.reportbtn , .equ_collect_checkbox{
     text-align: center;
 }
 
-.prev_btn{
 
-}
 
 
 
