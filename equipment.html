@@ -137,7 +137,9 @@
                     
                     <!-- 右邊全部設備 -->
                     <div class="equmain_all" id="equallprod">
-                        <equamainall v-for="card in allRows"></equamainall>
+                        <equamainall  v-for="card in allRows">
+
+                        </equamainall>
                                     
                     </div>
                     
@@ -217,16 +219,32 @@
         Vue.component('equamainall',{
             data(){
                 return{
-                    allRows:[1,2,3],
+                    allRows:[],
                 };
             },
-            created(){
-                // axios.get('php/equipment/equipment.php')
-                //         .then(res => {this.allRows = res.data;})
-            },
+            // created(){
+            //     axios.get('php/equipment/equipment.php')
+            //             .then(res => console.log(res.data))
+            //             .catch(error => console.log(error));
+            // },
             props: ['EQU_NAME','EQU_PIC1','MEM_NICKNAME'],
             template:`
-                <p>{{card}}</p>
+            <div>
+            <div class="equ_card1">
+                <a href="./equipment_product.html">
+                    <div class="equ_img1">
+                        <img src="pic/equipment/f_tent01.jpg" alt="">
+                    </div>            
+                </a>
+                <div class="equ_text">
+                    <a href="./equipment_product.html">
+                        <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
+                    </a>
+                    <span>刊登者：</span>
+                    <a class="bold level1 gray1 poster_text" href="">{{MEM_NICKNAME}}</a>
+                </div>       
+            </div>
+            </div>
             `,
         });
 
@@ -302,9 +320,9 @@
             },
             mounted() {
                 // console.log(this.allRows);
-                // axios.get('php/equipment/equipment.php')
-                //         .then(res => console.log(res.data))
-                //         .catch(error => console.log(error));
+                axios.get('php/equipment/equipment.php')
+                        .then(res => console.log(res.data))
+                        .catch(error => console.log(error));
 
                 // fetch('php/equipment/equipment.php').then(res => res.json()).then(data => this.allRows = data);
                 

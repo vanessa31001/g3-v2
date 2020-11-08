@@ -1,4 +1,4 @@
-<?
+<?php
     $dsn = "mysql:localhost;port=3306;dbname=shansen;charset=utf8";
     $user = "root";
     $password = "Yong861001";
