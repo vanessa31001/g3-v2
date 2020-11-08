@@ -109,9 +109,9 @@ function sendForm_Regi(){
     }
 }
 //忘記密碼
-function forgetPassword(){
-    // alert();
-}
+// function forgetPassword(){
+//     // alert();
+// }
 //抓是否已登入OK
 function getMemberInfo(){
     xhr.onload = function(){
@@ -147,7 +147,7 @@ function init(){
     $id('to_register_btn').onclick = toRegister;
     $id('to_login_btn').onclick = toLogin;
 
-    $id('forgetPsw').onclick = forgetPassword;
+    // $id('forgetPsw').onclick = forgetPassword;
 };
 
 window.addEventListener('load',init,false);

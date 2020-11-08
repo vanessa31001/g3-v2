@@ -119,7 +119,7 @@
                         <div class="nav">
                             <div class="title_btn_block">
                                 <div class="equipment_select_title">
-                                <h2 class="level7 green1">搜尋設備</h2>
+                                    <h2 class="level7 green1">搜尋設備</h2>
                                 </div>
                                 <div class="post_btn">
                                     <a href="./equipment_post.html">
@@ -137,10 +137,7 @@
                     
                     <!-- 右邊全部設備 -->
                     <div class="equmain_all" id="equallprod">
-                        <equamainall  v-for="card in allRows">
-
-                        </equamainall>
-                                    
+                        <equamainall ></equamainall>
                     </div>
                     
                         
@@ -219,31 +216,31 @@
         Vue.component('equamainall',{
             data(){
                 return{
-                    allRows:[],
+                    allRows: [],
+                    image:'pic/equipment/f_tent01.jpg'
                 };
             },
-            // created(){
-            //     axios.get('php/equipment/equipment.php')
-            //             .then(res => console.log(res.data))
-            //             .catch(error => console.log(error));
-            // },
-            props: ['EQU_NAME','EQU_PIC1','MEM_NICKNAME'],
+            created(){
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {this.allRows = res.data;})
+                        .catch(error => console.log(error));
+            },
             template:`
-            <div>
-            <div class="equ_card1">
-                <a href="./equipment_product.html">
-                    <div class="equ_img1">
-                        <img src="pic/equipment/f_tent01.jpg" alt="">
-                    </div>            
-                </a>
-                <div class="equ_text">
+            <div  class="equtemp">
+                <div class="equ_card1" v-for="(card,index) in allRows" :key="index">
                     <a href="./equipment_product.html">
-                        <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
+                        <div class="equ_img1">
+                            <img :src="image" alt="">
+                        </div>            
                     </a>
-                    <span>刊登者：</span>
-                    <a class="bold level1 gray1 poster_text" href="">{{MEM_NICKNAME}}</a>
-                </div>       
-            </div>
+                    <div class="equ_text">
+                        <a href="./equipment_product.html">
+                            <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
+                        </a>
+                        <span class="level1 gray1">刊登者：</span>
+                        <a class="bold level1 gray1 poster_text" href="">{{card.MEM_NICKNAME}}</a>
+                    </div>
+                </div>
             </div>
             `,
         });
@@ -307,26 +304,12 @@
         let vm = new Vue({
             el: '#equipment',
             data: {  
-                allRows:[],
             },
             methods: {
-                // checkWords(theCard){
-                //     return theCard.substr(0,15);
-                // }
+                
             },
             computed: {
             },
-            watch: { 
-            },
-            mounted() {
-                // console.log(this.allRows);
-                axios.get('php/equipment/equipment.php')
-                        .then(res => console.log(res.data))
-                        .catch(error => console.log(error));
-
-                // fetch('php/equipment/equipment.php').then(res => res.json()).then(data => this.allRows = data);
-                
-            }, 
         });
     </script>
     <script>

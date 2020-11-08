@@ -1,12 +1,12 @@
 <?php
 try{
     require_once("../connectBooks.php");
-    $sql = "select EQU_NAME , EQU_PIC1 from equipment join member on member.MEMNO=equipment.EQU_MEMNO";
-    echo $sql;
+    $sql = "select EQU_NAME , EQU_PIC1 , MEM_NICKNAME from equipment
+            join member on  member.MEMNO=equipment.EQU_MEMNO";
     $equipment = $pdo->query($sql);
     $equipmentRows = $equipment->fetchAll(PDO::FETCH_ASSOC);
-    // echo $equipmentRows;
-    print_r($equipmentRows);
+    echo json_encode($equipmentRows);
+    
 
     
 }catch(PDOException $e){

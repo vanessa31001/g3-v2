@@ -53,7 +53,7 @@
 }
 
 .post_btn{
-    margin-bottom: 20px;
+    margin: 20px 20px;
     // text-align: center;
 }
 
@@ -671,11 +671,17 @@ button.reportbtn , .equ_collect_checkbox{
     flex-wrap: wrap;
 }
 
+.equtemp{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .equ_card1{
     background-color: $white;
     text-align: center ;
     width: 265px;
     margin:0 14px 30px 0;
+    
 }
 
 .equ_img1 > img {
@@ -822,10 +828,6 @@ textarea{
         .equpost_pic{
             .post_bigimg{
                 width: 350px;
-                img{
-                    // width: 100%;
-                    
-                }
             }
         }
         .equpost_inform{
@@ -1012,15 +1014,7 @@ textarea{
                         
                         
                     }
-                    .equpost_pic{
-                        .post_bigimg{
-                        // width: 100%;
-                            img{
-                                    // max-width: 680px;
-                                    // width: 100%;
-                            }
-                        }
-                    }   
+                    
                 }
             }
 
@@ -1079,10 +1073,6 @@ textarea{
         .equpost_pic{
             .post_bigimg{
                 width: 100%;
-                img{
-                    // max-width: 680px;
-                    // width: 100%;
-                }
             }
         }    
 
@@ -1107,6 +1097,7 @@ textarea{
         .equmain_all{
             .equ_card1{
                 width: 250px;
+                margin: 30px auto;
                 img{
                     width: 100%;
                 }
@@ -1149,15 +1140,6 @@ textarea{
 
     //post頁面
     .equpost_block{
-        .equpost_pic{
-            .post_bigimg{
-                // width: 100%;
-                img{
-                    // width: 100%;
-                }
-            }
-        }
-
         .equpost_inform{
             border-left: none;
             margin: 10px;
@@ -1192,15 +1174,6 @@ textarea{
 
     //post頁面
     .equpost_block{
-        .equpost_pic{
-            .post_bigimg{
-                // width: 100%;
-                img{
-                    // width: 100%;
-                }
-            }
-        }
-
         .equpost_inform{
             border-left: none;
             margin: 10px;
