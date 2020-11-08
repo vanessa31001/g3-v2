@@ -102,7 +102,7 @@
                         
                         <div class="gMainGroups">
                             <a href="./groupInfo.html">
-                                <div class="gMainGroup">
+                                <div class="gMainGroup" id="group1">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
@@ -115,7 +115,7 @@
                                 </div>
                             </a>
                             <a href="./groupInfo.html">
-                                <div class="gMainGroup">
+                                <div class="gMainGroup"  id="group2">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
@@ -128,7 +128,7 @@
                                 </div>
                             </a>
                             <a href="./groupInfo.html">
-                                <div class="gMainGroup">
+                                <div class="gMainGroup"  id="group3">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
                                     </div>
@@ -140,7 +140,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="./groupInfo.html">
+                            <a href="./groupInfo.html"  id="group4">
                                 <div class="gMainGroup">
                                     <div class="img">
                                         <img src="./pic/group/G1.jpg" alt="找不到照片">
@@ -640,9 +640,11 @@
                 if(xhr.status == 200){ //success
                    
                     groupDatas = JSON.parse(xhr.responseText);
-                    console.log(groupDatas.length);
+                    // console.log(groupDatas.length);
                     for(let i =0; i< groupDatas.length ; i++){
-                        console.log(groupDatas[0].GROUP_NAME);
+                        groupX = document.getElementById(`group${i}`);
+                        groupX.getElementsByClassName('gMainName').innerText = groupDatas[i].GROUP_NAME;
+                        console.log(groupDatas[i].GROUP_NAME);
                     }
                     
 
@@ -655,18 +657,6 @@
             xhr.send(null);
         }
         window.addEventListener("load",dofirst,false);
-        // $.ajax({
-        //     url:"./php/group/groupindex.php",
-        //     method:"GET",
-        //     dataType:"JSON",
-        //     success:function(res){
-        //        let groups = JSON.parse(res);
-        //        alert("正常！");
-
-
-        //     },
-        //     error:function(err){console.log(err);alert("異常！");},
-        // });
     </script>
 </body>
 </html>
