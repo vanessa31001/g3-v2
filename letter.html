@@ -149,7 +149,7 @@
                     <div class="cardStep" id="cardStep6">
                         <p>6</p>
                     </div>
-                    <p class="level4 cardStepTitle" id="cardStepId6">下載明信片</p>
+                    <p class="level4 cardStepTitle" id="cardStepId6">下載留存</p>
                 </div>
                 
             </div>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="rightPostcard">
                     <div class="rightPostcard_aside">
-                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|傳遞心情|填寫收件人|下載明信片</p>
+                        <p class="level4 topStepText" id="stepTitleName">選擇材質|選擇照片|增加插圖|傳遞心情|填寫收件人|下載留存</p>
                         <div class="stylePostcard" id="rightStep1">                            
                             <div class="paperTexture">
                                 <p>皺褶灰白</p>
@@ -304,52 +304,56 @@
                             </div>
                         </div>
                         <div class="stylePostcard" id="rightStep5">
-                            <p class="posFromToTitle">填寫收件人</p>
-                            <input type="text" class="posWriteFromTo" id="writeFrom"></input>
-                            <div class="toColorTitle">
-                                收件人文字顏色
+                            <div class="colorBig">
+                                <p class="posFromToTitle">填寫收件人</p>
+                                <input type="text" class="posWriteFromTo" id="writeFrom"></input>
+                                <div class="toColorTitle">
+                                    收件人文字顏色
+                                </div>
+                                <div class="fromToColor">
+                                    <div class="fromWordColor" id="fromWordBlue">
+                                    
+                                    </div>
+                                    <div class="fromWordColor" id="fromWordOrange">
+
+                                    </div>
+                                    
+                                    <div class="fromWordColor" id="fromWordYellow">
+
+                                    </div>
+                                    <div class="fromWordColor" id="fromWordGray">
+
+                                    </div>
+                                    <div class="fromWordColor" id="fromWordBlack">
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="fromToColor">
-                                <div class="fromWordColor" id="fromWordBlue">
-                                
+                            <div class="colorBig1">        
+                                <p class="posFromToTitle">填寫寄件人</p>
+                                <input type="text" class="posWriteFromTo" id="writeTo"></input>
+                                <div class="fromColorTitle">
+                                    寄件人文字顏色
                                 </div>
-                                <div class="fromWordColor" id="fromWordOrange">
+                                <div class="fromToColor">
+                                    <div class="toWordColor" id="toWordBlue">
+                                    
+                                    </div>
+                                    <div class="toWordColor" id="toWordOrange">
 
-                                </div>
-                                
-                                <div class="fromWordColor" id="fromWordYellow">
+                                    </div>
+                                    
+                                    <div class="toWordColor" id="toWordYellow">
 
-                                </div>
-                                <div class="fromWordColor" id="fromWordGray">
+                                    </div>
+                                    <div class="toWordColor" id="toWordGray">
 
-                                </div>
-                                <div class="fromWordColor" id="fromWordBlack">
+                                    </div>
+                                    <div class="toWordColor" id="toWordBlack">
 
+                                    </div>
+                                    
                                 </div>
-                            </div>
-                            <p class="posFromToTitle">填寫寄件人</p>
-                            <input type="text" class="posWriteFromTo" id="writeTo"></input>
-                            <div class="fromColorTitle">
-                                寄件人文字顏色
-                            </div>
-                            <div class="fromToColor">
-                                <div class="toWordColor" id="toWordBlue">
-                                
-                                </div>
-                                <div class="toWordColor" id="toWordOrange">
-
-                                </div>
-                                
-                                <div class="toWordColor" id="toWordYellow">
-
-                                </div>
-                                <div class="toWordColor" id="toWordGray">
-
-                                </div>
-                                <div class="toWordColor" id="toWordBlack">
-
-                                </div>
-                                
                             </div>
                             <div class="posButtonSend">
                                 <button class="thirdbtn2_green" id='posSendFromTo'>
@@ -362,12 +366,12 @@
                         </div>
                         <div class="stylePostcard" id="rightStep6">
                             <div class="posButtonContentBack">
-                                <button class="thirdbtn2_green" id="downloadBack" style="margin-top: 15%;">
+                                <button class="thirdbtn2_green" id="downloadBack">
                                     下載背面
                                 </button>
                             </div>
                             <div class="posButtonContentFront">
-                                <button class="thirdbtn2_green" id="downloadFront" style="margin-top: 15%;">
+                                <button class="thirdbtn2_green" id="downloadFront">
                                     下載封面
                                 </button>
                             </div>
@@ -622,7 +626,7 @@
                     postcard2Id.classList.add('leftPostcard2');
                     document.getElementsByClassName('leftPostcard2')[0].style.backgroundImage = paperBackgroundNow;
                     
-                }else if(posTextTitle=="下載明信片"){
+                }else if(posTextTitle=="下載留存"){
                     let postcardLeftAll = document.getElementsByClassName('postcardLeftAll')[0].cloneNode(true);
                     postcardLeftAll.style.display = 'block';
                     postcardLeftAll.id = 'canv1';
