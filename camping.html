@@ -215,20 +215,19 @@
                     <p class="white">熱門景點</p>
                 </div>
                 <div class="area_pic">
-                    <img src="./pic/camping/北1-1.jpg" alt="">
+                    <img id="hot_camp_img0" src="./pic/camping/北1-1.jpg" alt="">
                 </div>
                 <div class="area_info">
-                    <div class="sub_title" id="hot_camp_name0">確幸莊園
+                    <div class="sub_title" id="hot_camp_name0">
                         <div class="third_title coll_num">收藏數：888</div>
                     </div>
-                    <div class="level1" id="hot_camp_inner1">位於新北市新店區的「確幸莊園」
-                        為台北市近郊的露營區，前身為婚紗拍攝地
-                        車程近、營區寬敞、景色優質，非常適合愛拍照又愛戶外露營的露友喔！</div>
-                    <div class="third_title">聯絡資訊</div>
-                    <div class="level1">
-                        地址：新北市新店區新潭路二段27號<br>
-                        通話：02 2918 8769</div>
-                </div>
+                    <div class="level1" id="hot_camp_inner0"></div>
+
+                    <div class="third_title lineheight">聯絡資訊</div>
+                    <div class="level1" id="hot_camp_address"></div>
+                    
+                    <div class="third_title lineheight">相關設備</div>
+                    <div class="level1" id="hot_camp_facility"></div>
             </div>
         </div>
 
@@ -236,30 +235,30 @@
             <div class="other_popular_area">
                 <div class="card camping_block">
                     <div class="content">
-                        <img src="./pic/camping/北2-1.jpg" alt="">
-                        <div class="sub_title" id="hot_camp_name1">森森親子露營</div>
-                        <div class="level1" id="hot_camp_inner1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <img id="hot_camp_img1">
+                        <div class="sub_title" id="hot_camp_name1"></div>
+                        <div class="level1 ellipsis" id="hot_camp_inner1"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img src="./pic/camping/北5-1.jpg" alt="">
-                        <div class="sub_title" id="hot_camp_name2">相思園露營區</div>
-                        <div class="level1" id="hot_camp_inner2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <img id="hot_camp_img2">
+                        <div class="sub_title" id="hot_camp_name2"></div>
+                        <div class="level1 ellipsis" id="hot_camp_inner2"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img src="./pic/camping/中2-1.jpg" alt="">
-                        <div class="sub_title" id="hot_camp_name3">樹不老露營區</div>
-                        <div class="level1" id="hot_camp_inner3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <img id="hot_camp_img3">
+                        <div class="sub_title" id="hot_camp_name3"></div>
+                        <div class="level1 ellipsis" id="hot_camp_inner3"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img src="./pic/camping/南1-1.jpg" alt="">
-                        <div class="sub_title" id="hot_camp_name4">春園休閒農場</div>
-                        <div class="level1" id="hot_camp_inner4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <img id="hot_camp_img4">
+                        <div class="sub_title" id="hot_camp_name4"></div>
+                        <div class="level1 ellipsis" id="hot_camp_inner4"></div>
                     </div>
                 </div>
 
@@ -341,36 +340,34 @@
 <script>
 function $id(id){
     return document.getElementById(id);
-    console.log('aaa');
 }
 var hotspotxhr = new XMLHttpRequest();
     hotspotxhr.onload = function(){
         if( hotspotxhr.status == 200 ){
             showhotspot(hotspotxhr.responseText);
-            // let camping = JSON.parse(hotspotxhr.responseText);
-            // console.log(camping);
-        // $id("hot_camp_name").innerText = camping.CAM_NAME;
-
-    }else{
-    console.log( hotspotxhr.status );
+        }else{
+        console.log( hotspotxhr.status );
+        }
     }
-}
 hotspotxhr.open("Get", "php/camping/camping1.php", true);
 hotspotxhr.send( null );
+
 function showhotspot(json){
     hotspotDatas = JSON.parse(json);
-    // console.log(hotspotDatas[0]);
-    let hotspotDatasleng = 0;
-    if(hotspotDatas.length > 5){
-        hotspotDatas.length = 5;
-    }else{
-        hotspotDatasleng = hotspotDatas.length;
+    for(let i=0 ; i<5 ; i++){
+        // console.log(hotspotDatas[i]);
+        let likeID = "hot_camp_name"+i;
+        let likeInner = "hot_camp_inner"+i;
+        let likeImg = "hot_camp_img"+i;
+        $id(likeID).innerText = hotspotDatas[i].CAM_NAME;
+        $id(likeInner).innerText = hotspotDatas[i].CAM_INTRODUCTION;
+        $id(likeImg).src = `./pic/camping/camping_spot_img/${hotspotDatas[i].CAM_PIC1}.jpg`;
     }
-    let hot_camp_name;
-    for(let i=0 ; i<hotspotDatasleng ; i++){
-        hot_camp_name.id ='hot_camp_name'+i;
-        $id('hot_camp_name').innerText = CAMPING.CAM_NO;
-    }
+    $id('hot_camp_address').innerText = hotspotDatas[0].CAM_ADDRESS;
+    $id('hot_camp_facility').innerText = hotspotDatas[0].CAM_FACILITY;
+
+   console.log(hotspotDatas[0].CAM_FACILITY)
+    
 }
 </script>
 

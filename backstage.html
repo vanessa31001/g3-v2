@@ -304,13 +304,13 @@
                             <th>處理狀態</th>
                             <th>揪團狀態</th>
                         </tr>
-                        <tr>
-                            <td v-for="reportgroup in reportgroups">001</td>
-                            <td>{{reportgroup.}}</td>
-                            <td>7878</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
+                        <tr v-for="reportgroup in reportgroups">
+                            <td>{{reportgroup.REGROUP_NO}}</td>
+                            <td>{{reportgroup.GROUP_NAME}}</td>
+                            <td>{{reportgroup.MEM_NAME}}</td>
+                            <td>{{reportgroup.REGROUP_RESON}}</td>
+                            <td>{{reportgroup.REGROUP_STATUS}}</td>
+                            <td>{{reportgroup.GROUP_STATUS}}</td>
                         </tr>
                     </table>
                 </div>

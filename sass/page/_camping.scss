@@ -186,7 +186,11 @@ margin-bottom: 60px;
             border-radius: $radius;
         }
     }
-
+    .area_info{
+        .lineheight{
+            margin-top: 15px;
+        }
+    }
     .hot{
         background-color:  $orangeColor2; 
         width: 170px;
@@ -221,6 +225,15 @@ margin-bottom: 60px;
                 max-width: 250px;
                 width: 100%;
                 border-radius: $radius;
+            }
+            .ellipsis{
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                white-space: normal;
             }
         }
     }
