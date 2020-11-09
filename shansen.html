@@ -144,8 +144,8 @@
                             與其自己手忙腳亂自己搭帳篷，不如跟隨專業露營團隊出遊。好隊友自己挑，給你完美揪團體驗。
                         </div>
                         <div class="search_input home_search">
-                            <input type="text" placeholder="尋找地點、主揪、團名...">
-                            <label>搜尋</label>
+                            <input type="text" id="serchText"placeholder="尋找地點、主揪、團名...">
+                            <label id="serch">搜尋</label>
                         </div>
                             
                     </div>
@@ -639,6 +639,7 @@
     <script src="./js/main.js"></script>
     <!-- 揪團 -->
     <script>
+        //團
         let groupxhr = new XMLHttpRequest();
         groupxhr.onload = function(){
             if(groupxhr.status == 200){ //success
@@ -651,7 +652,6 @@
         groupxhr.send(null);
         function showgroups(jason){
             groupDatas = JSON.parse(jason);
-            console.log(groupDatas[0]);
             let grouparrleng=0;
             if(groupDatas.length > 4){
                 grouparrleng=4;
@@ -687,20 +687,15 @@
 
             } 
         }
-        // function dofirst(){
-        //     let xhr = new XMLHttpRequest();
-        //     xhr.onload = function(){
-        //         if(xhr.status == 200){ //success
-        //             showgroups(xhr.responseText);
-        //         }else{ //error
-        //             alert(xhr.status);
-        //         }
-        //     }
+        //搜尋揪團
+        document.getElementById("serch").onclick= function(){
+            let text = document.getElementById("serchText").value.trim();
+            if(text!= ""){    
+                // console.log(text);
+                window.location.href=`./group.html?serch=${text}`;
+            }
+        }
 
-        //     xhr.open("get", "./php/group/groupindex.php", true);
-        //     xhr.send(null);
-        // }
-        // window.addEventListener("load",dofirst,false);
     </script>
     <script src="./js/logintext.js"></script>
 </body>

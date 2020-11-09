@@ -148,11 +148,11 @@
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">剩餘名額</h3> 
-                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people">{{person}}</label>
+                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people[]">{{person}}</label>
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">出團日期</h3> 
-                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date">{{date}}</label>
+                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date[]">{{date}}</label>
                          </div>
                     </div>
                     <div class="groups">
@@ -309,6 +309,7 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script>
+        //燈箱
         $(document).ready(function(){
             $(".reportbtngGroup").on("click", function(){
                     $(".report_overlay").addClass("-on");
@@ -323,7 +324,6 @@
                     }, 1000);
             });
             
-            getMemberInfo();
         });
         new Vue({
             el: '#groupAllList',
