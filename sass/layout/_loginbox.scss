@@ -1,0 +1,147 @@
+    //登入燈箱
+
+    #outerDiv{
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+        display: none;
+        #lightBox{
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 15;
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+            .login_container{
+                width: 700px;
+                height: 515px;
+                margin: 0 auto;
+                border-radius: 20px;
+                background-color: white;
+                display: flex;
+                padding: 0 16px;
+                #logiMember{
+                    width: 50%;
+                    height: 100%;
+                    .login_block_left{
+                        margin: 0 auto;
+                        height: 100%;
+                        tr{
+                            td{
+                                padding: 0;
+                                label{
+                                    &:hover{
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                    }
+                                }
+                                #forgetPsw{
+                                    &:hover{
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #reiMember{
+                    min-width: 50%;
+                    width: 50%;
+                    .login_block_right{
+                        margin: 0 auto;
+                        height: 100%;
+                        padding: 16px;
+                        tr{
+                            td{
+                                padding: 0;
+                                label{
+                                    &:hover{
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .login_block_mid{
+                    position: absolute;
+                    left: 0;
+                    border-radius:20px;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            #login_img_control{
+                display: none;
+            }
+            #login_img_control:checked ~ .login_container .login_block_mid {
+                transform: translateX(0);
+                transition: 0.5s;
+            }
+            .login_block_mid {
+                transform: translateX(350px);
+                transition: 0.5s;
+            }
+        }
+    }
+    .changeBlock{
+        display: block;
+    }
+    .changeNone{
+        display: none;
+    }
+    @media screen and (max-width: 767px){
+        #outerDiv{
+            #lightBox{
+                .login_container{
+                    width: 400px;
+                    #logiMember{
+                        width: 100%;
+                        .login_block_left{
+                            margin: 0 auto;
+                            tr:nth-child(3){
+                                input{
+                                    width: 100%;
+                                }
+                            }
+                            tr:nth-child(4){
+                                input{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    #reiMember{
+                        min-width: 0;
+                        width: 100%;
+                        display: none;
+                    }
+                    .login_block_mid{
+                        display: none;
+                    }
+                    .login_block_mid {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 576px){
+        #outerDiv{
+            #lightBox{
+                width: 90%;
+            }
+        }
+    }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>營區攻略</title>
-    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
     <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,17 +20,17 @@
             </span>
         </button>
         </div>
-        <nav class="wrap">
+        <nav class="wrap_nav">
             <div class="nav_logo">
                 <a href="#" class="logo_link -bottom">
-                    <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                    <img class="desk sun" src="./pic/commom/sun.svg" alt="">
                 </a>
                 <a class="changelogo" href="./shansen.html">
-                <img class="phone" src="./pic/commom/手機_header.svg">
+                <img class="phone" src="./pic/commom/phone_header.svg">
                 </a>
                 <div class="middle_bg"></div>
                 <a href="./shansen.html" class="logo_link -up">
-                    <img class="desk" src="./pic/commom/電腦版_header.svg">
+                    <img class="desk" src="./pic/commom/pc_header.svg">
                 </a>
             </div>
             <div class="nav_list">
@@ -40,11 +40,65 @@
                     <li><a class="nav_title orange2" href="./camping.html">營區攻略</a></li>
                     <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                     <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                    <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                    <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title" href="#" id="spanLogin">登入|註冊</a></li>
                 </ul>
             </div>
         </nav>
     </header>
+    <!-- 燈箱開始 -->
+    <div id="outerDiv">
+        <div id="lightBox">
+            <input type="checkbox" id="login_img_control" name="login">
+            <div class="login_container">
+                <div id="logiMember">
+                    <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                        <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td colspan="2" align="center">
+                            <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                            <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <p id="forgetPsw">忘記密碼?</p>
+                            <label for="login_img_control">
+                                <span id="to_register_btn">還沒申請帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </div>
+                <form id="reiMember">
+                    <table align="center" cellspacing="0" id="register" class="login_block_right">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                        <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼"></td></tr>
+                        <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名"></td></tr>
+                        <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱"></td></tr>
+                        <tr><td colspan="2" align="center">
+                            <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
+                            <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <label for="login_img_control">
+                                <span id="to_login_btn">已有會員帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </form>
+                <div class="login_block_mid">
+                    <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 燈箱結束 -->
     <div class="bgcColor page">
 
     <section class="section1">
@@ -56,7 +110,7 @@
                     <li class="level0 gray1">營區攻略</li>
                 </ul>
             </div>
-            <div class="spot camping_block">
+            <div class="waethermap camping_block">
                 <div id="weatherbox">
                     <div class="sub_title">尋找營區</div>
                     <div class="weather">
@@ -90,6 +144,7 @@
                                 </div>
                                 <div class="PoP infosbox">
                                     降雨機率
+                                    
                                     <p id="PoP"></p>
                                 </div>
                                 <div class="RH infosbox">
@@ -163,7 +218,7 @@
                     <img src="./pic/camping/北1-1.jpg" alt="">
                 </div>
                 <div class="area_info">
-                    <div class="sub_title">確幸莊園
+                    <div class="sub_title" id="hot_camp_name">確幸莊園
                         <div class="third_title coll_num">收藏數：888</div>
                     </div>
                     <div class="level1">位於新北市新店區的「確幸莊園」
@@ -178,7 +233,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="camppart">
         <div class="wrap">
             <div class="other_popular_area">
                 <div class="card camping_block">
@@ -214,7 +269,7 @@
         </div>
     </section>
 
-    <section>
+    <section  class="camppart">
         <div class="wrap">
             <div class="title">近期揪團</div>
             <div class="camping_block">
@@ -266,7 +321,7 @@
                     </div>
                     <div class="footercenter">
                         <a href="./shansen.html">
-                            <img src="./pic/commom/電腦版_header.svg">
+                            <img src="./pic/commom/pc_header.svg">
                         </a>
                     </div>
                     <div class="footerright">
@@ -285,10 +340,30 @@
         </div>
         <div class="copyright">Copyright &copy; 2020ShanSen</div>
     </footer>
+<script>
+function $id(id){
+    return document.getElementById(id);
+}
+var xhr2 = new XMLHttpRequest();
+    xhr2.onload = function(){
+        if( xhr2.status == 200 ){
+        let camping = JSON.parse(xhr2.responseText);
+        console.log(camping);
+        $id("hot_camp_name").innerText = camping.CAM_NAME;
 
+    }else{
+    console.log( xhr2.status );
+    }
+}
 
-<script src="./js/map.js"></script>
+    var url = `php/camping/camping1.php`;
+    xhr2.open("Get", url, true);
+    xhr2.send( null );
+</script>
+
+<script src="./js/logintext.js"></script>
 <script src="https://unpkg.com/jquery"></script>
+<script src="./js/map.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/weather.js"></script>
 

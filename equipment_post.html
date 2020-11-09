@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,17 +20,17 @@
                 </span>
             </button>
             </div>
-            <nav class="wrap">
+            <nav class="wrap_nav">
                 <div class="nav_logo">
                     <a href="#" class="logo_link -bottom">
-                        <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+                        <img class="desk sun" src="./pic/commom/sun.svg" alt="">
                     </a>
                     <a class="changelogo" href="./shansen.html">
-                    <img class="phone" src="./pic/commom/手機_header.svg">
+                    <img class="phone" src="./pic/commom/phone_header.svg">
                     </a>
                     <div class="middle_bg"></div>
                     <a href="./shansen.html" class="logo_link -up">
-                        <img class="desk" src="./pic/commom/電腦版_header.svg">
+                        <img class="desk" src="./pic/commom/pc_header.svg">
                     </a>
                 </div>
                 <div class="nav_list">
@@ -40,12 +40,65 @@
                         <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
                         <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
                         <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-                        <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+                        <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title" href="#" id="spanLogin">登入|註冊</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-
+    <!-- 燈箱開始 -->
+    <div id="outerDiv">
+        <div id="lightBox">
+            <input type="checkbox" id="login_img_control" name="login">
+            <div class="login_container">
+                <div id="logiMember">
+                    <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                        <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td colspan="2" align="center">
+                            <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                            <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <p id="forgetPsw">忘記密碼?</p>
+                            <label for="login_img_control">
+                                <span id="to_register_btn">還沒申請帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </div>
+                <form id="reiMember">
+                    <table align="center" cellspacing="0" id="register" class="login_block_right">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                        <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼"></td></tr>
+                        <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名"></td></tr>
+                        <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱"></td></tr>
+                        <tr><td colspan="2" align="center">
+                            <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
+                            <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <label for="login_img_control">
+                                <span id="to_login_btn">已有會員帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </form>
+                <div class="login_block_mid">
+                    <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 燈箱結束 -->
         <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
@@ -57,25 +110,26 @@
                     <ul>
                         <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>          
                         <li><a href="./equipment.html" class="level0 green1">設備交換</a></li>
-                        <li>設備刊登</li>
+                        <li class="level0 gray1" >設備刊登</li>
                     </ul>    
                 </div>
 
-                <div class="equpost_block">
+                <form class="equpost_block">
                     <div class="equpost_pic">
-                        <div class="post_bigimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
+                        <div class="post_bigimg">                            
+                            <img id="upequimg0" src="pic/equipment/photo-camera.svg" alt="">
                         </div>
                         <div class="posttext_block">
-                            <p class="level1 gray1">(限GIF、PNG、JPEG檔，建議大小為400 × 400)</p>
+                            <p class="level1 gray1">(限PNG、JPG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
-                        <div class="post_minimg">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                            <img src="pic/equipment/f_tent01-C.jpg" alt="">
-                        </div>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg">
+                            <img id="upequimg1" src="pic/equipment/plus.svg" alt="">
+                            <img id="upequimg2" src="pic/equipment/plus.svg" alt="">
+                            <img id="upequimg3" src="pic/equipment/plus.svg" alt="">
+                        </label>
                         <div class="preview_btn">
-                            <button class="thirdbtn1_green prev_btn">預覽檔案</button>
+                            <!-- <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg"> -->
                         </div>
                     </div>
 
@@ -84,18 +138,18 @@
 
                     <div class="equpost_inform">
                         <div class="sub_title green1 level7">填寫刊登設備資訊</div>
-                        <form action="">
+                        <div class="right_form">
                             <table>
                                 <tr>
                                     <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
-                                    <td><input type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
+                                    <td><input class="inputstyle" type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label for="equ_post_select" class="third_title equ_info_name">我的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select name="equ_info_sort_sel" id="sort_select">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -122,7 +176,7 @@
                                         <label for="equ_name" class="third_title equ_info_name">我想要的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select name="equ_info_sort_sel" id="sort_select_want01">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want01">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -142,7 +196,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select name="equ_info_sort_sel" id="sort_select_want02">
+                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want02">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -162,7 +216,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select name="equ_info_sort_sel" id="sort_select_want03">
+                                        <select  class="selectstyle" name="equ_info_sort_sel" id="sort_select_want03">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -189,7 +243,7 @@
                                         <label for="equ_name" class="third_title equ_info_name">商品說明：</label>
                                     </td>
                                     <td>
-                                        <textarea name="equ_desc" id="equdescribe01" cols="40" rows="15" placeholder="請描述設備資訊..."></textarea>
+                                        <textarea class="textareastyle" name="equ_desc" id="equdescribe01" cols="40" rows="15" placeholder="請描述設備資訊..."></textarea>
                                     </td>
                                 </tr>    
                             </table>
@@ -200,13 +254,13 @@
                             </div>
 
                         
-                        </form>
+                        </div>
                         
                         
                     </div>
 
                     
-                </div>                       
+                </form>                       
             </div>
         </section>
         
@@ -225,7 +279,7 @@
                         </div>
                         <div class="footercenter">
                             <a href="./shansen.html">
-                                <img src="./pic/commom/電腦版_header.svg">
+                                <img src="./pic/commom/pc_header.svg">
                             </a>
                         </div>
                         <div class="footerright">
@@ -245,6 +299,7 @@
             <div class="copyright">Copyright &copy; 2020ShanSen</div>
         </footer>
     </div>
+    <script src="./js/logintext.js"></script>
     <script>
         $(function(){
             
@@ -255,6 +310,32 @@
 
                 });
             });
+
+
+        //上傳圖片
+        function doFirst(){    
+            document.getElementById('equFile').onchange = fileChange;
+        }
+        
+        function fileChange(){
+            let file = document.getElementById('equFile').files[0];
+            // let message = '';
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg0');
+                image.src = readFile.result;
+                image.style.maxWidth = '400px';
+                image.style.maxHeight = '400px';
+            });
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg1');
+                image.src = readFile.result;
+                image.style.maxWidth = '70px';
+                image.style.maxHeight = '70px';
+            });        
+        }
+        window.addEventListener('load',doFirst);
     </script>
     
     

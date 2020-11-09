@@ -1,8 +1,15 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+=======
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>>>>>> dev
     <title>會員專區</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
@@ -47,6 +54,7 @@
             <img class="desk" src="./pic/commom/電腦版_header.svg" />
           </a>
         </div>
+<<<<<<< HEAD
         <div class="nav_list">
           <ul>
             <li><a class="nav_title" href="./group.html">揪團露營</a></li>
@@ -61,11 +69,38 @@
           </ul>
         </div>
       </nav>
+=======
+        <nav class="wrap_nav">
+            <div class="nav_logo">
+                <a href="#" class="logo_link -bottom">
+                    <img class="desk sun" src="./pic/commom/sun.svg" alt="">
+                </a>
+                <a class="changelogo" href="./shansen.html">
+                <img class="phone" src="./pic/commom/phone_header.svg">
+                </a>
+                <div class="middle_bg"></div>
+                <a href="./shansen.html" class="logo_link -up">
+                    <img class="desk" src="./pic/commom/pc_header.svg">
+                </a>
+            </div>
+            <div class="nav_list">
+                <ul >
+                    <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+                    <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
+                    <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                    <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                    <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                    <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title" href="#" id="spanLogin">登入|註冊</a></li>
+                </ul>
+            </div>
+        </nav>
+>>>>>>> dev
     </header>
     <!--header結束-->
 
     <!--內容開始-->
     <div class="bgcColor member_page">
+<<<<<<< HEAD
       <section class="section1 bgcColor member_section">
         <div class="wrap wrap_block">
           <div class="title">
@@ -74,6 +109,65 @@
 
               <div class="app_left_aside">
                 <div class="level5 grayColor1 aside_subtitle">會員小屋</div>
+=======
+        <section class="section1 bgcColor member_section">
+            <div class="wrap wrap_block" >
+                <div class="title">
+
+                    <div id="app" class="app_anyway"> <!--HTML DOM template-->
+
+                        <div class="app_left_aside">
+                            
+                            <div class="level5 grayColor1 aside_subtitle">會員小屋</div>
+
+                            <div class="buttonClassification">
+                                <img class="imgSize" src="./pic/member/avatar.png">
+                                <button class="thirdbtn1_green" @click="content='memberInformation'">會員資訊</button>
+                            </div>
+                            <div class="buttonClassification">
+                                <img class="imgSize" src="./pic/member/message.png">
+                                <button class="thirdbtn2_green" @click="content='memberMessage'">悄悄話</button>    
+                            </div>
+                            <div class="level5 grayColor1 aside_subtitle">會員足跡</div>
+                            <div class="buttonClassification">
+                                <img class="imgSize" src="./pic/member/group.png">
+                                <button class="thirdbtn2_green" @click="content='memberGroup'">揪團露營</button>
+                            </div>
+                            <div class="buttonClassification">
+                                <img class="imgSize"src="./pic/member/change.png">
+                                <button class="thirdbtn2_green" @click="content='memberEquipment'">設備交換</button>
+                            </div>
+                            <div class="buttonClassification">
+                                <img class="imgSize" src="./pic/member/campsite.png">
+                                <button class="thirdbtn2_green" @click="content='memberCamp'">營區攻略</button>
+                            </div>
+                        </div>
+                        <div class="app_left_aside_selector" @change="onChange($event)">
+                            <select name="memberSelector" id="memberSelector" >
+                                <OPTGROUP label="會員小屋">
+                                    <option value="memberInformation">會員資訊</option>
+                                    <option value="memberMessage">悄悄話</option>
+                                </OPTGROUP>
+                                <OPTGROUP label="會員足跡">
+                                    <option value="memberGroup">揪團露營</option>
+                                    <option value="memberEquipment">設備交換</option>
+                                    <option value="memberCamp" >營區攻略</option>
+                                </OPTGROUP>
+                            </select>
+                        </div>
+                        <!--自己的第一區塊以上-->
+                    
+                        <div class="app_right_aside">
+                    
+                            <!--Vue開始-->
+                        
+                            <component :is="content"></component>
+                            <!-- 透過component元素，去指定其屬性is進行v-bind -->
+
+                        </div>
+
+                    </div> <!--app尾-->
+>>>>>>> dev
 
                 <div class="buttonClassification">
                   <img class="imgSize" src="./pic/member/avatar.png" />
@@ -152,6 +246,7 @@
     <footer>
       <div class="footer_bgc">
         <div class="wrap">
+<<<<<<< HEAD
           <div class="footerarrange">
             <div class="footright">
               <div class="level2 green1">聯絡資訊 |</div>
@@ -173,6 +268,31 @@
                   <img src="./pic/commom/foot_ig.svg" alt="" />
                   <img src="./pic/commom/foot_fb.svg" alt="" />
                   <img src="./pic/commom/foot_email.svg" alt="" />
+=======
+            <div class="footerarrange">
+                <div class="footright">
+                    <div class="level2 green1">聯絡資訊 |</div>
+                    <div class="level0 green1">
+                        電子信箱|ShanSen@gmail.com<br>
+                        營業時間|週二至週日 10:00~20:00(國定假日休假)
+                    </div>
+                </div>
+                <div class="footercenter">
+                    <a href="./shansen.html">
+                        <img src="./pic/commom/pc_header.svg">
+                    </a>
+                </div>
+                <div class="footerright">
+                    <div class="link">
+                        <div class="level2 green1">相關連結 |</div>
+                        <div class="footer_icon">
+                            <img src="./pic/commom/foot_line.svg" alt="">
+                            <img src="./pic/commom/foot_ig.svg" alt="">
+                            <img src="./pic/commom/foot_fb.svg" alt="">
+                            <img src="./pic/commom/foot_email.svg" alt="">
+                        </div>
+                    </div>
+>>>>>>> dev
                 </div>
               </div>
             </div>
@@ -526,77 +646,178 @@
             </div>
             
             `,
+<<<<<<< HEAD
       });
       Vue.component("memberGroup", {
         template: `
             <div class="member_Group">
-                    
-                <div class="member_information_title sub_title">
-                    <!-- 揪團露營標題 -->
-                    <img class="memberTitle_img" src="./pic/member/group.png">
-                    揪團露營
-                </div>
-                
-                <div class="member_Group_detail">
-                    <div class="group_button">
-                        <button class="secondbtn1">開團管理</button>
-                        <button class="secondbtn2">參團管理</button>
-                    </div>
-                    <!-- 揪團露營主要切換面 -->
-                    <div>
-                        <div class="startGroupManage_page bgcColor">
-                            <ul>
-                                <li class="group_everyRow">
-                                    <img src="./pic/member/member_group.jpg">
-                                    <ul>
-                                        <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                        <li class="level0">2.日期：2020/09/14</li>
-                                        <li class="level0">3.地點：中央大學草地</li>
-                                        <li class="level0">4.參加人數：20人</li>
-                                        <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
-                                    </ul>
-                                    <button class="thirdbtn1_orange">刪除</button>
-                                </li>
-                                <li class="group_everyRow">
-                                    <img src="./pic/member/member_group.jpg">
-                                    <ul>
-                                        <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                        <li class="level0">2.日期：2020/09/14</li>
-                                        <li class="level0">3.地點：中央大學草地</li>
-                                        <li class="level0">4,參加人數：20人</li>
-                                        <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
-                                    </ul>
-                                    <button class="thirdbtn1_orange">刪除</button>
-                                </li>
-                                <li class="group_everyRow unlockRow">
-                                    <img src="./pic/member/member_group.jpg">
-                                    <ul>
-                                        <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                        <li class="level0">2.日期：2020/09/14</li>
-                                        <li class="level0">3.地點：中央大學草地</li>
-                                        <li class="level0">4.參加人數：20人</li>
-                                        <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
-                                    </ul>
-                                </li>
+=======
+        });
+        Vue.component('memberGroup', {
+            data(){
+                return{
+                    link : "startGroup",
+                    page1style: "mem_page1",
+                    page2style: "mem_page2",
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'startGroup'
+                    this.page1style= "mem_page1",
+                    this.page2style= "mem_page2"
 
-                            </ul>
-                            <ul class="group_page">
-                                <li><a href="#">&lt;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
+                },
+                page2(){
+                    this.link = 'joingroup'
+                    this.page1style= "mem_page2",
+                    this.page2style= "mem_page1"
+                }
+            },
+            template: `
+            <div id="member_Group">
+>>>>>>> dev
+                    
+                    <div class="member_information_title sub_title">
+                        <!-- 揪團露營標題 -->
+                        <img class="memberTitle_img" src="./pic/member/group.png">
+                        揪團露營
+                    </div>
+                    
+                    <div class="member_Group_detail">
+                        <div class="group_button">
+                            <button :class="page1style" @click="page1">開團管理</button>
+                            <button :class="page2style" @click="page2">參團管理</button>
                         </div>
-                        <div class="joinGroupManage_page">
+                        <!-- 揪團露營主要切換面 -->
+                        <div>
+                            <div class="startGroupManage_page" v-if="link == 'startGroup'">
+                                <ul>
+                                    <li class="group_everyRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4.參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                        <button class="thirdbtn1_orange">刪除</button>
+                                    </li>
+                                    <li class="group_everyRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4,參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                        <button class="thirdbtn1_orange">刪除</button>
+                                    </li>
+                                    <li class="group_everyRow unlockRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4.參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                    </li>
+            
+                                </ul>
+                                <ul class="level0 green3 groups_Page">
+                                    <li>&lt;</li>
+                                    <li class="thisPage">1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
+                                </ul>
+                            </div>
+                            <div class="joinGroupManage_page"  v-else-if="link == 'joingroup'">
+                                <ul>
+                                    <li class="group_everyRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4.參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                        <button class="thirdbtn1_orange">刪除</button>
+                                    </li>
+                                    <li class="group_everyRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4,參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                        <button class="thirdbtn1_orange">刪除</button>
+                                    </li>
+                                    <li class="group_everyRow unlockRow">
+                                        <img src="./pic/member/member_group.jpg">
+                                        <ul>
+                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
+                                            <li class="level0">2.日期：2020/09/14</li>
+                                            <li class="level0">3.地點：中央大學草地</li>
+                                            <li class="level0">4.參加人數：20人</li>
+                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="level0 green3 groups_Page">
+                                    <li>&lt;</li>
+                                    <li class="thisPage">1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             `,
+<<<<<<< HEAD
       });
       Vue.component("memberEquipment", {
         template: `
+=======
+        });
+        Vue.component('memberEquipment', { 
+            data(){
+                return{
+                    link : "publication",
+                    page1style: "secondbtn1",
+                    page2style: "secondbtn2",
+                    page3style: "secondbtn2"
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'publication'
+                    this.page1style= "secondbtn1",
+                    this.page2style= "secondbtn2",
+                    this.page3style= "secondbtn2"
+
+                },
+                page2(){
+                    this.link = 'exchange'
+                    this.page1style= "secondbtn2",
+                    this.page2style= "secondbtn1",
+                    this.page3style= "secondbtn2"
+                },
+                page3(){
+                    this.link = 'favorites'
+                    this.page1style= "secondbtn2",
+                    this.page2style= "secondbtn2"
+                    this.page3style= "secondbtn1"
+                }
+            },
+            template: `
+>>>>>>> dev
             <div class="member_Equipment">
                     
                     <div class="member_information_title sub_title">
@@ -607,50 +828,113 @@
                     
                     <div class="member_Equipment_detail">
                         <div class="group_button">
-                            <button class="secondbtn1">刊登紀錄</button>
-                            <button class="secondbtn2">交換紀錄</button>
-                            <button class="secondbtn2">收藏</button>
+                            <button :class="page1style" @click="page1">刊登紀錄</button>
+                            <button :class="page2style" @click="page2">交換紀錄</button>
+                            <button :class="page3style" @click="page3">收藏</button>
                         </div>
                         <!-- 交換設備主要切換面 -->
                         <div>
-                            <div class="Equipment_record_page bgcColor">
+                            <div class="Equipment_record_page" v-if="link == 'publication'">
                                 <ul class="Equipment_record">
                                     <li>
                                         <div class="level1">設備編號</div>
                                         <div class="level1">設備照片</div>
-                                        <div class="level1">設備描述</div>
+                                        <div class="level1">設備名稱</div>
                                         <div class="level1">目前狀態</div>
                                     </li>
                                     <li>
                                         <div class="level1">001</div>
                                         <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">輕鬆健康登山團，一起踏青享受自然生活。攜帶簡單裝備即可上路，快來參加吧</div>
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
                                         <span class="level2">進行中</span>
                                     </li>
                                     <li>
                                         <div class="level1">002</div>
                                         <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">輕鬆健康登山團，一起踏青享受自然生活。攜帶簡單裝備即可上路，快來參加吧</div>
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
                                         <span class="level2">進行中</span>
                                     </li>
                                     <li class="lookEquipment">
                                         <div class="level1">002</div>
                                         <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">輕鬆健康登山團，一起踏青享受自然生活。攜帶簡單裝備即可上路，快來參加吧</div>
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
                                         <span class="level2">已結束</span>
                                     </li>
                                 </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
+                                <ul class="level0 green3 groups_Page">
+                                    <li>&lt;</li>
+                                    <li class="thisPage">1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
                                 </ul>
                             </div>
-                            <div class="exchange_record_page bgcColor">
+                            <div class="exchange_record_page" v-if="link == 'exchange'">
+                                <ul class="exchange_record">
+                                    <li>
+                                        <div class="level1">設備編號</div>
+                                        <div class="level1">設備照片</div>
+                                        <div class="level1">設備名稱</div>
+                                        <div class="level1">目前狀態</div>
+                                    </li>
+                                    <li>
+                                        <div class="level1">001</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">進行中</span>
+                                    </li>
+                                    <li>
+                                        <div class="level1">002</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">進行中</span>
+                                    </li>
+                                    <li class="lookexchange">
+                                        <div class="level1">002</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">已結束</span>
+                                    </li>
+                                </ul>
+                                <ul class="level0 green3 groups_Page">
+                                    <li>&lt;</li>
+                                    <li class="thisPage">1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
+                                </ul>
                             </div>
-                            <div class="favorites_recode_page bgcColor">
+                            <div class="favorites_recode_page" v-if="link == 'favorites'">
+                                <ul class="favorites_record">
+                                    <li>
+                                        <div class="level1">設備編號</div>
+                                        <div class="level1">設備照片</div>
+                                        <div class="level1">設備名稱</div>
+                                        <div class="level1">目前狀態</div>
+                                    </li>
+                                    <li>
+                                        <div class="level1">001</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">進行中</span>
+                                    </li>
+                                    <li>
+                                        <div class="level1">002</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">進行中</span>
+                                    </li>
+                                    <li class="lookfavorites">
+                                        <div class="level1">002</div>
+                                        <img src="./pic/member/member_group.jpg" alt="">
+                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                        <span class="level2">已結束</span>
+                                    </li>
+                                </ul>
+                                <ul class="level0 green3 groups_Page">
+                                    <li>&lt;</li>
+                                    <li class="thisPage">1</li>
+                                    <li>2</li>
+                                    <li>&gt;</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -669,53 +953,51 @@
                     
                     <div class="member_Camp_detail">
                         <div>
-                            <div class="bgcColor">
-                                <ul class="camptotal_page">
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                    <li class="campItem">
-                                        <span><img src="./pic/member/cancel.png"></span>
-                                        <img src="./pic/member/member_group.jpg">
-                                        <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                    </li>
-                                </ul>
-                                <ul class="group_page">
-                                    <li><a href="#">&lt;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
-                            </div>
+                            <ul class="camptotal_page">
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                                <li class="campItem">
+                                    <span><img src="./pic/member/cancel.png"></span>
+                                    <img src="./pic/member/member_group.jpg">
+                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                </li>
+                            </ul>
+                            <ul class="level0 green3 groups_Page">
+                                <li>&lt;</li>
+                                <li class="thisPage">1</li>
+                                <li>2</li>
+                                <li>&gt;</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             `,
       });
 
+<<<<<<< HEAD
       let vm = new Vue({
         el: "#app",
         data: {
@@ -747,6 +1029,20 @@
           MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
           MemberPhotoPut.style.width = "200px"; //設定寬
           MemberPhotoPut.style.height = "200px"; //設定高
+=======
+        new Vue({
+            el: '#app',
+            data: {
+                content: 'memberGroup',
+                now_page: 'thirdbtn1_green',
+                other_page: 'thirdbtn2_green',
+            },
+            methods:{
+                onChange(event){
+                    this.content = event.target.value;
+                }
+            },
+>>>>>>> dev
         });
       }
 

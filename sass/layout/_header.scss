@@ -75,11 +75,12 @@ header div.nav_logo a.logo_link.-up{
 .forphone>a{
     display: none;
 }
-.wrap{
+.wrap_nav{
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
 }
+
 .nav_list{
     position: absolute;
     right: 0;
@@ -133,40 +134,46 @@ header div.nav_logo a.logo_link.-up{
 
 
 @media screen and (min-width: 1200px){
-    .wrap{
+    .wrap_nav{
         width: 1140px;
     }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
-    .nav_list{
-        ul{
-            li{
-                margin: 0 30px;
-                height: 60px;
-                line-height: 60px;
-            }
-            li:nth-child(3){
-                margin-right: 100px;
-            }
-            li:nth-child(4){
-                margin-left: 100px;
+    .wrap_nav{
+        width: 960px;
+        .nav_list{
+            ul{
+                li{
+                    margin: 0 30px;
+                    height: 60px;
+                    line-height: 60px;
+                }
+                li:nth-child(3){
+                    margin-right: 100px;
+                }
+                li:nth-child(4){
+                    margin-left: 100px;
+                }
             }
         }
     }
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
-    .nav_list{
-        ul{
-            li{
-                margin: 0 12px;
-                height: 60px;
-                line-height: 60px;
-            }
-            li:nth-child(3){
-                margin-right: 70px;
-            }
-            li:nth-child(4){
-                margin-left: 70px;
+    .wrap_nav{
+        width: 720px;
+        .nav_list{
+            ul{
+                li{
+                    margin: 0 12px;
+                    height: 60px;
+                    line-height: 60px;
+                }
+                li:nth-child(3){
+                    margin-right: 70px;
+                }
+                li:nth-child(4){
+                    margin-left: 70px;
+                }
             }
         }
     }
@@ -178,7 +185,7 @@ header div.nav_logo a.logo_link.-up{
     }
 }
 @media screen and (max-width: 767px){
-.wrap{
+.wrap_nav{
     width: 540px;
     }
 header{
@@ -247,7 +254,7 @@ header div.nav_logo div.middle_bg{
     }
 }
 @media screen and (max-width: 576px){
-.wrap{
+.wrap_nav{
     width: 100%;
     }
 }

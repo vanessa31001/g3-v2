@@ -1,9 +1,9 @@
 body {
-    background: #AFDCDE;
     margin: 0;
   }
   
   .container_2 {
+    background: #AFDCDE;
     margin: 0 auto;
     display: flex;
     width: 100%;
@@ -497,19 +497,49 @@ body {
 			}
 	  }
     }
+
+    .initialscreen_logo{
+      position: absolute;
+      right: 48%;
+      top: 31vh;
+      img{
+        width: 150%;
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+    }
   //rwd
 @media screen and (min-width: 1200px){
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
-
+  .initialscreen_logo{
+    right: 43%;
+    img{
+      width: 130%;
+    }
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
-    
+  .initialscreen_logo{
+    top: 1vh;
+    right: 43%;
+    img{
+      width: 130%;
+    }
+  }
   
 }
 @media screen and (max-width: 767px){
   
-  .container {
+  .container_2{
+    .initialscreen_logo{
+      top: 1vh;
+      right: 33%;
+      // text-align: center;
+      img{
+        width: 100%;
+      }
+    }
     svg {
       display: block;
       height: 70vh;
@@ -522,7 +552,14 @@ body {
 
 }
 @media screen and (max-width: 576px){
-  .container {
+  .container_2{
+    .initialscreen_logo{
+      text-align: center;
+      top: 2%;
+      img{
+        width: 100%;
+      }
+    }
     svg {
       display: block;
       height: 80vh;
@@ -535,5 +572,13 @@ body {
 		border-radius: 50%;
     }
   }
+}
 
+@media screen and (max-width: 376px){
+  .container_2{
+    .initialscreen_logo{
+      right: 25%;
+    }
+    
+  }
 }
