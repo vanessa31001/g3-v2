@@ -59,6 +59,7 @@
     width: 60px;
     }
 }
+
 .member_information_detail{
     .member_image{
         text-align: center;
@@ -66,6 +67,11 @@
         img{
             display: inline-block;
             border-radius: 50%;
+            
+            max-width: 200px;
+            max-height: 200px;
+            
+            
         }
         .member_imageButton{
             display: inline-block;
@@ -93,19 +99,35 @@
 }
 
 
+#mem_photochange{
+    cursor: pointer;
+    }
+    
+
+.cgemem{
+    border: 2px solid #00A5A3;
+    border-radius: 5px;
+}
+
+
+// .member_page .member_section .wrap .title .app_anyway .app_right_aside .member_information .member_information_detail .member_image .member .member_imageButton label #memupPhoto{
+//     display: none;
+// }
+
+
+
 //悄悄話
 .member_message_alldetail{
     border: 3px solid #007E85;
     .member_message_detail{
-        border: 1px solid #007E85;
-        margin: 10px;
+        
         display: flex;
         justify-content: space-around;
         align-items: center;
         img{
-            width: 150px;
-            border-radius: 50%;
-            padding: 10px;
+            // width: 150px;
+            // border-radius: 50%;
+            // padding: 10px;
         }
     }
     .message_edit_block{
@@ -115,6 +137,131 @@
         }
     }
 }
+
+
+
+.message_onetext{
+    display:flex;
+}
+
+// .QAinfo{
+//     padding-left: 149px;
+// }
+
+.message_bigpic_01 img{
+    width: 150px;
+            border-radius: 50%;
+            padding: 10px;
+}
+
+.Mesblock{
+    text-align: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-around;
+    textarea{
+        vertical-align: middle;
+        font-size: 16px;
+        padding: 10px;
+        width: 64%;
+        // border: 3px solid $greenColor3;
+        // border-radius: 10px;
+        height: 49px;
+        color: $grayColor1;
+        
+    }
+}
+
+.member_mes_bigblock{
+    
+    margin: 10px;
+    border: 1px solid #007E85;
+}
+
+
+//回覆訊息
+.message_Re{
+    text-align: right;
+}
+
+// 回復
+.aside{
+    width: 300px;
+}
+.aside a{
+    padding: 10px 10px;
+}
+.main{
+    /* border: 1px solid red; */
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 300px - 20px);
+    padding:  0 20px;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+.breadcrumb{
+    margin: 10px 30px 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.info{
+    text-align: right;
+}
+.ONEline img{
+    display: inline-block;
+    height: 15px;
+}
+.ONEline h4{
+        font-size: 15px;
+        font-weight:normal;
+        margin:0px 20px 0 10px;
+        display: inline-block;
+        color: #833c1d;
+}
+.prod{
+    padding: 20px;
+    border: 1px solid #007E85;
+    border-radius: 10px;
+    width:547px;
+    margin-top: 11px;
+}
+.prod p{
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+@media screen and (max-width: 911px){
+    .main{
+        width:100%;
+    }
+    .bottom {
+        padding: 10px;
+    }
+    .aside{
+        display: none;
+    }
+    .prod h2{
+        font-size: 25px;
+        margin: 0;
+    }
+    .prod h3{
+        font-size: 20px;
+        margin: 0; 
+    }
+    .prod p{
+        font-size: 16px; 
+    }
+    // .prod > div{
+    //     display: none;
+    // } 
+
+}
+
+
+
 
 
 //揪團露營
@@ -325,13 +472,26 @@
                     margin: 0 auto;
                 }
             }
+
+            //悄悄話
+            .Mesblock textarea{
+                vertical-align: middle;
+                font-size: 16px;
+                padding: 10px;
+                width: 57%;
+                height: 49px;
+                color: #626262;
+            }
+
             //揪團
             .camptotal_page{
                 justify-content: flex-start;
             }
+            
         
         }
     }
+
 
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
@@ -368,8 +528,33 @@
                     display: block;
                     margin: 0 auto;
                 }
-            }//悄悄話
-            
+            }
+            //悄悄話
+            .prod{
+                padding: 20px;
+                border: 1px solid #007E85;
+                border-radius: 10px;
+                width: 466px;
+                margin-top: 11px;
+            }
+            .nav_title{
+                color: #007E85;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .level2 {
+                font-size: 16px;
+                line-height: 30px;
+            }
+            .Mesblock textarea{
+                vertical-align: middle;
+                font-size: 16px;
+                padding: 10px;
+                width: 59%;
+                height: 49px;
+                color: #626262;
+            }
+
         }
     }
 }
@@ -412,10 +597,13 @@
                 .member_message_detail{
                     display: inline-block;
                     padding: 32px;
+
+        
                     img{
-                        width: 150px;
+                        // width: 100px;
                         border-radius: 50%;
                         padding: 10px;
+                        margin-left:30%;
                     }
                 }
                 .message_edit_block{
@@ -426,6 +614,32 @@
                         cursor: pointer;
                     }
                 }
+
+            .prod{
+                padding: 20px;
+                border: 1px solid #007E85;
+                border-radius: 10px;
+                width: 427px;
+                margin-top: 11px;
+            }
+            .nav_title{
+                color: #007E85;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .level2 {
+                font-size: 16px;
+                line-height: 30px;
+            }
+            .Mesblock textarea{
+                vertical-align: middle;
+                font-size: 16px;
+                padding: 10px;
+                width: 77%;
+                height: 49px;
+                color: #626262;
+            }
+
             }
             //設備交換
             .Equipment_record_page{
@@ -471,22 +685,22 @@
         display: block;
         .app_left_aside{
             display: none;
-            // justify-content: space-around;
-            // width: 100%;
-            // border-bottom: 1px solid black;
-            // .aside_subtitle{
-            //     display: none;
-            // }
-            // .buttonClassification{
-            //     flex-direction: column;
-            //     justify-content: flex-end;
-            //     img{
-            //         cursor: pointer;
-            //     }
-            //     button{
-            //         margin: 0;
-            //     }
-            // }
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: 1px solid black;
+            .aside_subtitle{
+                display: none;
+            }
+            .buttonClassification{
+                flex-direction: column;
+                justify-content: flex-end;
+                img{
+                    cursor: pointer;
+                }
+                button{
+                    margin: 0;
+                }
+            }
         }
         .app_left_aside_selector{
             display: block;
@@ -520,6 +734,7 @@
                         width: 150px;
                         border-radius: 50%;
                         padding: 10px;
+                        margin-left: 0%;
                     }
                 }
                 .message_edit_block{
@@ -530,6 +745,30 @@
                         cursor: pointer;
                         min-width: 66px;
                     }
+                }
+                .prod{
+                    padding: 20px;
+                    border: 1px solid #007E85;
+                    border-radius: 10px;
+                    width: 370px;
+                    margin-top: 11px;
+                }
+                .nav_title{
+                    color: #007E85;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+                .level2 {
+                    font-size: 13px;
+                    line-height: 30px;
+                }
+                .Mesblock textarea{
+                    vertical-align: middle;
+                    font-size: 16px;
+                    padding: 10px;
+                    width: 77%;
+                    height: 49px;
+                    color: #626262;
                 }
             }
         }

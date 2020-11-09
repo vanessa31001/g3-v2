@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./hamburgers-master/dist/hamburgers.css">
+    
+
+   
+  
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="images/favicon02.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/question.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="js/question.js"></script>
+    <script src="js/getLoginInfo.js"></script>
+    <script src="js/sign_in.js"></script>
+
+  
+</head>
+<body>
+  <header >
+    <div class="forphone">
+    <button class="hamburger hamburger--spring" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    </div>
+    <nav class="wrap">
+        <div class="nav_logo">
+            <a href="#" class="logo_link -bottom">
+                <img class="desk sun" src="./pic/commom/太陽.svg" alt="">
+            </a>
+            <a class="changelogo" href="./shansen.html">
+            <img class="phone" src="./pic/commom/手機_header.svg">
+            </a>
+            <div class="middle_bg"></div>
+            <a href="./shansen.html" class="logo_link -up">
+                <img class="desk" src="./pic/commom/電腦版_header.svg">
+            </a>
+        </div>
+        <div class="nav_list">
+            <ul >
+                <li><a class="nav_title orange2" href="./group.html">揪團露營</a></li>
+                <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
+                <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+                <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+                <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+                <li><a class="nav_title" href="./member.html">登入|註冊</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+    
+
+  <!--原 開始-->
+
+  <section class="section1 bgcColor">
+    <div class="wrap">
+        <div class="title game_title">
+            露營小知識
+        </div>
+        <div class="third_title game_title_word">
+            挑戰露營知識智慧王!答對一題即可v獲得200分!
+        </div>
+    </div>
+</section>
+
+  <div class="game_table bgcColor">
+    <form action="#">
+
+       <!--以下 新的-->
+    <div class="qawrap">
+        <!-- qa -->
+        <div class="qa sub_title game_title_question01" style="opacity:0;">
+            <h2 id="question">
+              Q1:請問露營時遇到熊怎麼辦?   
+            </h2>
+        </div>
+        <!-- qa end -->
+
+        <!-- answerBox -->
+        <div class="answerBox" id="answerBox" >
+            <div class="box ans1 game_button_01" id="ans1" style="opacity:0;">
+             <button class="mainbtn2 myMOUSE" id="game_button_answer01"> A:爬到樹上</button>
+                <!-- <img src="images/ChainOil.png"> -->
+                <!-- <p>A:爬到樹上</p> -->
+            </div>
+            <div class="box ans2 game_button_02" id="ans2" style="opacity:0;">
+                <div class="img"><!--<img src="images/gasoline.png">--></div>
+                <div class="text">
+                  <button class="mainbtn2 myMOUSE" id="game_button_answer01"> B:躺在地上裝死</button>
+                    <!-- <p>B:躺在地上裝死</p> -->
+                </div>
+            </div>
+            <div class="box ans3 game_button_03" id="ans3" style="opacity:0;">
+                <div class="img"><!--<img src="images/oliveOil.png">--></div>
+                <div class="text">
+                  <button class="mainbtn2 myMOUSE" id="game_button_answer01">C:與熊搏鬥</button>
+                    <!-- <p>C:與熊搏鬥</p> -->
+                </div>
+            </div>
+        </div>
+
+<!--以下 舊的-->
+      </form>
+    </div> 
+    <!-- 舊的結束--> 
+    
+        <!-- answerBox end -->
+
+        <!-- smallgame -->
+        <div class="smallgame">
+            <!-- <div class="bw"><img src="images/backWheel.png" alt=""></div>
+            <div class="fw"><img src="images/frontWheel.png" alt=""></div>
+            <div class="bm"><img src="images/bicycleMan.png" alt=""></div> -->
+        </div>
+        <!-- smallgame end -->
+
+    
+        <div class="rightBox" style="opacity:0">
+            <h2>恭喜答對了!</h2>
+            <h2>得分:</h2><span id="right_score">200分</span>
+            <img src="../pic/game/game_text.svg">
+        </div>
+
+        
+
+          
+        <div class="wrongBox" style="opacity:0">
+            <h2>抱歉答錯了!</h2>
+            <h2>得分:</h2><span id="wrong_score">0分</span>
+            <img src="./images/wrongIcon.png" alt="">
+        </div>
+    
+    <!-- scoreWindow -->
+        <div class="scoreWindow" style="opacity: 0;">
+            <h2>恭喜通關</h2>
+
+            <div class="levelBox">
+                <div class="levelItem">
+                       
+                        <p>總共答對5題!</p>
+                        <p>獲得1000分~!</p>
+                    <a href="#"> <!--再補上-->
+                        <p>>>前往會員專區查看</p>
+                    </a>
+                    <a href="#"> <!--再補上-->
+                      <p>>>再玩一次!</p>
+                  </a>
+                    <div class="img">
+                      <img src="../pic/game/game_final.svg">
+                  </div>
+                </div> 
+            </div> 
+            
+            <!-- levelBox end -->
+
+                <!-- linkButton -->
+                <!-- <div class=" linkButton">
+                    <a href="CYShop.html">
+                        點選此處,前往選購商品
+                    </a>
+                </div>  -->
+                <!-- linkButton end -->
+
+        </div> 
+        <!-- scoreWindow end -->
+
+    </div> 
+<!-- qawrap end -->
+
+<script>
+    function init() {
+    askQuestion();
+  }
+  //判斷螢幕尺寸大小
+  function askQuestion() {
+    if ($(window).width() > 768) {
+      main();
+    } else {
+      rwdMain();
+    }
+  }
+  
+  window.addEventListener("load", function(){
+    let xhr = new XMLHttpRequest();
+    //---------------
+//     QUE_TITLE
+// QUE_OPT1
+// QUE_OPT2
+// QUE_OPT3
+// QUE_ANS
+// QUE_STATUS
+// ["Q5:哪些是夜間照明工具?", "菜籃", "反光板", "旗子"]
+    //---------------
+    xhr.onload = function(){
+      questions = JSON.parse(xhr.responseText);
+      console.log("//--------------");
+      console.log(questions);
+      console.log("//--------------");
+    }
+    xhr.open("get", "php/getQuestion.php",false);
+    xhr.send(null);
+  })
+  ////////////////////變數設定開始////////////////////
+  //背景圖片
+  var background = ["questionBGI.png", "questionBGI2.png", "questionBGIDark.png"];
+  
+  //問題
+  var questions;
+  // var questions = [
+  //   ["Q1:請問露營時遇到熊怎麼辦？", "爬到樹上", "與熊搏鬥", "逃跑"],
+  //   ["Q2:如何挑選帳篷？", "內帳800", "內+外帳1800", "外帳2000"],
+  //   ["Q3:哪些是小物件準備？", "睡袋", "安全帽", "爆米花桶"],
+  //   ["Q4:野炊設備怎麼挑?", "鍋碗", "烤架", "卡式瓦斯爐"],
+  //   ["Q5:哪些是夜間照明工具?", "菜籃", "反光板", "旗子"]
+  // ];
+  //答案
+  var ans = ["逃跑", "內+外帳1800", "安全帽", "卡式瓦斯爐", "反光板"];
+  var img = [
+    ["ChainOil.png", "gasoline.png", "oliveOil.png"], //ans=1
+    ["carBell.png", "carLight.png", "carPegs.png"], //ans=3
+    ["gloves.png", "helmet.png", "coat.png"], //ans=2
+    ["carBell.png", "horn.png", "Shouting.png"], //ans=1
+    ["basket.png", "carLight.png", "flag.png"], //ans=2
+  ];
+  
+  ////////////////////電腦動畫開始////////////////////
+  var count = 0;
+  
+  function main() { //執行函式
+    $('#question').text(questions[count][0]); //換qa的題目
+    $('#ans1 img').attr("src", `./images/${img[count][0]}`); //換ans1的圖
+    $('#ans2 img').attr("src", `./images/${img[count][1]}`); //換ans2的圖
+    $('#ans3 img').attr("src", `./images/${img[count][2]}`); //換ans3的圖
+  
+    $('#ans1 button').text(questions[count][1]); //換ans1的文字
+    $('#ans2 button').text(questions[count][2]); //換ans2的文字
+    $('#ans3 button').text(questions[count][3]); //換ans3的文字
+  
+    //按下選項執行正確或錯誤,之後重複
+    //---------------------
+    // $('.box').click(function () {
+    //   if ($(this).find('button').text() == ans[count]) {
+    //     rightOut(); //正確動畫
+    //   } else {
+    //     wrongOut(); //錯誤動畫
+    //   }
+    // });
+
+    //--------------------
+    $('.box').click(function () {
+      let ansIndex = questions[count][4];
+      if ($(this).find('button').text() == questions[count][ansIndex]) {
+        rightOut(); //正確動畫
+      } else {
+        wrongOut(); //錯誤動畫
+      }
+    });
+    //--------------------
+    smallgameIn(); //進場動畫
+  }
+  //此處判斷答題次數，小於5次重複答題，大於5次接結算畫面
+  function pcEnd() {
+    count++;
+    if (count < 5) {
+      main();
+    } else {
+      score(); //呼叫結算畫面
+      $('.scoreWindow').css("pointerEvents", "auto");
+    }
+  }
+  //結算畫面
+  function score() {
+    var score = new TimelineMax({});
+    score.to('.scoreWindow', .5, {
+      css: {
+        opacity: 1
+      }
+    })
+  }
+  //動態
+  function smallgame() {
+    TweenMax.to('.bw', 1, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    });
+    TweenMax.to('.fw', 1, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    });
+    TweenMax.to('.smallgame', 1.5, {
+      x: (screen.width) - 420,
+      ease: Power0.easeNone,
+    });
+  }
+  
+  ///動畫js///
+  function smallgameIn() {
+    smallgame();
+    var pcMmoveIn = new TimelineMax({});
+    pcMmoveIn.to('.qa', 1, {
+      css: {
+        opacity: 1
+      }
+    }).to('.ans1', .5, {
+      delay: .5,
+      css: {
+        opacity: 1,
+      }
+    }).to('.ans2', .5, {
+      delay: .5,
+      css: {
+        opacity: 1,
+      }
+    }).to('.ans3', .5, {
+      delay: .5,
+      css: {
+        opacity: 1,
+      }
+    }).to('.bw', .1, {
+      rotation: 0
+    }).to('.fw', .1, {
+      rotation: 0,
+    })
+  }
+  
+  //答對畫面顯示
+  function rightBoxShow() {
+    var rightBoxIn = new TimelineMax({});
+    // var answer_score = [200, 200, 200, 200, 200];//答案的分數
+    // var result = 0;//總分數
+    // let totalScore = 0; //總得分數
+    // let totalScore += 200; //過關得分數  (老師打原本是:totalScore += 200;)
+    // var lineScore = 100; //单位得分数，这里以行为单位
+    // var score = 0; //总得分数
+    // var levelScore = 10000; //过关得分数
+
+    // let totalScore = 0; //一開始分數
+    // totalScore += 200; 
+
+  //   if(`#ans1` == 3)
+  // {
+  //   else
+  // }
+	
+//   if (ans1 >=65,) {
+//  console.log(‘true’) 
+// } else {
+//  if (age< 20) {
+//  console.log(‘children’)
+//  } else {
+//  console.log(‘young’)
+//  } 
+// }
+
+
+
+  
+
+    rightBoxIn.to('.rightBox', 2, {
+      css: {
+        opacity: 1,
+        delay: .2
+      },
+    }).to('.rightBox', 1, {
+      css: {
+        delay: .2,
+        opacity: 0,
+      }
+    })
+  }
+
+
+
+
+  //更新分数
+	// function updateScore(){
+	// 	document.getElementById("score").innerHTML = score;
+	// }
+
+  //对返回的行数进行判断看是否要进行积分的累加
+  // if(lines != 0){
+	// 		    //判断行数，并给出得分
+	// 			if(lines == 1){
+  //                 mark = 1;
+  //               }else if(lines == 2){
+	// 			  mark = 3;
+	// 			}
+	// 			else if(lines == 3){
+	// 			  mark = 8;
+	// 			}
+	// 			else {
+	// 			  mark = 15;
+	// 			}
+	// 			score = score + mark * lineScore; //更新总得分数值 
+  //                               if((score / levelScore) >= level){
+  //                                 level += 1; 
+  //                                 interval *= increase;
+  //                                 updateLevel();  //更新显示的关数
+  //                               }
+	// 			updateScore(); //更新显示的分数
+	// 			//paintBoard(bgColor); //把面板中的显示的固定状态全部还原为背景色
+	// 			//paintBoard(cuteColor); //显示更新了的面板	
+
+	// 		}
+
+
+
+
+  //答題正確,顯示答對畫面
+  function rightOut() {
+    var rightToOut = new TimelineMax({});
+    rightToOut.to('.rightBox', 1, {
+      css: {
+        onComplete: rightBoxShow,
+        opacity: 0
+      }
+    }).to('.qa', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.fw', .5, {
+      delay: 1,
+      rotation: 360,
+      repeat: -1,
+      ease: Power0.easeNone,
+    }).to('.bw', .5, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    }).to('.ans1', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans2', .2, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans3', .1, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.smallgame', 1, {
+      x: 2500,
+      y: 0,
+      opacity: 0,
+    }).to('.smallgame', 1, {
+      opacity: 1,
+      startAt: {
+        x: 300
+      },
+      onComplete: pcEnd
+    })
+  }
+  
+  //答錯畫面顯示
+  function wrongBoxShow() {
+    var wrongBoxIn = new TimelineMax({});
+    wrongBoxIn.to('.wrongBox', 2, {
+      css: {
+        opacity: 1,
+        delay: .2
+      },
+    }).to('.wrongBox', 1, {
+      css: {
+        delay: .2,
+        opacity: 0,
+      }
+    })
+  }
+  //答題錯誤,顯示答錯畫面
+  function wrongOut() {
+    var wrongToOut = new TimelineMax({});
+    wrongToOut.to('.wrongBox', 1, {
+      css: {
+        onComplete: wrongBoxShow,
+        opacity: 0
+      }
+    }).to('.qa', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans1', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans2', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans3', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.fw', .2, {
+      delay: .2,
+      rotation: 360,
+      ease: Power0.easeNone,
+      repeat: -1,
+    }).to('.bw', .2, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    }).to('.smallgame', 1, {
+      x: 2500,
+      y: 0,
+      opacity: 0,
+    }).to('.', 1, {
+      opacity: 1,
+      startAt: {
+        x: 300
+      },
+      onComplete: pcEnd
+    })
+  }
+  
+  ////////////////////電腦動畫結束////////////////////
+  
+  ////////////////////手機動畫開始////////////////////
+  var count = 0;
+  
+  function rwdMain() { //執行函式
+    $('#question').text(questions[count][0]); //換qa的題目
+    $('#ans1 img').attr("src", `./images/${img[count][0]}`); //換ans1的圖
+    $('#ans2 img').attr("src", `./images/${img[count][1]}`); //換ans2的圖
+    $('#ans3 img').attr("src", `./images/${img[count][2]}`); //換ans3的圖
+  
+    $('#ans1 button').text(questions[count][1]); //換ans1的文字
+    $('#ans2 button').text(questions[count][2]); //換ans2的文字
+    $('#ans3 button').text(questions[count][3]); //換ans3的文字
+  
+    //按下選項執行正確或錯誤,之後重複
+    $('.box').click(function () {
+      if ($(this).find('button').text() == ans[count]) {
+        rightOut2(); //正確動畫
+      } else {
+        wrongOut2(); //錯誤動畫
+      }
+    });
+    msmallgameIn(); //進場動畫
+  }
+  //此處判斷答題次數，小於5次重複答題，大於5次接結算畫面
+  function phoneEnd() {
+    count++;
+    if (count < 5) {
+      rwdMain();
+    } else {
+      score(); //呼叫結算畫面
+      $('.scoreWindow').css("pointerEvents", "auto");
+    }
+  }
+  //手機腳踏車動態
+  function msmallgame() {
+    TweenMax.to('.bw', 1, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    });
+    TweenMax.to('.fw', 1, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    });
+    TweenMax.to('.smallgame', 1.5, {
+      x: 580,
+      y: 0,
+      ease: Power0.easeNone,
+    });
+  }
+  ///動畫js///
+  function msmallgameIn() {
+    msmallgame();
+    var pcMmoveIn = new TimelineMax({});
+    pcMmoveIn.to('.qa', 1, {
+        css: {
+          opacity: 1
+        }
+      }).to('.ans1', .5, {
+        delay: .3,
+        css: {
+          opacity: 1,
+        }
+      }).to('.ans2', .5, {
+        delay: .3,
+        css: {
+          opacity: 1,
+        }
+      }).to('.ans3', .5, {
+        delay: .3,
+        css: {
+          opacity: 1,
+        }
+      })
+      .to('.bw', .1, {
+        rotation: 0
+      }).to('.fw', .1, {
+        rotation: 0,
+      })
+  }
+  //答題正確,顯示答對畫面,腳踏車出去
+  function rightOut2() {
+    var rightToOut = new TimelineMax({});
+    rightToOut.to('.rightBox', 1, {
+      css: {
+        onComplete: rightBoxShow,
+        opacity: 0
+      }
+    }).to('.qa', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.fw', .5, {
+      delay: 1,
+      rotation: 360,
+      repeat: -1,
+      ease: Power0.easeNone,
+    }).to('.bw', .5, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    }).to('.ans1', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans2', .2, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans3', .1, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.smallgame', 1, {
+      x: 1000,
+      y: 0,
+      opacity: 0,
+    }).to('.smallgame', 1, {
+      opacity: 1,
+      startAt: {
+        x: 100
+      },
+      onComplete: phoneEnd
+    })
+  }
+  
+  //答題錯誤,顯示答錯畫面,腳踏車出去
+  function wrongOut2() {
+    var wrongToOut = new TimelineMax({});
+    wrongToOut.to('.wrongBox', 1, {
+      css: {
+        onComplete: wrongBoxShow,
+        opacity: 0
+      }
+    }).to('.qa', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans1', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans2', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.ans3', .3, {
+      css: {
+        opacity: 0,
+      }
+    }).to('.fw', .2, {
+      delay: .2,
+      rotation: 360,
+      ease: Power0.easeNone,
+      repeat: -1,
+    }).to('.bw', .2, {
+      repeat: -1,
+      rotation: 360,
+      ease: Power0.easeNone,
+    }).to('.smallgame', 1, {
+      x: 1000,
+      y: 0,
+      opacity: 0,
+    }).to('.smallgame', 1, {
+      opacity: 1,
+      startAt: {
+        x: 100
+      },
+      onComplete: phoneEnd
+    })
+  }
+  
+  
+  
+  ////////////////////手機動畫結束////////////////////
+  
+  window.addEventListener('load', init);
+</script>
+</body>
+</html>
