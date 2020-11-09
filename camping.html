@@ -64,6 +64,7 @@
                 <tr><td colspan="2" align="center" class="level1">
                     <label for="login_img_control">
                         <span id="to_register_btn">還沒申請帳號?</span>
+                        <span id="forgetPsw">忘記帳號密碼</span>
                     </label>
                 </td></tr>
             </table>
@@ -341,21 +342,21 @@
 function $id(id){
     return document.getElementById(id);
 }
-var xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        if( xhr.status == 200 ){
-        let camping = JSON.parse(xhr.responseText);
+var xhr2 = new XMLHttpRequest();
+    xhr2.onload = function(){
+        if( xhr2.status == 200 ){
+        let camping = JSON.parse(xhr2.responseText);
         console.log(camping);
         $id("hot_camp_name").innerText = camping.CAM_NAME;
 
     }else{
-    console.log( xhr.status );
+    console.log( xhr2.status );
     }
 }
 
     var url = `php/camping/camping1.php`;
-    xhr.open("Get", url, true);
-    xhr.send( null );
+    xhr2.open("Get", url, true);
+    xhr2.send( null );
 </script>
 
 <script src="./js/logintext.js"></script>

@@ -81,7 +81,7 @@
                 }
             }
             #login_img_control{
-                display: block;
+                display: none;
             }
             #login_img_control:checked ~ .login_container .login_block_mid {
                 transform: translateX(0);

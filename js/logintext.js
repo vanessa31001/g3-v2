@@ -44,7 +44,7 @@ function showLoginForm(){
 		xhr.onload = function(){
 			$id('header_memName').innerHTML = '&nbsp;';
 			$id('spanLogin').innerHTML = '登入|註冊';
-    	}
+        }
 		xhr.open("get", "php/common/loginOut.php", true);
 		xhr.send(null);
 	}
@@ -85,24 +85,24 @@ function sendForm_Regi(){
         xhr.onload = function(){
             member = JSON.parse(xhr.responseText);
             if(member.MEM_ID){
-              $id("header_memName").innerText = member.MEM_NICKNAME;
-              $id('spanLogin').innerHTML = '登出';
-              //將登入表單上的資料清空，並隱藏起來
-              $id('outerDiv').style.display = 'none';
-              $id('RegiMemId').value = '';
-              $id('RegiMemPsw').value = '';
-              $id('RegiDCMemPsw').value = '';
-              $id('RegiMemName').value = '';
-              $id('RegiMemNickname').value = '';
-            }else{
-                window.alert("此帳號已被使用");
-            }
-          }
-    
-          xhr.open("Post", "php/common/registered.php", true);
-          xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-          let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
-          xhr.send(data_info); 
+            $id("header_memName").innerText = member.MEM_NICKNAME;
+            $id('spanLogin').innerHTML = '登出';
+            //將登入表單上的資料清空，並隱藏起來
+            $id('outerDiv').style.display = 'none';
+            $id('RegiMemId').value = '';
+            $id('RegiMemPsw').value = '';
+            $id('RegiDCMemPsw').value = '';
+            $id('RegiMemName').value = '';
+            $id('RegiMemNickname').value = '';
+        }else{
+            window.alert("此帳號已被使用");
+        }
+        }
+
+        xhr.open("Post", "php/common/registered.php", true);
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
+        xhr.send(data_info); 
 
     }else{
         alert('密碼需一致，請再確認');
@@ -129,7 +129,7 @@ function getMemberInfo(){
     xhr.send(null);
 }
 function init(){
-    
+
     //檢查是否已登入
     getMemberInfo();
 
