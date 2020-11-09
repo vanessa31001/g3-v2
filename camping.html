@@ -207,7 +207,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="section_hot" id="section_hot">
         <div class="wrap">
             <div class="title">熱門營區</div>
             <div class="popular_area camping_block">
@@ -218,10 +218,10 @@
                     <img src="./pic/camping/北1-1.jpg" alt="">
                 </div>
                 <div class="area_info">
-                    <div class="sub_title" id="hot_camp_name">確幸莊園
+                    <div class="sub_title" id="hot_camp_name0">確幸莊園
                         <div class="third_title coll_num">收藏數：888</div>
                     </div>
-                    <div class="level1">位於新北市新店區的「確幸莊園」
+                    <div class="level1" id="hot_camp_inner1">位於新北市新店區的「確幸莊園」
                         為台北市近郊的露營區，前身為婚紗拍攝地
                         車程近、營區寬敞、景色優質，非常適合愛拍照又愛戶外露營的露友喔！</div>
                     <div class="third_title">聯絡資訊</div>
@@ -231,37 +231,35 @@
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="camppart">
         <div class="wrap">
             <div class="other_popular_area">
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/北2-1.jpg" alt="">
-                        <div class="sub_title">森森親子露營</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name1">森森親子露營</div>
+                        <div class="level1" id="hot_camp_inner1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/北5-1.jpg" alt="">
-                        <div class="sub_title">相思園露營區</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name2">相思園露營區</div>
+                        <div class="level1" id="hot_camp_inner2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/中2-1.jpg" alt="">
-                        <div class="sub_title">樹不老露營區</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name3">樹不老露營區</div>
+                        <div class="level1" id="hot_camp_inner3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/南1-1.jpg" alt="">
-                        <div class="sub_title">春園休閒農場</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name4">春園休閒農場</div>
+                        <div class="level1" id="hot_camp_inner4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
 
@@ -343,22 +341,37 @@
 <script>
 function $id(id){
     return document.getElementById(id);
+    console.log('aaa');
 }
-var xhr2 = new XMLHttpRequest();
-    xhr2.onload = function(){
-        if( xhr2.status == 200 ){
-        let camping = JSON.parse(xhr2.responseText);
-        console.log(camping);
-        $id("hot_camp_name").innerText = camping.CAM_NAME;
+var hotspotxhr = new XMLHttpRequest();
+    hotspotxhr.onload = function(){
+        if( hotspotxhr.status == 200 ){
+            showhotspot(hotspotxhr.responseText);
+            // let camping = JSON.parse(hotspotxhr.responseText);
+            // console.log(camping);
+        // $id("hot_camp_name").innerText = camping.CAM_NAME;
 
     }else{
-    console.log( xhr2.status );
+    console.log( hotspotxhr.status );
     }
 }
-
-    var url = `php/camping/camping1.php`;
-    xhr2.open("Get", url, true);
-    xhr2.send( null );
+hotspotxhr.open("Get", "php/camping/camping1.php", true);
+hotspotxhr.send( null );
+function showhotspot(json){
+    hotspotDatas = JSON.parse(json);
+    // console.log(hotspotDatas[0]);
+    let hotspotDatasleng = 0;
+    if(hotspotDatas.length > 5){
+        hotspotDatas.length = 5;
+    }else{
+        hotspotDatasleng = hotspotDatas.length;
+    }
+    let hot_camp_name;
+    for(let i=0 ; i<hotspotDatasleng ; i++){
+        hot_camp_name.id ='hot_camp_name'+i;
+        $id('hot_camp_name').innerText = CAMPING.CAM_NO;
+    }
+}
 </script>
 
 <script src="./js/logintext.js"></script>
