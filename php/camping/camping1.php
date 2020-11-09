@@ -1,18 +1,21 @@
 <?
 try{
     require_once("../connectBooks.php");
-    $sql = "SELECT * 
-    FROM camping a JOIN campcolloection b on (a.CAM_NO=b.CAMPCO_CAMNO) GROUP BY b.CAMPCO_CAMNO 
-    order by b.CAMPCO_CAMNO 
-    DESC 
-    LIMIT 5"; 
+    $sql = "SELECT CAM_NO, CAM_NAME, IFNULL(收藏數,0) `收藏數`
+    From CAMPING b 
+    left join 
+    (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO)
+        c on b.cam_no=c.campco_camno
+    order by 收藏數 desc
+    limit 5"; 
 
-    $camping = $pdo->prepare($sql);
-    $camping->bindValue(":CAM_NO", $_GET["cam_no"]);
-    $camping->execute();
-    $campingRow = $camping->fetch(PDO::FETCH_ASSOC);
-
-    echo json_encode($campingRow);
+    $camping = $pdo->query($sql);
+    $allcamping=[];
+    while($campingRow = $camping->fetch(PDO::FETCH_ASSOC)){
+        $allcamping[] = array("like"=>$campingRow["收藏數"]);
+    }
+    
+    echo json_encode($allcamping);
 
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";

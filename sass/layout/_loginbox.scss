@@ -27,23 +27,26 @@
                 background-color: white;
                 display: flex;
                 padding: 0 16px;
-                .login_block_left{
-                    // border: 1px solid red;
+                #logiMember{
                     width: 50%;
                     height: 100%;
-                    tr{
-                        td{
-                            padding: 0;
-                            label{
-                                &:hover{
-                                    cursor: pointer;
-                                    text-decoration: underline;
+                    .login_block_left{
+                        margin: 0 auto;
+                        height: 100%;
+                        tr{
+                            td{
+                                padding: 0;
+                                label{
+                                    &:hover{
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                    }
                                 }
-                            }
-                            #forgetPsw{
-                                &:hover{
-                                    cursor: pointer;
-                                    text-decoration: underline;
+                                #forgetPsw{
+                                    &:hover{
+                                        cursor: pointer;
+                                        text-decoration: underline;
+                                    }
                                 }
                             }
                         }
@@ -53,7 +56,7 @@
                     min-width: 50%;
                     width: 50%;
                     .login_block_right{
-                        // border: 1px solid blue;
+                        margin: 0 auto;
                         height: 100%;
                         padding: 16px;
                         tr{
@@ -81,7 +84,7 @@
                 }
             }
             #login_img_control{
-                display: block;
+                display: none;
             }
             #login_img_control:checked ~ .login_container .login_block_mid {
                 transform: translateX(0);
@@ -104,21 +107,25 @@
             #lightBox{
                 .login_container{
                     width: 400px;
-                    .login_block_left{
+                    #logiMember{
                         width: 100%;
-                        text-align: center;
-                        tr:nth-child(3){
-                            input{
-                                width: 100%;
+                        .login_block_left{
+                            margin: 0 auto;
+                            tr:nth-child(3){
+                                input{
+                                    width: 100%;
+                                }
                             }
-                        }
-                        tr:nth-child(4){
-                            input{
-                                width: 100%;
+                            tr:nth-child(4){
+                                input{
+                                    width: 100%;
+                                }
                             }
                         }
                     }
-                    .login_block_right{
+                    #reiMember{
+                        min-width: 0;
+                        width: 100%;
                         display: none;
                     }
                     .login_block_mid{

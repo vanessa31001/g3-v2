@@ -20,7 +20,7 @@
             </span>
         </button>
         </div>
-        <nav class="wrap">
+        <nav class="wrap_nav">
             <div class="nav_logo">
                 <a href="#" class="logo_link -bottom">
                     <img class="desk sun" src="./pic/commom/sun.svg" alt="">
@@ -45,57 +45,60 @@
             </div>
         </nav>
     </header>
-        <!-- 燈箱開始 -->
-<div id="outerDiv">
-    <div id="lightBox">
+    <!-- 燈箱開始 -->
+    <div id="outerDiv">
+        <div id="lightBox">
             <input type="checkbox" id="login_img_control" name="login">
             <div class="login_container">
-            <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
-                <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
-                    <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
-                </a></td></tr>
-                <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
-                <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
-                <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
-                <tr><td colspan="2" align="center">
-                        <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
-                        <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
-                </td></tr>
-                <tr><td colspan="2" align="center" class="level1">
-                    <label for="login_img_control">
-                        <span id="to_register_btn">還沒申請帳號?</span>
-                    </label>
-                </td></tr>
-            </table>
-            <form id="reiMember">
-                <table align="center" cellspacing="0" id="register" class="login_block_right">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
-                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
-                    </a></td></tr>
-                    <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
-                    <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email" value="text@gmail.com"></td></tr>
-                    <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)" value="12345"></td></tr>
-                    <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼" value="12345"></td></tr>
-                    <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名" value="測試"></td></tr>
-                    <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱" value="阿貓"></td></tr>
-                    <tr><td colspan="2" align="center">
+                <div id="logiMember">
+                    <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                        <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td colspan="2" align="center">
+                            <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                            <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <p id="forgetPsw">忘記密碼?</p>
+                            <label for="login_img_control">
+                                <span id="to_register_btn">還沒申請帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </div>
+                <form id="reiMember">
+                    <table align="center" cellspacing="0" id="register" class="login_block_right">
+                        <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                            <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                        </a></td></tr>
+                        <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                        <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email"></td></tr>
+                        <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                        <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼"></td></tr>
+                        <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名"></td></tr>
+                        <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱"></td></tr>
+                        <tr><td colspan="2" align="center">
                             <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
                             <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
-                    </td></tr>
-                    <tr><td colspan="2" align="center" class="level1">
-                        <label for="login_img_control">
-                            <span id="to_login_btn">已有會員帳號?</span>
-                        </label>
-                    </td></tr>
-                </table>
-            </form>
-            <div class="login_block_mid">
-                <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                        </td></tr>
+                        <tr><td colspan="2" align="center" class="level1">
+                            <label for="login_img_control">
+                                <span id="to_login_btn">已有會員帳號?</span>
+                            </label>
+                        </td></tr>
+                    </table>
+                </form>
+                <div class="login_block_mid">
+                    <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+                </div>
             </div>
         </div>
-        <!-- 燈箱結束 -->
     </div>
-</div>
+    <!-- 燈箱結束 -->
     <div class="bgcColor page">
 
     <section class="section1">
@@ -204,7 +207,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="section_hot" id="section_hot">
         <div class="wrap">
             <div class="title">熱門營區</div>
             <div class="popular_area camping_block">
@@ -215,10 +218,10 @@
                     <img src="./pic/camping/北1-1.jpg" alt="">
                 </div>
                 <div class="area_info">
-                    <div class="sub_title" id="hot_camp_name">確幸莊園
+                    <div class="sub_title" id="hot_camp_name0">確幸莊園
                         <div class="third_title coll_num">收藏數：888</div>
                     </div>
-                    <div class="level1">位於新北市新店區的「確幸莊園」
+                    <div class="level1" id="hot_camp_inner1">位於新北市新店區的「確幸莊園」
                         為台北市近郊的露營區，前身為婚紗拍攝地
                         車程近、營區寬敞、景色優質，非常適合愛拍照又愛戶外露營的露友喔！</div>
                     <div class="third_title">聯絡資訊</div>
@@ -228,37 +231,35 @@
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="camppart">
         <div class="wrap">
             <div class="other_popular_area">
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/北2-1.jpg" alt="">
-                        <div class="sub_title">森森親子露營</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name1">森森親子露營</div>
+                        <div class="level1" id="hot_camp_inner1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/北5-1.jpg" alt="">
-                        <div class="sub_title">相思園露營區</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name2">相思園露營區</div>
+                        <div class="level1" id="hot_camp_inner2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/中2-1.jpg" alt="">
-                        <div class="sub_title">樹不老露營區</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name3">樹不老露營區</div>
+                        <div class="level1" id="hot_camp_inner3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
                         <img src="./pic/camping/南1-1.jpg" alt="">
-                        <div class="sub_title">春園休閒農場</div>
-                        <div class="level1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
+                        <div class="sub_title" id="hot_camp_name4">春園休閒農場</div>
+                        <div class="level1" id="hot_camp_inner4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, sint.</div>
                     </div>
                 </div>
 
@@ -340,22 +341,37 @@
 <script>
 function $id(id){
     return document.getElementById(id);
+    console.log('aaa');
 }
-var xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        if( xhr.status == 200 ){
-        let camping = JSON.parse(xhr.responseText);
-        console.log(camping);
-        $id("hot_camp_name").innerText = camping.CAM_NAME;
+var hotspotxhr = new XMLHttpRequest();
+    hotspotxhr.onload = function(){
+        if( hotspotxhr.status == 200 ){
+            showhotspot(hotspotxhr.responseText);
+            // let camping = JSON.parse(hotspotxhr.responseText);
+            // console.log(camping);
+        // $id("hot_camp_name").innerText = camping.CAM_NAME;
 
     }else{
-    console.log( xhr.status );
+    console.log( hotspotxhr.status );
     }
 }
-
-    var url = `php/camping/camping1.php`;
-    xhr.open("Get", url, true);
-    xhr.send( null );
+hotspotxhr.open("Get", "php/camping/camping1.php", true);
+hotspotxhr.send( null );
+function showhotspot(json){
+    hotspotDatas = JSON.parse(json);
+    // console.log(hotspotDatas[0]);
+    let hotspotDatasleng = 0;
+    if(hotspotDatas.length > 5){
+        hotspotDatas.length = 5;
+    }else{
+        hotspotDatasleng = hotspotDatas.length;
+    }
+    let hot_camp_name;
+    for(let i=0 ; i<hotspotDatasleng ; i++){
+        hot_camp_name.id ='hot_camp_name'+i;
+        $id('hot_camp_name').innerText = CAMPING.CAM_NO;
+    }
+}
 </script>
 
 <script src="./js/logintext.js"></script>
