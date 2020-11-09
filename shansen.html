@@ -152,58 +152,6 @@
                         <div class="sub_title">最新揪團資訊</div>
                         
                         <div class="gMainGroups" id="gMainGroups">
-                            <!-- <a href="./groupInfo.html">
-                                <div class="gMainGroup" id="group0">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1" id="gMainName0">
-                                            
-                                        </div>
-                                        <div class="level1 orange1" id="gMaindate0">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup"  id="group1">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1" id="gMainName1">
-                                            
-                                        </div>
-                                        <div class="level1 orange1" id="gMaindate1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup"  id="group2">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1" id="gMainName2">
-                                            
-                                        </div>
-                                        <div class="level1 orange1" id="gMaindate2">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html"  id="group3">
-                                <div class="gMainGroup">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1" id="gMainName3">
-                                            
-                                        </div>
-                                        <div class="level1 orange1"id="gMaindate3">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a> -->
                         </div>
                         <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
                     </div>
@@ -684,6 +632,17 @@
     <script src="./js/main.js"></script>
     <!-- 揪團 -->
     <script>
+        let groupxhr = new XMLHttpRequest();
+        groupxhr.onload = function(){
+            if(groupxhr.status == 200){ //success
+                showgroups(groupxhr.responseText);
+            }else{ //error
+                alert(groupxhr.status);
+            }
+        }
+
+        groupxhr.open("get", "./php/group/groupindex.php", true);
+        groupxhr.send(null);
         function showgroups(jason){
             groupDatas = JSON.parse(jason);
             console.log(groupDatas[0]);
@@ -719,26 +678,23 @@
                 gMaindate.className = "level1 orange1";
                 gMaindate.innerText = "開團日期:" + groupDatas[i].GROUP_START_DATE;
                 gMainGroupInfo.appendChild(gMaindate);
-                // document.getElementById(`gMainName${i}`).innerText=groupDatas[i].GROUP_NAME;
-                // dateText=groupDatas[i].GROUP_START_DATE;
-                // document.getElementById(`gMaindate${i}`).innerText="開團日期:" + dateText;
 
             } 
         }
-        function dofirst(){
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function(){
-                if(xhr.status == 200){ //success
-                    showgroups(xhr.responseText);
-                }else{ //error
-                    alert(xhr.status);
-                }
-            }
+        // function dofirst(){
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.onload = function(){
+        //         if(xhr.status == 200){ //success
+        //             showgroups(xhr.responseText);
+        //         }else{ //error
+        //             alert(xhr.status);
+        //         }
+        //     }
 
-            xhr.open("get", "./php/group/groupindex.php", true);
-            xhr.send(null);
-        }
-        window.addEventListener("load",dofirst,false);
+        //     xhr.open("get", "./php/group/groupindex.php", true);
+        //     xhr.send(null);
+        // }
+        // window.addEventListener("load",dofirst,false);
     </script>
     <script src="./js/logintext.js"></script>
 </body>
