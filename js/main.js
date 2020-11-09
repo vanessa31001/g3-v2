@@ -7,9 +7,7 @@ $(function(){
     });
 });
 
-// 首頁滑鼠移動效果
-var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);
+
 
 
 
