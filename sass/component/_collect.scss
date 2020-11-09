@@ -17,12 +17,12 @@
         margin-right: 5px;
     
         
-        background-image: url("../../pic/icon/like.png");
+        background-image: url("../pic/icon/like.png");
         background-size: contain;
         background-repeat: no-repeat;
         transform: translate(0, -1px);
     }
     input[type="checkbox"]:checked + label::before{
-        background-image: url("../../pic/icon/like_check.png");
+        background-image: url("../pic/icon/like_check.png");
     }
 }
