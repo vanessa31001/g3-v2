@@ -190,6 +190,11 @@
                     others: ['桌椅','炊具','小物'],
                 };
             },
+            created(){
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {this.allRows = res.data;})
+                        .catch(error => console.log(error));
+            },
             template:`
             <div>
                 <div class="equlist">
@@ -246,55 +251,54 @@
         });
 
         Vue.component('equselect',{
-        
+            data(){
+                return{
+                    options:{
+                        selected01:[
+                            {text: '家庭帳' , value: 'A'},
+                            {text: '小型帳' , value: 'B'},
+                            {text: '更衣帳' , value: 'C'},
+                            {text: '炊事帳' , value: 'D'}
+                        ],
+                        selected02:[
+                            {text: '成人睡袋' , value: 'E'},
+                            {text: '兒童睡袋' , value: 'F'},
+                            {text: '雙人睡袋' , value: 'G'},
+                        ],
+                    }
+                }
+            },
+            created(){
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {this.allRows = res.data;})
+                        .catch(error => console.log(error));
+            },        
             template:`
             <div>
                 <div class="select01">
                     <label class="bold level5 gray1 select_text1" for="sel_text">我想交換的</label>
-                    <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort1">
-                        <optgroup label="帳篷">
+                    <select class="equ_select_bar selectstyle"   name="equ_sort" id="equ_sort1">
+                        <optgroup v-for="option in options" :label="option">
                             <option value="" disabled selected hidden>請選擇類別</option>
-                            <option value="family">家庭帳</option>
-                            <option value="small">小型帳</option>
-                            <option value="livingroom">客廳帳</option>
-                            <option value="cloth">更衣帳</option>
-                            <option value="cook">炊事帳</option>
-                        </optgroup>
-                        <optgroup label="睡袋">
-                            <option value="adult">成人睡袋</option>
-                            <option value="kid">兒童睡袋</option>
-                            <option value="couple">雙人睡袋</option>
-                        </optgroup>
-                        <optgroup label="其他">
-                            <option value="tabchai">桌椅</option>
-                            <option value="cooing">炊具</option>
-                            <option value="material">小物</option>
-                        </optgroup>
+                            <option v-for="Stent in option" :value="Stent.value">{{Stent.text}}</option>
+                        </optgroup>                        
                     </select>
                 </div>
-                <div class="select02">
+                <!-- <div class="select02">
                     <label class="bold level5 gray1 select_text2" for="sel_text">其他人想交換的</label>
-                    <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort2">
-                        <optgroup label="帳篷">
+                    <select class="equ_select_bar selectstyle"  name="equ_sort" id="equ_sort2">
+                        <optgroup  v-for="option in options" v-bind:label="option" label="帳篷">
                             <option value="" disabled selected hidden>請選擇類別</option>
-                            <option value="family">家庭帳</option>
-                            <option value="small">小型帳</option>
-                            <option value="livingroom">客廳帳</option>
-                            <option value="cloth">更衣帳</option>
-                            <option value="cook">炊事帳</option>
+                            <option v-for="Stent in Stents" v-bind:value="stent">{{Stent}}</option>
                         </optgroup>
-                        <optgroup label="睡袋">
-                            <option value="adult">成人睡袋</option>
-                            <option value="kid">兒童睡袋</option>
-                            <option value="couple">雙人睡袋</option>
+                        <optgroup v-for="option in options" v-bind:value="option" label="睡袋">
+                            <option v-for="Sbag in Sbags" v-bind:value="sbag">{{Sbag}}</option>
                         </optgroup>
-                        <optgroup label="其他">
-                            <option value="tabchai">桌椅</option>
-                            <option value="cooing">炊具</option>
-                            <option value="material">小物</option>
+                        <optgroup v-for="option in options" v-bind:value="option" label="其他">
+                            <option v-for="Sother in Sothers" v-bind:value="sother">{{Sother}}</option>
                         </optgroup>
                     </select>
-                </div>
+                </div> -->
             </div>
             `,
         })
