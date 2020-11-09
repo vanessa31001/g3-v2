@@ -2,8 +2,10 @@
 try{
     require_once("../connectBooks.php");
     $sql = "SELECT * 
-    FROM camping 
-    where CAM_NO = :CAM_NO"; 
+    FROM camping a JOIN campcolloection b on (a.CAM_NO=b.CAMPCO_CAMNO) GROUP BY b.CAMPCO_CAMNO 
+    order by b.CAMPCO_CAMNO 
+    DESC 
+    LIMIT 5"; 
 
     $camping = $pdo->prepare($sql);
     $camping->bindValue(":CAM_NO", $_GET["cam_no"]);
