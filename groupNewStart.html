@@ -148,13 +148,13 @@
                                 <div class="block">
                                     <div class="green1 level1">選擇地區 :</div>
                                     <div>
-                                        <select class="inputstyle">
+                                        <select class="inputstyle level1 gray1">
                                             <option value="0">北部</option>
                                             <option value="1">中部</option>
                                             <option value="2">南部</option>
                                             <option value="3">東部</option>
                                         </select>
-                                        <select class="inputstyle">
+                                        <select class="inputstyle level1 gray1">
                                             <option value="0">北部</option>
                                             <option value="1">中部</option>
                                             <option value="2">南部</option>
@@ -169,11 +169,11 @@
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">出團日期 :</div>
-                                    <div><input type="date" name="startdate" class="inputstyle" id="startdate"></div>
+                                    <div><input type="date" name="startdate" class="inputstyle level1 gray1" id="startdate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">結束日期 :</div>
-                                    <div><input type="date" name="enddate" class="inputstyle" id="enddate"></div>
+                                    <div><input type="date" name="enddate" class="inputstyle level1 gray1" id="enddate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">須具備設備 :</div>
@@ -267,5 +267,21 @@
         });
     </Script>
     <script src="./js/logintext.js"></script>
+    <script>
+        let area = "北部";
+        function listMap(areajson){
+
+        }
+        let areaxhr = new XMLHttpRequest();
+        areaxhr.onload = function(){
+            if(groupxhr.status == 200){ //success
+                listMap(groupxhr.responseText);
+            }else{ //error
+                alert(groupxhr.status);
+            }
+        }
+        areaxhr.open("get", `./php/group/area.php?cam_county=${area}`, true);
+        areaxhr.send(null);
+    </script>
 </body>
 </html>
