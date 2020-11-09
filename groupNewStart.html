@@ -151,17 +151,13 @@
                                 <div class="block">
                                     <div class="green1 level1">選擇地區 :</div>
                                     <div>
-                                        <select class="inputstyle level1 gray1">
-                                            <option value="0">北部</option>
-                                            <option value="1">中部</option>
-                                            <option value="2">南部</option>
-                                            <option value="3">東部</option>
+                                        <select class="inputstyle level1 gray1" id="camArea">
+                                            <!-- <option >北部</option>
+                                            <option >中部</option>
+                                            <option >南部</option>
+                                            <option >東部</option> -->
                                         </select>
-                                        <select class="inputstyle level1 gray1">
-                                            <option value="0">北部</option>
-                                            <option value="1">中部</option>
-                                            <option value="2">南部</option>
-                                            <option value="3">東部</option>
+                                        <select class="inputstyle level1 gray1" id="camName">
                                         </select>
                                         <a href="./camping.html"><input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考"></a>
                                     </div>
@@ -271,20 +267,64 @@
     </Script>
     <script src="./js/logintext.js"></script>
     <script>
-        let area = "北部";
-        function listMap(areajson){
+        var city;
+        function listArea(areajson){
+            city = JSON.parse(areajson);
+            // console.log(city);
+            //區域排除重複
+            let area=[];
+            for(let i = 0; i<city.length;i++){
+                area[i]=city[i].CAM_AREA;
+            }
+            let onlyarea = area.filter(function(element, index, arr){
+                return arr.indexOf(element) === index;
+            });
+            for(let i = 0; i < onlyarea.length ; i++){
+                let option = document.createElement("option");
+                option.innerText=onlyarea[i];
+                option.value=onlyarea[i];
+                document.getElementById("camArea").appendChild(option);
 
-        }
-        let areaxhr = new XMLHttpRequest();
-        areaxhr.onload = function(){
-            if(groupxhr.status == 200){ //success
-                listMap(groupxhr.responseText);
-            }else{ //error
-                alert(groupxhr.status);
+            }
+            let nowarea = document.getElementById("camArea").value;
+            for(let i = 0; i<city.length;i++){
+                if(city[i].CAM_AREA == nowarea){
+
+                    let option = document.createElement("option");
+                    option.innerText=city[i].CAM_NAME;
+                    option.value=city[i].CAM_NAME;
+                    document.getElementById("camName").appendChild(option);
+                }
             }
         }
-        areaxhr.open("get", `./php/group/area.php?cam_county=${area}`, true);
-        areaxhr.send(null);
+        document.getElementById("camArea").onchange = function(){
+            // console.log(city);
+            document.getElementById("camName").innerHTML="";
+            var nowarea = document.getElementById("camArea").value;
+            for(let i = 0; i<city.length;i++){
+                if(city[i].CAM_AREA == nowarea){
+                    let option = document.createElement("option");
+                    option.innerText=city[i].CAM_NAME;
+                    option.value=city[i].CAM_NAME;
+                    document.getElementById("camName").appendChild(option);
+                }
+            }
+        }
+        function doFirst(area){
+            let areaxhr = new XMLHttpRequest();
+                areaxhr.onload = function(){
+                if(areaxhr.status == 200){ //success
+                    // alert(areaxhr.responseText);
+                    listArea(areaxhr.responseText);
+                }else{ //error
+                    alert(areaxhr.status);
+                }
+            }
+            areaxhr.open("get", `./php/group/area.php?CAM_AREA=${area}`, true);
+            areaxhr.send(null);
+        }
+
+        window.addEventListener('load',doFirst(1));
     </script>
 </body>
 </html>
