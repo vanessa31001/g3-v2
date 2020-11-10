@@ -712,7 +712,7 @@ button.reportbtn , .equ_collect_checkbox{
                     width: 40px;
                     height: 40px;
                     line-height: 40px;
-                    a{
+                    p{
                         display: inline-block;
                         line-height: 40px;
                         width: 100%;
@@ -721,6 +721,7 @@ button.reportbtn , .equ_collect_checkbox{
                             background-color: $greenColor3;
                             color: $white;
                             border-radius: 5px;
+                            cursor: $cursor;
                         }
                     }
                 }
