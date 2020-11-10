@@ -32,7 +32,7 @@
                     </ul>    
                 </div>
 
-                <form class="equpost_block">
+                <form class="equpost_block" action="php/equipment/equipment_post.php" method="post"  enctype="multipart/form-data">
                     <div class="equpost_pic">
                         <div class="post_bigimg">                            
                             <img id="upequimg0" src="pic/equipment/photo-camera.svg" alt="">
@@ -41,10 +41,16 @@
                             <p class="level1 gray1">(限PNG、JPG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
                         <label class="post_minimg">
-                            <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg">
-                            <img id="upequimg1" src="pic/equipment/plus.svg" alt="">
-                            <img id="upequimg2" src="pic/equipment/plus.svg" alt="">
-                            <img id="upequimg3" src="pic/equipment/plus.svg" alt="">
+                            <input class="prev_btn" type="file" id="equFile1" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <img  id="upequimg01" src="pic/equipment/plus.svg" alt="">
+                        </label>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile2" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <img  id="upequimg02" src="pic/equipment/plus.svg" alt="">
+                        </label>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile3" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <img id="upequimg03" src="pic/equipment/plus.svg" alt="">
                         </label>
                         <div class="preview_btn">
                             <!-- <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg"> -->
@@ -94,7 +100,7 @@
                                         <label for="equ_name" class="third_title equ_info_name">我想要的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want01">
+                                        <select class="selectstyle" name="equ_info_sort_sel1" id="sort_select_want01">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -114,7 +120,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want02">
+                                        <select class="selectstyle" name="equ_info_sort_sel2" id="sort_select_want02">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -134,7 +140,7 @@
                                                 <option value="material">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select  class="selectstyle" name="equ_info_sort_sel" id="sort_select_want03">
+                                        <select  class="selectstyle" name="equ_info_sort_sel3" id="sort_select_want03">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
                                                 <option value="family">家庭帳</option>
@@ -168,7 +174,7 @@
 
                             <div class="check_btn">
                                 <button class="mainbtn2 pre_check_btn">預覽設備</button>
-                                <button class="mainbtn1">確認刊登</button>
+                                <button type="submit" name="submit" class="mainbtn1">確認刊登</button>
                             </div>
 
                         
@@ -178,7 +184,7 @@
                     </div>
 
                     
-                </form>                       
+                </form>                        
             </div>
         </section>
         
@@ -202,29 +208,56 @@
 
 
         //上傳圖片
+
         function doFirst(){    
-            document.getElementById('equFile').onchange = fileChange;
-        }
-        
-        function fileChange(){
-            let file = document.getElementById('equFile').files[0];
+            document.getElementById('equFile1').onchange = fileChange1;
+            document.getElementById('equFile2').onchange = fileChange2;
+            document.getElementById('equFile3').onchange = fileChange3;
+        }        
+        function fileChange1(){
+            let file = document.getElementById('equFile1').files[0];
             // let message = '';
             let readFile = new FileReader();
             readFile.readAsDataURL(file);
             readFile.addEventListener('load',function(e){
                 let image = document.getElementById('upequimg0');
                 image.src = readFile.result;
-                image.style.maxWidth = '400px';
-                image.style.maxHeight = '400px';
             });
             readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg1');
+                let image = document.getElementById('upequimg01');
                 image.src = readFile.result;
-                image.style.maxWidth = '70px';
-                image.style.maxHeight = '70px';
+            });        
+        }
+        function fileChange2(){
+            let file = document.getElementById('equFile2').files[0];
+            // let message = '';
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg0');
+                image.src = readFile.result;
+            });
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg02');
+                image.src = readFile.result;
+            });        
+        }
+        function fileChange3(){
+            let file = document.getElementById('equFile3').files[0];
+            // let message = '';
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg0');
+                image.src = readFile.result;
+            });
+            readFile.addEventListener('load',function(e){
+                let image = document.getElementById('upequimg03');
+                image.src = readFile.result;
             });        
         }
         window.addEventListener('load',doFirst);
+
     </script>
     
     

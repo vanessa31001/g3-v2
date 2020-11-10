@@ -101,7 +101,7 @@
     </div>
 </div>
     <!-- 燈箱結束 -->
-        <div class="bgcColor bg_dis">
+    <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
                 <div class="title">
@@ -161,7 +161,7 @@
             </div>
         </section>
         
-        </div>  
+        </div> 
 
     <!-- footer 開始-->
     <footer>
@@ -208,21 +208,21 @@
                     others: ['桌椅','炊具','小物'],
                 };
             },
-            created(){
-                axios.get('php/equipment/equipment.php')
-                        .then(res => {this.allRows = res.data;})
-                        .catch(error => console.log(error))
-                        .then(data => console.log(this.allRows));
-                // $.ajax({
-                //     url:'php/equipment/equipment.php',
-                //     dataType:'json',
-                //     data:{
-                //         tent:3,
-                //     },
-                //     complete(){
-                //     }
-                // });
-            },
+            // created(){
+            //     axios.get('php/equipment/equipment.php')
+            //             .then(res => {this.allRows = res.data;})
+            //             .catch(error => console.log(error))
+            //             .then(data => console.log(this.allRows));
+            //     // $.ajax({
+            //     //     url:'php/equipment/equipment.php',
+            //     //     dataType:'json',
+            //     //     data:{
+            //     //         tent:3,
+            //     //     },
+            //     //     complete(){
+            //     //     }
+            //     // });
+            // },
             template:`
             <div>
                 <div class="equlist">
@@ -258,7 +258,8 @@
                 axios.get('php/equipment/equipment.php')
                         .then(res => {this.allRows = res.data;})
                         .catch(error => console.log(error))
-                        // .then(data => console.log(this.allRows[2].EQU_PIC1));
+                        .then(data => console.log(this.allRows));
+
 
                 // $.ajax({
                 //     url:'php/equipment/equipment.php',
@@ -278,7 +279,7 @@
                 <div class="equ_card1" v-for="(card,index) in allRows" :key="index">
                     <a href="./equipment_product.html">
                         <div class="equ_img1">
-                            <img :src=image alt="">
+                            <img :src="image" alt="">
                         </div>            
                     </a>
                     <div class="equ_text">
@@ -292,66 +293,6 @@
             </div>
             `,
         });
-
-        // Vue.component('equselect',{
-        //     data(){
-        //         return{
-        //             selectitem:[],
-        //             Stents:['家庭帳','小型帳','更衣帳','炊事帳'],
-        //             Sbags:['成人睡袋','兒童睡袋','雙人睡袋'],
-        //             Sothers:['桌椅','炊具','小物'],
-        //         }
-        //     },
-        //     methods:{
-        //         equsort01(){
-        //             // alert() ;
-
-        //         }
-        //     },
-        //     created(){
-        //         axios.get('php/equipment/equipment.php')
-        //                 .then(res => {this.allRows = res.data;})
-        //                 .catch(error => console.log(error));
-        //     },        
-        //     template:`
-        //     <div>
-        //         <div class="select01">
-        //             <label class="bold level5 gray1 select_text1" for="sel_text">我想交換的</label>
-        //             <select class="equ_select_bar selectstyle" id="equ_sort1" @change="equsort01">
-        //                 <optgroup label="帳篷">
-        //                     <option value="" disabled selected hidden>請選擇類別</option>
-        //                     <option v-for="Stent in Stents" >{{Stent}}</option>
-        //                 </optgroup>                        
-        //                 <optgroup label="睡袋">
-        //                     <option v-for="Sbag in Sbags">{{Sbag}}</option>
-        //                 </optgroup>                        
-        //                 <optgroup label="其他">
-        //                     <option v-for="Sother in Sothers">{{Sother}}</option>
-        //                 </optgroup>                        
-        //             </select>
-        //         </div>
-
-
-        //         <div class="select02">
-        //             <label class="bold level5 gray1 select_text2" for="sel_text">其他人想交換的</label>
-        //             <select class="equ_select_bar selectstyle" id="equ_sort2" @change="equsort02">
-        //                 <optgroup label="帳篷">
-        //                     <option value="" disabled selected hidden>請選擇類別</option>
-        //                     <option v-for="Stent in Stents">{{Stent}}</option>
-        //                 </optgroup>
-        //                 <optgroup label="睡袋">
-        //                     <option v-for="Sbag in Sbags">{{Sbag}}</option>
-        //                 </optgroup>
-        //                 <optgroup label="其他">
-        //                     <option v-for="Sother in Sothers">{{Sother}}</option>
-        //                 </optgroup>
-        //             </select>
-        //         </div>
-        //     </div>
-        //     `,
-        // })
-
-
 
         let vm = new Vue({
             el: '#equipment',

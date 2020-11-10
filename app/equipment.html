@@ -6,6 +6,7 @@
     <title>設備交換</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -17,7 +18,7 @@
     <!-- 燈箱開始 -->
     @@include('./layout/login.html')
     <!-- 燈箱結束 -->
-        <div class="bgcColor bg_dis">
+    <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
                 <div class="title">
@@ -31,61 +32,15 @@
                     </ul>    
                 </div>
 
-                <div class="equ_select">
-                    <div class="select01">
-                        <label class="bold level5 gray1 select_text1" for="sel_text">我想交換的</label>
-                        <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort">
-                            <optgroup label="帳篷">
-                                <option value="" disabled selected hidden>請選擇類別</option>
-                                <option value="family">家庭帳</option>
-                                <option value="small">小型帳</option>
-                                <option value="livingroom">客廳帳</option>
-                                <option value="cloth">更衣帳</option>
-                                <option value="cook">炊事帳</option>
-                            </optgroup>
-                            <optgroup label="睡袋">
-                                <option value="adult">成人睡袋</option>
-                                <option value="kid">兒童睡袋</option>
-                                <option value="couple">雙人睡袋</option>
-                            </optgroup>
-                            <optgroup label="其他">
-                                <option value="tabchai">桌椅</option>
-                                <option value="cooing">炊具</option>
-                                <option value="material">小物</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="select02">
-                        <label class="bold level5 gray1 select_text2" for="sel_text">其他人想交換的</label>
-                        <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort">
-                            <optgroup label="帳篷">
-                                <option value="" disabled selected hidden>請選擇類別</option>
-                                <option value="family">家庭帳</option>
-                                <option value="small">小型帳</option>
-                                <option value="livingroom">客廳帳</option>
-                                <option value="cloth">更衣帳</option>
-                                <option value="cook">炊事帳</option>
-                            </optgroup>
-                            <optgroup label="睡袋">
-                                <option value="adult">成人睡袋</option>
-                                <option value="kid">兒童睡袋</option>
-                                <option value="couple">雙人睡袋</option>
-                            </optgroup>
-                            <optgroup label="其他">
-                                <option value="tabchai">桌椅</option>
-                                <option value="cooing">炊具</option>
-                                <option value="material">小物</option>
-                            </optgroup>
-                        </select>
-                    </div>  
-                </div>
+                <!-- 篩選 -->
+                <!-- <equselect class="equ_select"></equselect> -->
 
                 <div class="equ_container">
                     <div class="equbar">
                         <div class="nav">
                             <div class="title_btn_block">
                                 <div class="equipment_select_title">
-                                <h2 class="level7 green1">搜尋設備</h2>
+                                    <h2 class="level7 green1">搜尋設備</h2>
                                 </div>
                                 <div class="post_btn">
                                     <a href="./equipment_post.html">
@@ -94,158 +49,36 @@
                                 </div>
                             </div>
                             <!-- <hr> -->
-                            <div class="equlist_block">
-                                <div class="equlist">
-                                    <!-- <img src="pic/equipment/icon01.png" alt="">                    -->
-                                    <h3>
-                                    <a class="level2 green1" href="">所有商品</a></h3>
-                                </div>        
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a  class="level2 green1" href="">露營帳篷</a></h3>
-                                    <div v-for="tent in tents"><a class="level2 gray1 minsorts" href="">{{tent}}</a></div>    
-                                </div>
-                                <hr>        
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a class="level2 green1" href="">睡袋</a></h3>
-                                    <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
-                                </div>  
-                                <hr>      
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a class="level2 green1" href="">其他</a></h3>
-                                    <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
-                                </div>
-                            </div>
+
+                            <!-- 左邊側邊攔 -->
+                            <equlista class="equlist_block"></equlista>
                             
                         </div>    
                     </div>
-
-                    <div class="equmain_all">
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent01.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent02.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent03.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent04.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent05.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent06.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent07.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent08.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent09.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                    </div>       
-                </div>                       
+                    
+                    <!-- 右邊全部設備 -->
+                    <div class="equmain_all" id="equallprod">
+                        <equamainall></equamainall>
+                    </div>
+                    
+                        
+                </div>   
+                
+                <div class="equsPage">
+                    <ul class="level0 green3 page">
+                        <li>&lt;</li>
+                        <li class="thisPage">1</li>
+                        <li><a href="./group2.html" class="level0 green3">2</a></li>
+                        <li><a href="./group2.html" class="level0 green3">3</a></li>
+                        <li><a href="./group2.html" class="level0 green3">4</a></li>
+                        <li><a href="./group2.html" class="level0 green3">5</a></li>
+                        <li><a href="./group2.html" class="level0 green3">&gt;</a></li>
+                    </ul>
+                </div>
             </div>
         </section>
         
-        </div>  
+        </div> 
 
     <!-- footer 開始-->
     @@include('./layout/footer.html')
@@ -253,33 +86,158 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script>
+        Vue.component('equlista',{
+            data(){
+                return{
+                    tents:['家庭帳','客廳帳','炊事帳'],
+                    sbags: ['睡袋'],       
+                    others: ['桌椅','炊具','小物'],
+                };
+            },
+            // created(){
+            //     axios.get('php/equipment/equipment.php')
+            //             .then(res => {this.allRows = res.data;})
+            //             .catch(error => console.log(error))
+            //             .then(data => console.log(this.allRows));
+            //     // $.ajax({
+            //     //     url:'php/equipment/equipment.php',
+            //     //     dataType:'json',
+            //     //     data:{
+            //     //         tent:3,
+            //     //     },
+            //     //     complete(){
+            //     //     }
+            //     // });
+            // },
+            template:`
+            <div>
+                <div class="equlist">
+                    <h3><a class="level2 green1" href="">所有商品</a></h3>
+                </div>        
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3><a class="level2 green1" href="">露營帳篷</a></h3>
+                    <div v-for="tent in tents"><a class="level2 gray1 minsorts" name="tent" value=2 href="" @click="">{{tent}}</a></div>    
+                </form>
+                <hr>        
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3><a class="level2 green1" href="">睡袋</a></h3>
+                    <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
+                </form>  
+                <hr>      
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3><a class="level2 green1" href="">其他</a></h3>
+                    <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
+                </form>
+            </div>
+            `,
+        });
+
+        Vue.component('equamainall',{
+            data(){
+                return{
+                    allRows: [],
+                    image:'pic/equipment/tent/f_tent01.jpg'
+                    // image:
+                };
+            },
+            created(){
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {this.allRows = res.data;})
+                        .catch(error => console.log(error))
+                        .then(data => console.log(this.allRows));
+
+
+                // $.ajax({
+                //     url:'php/equipment/equipment.php',
+                //     type:'GET',
+                //     dataType:'json',
+                //     data:{
+                //         tent:tent,
+                //     },
+                //     complete(data){
+                //         this.allRows = data.responseJSON;
+                //         console.log(data.responseJSON)
+                //     }
+                // });
+            },
+            template:`
+            <div  class="equtemp">
+                <div class="equ_card1" v-for="(card,index) in allRows" :key="index">
+                    <a href="./equipment_product.html">
+                        <div class="equ_img1">
+                            <img :src="image" alt="">
+                        </div>            
+                    </a>
+                    <div class="equ_text">
+                        <a href="./equipment_product.html">
+                            <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
+                        </a>
+                        <span class="level1 gray1">刊登者：</span>
+                        <a class="bold level1 gray1 poster_text" href="">{{card.MEM_NICKNAME}}</a>
+                    </div>
+                </div>
+            </div>
+            `,
+        });
+
         let vm = new Vue({
             el: '#equipment',
             data: {  
-                tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
-                sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
-                others: ['桌椅','炊具','小物'],       
-                
             },
             methods: {
-
+                
             },
             computed: {
-            },
-            watch: { 
             },
         });
     </script>
     <script>
+        // hamburger icon 的切換
         $(function(){
             
-            // hamburger icon 的切換
             $("button.hamburger").on("click", function(){
                 $(this).toggleClass("is-active");
                 $('.nav_list').slideToggle();
 
                 });
-            });
+        });
+
+
+            // let equipmentRows;
+            // window.addEventListener("load", function(){
+            
+            //     function showEquipment(){
+            //         let html = "";
+            //         for(let i=0; i< equipmentRows.length; i++){
+            //             html += ``;
+            //         }
+            //         html += "";
+            //         document.getElementById("equallprod").innerHTML = html;
+            //     }
+            
+            //     let xhr = new XMLHttpRequest();
+            //     xhr.onload = function(){
+            //         equipmentRows = JSON.parse(xhr.responseText);
+            //         showEquipment();
+            //         console.log(equipmentRows);
+            //     }
+            //     xhr.open("get", "php/equipment/equipment.php",true);
+            //     xhr.send(null);
+
+            
+            //     document.getElementById("equ_sort1").onchange = function(e){
+            //         let xhr = new XMLHttpRequest();
+            //         xhr.onload = function(){
+            //             equipmentRows = JSON.parse(xhr.responseText);
+            //             showEquipment();
+            //             console.log(equipmentRows);
+            //         }
+            //         xhr.open("get", `php/equipment/equipment.php?equ_sort1=${e.target.value}`,false);
+            //         xhr.send(null);
+            //     }
+            // }, false);
+
+
     </script>
 
 
