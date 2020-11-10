@@ -208,28 +208,28 @@
                     others: ['桌椅','炊具','小物'],
                 };
             },
-            // created(){
-            //     axios.get('php/equipment/equipment.php')
-            //             .then(res => {this.allRows = res.data;})
-            //             .catch(error => console.log(error))
-            //             .then(data => console.log(this.allRows));
-            //     // $.ajax({
-            //     //     url:'php/equipment/equipment.php',
-            //     //     dataType:'json',
-            //     //     data:{
-            //     //         tent:3,
-            //     //     },
-            //     //     complete(){
-            //     //     }
-            //     // });
-            // },
+            created(){
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {this.allRows = res.data;})
+                        .catch(error => console.log(error))
+                        // .then(data => console.log(this.allRows));
+                // $.ajax({
+                //     url:'php/equipment/equipment.php',
+                //     dataType:'json',
+                //     data:{
+                //         tent:3,
+                //     },
+                //     complete(){
+                //     }
+                // });
+            },
             template:`
             <div>
                 <div class="equlist">
                     <h3><a class="level2 green1" href="">所有商品</a></h3>
                 </div>        
                 <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
-                    <h3><a class="level2 green1" href="">露營帳篷</a></h3>
+                    <h3 class="level2 green1">露營帳篷</h3>
                     <div v-for="tent in tents"><a class="level2 gray1 minsorts" name="tent" value=2 href="" @click="">{{tent}}</a></div>    
                 </form>
                 <hr>        
@@ -250,17 +250,27 @@
             data(){
                 return{
                     allRows: [],
-                    image:'pic/equipment/tent/f_tent01.jpg'
-                    // image:
+                    allRows2: [],
+                    indexpage:9,
+                    indexpagefirst:0,
+                    image:'pic/equipment/'
+                  
                 };
             },
             created(){
                 axios.get('php/equipment/equipment.php')
-                        .then(res => {this.allRows = res.data;})
+                        .then(res => {
+                            this.changepage(res.data);
+                           })
                         .catch(error => console.log(error))
-                        .then(data => console.log(this.allRows));
+            
+                        // .then(data => console.log(this.allRows));
 
-
+              
+               
+                // this.allRows=this.allRows2;
+                // console.log( this.allRows);
+                   
                 // $.ajax({
                 //     url:'php/equipment/equipment.php',
                 //     type:'GET',
@@ -276,10 +286,10 @@
             },
             template:`
             <div  class="equtemp">
-                <div class="equ_card1" v-for="(card,index) in allRows" :key="index">
+                <div class="equ_card1" v-for="(card,index) in allRows2" :key="index">
                     <a href="./equipment_product.html">
                         <div class="equ_img1">
-                            <img :src="image" alt="">
+                            <img :src="image + allRows2[index].EQU_PIC1" alt="">
                         </div>            
                     </a>
                     <div class="equ_text">
@@ -292,6 +302,16 @@
                 </div>
             </div>
             `,
+            methods:{
+                changepage(data){
+                    this.allRows = data;
+                    console.log(this.allRows)
+                    for(var i =this.indexpagefirst;i<this.indexpage;i++){
+                        this.allRows2.push(this.allRows[i]);
+                    }
+
+                }
+            }
         });
 
         let vm = new Vue({
