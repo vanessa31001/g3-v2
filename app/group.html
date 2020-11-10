@@ -16,92 +16,9 @@
 <body>
     <div id="groupAllList">
     <!-- header開始-->
-    <header >
-    <div class="forphone">
-    <button class="hamburger hamburger--spring" type="button">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-    </div>
-    <nav class="wrap">
-        <div class="nav_logo">
-            <a href="#" class="logo_link -bottom">
-                <img class="desk sun" src="./pic/commom/sun.svg" alt="">
-            </a>
-            <a class="changelogo" href="./shansen.html">
-            <img class="phone" src="./pic/commom/phone_header.svg">
-            </a>
-            <div class="middle_bg"></div>
-            <a href="./shansen.html" class="logo_link -up">
-                <img class="desk" src="./pic/commom/pc_header.svg">
-            </a>
-        </div>
-        <div class="nav_list">
-            <ul >
-                <li><a class="nav_title orange2" href="./group.html">揪團露營</a></li>
-                <li><a class="nav_title @@underline_02" href="./equipment.html">設備交換</a></li>
-                <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
-                <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
-                <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" href="#" id="spanLogin">登入|註冊</a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
+    @@include('./layout/header.html', { "underline_01": "orange2" })
     <!-- 燈箱開始 -->
-    <div id="outerDiv">
-    <div id="lightBox">
-        <input type="checkbox" id="login_img_control" name="login">
-        <div class="login_container">
-            <div id="logiMember">
-                <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
-                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
-                    </a></td></tr>
-                    <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
-                    <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
-                    <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
-                    <tr><td colspan="2" align="center">
-                        <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
-                        <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
-                    </td></tr>
-                    <tr><td colspan="2" align="center" class="level1">
-                        <p id="forgetPsw">忘記密碼?</p>
-                        <label for="login_img_control">
-                            <span id="to_register_btn">還沒申請帳號?</span>
-                        </label>
-                    </td></tr>
-                </table>
-            </div>
-            <form id="reiMember">
-                <table align="center" cellspacing="0" id="register" class="login_block_right">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
-                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
-                    </a></td></tr>
-                    <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
-                    <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email"></td></tr>
-                    <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
-                    <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼"></td></tr>
-                    <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名"></td></tr>
-                    <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱"></td></tr>
-                    <tr><td colspan="2" align="center">
-                        <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
-                        <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
-                    </td></tr>
-                    <tr><td colspan="2" align="center" class="level1">
-                        <label for="login_img_control">
-                            <span id="to_login_btn">已有會員帳號?</span>
-                        </label>
-                    </td></tr>
-                </table>
-            </form>
-            <div class="login_block_mid">
-                <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
-            </div>
-        </div>
-    </div>
-</div>
+    @@include('./layout/login.html')
     <!-- 燈箱結束 -->
         <section class="section1 bgcColor">
             <div class="wrap">
@@ -114,10 +31,10 @@
                         <li class="level0 gray1">揪團露營</li>
                     </ul>
                 </div>
-                <div class="report_overlay">
+                <div class="overlay">
                     <article>
+                        <div class="level7 bold green1 report_title">檢舉原因</div>                        
                         <form class="report_form" action="">
-                            <div class="level7 bold green1 report_title">檢舉原因</div>                        
                             <div class="report_reason1 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ1">
                                 <label for="report_equ1">此揪團與露營不相關</label>
@@ -149,11 +66,11 @@
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">剩餘名額</h3> 
-                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people[]">{{person}}</label>
+                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people">{{person}}</label>
                          </div>
                          <div class="serchGroup">
                              <h3 class="level2 green1">出團日期</h3> 
-                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date[]">{{date}}</label>
+                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date">{{date}}</label>
                          </div>
                     </div>
                     <div class="groups">
@@ -193,20 +110,19 @@
                                             </div>                                                                     
                                         </div>
                                     </fieldset>
-                                    <span>相關介紹 :</span>
                                     <p class="info">
                                         想吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空這裡環境優美，想呼吸新鮮空氣，看美的歡迎參加。吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空的。
                                     </p>
                                     <p>
-                                        <span>出團日期 :</span> 2020年10月15日
+                                        出發日期 : 2020年10月15日
                                     </p>
                                     <p>
-                                        <span>結束日期 :</span> 2020年10月17日
+                                        露營天數 : 3 天
                                     </p>
                                     <div class="aboutPepole">
                                         <div>
                                             <p>
-                                                <span>人數上限 :</span> {{limPepole}}人
+                                                人數上限 : {{limPepole}}人
                                             </p>
                                         </div>
                                         <div class="right">
@@ -217,13 +133,14 @@
                                         
                                     </div>
                                     <div class="equthing">
-                                        <span>須具備設備 :</span>
+                                        須具備設備 :
                                         <div>
                                             <a href="#" v-for="equ in equs" class="equ">
                                                 <button class="tagbtn_yellow">{{equ}}</button>
                                             </a>
                                         </div>
-                                        <p class="gray2 ">
+                                        
+                                        <p class="gray2">
                                             (標籤可到設備交換區)
                                         </p>
                                     </div>
@@ -255,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="groupsPage">
+                    <div class="groupsPage">
                         <ul class="level0 green3">
                             <li>&lt;</li>
                             <li class="thisPage">1</li>
@@ -263,7 +180,7 @@
                             <li><a href="./group2.html" class="level0 green3">&gt;</a></li>
 
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -276,81 +193,26 @@
         </section> -->
 
     <!-- footer 開始-->
-    <footer>
-    <div class="footer_bgc">
-        <div class="wrap">
-            <div class="footerarrange">
-                <div class="footright">
-                    <div class="level2 green1">聯絡資訊 |</div>
-                    <div class="level0 green1">
-                        電子信箱|ShanSen@gmail.com<br>
-                        營業時間|週二至週日 10:00~20:00(國定假日休假)
-                    </div>
-                </div>
-                <div class="footercenter">
-                    <a href="./shansen.html">
-                        <img src="./pic/commom/pc_header.svg">
-                    </a>
-                </div>
-                <div class="footerright">
-                    <div class="link">
-                        <div class="level2 green1">相關連結 |</div>
-                        <div class="footer_icon">
-                            <img src="./pic/commom/foot_line.svg" alt="">
-                            <img src="./pic/commom/foot_ig.svg" alt="">
-                            <img src="./pic/commom/foot_fb.svg" alt="">
-                            <img src="./pic/commom/foot_email.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">Copyright &copy; 2020ShanSen</div>
-</footer>
+    @@include('./layout/footer.html')
     <!-- footer 結束-->
     </div>
     <script src="./js/logintext.js"></script>
-    <!-- 載入資料 -->
     <script>
-        function showAllGroups(json){
-            let groups = JSON.parse(json);
-            console.log(groups);
-            let groups = document.getElementById(`groups`);
-            let gMainGroup =  document.createElement("div");
-                gMainGroup.className = "gMainGroup";
-                linkGroup.appendChild(gMainGroup);
-
-
-        }
-        let areaxhr = new XMLHttpRequest();
-            areaxhr.onload = function(){
-            if(areaxhr.status == 200){ //success
-                showAllGroups(areaxhr.responseText);
-            }else{ //error
-                alert(areaxhr.status);
-            }
-        }
-        areaxhr.open("get", `./php/group/group.php`, true);
-        areaxhr.send(null);
-
-    </script>
-    <script>
-        //燈箱
         $(document).ready(function(){
             $(".reportbtngGroup").on("click", function(){
-                    $(".report_overlay").addClass("-on");
+                    $(".overlay").addClass("-on");
                 });
                 $(".btn_modal_close").on("click", function(){
-                    $(".report_overlay").addClass("-opacity-zero");
+                    $(".overlay").addClass("-opacity-zero");
                     $("input[name=reason0]").each(function(){
                         $(this).prop("checked",false);//把所有的核方框的property都取消勾選
                     }); 
                     setTimeout(function(){
-                        $(".report_overlay").removeClass("-on -opacity-zero");
+                        $(".overlay").removeClass("-on -opacity-zero");
                     }, 1000);
             });
             
+            getMemberInfo();
         });
         new Vue({
             el: '#groupAllList',
