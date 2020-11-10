@@ -28,7 +28,6 @@
 @import "page/backstage_login";
 
 //mixin
-@import "mixin/gird";
 @import "mixin/button";
 @import "mixin/rwd";
 
@@ -127,8 +126,6 @@
 .bgcColor{
     background-color: $bgcColor;
 }
-
-@include grids(12);
 
 .section1{
     padding-top: 140px;

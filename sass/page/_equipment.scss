@@ -53,7 +53,7 @@
 }
 
 .post_btn{
-    margin: 20px 20px;
+    margin: 20px auto;
     // text-align: center;
 }
 
@@ -681,17 +681,56 @@ button.reportbtn , .equ_collect_checkbox{
     text-align: center ;
     width: 265px;
     margin:0 14px 30px 0;
-    
+    border-radius: $radius2;
 }
 
 .equ_img1 > img {
     width: 265px;
+    border-radius: $radius2
 }
 
 .equ_text{
     padding: 15px;
     margin-top: 15px;
 }
+
+//分頁
+.section1{
+    .wrap{
+        .equsPage{
+            .page{
+                font-weight: bold;
+                text-align: center;;
+                // text-align: center;
+                // display: flex;
+                li{
+                    margin: 0 15px;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    a{
+                        display: inline-block;
+                        line-height: 40px;
+                        width: 100%;
+                        height: 100%;
+                        &:hover{
+                            background-color: $greenColor3;
+                            color: $white;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+            //所在頁
+            .thisPage{
+                background-color: $greenColor3;
+                color: $white;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
 
 
 //=====設備刊登 post====
