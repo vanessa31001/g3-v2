@@ -567,7 +567,6 @@
     <!-- footer 結束-->
 
 
-
     <!-- 交換設備 -->
     <script>
         
@@ -631,7 +630,7 @@
             });
         });    
     </script>
-
+     
     <script>
         // 首頁滑鼠移動效果
         var scene = document.getElementById('scene');
@@ -640,7 +639,7 @@
     <script src="./js/map.js"></script>
     <script src="https://unpkg.com/jquery"></script>
     <script src="./js/main.js"></script>
-    <!-- 揪團 -->
+    <script src="./js/logintext.js"></script>
     <script>
         //團
         let groupxhr = new XMLHttpRequest();
@@ -663,6 +662,8 @@
                 grouparrleng=groupDatas.length;
             }   
             let gMainGroups = document.getElementById(`gMainGroups`);
+            console.log(gMainGroups);
+            
             for(let i =0; i< grouparrleng ; i++){
                 let linkGroup =  document.createElement("a");
                 linkGroup.href = `./groupInfo.html?GROUP_NO=${groupDatas[i].GROUP_NO}`;
@@ -700,6 +701,5 @@
         }
 
     </script>
-    <script src="./js/logintext.js"></script>
 </body>
 </html>
