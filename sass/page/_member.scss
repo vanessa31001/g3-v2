@@ -1,3 +1,4 @@
+
 .member_section{
     height: auto;
     padding-bottom: 36px;
@@ -123,6 +124,7 @@
         justify-content: space-around;
         align-items: center;
         img{
+            // border:3px solid red;
             // width: 150px;
             // border-radius: 50%;
             // padding: 10px;
@@ -135,7 +137,6 @@
         }
     }
 }
-
 
 
 .message_onetext{

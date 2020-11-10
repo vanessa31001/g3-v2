@@ -1,5 +1,9 @@
 //小遊戲
 
+
+
+
+
 .game_title{
     margin: 0 auto;
     // border: 1px solid red;
@@ -22,8 +26,8 @@
 
 
 .game_table{
-    min-height: 100vh;
-    // background-color: #f6f3ed;
+    min-height:70vh;
+    background-color: #f6f3ed;
     background-image: url(../pic/game/game.svg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,9 +39,7 @@
     margin: 0 auto;  
     // border: 1px solid red;
     text-align: center;
-    padding-top: 57px;
 
- 
 }
 
 
@@ -87,18 +89,41 @@
     pointer-events: none;
 }
 
+.section_001{
+    padding-top:100px;
+    padding-bottom: 25px;
+}
 
 
 
 // 小遊戲RWD
 @media screen and (max-width: 767px){
-.section1 {
+.section1_001 {
     display: inline-block;
     margin: 0 auto;
     width:100%;
     padding:0;
 }
 }
+
+
+//rwd
+@media screen and (min-width: 1200px){
+
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+}
+@media screen and (max-width: 767px){
+}
+@media screen and (max-width: 576px){
+}
+@media screen and (max-width: 1199px){
+
+}
+
 
 
 // 還沒整理的css

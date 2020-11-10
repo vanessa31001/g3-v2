@@ -16,7 +16,7 @@
 @import "layout/loginbox";
 
 //page
-
+// @import"./page/_bigame.scss";
 @import "page/InitialScreen";
 @import "page/aboutus";
 @import "page/camping";
@@ -25,11 +25,14 @@
 @import "page/letter";
 @import "page/main";
 @import "page/member";
-@import "page/backstage_login";
 @import "page/game";
+@import "page/backstage_login";
+@import "page/bigame";
+
+
+
 
 //mixin
-@import "mixin/gird";
 @import "mixin/button";
 @import "mixin/rwd";
 
@@ -129,7 +132,6 @@
     background-color: $bgcColor;
 }
 
-@include grids(12);
 
 .section1{
     padding-top: 140px;
