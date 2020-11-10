@@ -18,7 +18,7 @@ try{
     "CAM_AREA"=>$groupRow["地區"],"CAM_COUNTY"=>$groupRow["縣市"],"CAM_NAME"=>$groupRow["營地"],"GROUP_PEOPLE_LIMIT"=>$groupRow["人數上限"], "GROUP_PEOPLE_SIGNUP"=>$groupRow["參團人數"],
     "GROUP_PEOPLE_LEFT"=>$groupRow["剩餘名額"],"GROUP_START_DATE"=>$groupRow["開團日"],"GROUP_DEPART_DATE"=>$groupRow["出發日"],"GROUP_DEADLINE"=>$groupRow["回程日"],
     "GROUP_STATUS"=>$groupRow["團目前狀態"],"Like_NUM"=>$groupRow["收藏數"] );
-
+    echo "hoho";
   }
   echo json_encode($result);
    
