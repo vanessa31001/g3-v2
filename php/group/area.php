@@ -2,15 +2,15 @@
 try{
   require_once("../connectBooks.php");
   // $sql = "select * from campinggroups";
-  if($_GET["CAM_AREA"]==1){
-    $cond = 1;
-  }else{
-    $AREA=$_GET["CAM_AREA"];
-    $cond = "CAM_AREA = '{$_GET["CAM_AREA"]}'";
-    // echo ($cond); 
-  }
+  // if($_GET["CAM_AREA"]==1){
+  //   $cond = 1;
+  // }else{
+  //   $AREA=$_GET["CAM_AREA"];
+  //   $cond = "CAM_AREA = '{$_GET["CAM_AREA"]}'";
+  //   // echo ($cond); 
+  // }
   // $area = $_GET["CAM_AREA"];
-  $sql = "select CAM_NO, CAM_NAME, CAM_AREA, CAM_COUNTY from camping where $cond";
+  $sql = "select CAM_NO, CAM_NAME, CAM_AREA, CAM_COUNTY from camping";
   $products = $pdo->query($sql);
   $result=[];
   while( $groupRow = $products->fetch(PDO::FETCH_ASSOC)){

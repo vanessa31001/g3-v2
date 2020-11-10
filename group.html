@@ -254,7 +254,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="groupsPage">
+                    <!-- <div class="groupsPage">
                         <ul class="level0 green3">
                             <li>&lt;</li>
                             <li class="thisPage">1</li>
@@ -262,7 +262,7 @@
                             <li><a href="./group2.html" class="level0 green3">&gt;</a></li>
 
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -308,6 +308,30 @@
         </footer>
     </div>
     <script src="./js/logintext.js"></script>
+    <!-- 載入資料 -->
+    <script>
+        function showAllGroups(json){
+            let groups = JSON.parse(json);
+            console.log(groups);
+            let groups = document.getElementById(`groups`);
+            let gMainGroup =  document.createElement("div");
+                gMainGroup.className = "gMainGroup";
+                linkGroup.appendChild(gMainGroup);
+
+
+        }
+        let areaxhr = new XMLHttpRequest();
+            areaxhr.onload = function(){
+            if(areaxhr.status == 200){ //success
+                showAllGroups(areaxhr.responseText);
+            }else{ //error
+                alert(areaxhr.status);
+            }
+        }
+        areaxhr.open("get", `./php/group/group.php`, true);
+        areaxhr.send(null);
+
+    </script>
     <script>
         //燈箱
         $(document).ready(function(){

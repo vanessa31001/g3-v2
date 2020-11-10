@@ -310,7 +310,7 @@
                 }
             }
         }
-        function doFirst(area){
+        function doFirst(){
             let areaxhr = new XMLHttpRequest();
                 areaxhr.onload = function(){
                 if(areaxhr.status == 200){ //success
@@ -320,11 +320,11 @@
                     alert(areaxhr.status);
                 }
             }
-            areaxhr.open("get", `./php/group/area.php?CAM_AREA=${area}`, true);
+            areaxhr.open("get", `./php/group/area.php`, true);
             areaxhr.send(null);
         }
 
-        window.addEventListener('load',doFirst(1));
+        window.addEventListener('load',doFirst);
     </script>
 </body>
 </html>
