@@ -1,18 +1,23 @@
-<?
+<?PHP
 try{
     require_once("../connectBooks.php");
-    $sql = "SELECT * 
-    FROM camping a JOIN campcolloection b on (a.CAM_NO=b.CAMPCO_CAMNO) GROUP BY b.CAMPCO_CAMNO 
-    order by b.CAMPCO_CAMNO 
-    DESC 
-    LIMIT 5"; 
+    $sql = "SELECT CAM_NO, CAM_NAME,CAM_INTRODUCTION,CAM_PIC1,CAM_ADDRESS,CAM_FACILITY, IFNULL(收藏數,0) 收藏數
+    From CAMPING b 
+    left join 
+    (select CAMPCO_CAMNO , count(*) 收藏數 from campcolloection group by CAMPCO_CAMNO)
+        c on b.cam_no=c.campco_camno
+    order by 收藏數 desc
+    limit 5;"; 
 
-    $camping = $pdo->prepare($sql);
-    $camping->bindValue(":CAM_NO", $_GET["cam_no"]);
-    $camping->execute();
-    $campingRow = $camping->fetch(PDO::FETCH_ASSOC);
+    $camping = $pdo->query($sql);
+    $allcamping=[];
+    while($campingRow = $camping->fetch(PDO::FETCH_ASSOC)){
+        $allcamping[] = array("CAM_NAME"=>$campingRow["CAM_NAME"],"CAM_INTRODUCTION"=>$campingRow["CAM_INTRODUCTION"],"CAM_PIC1"=>$campingRow["CAM_PIC1"],"CAM_ADDRESS"=>$campingRow["CAM_ADDRESS"],"CAM_FACILITY"=>$campingRow["CAM_FACILITY"]);
+        
+    }
+    
+    echo json_encode($allcamping);
 
-    echo json_encode($campingRow);
 
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";

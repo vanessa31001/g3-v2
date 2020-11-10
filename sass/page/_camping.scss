@@ -169,6 +169,9 @@
 }
 
 //熱門營區
+.section_hot{
+margin-bottom: 60px;
+}
 .popular_area{
     display: flex;
     position: relative;
@@ -183,7 +186,11 @@
             border-radius: $radius;
         }
     }
-
+    .area_info{
+        .lineheight{
+            margin-top: 15px;
+        }
+    }
     .hot{
         background-color:  $orangeColor2; 
         width: 170px;
@@ -219,6 +226,9 @@
                 width: 100%;
                 border-radius: $radius;
             }
+            .ellipsis{
+                width: 100%;
+            }
         }
     }
     .card:nth-child(1){
@@ -231,6 +241,7 @@
         margin-right: 20px;
     }
 }
+
 //近期揪團
 .currently_gruop{
     border-bottom: 2px solid $grayColor2;
