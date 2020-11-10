@@ -24,7 +24,7 @@
         </span>
     </button>
     </div>
-    <nav class="wrap">
+    <nav class="wrap_nav">
         <div class="nav_logo">
             <a href="#" class="logo_link -bottom">
                 <img class="desk sun" src="./pic/commom/sun.svg" alt="">
@@ -114,10 +114,10 @@
                         <li class="level0 gray1">揪團露營</li>
                     </ul>
                 </div>
-                <div class="overlay">
+                <div class="report_overlay">
                     <article>
-                        <div class="level7 bold green1 report_title">檢舉原因</div>                        
                         <form class="report_form" action="">
+                            <div class="level7 bold green1 report_title">檢舉原因</div>                        
                             <div class="report_reason1 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ1">
                                 <label for="report_equ1">此揪團與露營不相關</label>
@@ -141,20 +141,20 @@
                     <div class="nav">
                         <a href="./groupNewStart.html" class="startNewGroup"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
                         <h2 class="level7 green1">自訂篩選</h2>
-                         <div class="serchGroup">
+                        <div class="serchGroup">
                             <h3 class="level2 green1">選擇地區</h3> 
                             <select class= "gray1 inputstyle" name="loca">
-                             <option class= "gray1" v-for="city in citys">{{city}}</option>
+                            <option class= "gray1" v-for="city in citys">{{city}}</option>
                             </select>
-                         </div>
-                         <div class="serchGroup">
-                             <h3 class="level2 green1">剩餘名額</h3> 
-                             <label class= "gray1" v-for="person in people"><input type="checkbox" name="people">{{person}}</label>
-                         </div>
-                         <div class="serchGroup">
-                             <h3 class="level2 green1">出團日期</h3> 
-                             <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date">{{date}}</label>
-                         </div>
+                        </div>
+                        <div class="serchGroup">
+                            <h3 class="level2 green1">剩餘名額</h3> 
+                            <label class= "gray1" v-for="person in people"><input type="checkbox" name="people[]">{{person}}</label>
+                        </div>
+                        <div class="serchGroup">
+                            <h3 class="level2 green1">出團日期</h3> 
+                            <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date[]">{{date}}</label>
+                        </div>
                     </div>
                     <div class="groups">
                         <div class="groupBlock"  v-for="gname in groupNames">
@@ -193,19 +193,20 @@
                                             </div>                                                                     
                                         </div>
                                     </fieldset>
+                                    <span>相關介紹 :</span>
                                     <p class="info">
                                         想吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空這裡環境優美，想呼吸新鮮空氣，看美的歡迎參加。吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空的。
                                     </p>
                                     <p>
-                                        出發日期 : 2020年10月15日
+                                        <span>出團日期 :</span> 2020年10月15日
                                     </p>
                                     <p>
-                                        露營天數 : 3 天
+                                        <span>結束日期 :</span> 2020年10月17日
                                     </p>
                                     <div class="aboutPepole">
                                         <div>
                                             <p>
-                                                人數上限 : {{limPepole}}人
+                                                <span>人數上限 :</span> {{limPepole}}人
                                             </p>
                                         </div>
                                         <div class="right">
@@ -216,14 +217,13 @@
                                         
                                     </div>
                                     <div class="equthing">
-                                        須具備設備 :
+                                        <span>須具備設備 :</span>
                                         <div>
                                             <a href="#" v-for="equ in equs" class="equ">
                                                 <button class="tagbtn_yellow">{{equ}}</button>
                                             </a>
                                         </div>
-                                        
-                                        <p class="gray2">
+                                        <p class="gray2 ">
                                             (標籤可到設備交換區)
                                         </p>
                                     </div>
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="groupsPage">
+                    <!-- <div class="groupsPage">
                         <ul class="level0 green3">
                             <li>&lt;</li>
                             <li class="thisPage">1</li>
@@ -263,7 +263,7 @@
                             <li><a href="./group2.html" class="level0 green3">&gt;</a></li>
 
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
