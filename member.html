@@ -26,43 +26,41 @@
 
   <body>
     <!--header開始-->
-    <header>
-      <div class="forphone">
-        <button class="hamburger hamburger--spring" type="button">
-          <span class="hamburger-box">
+    <header >
+    <div class="forphone">
+    <button class="hamburger hamburger--spring" type="button">
+        <span class="hamburger-box">
             <span class="hamburger-inner"></span>
-          </span>
-        </button>
-      </div>
-      <nav class="wrap">
+        </span>
+    </button>
+    </div>
+    <nav class="wrap">
         <div class="nav_logo">
-          <a href="#" class="logo_link -bottom">
-            <img class="desk sun" src="./pic/commom/太陽.svg" alt="" />
-          </a>
-          <a class="changelogo" href="./shansen.html">
-            <img class="phone" src="./pic/commom/手機_header.svg" />
-          </a>
-          <div class="middle_bg"></div>
-          <a href="./shansen.html" class="logo_link -up">
-            <img class="desk" src="./pic/commom/電腦版_header.svg" />
-          </a>
+            <a href="#" class="logo_link -bottom">
+                <img class="desk sun" src="./pic/commom/sun.svg" alt="">
+            </a>
+            <a class="changelogo" href="./shansen.html">
+            <img class="phone" src="./pic/commom/phone_header.svg">
+            </a>
+            <div class="middle_bg"></div>
+            <a href="./shansen.html" class="logo_link -up">
+                <img class="desk" src="./pic/commom/pc_header.svg">
+            </a>
         </div>
         <div class="nav_list">
-          <ul>
-            <li><a class="nav_title" href="./group.html">揪團露營</a></li>
-            <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
-            <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
-            <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
-            <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
-            <li>
-              <a class="nav_title" href="./member.html"></a
-              ><span class="orange1">董董 </span>您好!
-            </li>
-          </ul>
+            <ul >
+                <li><a class="nav_title @@underline_01" href="./group.html">揪團露營</a></li>
+                <li><a class="nav_title @@underline_02" href="./equipment.html">設備交換</a></li>
+                <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
+                <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
+                <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title orange2" href="#" id="spanLogin">登入|註冊</a></li>
+            </ul>
         </div>
-      </nav>
-    </header>
-    <!--header結束-->
+    </nav>
+</header>
+     <!--header結束-->
+
 
     <!--內容開始-->
     <div class="bgcColor member_page">
@@ -147,10 +145,9 @@
       </section>
     </div>
 
-    <!--內容結束-->
-
+    <!-- footer 開始-->
     <footer>
-      <div class="footer_bgc">
+    <div class="footer_bgc">
         <div class="wrap">
           <div class="footerarrange">
             <div class="footright">
@@ -178,9 +175,12 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="copyright">Copyright &copy; 2020ShanSen</div>
-    </footer>
+    </div>
+    <div class="copyright">Copyright &copy; 2020ShanSen</div>
+</footer>
+    <!-- footer 結束-->
+<!--內容結束-->
+    
     <script>
       Vue.component("memberInformation", {
         data(){
