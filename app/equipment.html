@@ -64,17 +64,7 @@
                         
                 </div>   
                 
-                <div class="equsPage">
-                    <ul class="level0 green3 page">
-                        <li>&lt;</li>
-                        <li class="thisPage">1</li>
-                        <li><p @click="page" class="level0 green3">2</a></li>
-                        <li><p @click="page" class="level0 green3">3</p></li>
-                        <li><p @click="page" class="level0 green3">4</p></li>
-                        <li><p @click="page" class="level0 green3">5</p></li>
-                        <li><p @click="page" class="level0 green3">&gt;</p></li>
-                    </ul>
-                </div>
+                
             </div>
         </section>
         
@@ -146,9 +136,10 @@
             created(){
                 axios.get('php/equipment/equipment.php')
                         .then(res => {
-                            this.changepage(res.data);
+                            this.changepage(res.data)
                         })
                         .catch(error => console.log(error))
+
             
                         // .then(data => console.log(this.allRows));
 
@@ -186,7 +177,19 @@
                         <a class="bold level1 gray1 poster_text" href="">{{card.MEM_NICKNAME}}</a>
                     </div>
                 </div>
+                <div class="equsPage">
+                    <ul class="level0 green3 page">
+                        <li>&lt;</li>
+                        <li class="thisPage">1</li>
+                        <li><p  @click="page1" class="level0 green3">2</p></li>
+                        <li><p  @click="page1" class="level0 green3">3</p></li>
+                        <li><p  @click="page1" class="level0 green3">4</p></li>
+                        <li><p  @click="page1" class="level0 green3">5</p></li>
+                        <li><p  @click="page1" class="level0 green3">&gt;</p></li>
+                    </ul>
+                </div>
             </div>
+            
             `,
             methods:{
                 changepage(data){
@@ -194,9 +197,17 @@
                     console.log(this.allRows)
                     for(var i =this.indexpagefirst;i<this.indexpage;i++){
                         this.allRows2.push(this.allRows[i]);
-                    }
+                    }                
+                },
+
+                page1: function(e){
+                    console.log(this.allRows);
+
 
                 }
+
+            
+
             }
         });
 
