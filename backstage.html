@@ -73,6 +73,7 @@
                     link : "allManagers",
                     page1style: "back_btn1",
                     page2style: "back_btn2",
+                    managers:[],
                 }
             },
             methods:{
@@ -88,7 +89,11 @@
                     this.page2style= "back_btn1"
                 }
             },
-            
+            created() {
+                axios.get('php/backstage/backstage_mgr.php').then(res => {
+                this.managers = res.data; 
+                })
+            },
             template: `
             <div>
                 <div class="back_manager_area back_area">
@@ -104,19 +109,9 @@
                                 <th>管理員名稱</th>
                                 <th>是否刪除</th>
                             </tr>
-                            <tr>
-                                <td>001</td>
-                                <td>王大明</td>
-                                <td><input type="checkbox" class="switch"></td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>王中明</td>
-                                <td><input type="checkbox" class="switch"></td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>王小明</td>
+                            <tr v-for="manager in managers">
+                                <td>{{manager.MGR_NO }}</td>
+                                <td>{{manager.MGR_USER }}</td>
                                 <td><input type="checkbox" class="switch"></td>
                             </tr>
                         </table>
@@ -146,11 +141,11 @@
         Vue.component('back-mem-manage', { 
             data() {
                 return {
-                    members:'[]',
+                    members:[],
                 }
             },
             created() {
-                axios.get('php/backstage/backstage.php').then(res => {
+                axios.get('php/backstage/backstage_mem.php').then(res => {
                 this.members = res.data; 
                 })
             },
@@ -195,7 +190,8 @@
                     page1style: "back_btn1",
                     page2style: "back_btn2",
                     preview: null,
-                    image: null
+                    image: null,
+                    grades:[],
                 }
             },
             methods:{
@@ -222,6 +218,11 @@
                     }
                 },
             },
+            created(){
+                axios.get('php/backstage/backstage_grade.php').then(res => {
+                this.grades = res.data; 
+                })
+            },
             template: `
             <div>
                 <div class="back_grade_area back_area">
@@ -240,43 +241,11 @@
                                 <th>等級圖片</th>
                                 <th>修改</th>
                             </tr>
-                            <tr>
-                                <td>001</td>
-                                <td>鐵牌會員</td>
-                                <td>5999</td>
-                                <td>0</td>
-                                <td>$</td>
-                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>銅牌會員</td>
-                                <td>11999</td>
-                                <td>6000</td>
-                                <td>$</td>
-                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>銀牌會員</td>
-                                <td>17999</td>
-                                <td>12000</td>
-                                <td>$</td>
-                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                            </tr>
-                            <tr>
-                                <td>004</td>
-                                <td>金牌會員</td>
-                                <td>23999</td>
-                                <td>18000</td>
-                                <td>$</td>
-                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                            </tr>
-                            <tr>
-                                <td>005</td>
-                                <td>鑽石會員</td>
-                                <td>30000</td>
-                                <td>24000</td>
+                            <tr v-for="grade in grades">
+                                <td>{{grade.GRADE_NO }}</td>
+                                <td>{{grade.GRADE_NAME }}</td>
+                                <td>{{grade.GRADE_UPLIMIT }}</td>
+                                <td>{{grade.GRADE_LOLIMIT }}</td>
                                 <td>$</td>
                                 <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
                             </tr>
@@ -312,6 +281,16 @@
         });
         //揪團檢舉管理
         Vue.component('back-rep-group', { 
+            data(){
+                return{
+                    reportgroups:[],
+                }
+            },
+            created(){
+                axios.get('php/backstage/backstage_reportgroup.php').then(res => {
+                this.reportgroups = res.data; 
+                })
+            },
             template: `
             <div>
                 <div class="back_rep_group_area back_area">
@@ -325,29 +304,13 @@
                             <th>處理狀態</th>
                             <th>揪團狀態</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>飛向宇宙</td>
-                            <td>7878</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>飛向宇宙</td>
-                            <td>9527</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>王小明</td>
-                            <td>5566</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
+                        <tr v-for="reportgroup in reportgroups">
+                            <td>{{reportgroup.REGROUP_NO}}</td>
+                            <td>{{reportgroup.GROUP_NAME}}</td>
+                            <td>{{reportgroup.MEM_NAME}}</td>
+                            <td>{{reportgroup.REGROUP_RESON}}</td>
+                            <td>{{reportgroup.REGROUP_STATUS}}</td>
+                            <td>{{reportgroup.GROUP_STATUS}}</td>
                         </tr>
                     </table>
                 </div>
@@ -542,18 +505,6 @@
             el:'#app', 
             data:{
                 content:'back-mem-manage',
-            },
-            methods:{
-                showData:function(){
-                    var aaa = this;
-                    $.ajax({
-                        type:'GET',
-                        url:'php/backstage/backstage.php',
-                        success:function(data){
-                            aaa.content = JSON.stringify(data);
-                        }
-                    })
-                }
             },
         });
 
