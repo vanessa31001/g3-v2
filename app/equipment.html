@@ -120,12 +120,12 @@
                 </form>
                 <hr>        
                 <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
-                    <h3><a class="level2 green1" href="">睡袋</a></h3>
+                    <h3 class="level2 green1">睡袋</h3>
                     <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
                 </form>  
                 <hr>      
                 <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
-                    <h3><a class="level2 green1" href="">其他</a></h3>
+                    <h3 class="level2 green1">其他</h3>
                     <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
                 </form>
             </div>
@@ -140,23 +140,23 @@
                     indexpage:9,
                     indexpagefirst:0,
                     image:'pic/equipment/'
-                  
+                
                 };
             },
             created(){
                 axios.get('php/equipment/equipment.php')
                         .then(res => {
                             this.changepage(res.data);
-                           })
+                        })
                         .catch(error => console.log(error))
             
                         // .then(data => console.log(this.allRows));
 
-              
-               
+            
+            
                 // this.allRows=this.allRows2;
                 // console.log( this.allRows);
-                   
+                
                 // $.ajax({
                 //     url:'php/equipment/equipment.php',
                 //     type:'GET',
