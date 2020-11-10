@@ -816,7 +816,7 @@
                 height: 303px;
                 margin: 0 auto;
                 background-image: url(../../pic/postcardMaterial/leftBackground1.svg);
-                background-size: cover;
+                background-size: contain;
                 .stylePostcard{
                     width: 550px;
                     height: 169px;
@@ -1309,12 +1309,12 @@
             .rightPostcard{
                 
                 width: 100%;
-                height: 227px;
+                height: 236px;
                 margin: 0 auto;
                 background-image: url(../../pic/postcardMaterial/leftBackground1.svg);
                 background-size: contain;
                 .stylePostcard{
-                    width: 75%;
+                    width: 80%;
                     height: 135px;
                         
                     .paperTexture{
@@ -1458,4 +1458,143 @@
         }
         
     }
+}
+@media screen and (max-width: 490px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 117px;
+                    .photoChoose{
+                        .postPhoto{
+                            top: 10%;
+                        }
+                    }
+                }
+                .stepContent{
+                    margin-top: 4%;
+                }
+            }
+        }
+    }
+}    
+@media screen and (max-width: 430px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                height: 200px;
+                .stylePostcard{
+                    height: 104px;
+                    .paperTexture{
+                        width: 100%;
+                        display: block;
+                    }
+                    .posLittlePic{
+                        margin-top: 0%;
+                        display: block;
+                        margin: 0 auto;
+                        width: 100px;
+                    }
+                    .photoChoose{
+                        width: 165px;
+                        display: block;
+                        margin: 0 auto;
+                        margin-bottom: 20px;
+                        .postPhoto{
+                            width: 165px;
+                            top: 0%;
+                        }
+                        .postPhoto:hover{
+                            transform: scale(1,1);
+                        }
+                    }
+                label{
+                    width: 165px;
+                    .updatePicPos{
+                        width: 165px;
+                    }
+                }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 0px;
+                    width: 5px;
+                }
+                .stepContent{
+                    margin-top: 5%;
+            }
+            #rightStep6{
+                .posButtonContentFront{
+                    width: 45%;
+                }
+                .posButtonContentBack{
+                    width: 45%;
+                }
+            }
+            #rightStep2{
+                white-space: normal;
+
+            }
+            #rightStep3{
+                white-space: normal;
+            }
+        }
+    }
+    
+    }
+}
+@media screen and (max-width: 400px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 90px;
+                    .photoChoose{
+                        margin-bottom: 50px;
+                    }
+                    .posLittlePic{
+                        width: 70px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        display: inline-block;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px){
+    .wrap{
+        .stepBreadcrumbs{
+            #stepLine1{
+                display: none;
+            }
+            #stepLine2{
+                display: none;
+            }
+            #stepLine3{
+                display: none;
+            }
+            #stepLine4{
+                display: none;
+            }
+            #stepLine5{
+                display: none;
+            }
+        }
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 65px;
+                    .paperTexture{
+                        height: 100%;
+                    }
+                }
+            .stepContent{
+                margin-top: 12%;
+            }
+            }
+        }
+    }
+    
 }
