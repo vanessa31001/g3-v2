@@ -434,7 +434,7 @@
             });
             //留言
             $('#sendMsg').click(function(){
-                if($('#leaveMsg').val()!= ""){
+                if($('#leaveMsg').val().trim()!= ""){
                     let msg = $('#leaveMsg').val();
                 // alert(msg);
                 // let date = new Date();
@@ -464,36 +464,27 @@
             });
             // 檢舉留言
             $(".reportbtnMsg").on("click", function(){
-                $(".overlay").addClass("-on");
+                $(".report_overlay").addClass("-on");
                 $(".report_reason1 label").html("此留言與露營不相關");
                 $(".report_reason2 label").html("此留言為不當發言");
                 $(".report_reason3 label").html("此留言含污辱文字");
             });
             $(".btn_modal_close").on("click", function(){
-                $(".overlay").addClass("-opacity-zero");
+                $(".report_overlay").addClass("-opacity-zero");
                 $("input[name=reason0]").each(function(){
                     $(this).prop("checked",false);//把所有的核方框的property都取消勾選
                 }); 
                 setTimeout(function(){
-                    $(".overlay").removeClass("-on -opacity-zero");
+                    $(".report_overlay").removeClass("-on -opacity-zero");
                 }, 1000);
             });
             $(".reportbtngGroup").on("click", function(){
-                $(".overlay").addClass("-on");
+                $(".report_overlay").addClass("-on");
                 // alert($(".report_reason2 label").html()); 
                 $(".report_reason1 label").html("此揪團與露營不相關");
                 $(".report_reason2 label").html("此揪團含有色情內容");
                 $(".report_reason3 label").html("此揪團含違法內容");
             });
-            // $(".btn_modal_close").on("click", function(){
-            //     $(".overlay").addClass("-opacity-zero");
-            //     $("input[name=reason0]").each(function(){
-            //         $(this).prop("checked",false);//把所有的核方框的property都取消勾選
-            //     }); 
-            //     setTimeout(function(){
-            //         $(".overlay").removeClass("-on -opacity-zero");
-            //     }, 1000);
-            // });
             //更多揪團
             imgCount = $('.allGroup .group').length;
             divWidth = $('.oGroups').width(); 
