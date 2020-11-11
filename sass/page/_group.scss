@@ -399,6 +399,7 @@ input[type="submit"], button{
                 }
                 span{
                     color: $greenColor1;
+                    font-size: 16px;
                 }
                 //會員資訊
                 .poster_inform{
@@ -451,7 +452,7 @@ input[type="submit"], button{
                         .equ{
                             display: inline-block;
                             margin: 0;
-                            margin-right: 15px;
+                            margin-left: 15px;
                         }
                     }
 
