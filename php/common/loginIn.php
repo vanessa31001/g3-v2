@@ -14,11 +14,12 @@ try{
   	$memRow = $member->fetch(PDO::FETCH_ASSOC);
     //--------------將登入者的資料寫入session
     session_start();
+    $_SESSION["MEMNO"] = $memRow["MEMNO"];
     $_SESSION["MEM_ID"] = $memRow["MEM_ID"];
     $_SESSION["MEM_NAME"] = $memRow["MEM_NAME"];
     $_SESSION["MEM_NICKNAME"] = $memRow["MEM_NICKNAME"];
 
-  	$result = array("MEM_ID"=>$memRow["MEM_ID"], "MEM_NAME"=>$memRow["MEM_NAME"], "MEM_NICKNAME"=>$memRow["MEM_NICKNAME"]);
+  	$result = array("MEMNO"=>$memRow["MEMNO"],"MEM_ID"=>$memRow["MEM_ID"], "MEM_NAME"=>$memRow["MEM_NAME"], "MEM_NICKNAME"=>$memRow["MEM_NICKNAME"]);
   	$json = json_encode($result);
 
     //送出登入者的相關資料

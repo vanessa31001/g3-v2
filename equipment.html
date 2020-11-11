@@ -190,10 +190,13 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script>
+        
+    </script>
+    <script>
         Vue.component('equlista',{
             data(){
                 return{
-                    tents:['家庭帳','客廳帳','炊事帳'],
+                    tents:['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],
                     sbags: ['睡袋'],       
                     others: ['桌椅','炊具','小物'],
                 };
@@ -346,45 +349,38 @@
 
                 });
         });
-
-
-            // let equipmentRows;
-            // window.addEventListener("load", function(){
-            
-            //     function showEquipment(){
-            //         let html = "";
-            //         for(let i=0; i< equipmentRows.length; i++){
-            //             html += ``;
-            //         }
-            //         html += "";
-            //         document.getElementById("equallprod").innerHTML = html;
-            //     }
-            
-            //     let xhr = new XMLHttpRequest();
-            //     xhr.onload = function(){
-            //         equipmentRows = JSON.parse(xhr.responseText);
-            //         showEquipment();
-            //         console.log(equipmentRows);
-            //     }
-            //     xhr.open("get", "php/equipment/equipment.php",true);
-            //     xhr.send(null);
-
-            
-            //     document.getElementById("equ_sort1").onchange = function(e){
-            //         let xhr = new XMLHttpRequest();
-            //         xhr.onload = function(){
-            //             equipmentRows = JSON.parse(xhr.responseText);
-            //             showEquipment();
-            //             console.log(equipmentRows);
-            //         }
-            //         xhr.open("get", `php/equipment/equipment.php?equ_sort1=${e.target.value}`,false);
-            //         xhr.send(null);
-            //     }
-            // }, false);
-
-
     </script>
+    <script>
+        function doFirst(){
+                    
+                    let postbtn = document.getElementsByClassName('post_btn')[0].getElementsByTagName('a')[0].getElementsByClassName('secondbtn1')[0];
+                    postbtn.addEventListener('click',poclick);
+                    function poclick(e){
+                        e.preventDefault();
+                        
+                        let xhr = new XMLHttpRequest();
 
+                        xhr.addEventListener('load',function(){
+                            if( xhr.status == 200 ){
+                                let equpo = JSON.parse(xhr.responseText);
+                                
+                                // console.log(Object.keys(equpo).length);
+                                    if(Object.keys(equpo).length == 0){
+                                        document.getElementById('outerDiv').style.display = 'flex';
+                                    }else{
+                                        window.location.href="equipment_post.html";
+                                    }
+                                }else{
+                                alert( xhr.status );
+                                }                                
+                        });
+                            xhr.open("Get", "php/equipment/equipment2.php", true);
+                            xhr.send( null );
+                        
+                    }
+                }
+        window.addEventListener('load',doFirst);
+    </script>
 
 </body>
 </html>

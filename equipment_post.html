@@ -150,6 +150,8 @@
                                 <tr>
                                     <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
                                     <td><input class="inputstyle" type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
+                                    <td><input class="inputstyle mempost1"  name="mempost" style="display: none;"></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -327,6 +329,8 @@
             document.getElementById('equFile1').onchange = fileChange1;
             document.getElementById('equFile2').onchange = fileChange2;
             document.getElementById('equFile3').onchange = fileChange3;
+
+            let mempo = "";
             
                 function fileChange1(){
                 let file = document.getElementById('equFile1').files[0];
@@ -367,6 +371,28 @@
                     image.src = readFile.result;
                 });        
             }
+
+            let xhr = new XMLHttpRequest();
+
+
+                xhr.addEventListener('load',function(){
+                    if( xhr.status == 200 ){
+                        let equpo = JSON.parse(xhr.responseText);
+                            if(Object.keys(equpo).length == 0){
+                                
+                                }else{
+                                    mempo = parseInt(equpo.MEMNO);
+                                    console.log(typeof(mempo));
+                                    document.getElementsByClassName('mempost1')[0].value = mempo;
+                                    console.log(document.getElementsByClassName('mempost1')[0].value);
+                                    
+                                }
+                                }else{
+                                alert( xhr.status );
+                                }                                
+                        });
+                            xhr.open("Get", "php/equipment/equipment2.php", true);
+                            xhr.send( null );
         }        
         window.addEventListener('load',doFirst);
 
