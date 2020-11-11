@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +68,7 @@
                     page2style: "back_btn2",
                     managers:[],
                     manager:{
-                        MGR_NO:'',
+                        MGR_ID:'',
                         MGR_USER:'',
                         MGR_PSW:'',
                     }
@@ -87,25 +87,18 @@
                     this.page2style= "back_btn1"
                 },
                 createMgr(){
-                    axios.post('php/backstage/backstage_addmgr.php', this.manager).then(this.manager = {}).then(res => {
-                        if(res.status === 201) { 
-                            this.getList()
-                        }
-                    })
+                    axios.post('php/backstage/backstage_addmgr.php', this.manager).then(this.manager = {}).then(res => {this.getMGRList()})
                 },
                 delMgr(u){
-                    // console.log(u)
-                    alert(u);
                     alert('確認刪除');
-                    axios.post('php/backstage/backstage_delmgr.php', u)
+                    axios.post('php/backstage/backstage_delmgr.php', u).then(res => {this.getMGRList()})
                 },
-                getList() {
+                getMGRList() {
                     let url = 'php/backstage/backstage_mgr.php'
                     axios.get(url)
                     .then(res => {
                         this.managers = res.data;
                     })
-                    
                 },
             },
             created() {
@@ -130,9 +123,9 @@
                                 <th>刪除</th>
                             </tr>
                             <tr v-for="manager in managers">
-                                <input type="hidden" v-model="manager.MGR_NO" >
+                                <input type="hidden" v-model="manager.MGR_ID" >
                                     <td>
-                                        {{manager.MGR_NO }}
+                                        {{manager.MGR_ID }}
                                     </td>
                                     <td>
                                         {{manager.MGR_USER }}
@@ -140,7 +133,7 @@
                                     <td>
                                         {{manager.MGR_PSW }}
                                     </td>
-                                    <td><button @click="delMgr(manager.MGR_NO)" type="button" >刪除</button></td>
+                                    <td><button @click="delMgr(manager)" type="button" class="back_loginbtn">刪除</button></td>
                                     
                                 </tr>
                         </table>
@@ -149,13 +142,12 @@
                         <form >
                             <p>
                                 <label>管理員帳號：</label>
-                                <input type="text" v-model="manager.MGR_NO">
+                                <input type="text" v-model="manager.MGR_ID">
                             </p>
                             <p>
                                 <label>管理員姓名：</label>
                                 <input type="text" v-model="manager.MGR_USER">
                             </p>
-
                             <p>
                                 <label>管理員密碼：</label>
                                 <input type="text" v-model="manager.MGR_PSW">
@@ -172,18 +164,40 @@
             data(){
                 return{
                     reportgroups:[],
+                    managers:[],
                 }
             },
-            methods: {                
-                updateRegro(){
-                        // console.log(m)
-                        // axios.post('php/backstage/backstage_modify.php', m)
-                    },
+        
+            methods: {
+                updateRegro(m){
+                        console.log(m)
+                        axios.post('php/backstage/backstage_updateRegro.php', m).then(res => {this.getRGList()}).then(res=>this.buttonBan(this.reportgroups.indexOf(m)))
+    
+                },
+                buttonBan(i) {
+                document.querySelectorAll('.backclicked')[i].disabled=true;
+                },
+                // updateRegro(m){
+                //         console.log(m)
+                //         axios.post('php/backstage/backstage_updateRegro.php', m).then(res => {this.getRGList()}).then(res=>this.buttonBan())
+    
+                // },
+                // buttonBan(){
+                //         for(i=0 ; i<this.reportgroups.length ; i++){
+                //             document.querySelectorAll('.backclicked')[i].disabled=true;
+                // },
+                getRGList() {
+                let url = 'php/backstage/backstage_reportgroup.php';
+                axios.get(url)
+                .then(res => {this.reportgroups = res.data;
+                    })
+                },
             },
             created(){
                 axios.get('php/backstage/backstage_reportgroup.php').then(res => {
                 this.reportgroups = res.data; 
                 })
+
             },
             template: `
             <div>
@@ -200,18 +214,21 @@
                             <th>確認</th>
                         </tr>
                         <tr v-for="reportgroup in reportgroups">
+                            <input type="hidden" v-model="reportgroup.REGROUP_NO">
                             <td>{{reportgroup.REGROUP_NO}}</td>
                             <td>{{reportgroup.GROUP_NAME}}</td>
                             <td>{{reportgroup.MEM_NAME}}</td>
                             <td>{{reportgroup.REGROUP_RESON}}</td>
-                            <td>    
-                                <input type="radio" name="auth" value="unpass">未通過
+                            <td>{{reportgroup.REGROUP_STATUS}}
                                 <p>
-                                <input type="radio" name="auth" value="pass">通過&emsp;
+                                <input type="radio" v-model="reportgroup.REGROUP_DEAL" value="unpass">未通過
+                                </p>
+                                <p>
+                                <input type="radio" v-model="reportgroup.REGROUP_DEAL" value="pass">通過&emsp;
                                 </p>
                             </td>
                             <td>{{reportgroup.GROUP_STATUS}}</td>
-                            <td><button @click="updateRegro()">送出</button></td>
+                            <td><button @click="updateRegro(reportgroup)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -379,7 +396,7 @@
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back-manager',
+                content:'back-rep-group',
             },
         });
 

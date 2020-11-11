@@ -6,9 +6,10 @@ try{
     $data = json_decode($json);
     var_dump($data);
     die;
-    $sql = "DELETE FROM `manager` WHERE MGR_NO =:MGR_NO";
+    $sql = "DELETE FROM `manager` WHERE MGR_ID =:MGR_ID";
     $manager = $pdo->prepare($sql);
-    $manager->bindValue(":MGR_NO", $data);
+    $manager->bindValue(":MGR_ID", $data->MGR_ID);
+    // $manager->bindValue(":MGR_ID", "bbb");
     $manager->execute();
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";

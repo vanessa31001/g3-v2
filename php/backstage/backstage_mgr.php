@@ -2,7 +2,7 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT * FROM manager "; 
+    $sql = "SELECT * FROM manager ORDER by MGR_NO DESC"; 
     $manager = $pdo->prepare($sql);
     $manager->execute();
 

@@ -2,7 +2,7 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT re.REGROUP_NO, c.GROUP_NO, c.GROUP_NAME, m.MEM_NAME, re.REGROUP_RESON, c.GROUP_STATUS
+    $sql = "SELECT re.REGROUP_NO, c.GROUP_NO, c.GROUP_NAME, m.MEM_NAME, re.REGROUP_RESON, c.GROUP_STATUS, re.REGROUP_STATUS, re.REGROUP_DEAL
     FROM reportgroup re JOIN member m ON (re.REGROUP_MEMNO = m.MEMNO)
                         JOIN campinggroups c ON (c.GROUP_NO = re.REGROUP_GROUP_NO)"; 
     $reportgroup = $pdo->prepare($sql);
@@ -25,6 +25,12 @@ try{
         }else{
             $val['GROUP_STATUS']='已下架';
         }
+        if($val['REGROUP_STATUS']==0){
+            $val['REGROUP_STATUS']='未處理';
+        }else{
+            $val['REGROUP_STATUS']='已處理';
+        }
+        
         
         array_push($arr,$val);
     }
