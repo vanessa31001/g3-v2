@@ -124,15 +124,15 @@
                             <p class="level1 gray1">(限PNG、JPG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
                         <label class="post_minimg">
-                            <input class="prev_btn" type="file" id="equFile1" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <input class="prev_btn" type="file" id="equFile1" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
                             <img  id="upequimg01" src="pic/equipment/plus.svg" alt="">
                         </label>
                         <label class="post_minimg">
-                            <input class="prev_btn" type="file" id="equFile2" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <input class="prev_btn" type="file" id="equFile2" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
                             <img  id="upequimg02" src="pic/equipment/plus.svg" alt="">
                         </label>
                         <label class="post_minimg">
-                            <input class="prev_btn" type="file" id="equFile3" name="equpic" accept="image/png, image/jpeg ,image/jpg">
+                            <input class="prev_btn" type="file" id="equFile3" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
                             <img id="upequimg03" src="pic/equipment/plus.svg" alt="">
                         </label>
                         <div class="preview_btn">
@@ -327,49 +327,47 @@
             document.getElementById('equFile1').onchange = fileChange1;
             document.getElementById('equFile2').onchange = fileChange2;
             document.getElementById('equFile3').onchange = fileChange3;
+            
+                function fileChange1(){
+                let file = document.getElementById('equFile1').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg01');
+                    image.src = readFile.result;
+                });        
+            }
+            function fileChange2(){
+                let file = document.getElementById('equFile2').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg02');
+                    image.src = readFile.result;
+                });        
+            }
+            function fileChange3(){
+                let file = document.getElementById('equFile3').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg03');
+                    image.src = readFile.result;
+                });        
+            }
         }        
-        function fileChange1(){
-            let file = document.getElementById('equFile1').files[0];
-            // let message = '';
-            let readFile = new FileReader();
-            readFile.readAsDataURL(file);
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg0');
-                image.src = readFile.result;
-            });
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg01');
-                image.src = readFile.result;
-            });        
-        }
-        function fileChange2(){
-            let file = document.getElementById('equFile2').files[0];
-            // let message = '';
-            let readFile = new FileReader();
-            readFile.readAsDataURL(file);
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg0');
-                image.src = readFile.result;
-            });
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg02');
-                image.src = readFile.result;
-            });        
-        }
-        function fileChange3(){
-            let file = document.getElementById('equFile3').files[0];
-            // let message = '';
-            let readFile = new FileReader();
-            readFile.readAsDataURL(file);
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg0');
-                image.src = readFile.result;
-            });
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg03');
-                image.src = readFile.result;
-            });        
-        }
         window.addEventListener('load',doFirst);
 
     </script>

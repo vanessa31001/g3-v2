@@ -10,7 +10,7 @@ try {
         `)  
         values(null, :EQU_NAME, :EQU_DESCR, :EQU_EQUSORT_NO2, :EQU_EQUSORT_NO3, :EQU_EQUSORT_NO3, :EQU_PIC1, :EQU_PIC2, :EQU_PIC3, '' )";
 		$equipment = $pdo->prepare( $sql );
-		$equipment -> bindValue(":equname", $_POST["equname"]);
+		$equipment -> bindValue(":EQU_NAME", $_POST["equname"]);
 		$equipment -> bindValue(":EQU_EQUSORT_NO", $_POST["equ_info_sort_sel"]);
 		$equipment -> bindValue(":EQU_EQUSORT_NO1", $_POST["equ_info_sort_sel1"]);
 		$equipment -> bindValue(":EQU_EQUSORT_NO2", $_POST["equ_info_sort_sel2"]);
