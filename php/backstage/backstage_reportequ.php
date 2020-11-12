@@ -2,7 +2,7 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT re.REP_OUT_NO, m.MEM_NAME, eq.EQU_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS,eq.EQU_SWAPATATNO 
+    $sql = "SELECT re.REP_OUT_NO, eq.EQU_NAME, m.MEM_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS ,eq.EQU_SWAPATATNO,re.REEQU_DEAL
     FROM reportoutfit re JOIN member m ON (re.REP_OUT_MEMNO = m.MEMNO) 
     JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_NO)"; 
     $reportequ = $pdo->prepare($sql);
@@ -24,6 +24,11 @@ try{
             $val['EQU_SWAPATATNO']='上架中';
         }else{
             $val['EQU_SWAPATATNO']='已下架';
+        }
+        if($val['REP_OUT_STATUS']==0){
+            $val['REP_OUT_STATUS']='未處理';
+        }else{
+            $val['REP_OUT_STATUS']='已處理';
         }
         
         array_push($arr,$val);

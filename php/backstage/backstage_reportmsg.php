@@ -2,7 +2,7 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT re.REGROUP_MES_NO, m.MEM_NAME, gm.GROUP_MES_CONTENT, re.REGROUP_RESON, re.REGROUP_MES_status,gm.GROUP_MES_STATUS
+    $sql = "SELECT re.REGROUP_MES_NO, gm.GROUP_MES_CONTENT, m.MEM_NAME, re.REGROUP_RESON, gm.GROUP_MES_STATUS, re.REGROUP_MES_STATUS ,re.REGROUP_DEAL
     FROM reportgroup_mes re 
     JOIN member m ON (re.REGROUP_MES_MEMNO = m.MEMNO) 
     JOIN group_mes gm ON (gm.GROUP_MES_NO = re.REGROUP_MES_NO)"; 
@@ -25,6 +25,11 @@ try{
             $val['GROUP_MES_STATUS']='上架中';
         }else{
             $val['GROUP_MES_STATUS']='已下架';
+        }
+        if($val['REGROUP_MES_STATUS']==0){
+            $val['REGROUP_MES_STATUS']='未處理';
+        }else{
+            $val['REGROUP_MES_STATUS']='已處理';
         }
         
         array_push($arr,$val);

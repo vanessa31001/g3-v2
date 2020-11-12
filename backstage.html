@@ -169,9 +169,9 @@
             },
         
             methods: {
-                updateRegro(m){
-                        console.log(m)
-                        axios.post('php/backstage/backstage_updateRegro.php', m).then(res => {this.getRGList()}).then(res=>this.buttonBan(this.reportgroups.indexOf(m)))
+                updateRegro(g){
+                        console.log(g)
+                        axios.post('php/backstage/backstage_updateRegro.php', g).then(res => {this.getRGList()}).then(res=>this.buttonBan(this.reportgroups.indexOf(g)))
     
                 },
                 buttonBan(i) {
@@ -243,10 +243,18 @@
                 }
             },
             methods: {
-                updateRemsg(){
-                    // console.log(m)
-                    // axios.post('php/backstage/backstage_modify.php', m)
+                updateRemsg(m){
+                    console.log(m)
+                        axios.post('php/backstage/backstage_updateRemsg.php', m).then(res => {this.getRGMList()}).then(res=>this.buttonBan(this.reportmsgs.indexOf(m)))
                 },
+                buttonBan(i) {
+                document.querySelectorAll('.backclicked')[i].disabled=true;
+                },
+                getRGMList(){
+                    axios.get('php/backstage/backstage_reportmsg.php').then(res=>{
+                    this.reportmsgs = res.data;
+                })
+                }
             },
             created(){
                 axios.get('php/backstage/backstage_reportmsg.php').then(res=>{
@@ -268,18 +276,21 @@
                             <th>確認</th>
                         </tr>
                         <tr v-for="reportmsg in reportmsgs">
+                            <input type="hidden" v-model="reportmsg.REGROUP_MES_NO">
                             <td>{{ reportmsg.REGROUP_MES_NO }}</td>
                             <td>{{ reportmsg.GROUP_MES_CONTENT }}</td>
                             <td>{{ reportmsg.MEM_NAME }}</td>
                             <td>{{ reportmsg.REGROUP_RESON }}</td>
-                            <td>
-                                <input type="radio" name="auth" value="unpass">未通過
+                            <td>{{ reportmsg.REGROUP_MES_STATUS }}
                                 <p>
-                                <input type="radio" name="auth" value="pass">通過&emsp;
+                                <input type="radio" v-model="reportmsg.REGROUP_DEAL" value="unpass">未通過
+                                </p>
+                                <p>
+                                <input type="radio" v-model="reportmsg.REGROUP_DEAL" value="pass">通過&emsp;
                                 </p>    
                             </td>
                             <td>{{reportmsg.GROUP_MES_STATUS}}</td>
-                            <td><button @click="updateRemsg(manager)">送出</button></td>
+                            <td><button @click="updateRemsg(reportmsg)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -294,10 +305,21 @@
                 }
             },
             methods: {                
-                updateReequ(){
-                        // console.log(m)
-                        // axios.post('php/backstage/backstage_modify.php', m)
+                updateReequ(e){
+                    console.log(e)
+                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{this.getREList()}).then(res=>this.buttonBan(this.reportequs.indexOf(e)))
                     },
+
+                buttonBan(i){
+                    document.querySelectorAll('.backclick')[i].disabled=true;
+                },
+
+                getREList(){
+                    axios.get('php/backstage/backstage_reportequ.php').then(res=>{
+                    this.reportequs = res.data;
+                    })
+                },
+                
             },
             created(){
                 axios.get('php/backstage/backstage_reportequ.php').then(res=>{
@@ -319,18 +341,21 @@
                             <th>確認</th>
                         </tr>
                         <tr v-for="reportequ in reportequs">
+                            <input type="hidden" v-model="reportequ.REP_OUT_NO">
                             <td>{{reportequ.REP_OUT_NO}}</td>
                             <td>{{reportequ.EQU_NAME}}</td>
                             <td>{{reportequ.MEM_NAME}}</td>
                             <td>{{reportequ.REPOUP_RESON}}</td>
-                            <td>
-                                <input type="radio" name="auth" value="unpass">未通過
+                            <td>{{reportequ.REP_OUT_STATUS}}
+                                <p>{{reportequ.REGROUP_MES_status}}
+                                <input type="radio" v-model="reportequ.REGROUP_DEAL" value="unpass">未通過
+                                </p>
                                 <p>
-                                <input type="radio" name="auth" value="pass">通過&emsp;
+                                <input type="radio" v-model="reportequ.REGROUP_DEAL" value="pass">通過&emsp;
                                 </p>     
                             </td>
                             <td>{{reportequ.EQU_SWAPATATNO}}</td>
-                            <td><button @click="updateReequ(manager)">送出</button></td>
+                            <td><button @click="updateReequ(reportequ)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -339,53 +364,75 @@
         });//小知識管理
         //小遊戲
         Vue.component('back-game-manage', { 
+            data(){
+                return{
+                    link : "allQuestions",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
+                    questions:[],
+                    
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allQuestions'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
+
+                },
+                page2(){
+                    this.link = 'addQuestion'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
+                },
+            },
             template: `
             <div>
                 <div class="back_game_manger_area back_area">
-                    <div class="back_title">小知識管理</div>
-                    <div class="back_loginbtn back_add">新增</div>
-                    <table class="back_game_manger_table back_table">
-                        <tr>
-                            <th>題目編號</th>
-                            <th>遊戲題目</th>
-                            <th>選項</th>
-                            <th>正確解答</th>
-                            <th>狀態</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>C</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>A</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>D</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                    </table>
+                <div class="back_title">小知識管理</div>
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">遊戲題庫</button>
+                    <button :class="page2style" @click="page2">新增題目</button>
+                </div>
+                        <div v-if="link == 'allQuestions'">
+                            <table class="back_game_manger_table back_table">
+                                <tr>
+                                    <th>題目編號</th>
+                                    <th>遊戲題目</th>
+                                    <th>選項</th>
+                                    <th>正確解答</th>
+                                    <th>狀態</th>
+                                </tr>
+                                <tr>
+                                    <td>001</td>
+                                    <td>請問露營遇到熊怎麼辦？</td>
+                                    <td>
+                                    <p>A：與熊搏鬥</p>
+                                    <p>B：爬到樹上</p>
+                                    <p>C：趕緊逃跑</p>
+                                    </td>
+                                    <td>C</td>
+                                    <td><input type="checkbox" class="switch"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="add_manager" v-else-if="link == 'addQuestion'">
+                            <form >
+                                <p>
+                                    <label>管理員帳號：</label>
+                                    <input type="text">
+                                </p>
+                                <p>
+                                    <label>管理員姓名：</label>
+                                    <input type="text">
+                                </p>
+                                <p>
+                                    <label>管理員密碼：</label>
+                                    <input type="text">
+                                </p>
+                            <input type="button" class="thirdbtn1_green back_send" value="送出"></input>
+                            </form>
+                        </div>
                 </div>
             </div>
             `,
