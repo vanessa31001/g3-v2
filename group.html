@@ -153,17 +153,15 @@
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">剩餘名額</h3> 
-                            <label class= "gray1"><input type="radio" value="0" name="people" class="a" checked>不限</label>
-                            <label class= "gray1"><input type="radio" value="1" name="people" class="a" >1~10人</label>
-                            <label class= "gray1"><input type="radio" value="2" name="people" class="a" >11~20人</label>
-                            <label class= "gray1"><input type="radio" value="3" name="people" class="a" >20人以上</label>
+                            <label class= "gray1"><input type="checkbox" value="0" name="people" onchange="getgroupinfo()">1~10人</label>
+                            <label class= "gray1"><input type="checkbox" value="1" name="people" onchange="getgroupinfo()">11~20人</label>
+                            <label class= "gray1"><input type="checkbox" value="2" name="people" onchange="getgroupinfo()">20人以上</label>
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">出團日期</h3> 
-                            <label class= "gray1"><input type="checkbox" name="date[]" checked>不限</label>
-                            <label class= "gray1"><input type="checkbox" name="date[]">一周內</label>
-                            <label class= "gray1"><input type="checkbox" name="date[]">一個月內</label>
-                            <label class= "gray1"><input type="checkbox" name="date[]">一個月以上</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="0" onchange="getgroupinfo()">一周內</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="1" onchange="getgroupinfo()">一個月內</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="2" onchange="getgroupinfo()">一個月以上</label>
                         </div>
                     </div>
                     <div class="groups" id="groups">
@@ -429,6 +427,25 @@
         }
         function getgroupinfo(){
             let loca=document.getElementById("loca").value;
+            let people = document.getElementsByName("people");
+            let date = document.getElementsByName("date");
+            var peopleChoice =[];
+            var dateChoice =[];
+            let j=0;
+            for(i=0; i< people.length; i++){
+                if(people[i].checked){
+                    peopleChoice[j] = people[i].value;
+                    j++;
+                }
+            }
+            j=0;
+            for(i=0; i< date.length; i++){
+                if(date[i].checked){
+                    dateChoice[j] = date[i].value;
+                    j++;
+                }
+            }
+            console.log();
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
@@ -438,7 +455,7 @@
                     alert(groupsxhr.status);
                 }
             }
-            groupsxhr.open("get", `./php/group/group.php?loca=${loca}`, true);
+            groupsxhr.open("get", `./php/group/group.php?loca=${loca}&people${peopleChoice}&date${dateChoice}`, true);
             groupsxhr.send(null);
         }
        document.getElementsByName("people")
