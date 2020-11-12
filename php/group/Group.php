@@ -1,13 +1,13 @@
 <?php
 try{
   require_once("../connectBooks.php");
-  $loca = $_GET["loca"];
+  // $loca = $_GET["loca"];
   $people = $_GET["people"];
-  echo $people;
+  // echo  $people;
+  // echo $people;
   $date = $_GET["date"];
-  echo $date;
-
-  switch($loca){
+  // echo $date;
+  switch($_GET["loca"]){
     case "1":
       $cond1 = "c.CAM_AREA='北部'";
       break; 
@@ -24,6 +24,49 @@ try{
       $cond1 = 1;
   }
 
+  switch($people){
+    case "0":
+      $cond2 = "(a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) between 1 and 10";
+      break; 
+    case "1":
+      $cond2 = "(a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) between 11 and 20";
+      break;
+    case "2":
+      $cond2 = "(a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) > 20";
+      break;
+    case "0,1":
+      $cond2= "(a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) between 1 and 20";
+      break; 
+    case "0,2":
+      $cond2 = "((a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) > 20 OR (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) between 1 and 10)";
+      break; 
+    case "1,2":
+      $cond2 = "(a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP) > 11";
+      break; 
+    default:
+      $cond2 = 1;
+  }
+
+  switch($date){
+    case "0":
+      $cond3 = "date(a.GROUP_DEADLINE) <= date(adddate(now(),interval 7 day))";
+      break; 
+    case "1":
+      $cond3 = "date(a.GROUP_DEADLINE) <= date(adddate(now(),interval 1 Month))";
+      break;
+    case "2":
+      $cond3 = "date(a.GROUP_DEADLINE) > date(adddate(now(),interval 1 Month))";
+      break;
+    case "0,1":
+      $cond3 = "date(a.GROUP_DEADLINE) <= date(adddate(now(),interval 1 Month))";
+      break; 
+    case "0,2":
+      $cond3 = "(date(a.GROUP_DEADLINE) <= date(adddate(now(),interval 7 day)) OR date(a.GROUP_DEADLINE) > date(adddate(now(),interval 1 Month))";
+      break;  
+    default:
+      $cond3 = 1;
+  }
+
   
 
   $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
@@ -32,11 +75,11 @@ try{
   FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
   JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
   left join (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO) d on c.cam_no=d.campco_camno              
-  WHERE a.GROUP_STATUS = 0 AND $cond1
+  WHERE a.GROUP_STATUS = 0 AND $cond1 AND $cond2 AND $cond3
   order by GROUP_START_DATE desc;";
   $groupRows = $pdo->query($sql);
   $groupRow = $groupRows->fetchAll(PDO::FETCH_ASSOC);
-  // echo json_encode($groupRow);   
+  echo json_encode($groupRow);   
     
 }catch(PDOException $e){
 	$error = array("errorMsg"=>$e->getMessage());
