@@ -331,20 +331,19 @@
                     j++;
                 }
             }
-            console.log();
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
+                    console.log(groupsdata);
                     showAllGroups(groupsdata);
                 }else{ //error
                     alert(groupsxhr.status);
                 }
             }
-            groupsxhr.open("get", `./php/group/group.php?loca=${loca}&people${peopleChoice}&date${dateChoice}`, true);
+            groupsxhr.open("get", `./php/group/group.php?loca=${loca}&people=${peopleChoice}&date=${dateChoice}`, true);
             groupsxhr.send(null);
         }
-       document.getElementsByName("people")
     </script>
     <script>
         //燈箱
