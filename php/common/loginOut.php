@@ -1,6 +1,7 @@
 <?
     //移除資訊
     session_start();
+    unset($_SESSION["MEMNO"]);
     unset($_SESSION["MEM_ID"]);
     unset($_SESSION["MEM_NAME"]);
     unset($_SESSION["MEM_NICKNAME"]);
