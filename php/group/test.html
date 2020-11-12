@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="body"></div>
-    <!-- <script>
+    <script>
         let loca = 0;
         let peopleChoice = ["0","1"];
         let dateChoice= ["1","2"];
@@ -16,22 +16,6 @@
         a.innerHTML="<H1>請點</H1>"
         a.href=`group.php?loca=${loca}&people=${peopleChoice}&date=${dateChoice}`;
         body.appendChild(a);
-    </script> -->
-    <script>
-        let loca = 0;
-        let peopleChoice = ["a"];
-        let dateChoice = ["b"];
-        let groupsxhr = new XMLHttpRequest();
-            groupsxhr.onload = function(){
-                if(groupsxhr.status == 200){ //success
-                    let groupsdata = JSON.parse(groupsxhr.responseText);
-                    console.log(groupsdata);
-                }else{ //error
-                    alert(groupsxhr.status);
-                }
-            }
-            groupsxhr.open("get", `./group.php?loca=${loca}&people=${peopleChoice}&date=${dateChoice}`, true);
-            groupsxhr.send(null);
     </script>
 </body>
 </html>
