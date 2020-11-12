@@ -12,6 +12,7 @@
     background-size: cover;
     background-repeat: no-repeat;
         .login_backstage_in{
+            width: 330px;
             background-color: white;
             border-radius: 8px;
             text-align: center;
@@ -20,6 +21,9 @@
                 margin: 0 auto;
                 tr{
                     height: 40px;
+                    .backloginbtn{
+                        padding-top: 30px;
+                    }
                 }
             }
         }
@@ -60,7 +64,7 @@
     display: flex;
     margin: 75px auto 0;
     .back_page_leftside{
-        width: 220px;
+        width: 200px;
         background-color: white;
         border-radius: 10px;
         padding:15px 20px;
@@ -100,7 +104,7 @@
 //公用
 .back_area{
     margin: 0 auto;
-    width: 750px;
+    width: 800px;
     //公用-title
     position: relative;
     .back_title{
@@ -120,7 +124,7 @@
 //公用-table
 .back_table{
     margin: 20px auto;
-    width: 750px;
+    width: 800px;
     th{
         padding: 10px;
         background-color: $yellowColor1;
@@ -196,7 +200,7 @@ input[type="checkbox"].switch{
 
 //管理員管理
 .back_manager_area{
-    width: 750px;
+    width: 800px;
     margin-top: 5px;
     .back_manager_table1{
         margin-top: 0;
@@ -206,6 +210,40 @@ input[type="checkbox"].switch{
         p{
             text-align: center;
             margin: 20px auto;
+        }
+        .back_send{
+            display: block;
+            margin: 40px auto 20px;
+        }
+    }
+}
+.back_game_manger_area{
+    width: 800px;
+    margin-top: 5px;
+    .back_game_table{
+        margin-top: 0;
+        tr{
+            .qutitle{
+                text-align: left;
+                width: 200px;
+            }
+            .opt{
+                text-align: left;
+                width: 300px;
+            }
+        }
+    }
+
+    .add_question{
+        border: 1px solid $yellowColor1;
+        p{
+            text-align: center;
+            margin: 20px auto;
+            label{
+                width: 80px;
+                display: inline-block;
+                text-align: right;
+            }
         }
         .back_send{
             display: block;

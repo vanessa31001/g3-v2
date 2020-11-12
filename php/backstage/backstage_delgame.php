@@ -6,11 +6,11 @@ try{
     $data = json_decode($json);
     // var_dump($data);
     // die;
-    $sql = "DELETE FROM `manager` WHERE MGR_ID =:MGR_ID";
-    $manager = $pdo->prepare($sql);
-    $manager->bindValue(":MGR_ID", $data->MGR_ID);
+    $sql = "DELETE FROM `question` WHERE QUE_NO =:QUE_NO";
+    $question = $pdo->prepare($sql);
+    $question->bindValue(":QUE_NO", $data->QUE_NO);
     // $manager->bindValue(":MGR_ID", "bbb");
-    $manager->execute();
+    $question->execute();
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";
     echo "錯誤訊息:", $e->getMessage(),"<br>";

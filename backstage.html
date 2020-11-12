@@ -17,12 +17,12 @@
 <header class="back_header">
     <img src="./pic/commom/phone_header.svg">
     <div class="back_login">
-        <span class="back_username">斯斯感冒膠囊</span>
-        <span class="back_loginbtn">登出</span>
+        <span class="back_username" id="mgrName">斯斯感冒膠囊</span>
+        <span class="back_loginbtn" id="baclout" onclick="backstageloginOut()">登出</span>
     </div>
 </header>
 
- <div id="app" class="back_page"><!--HTML DOM template-->
+<div id="app" class="back_page"><!--HTML DOM template-->
         <div class="back_page_leftside">
             
 
@@ -348,10 +348,10 @@
                             <td>{{reportequ.REPOUP_RESON}}</td>
                             <td>{{reportequ.REP_OUT_STATUS}}
                                 <p>{{reportequ.REGROUP_MES_status}}
-                                <input type="radio" v-model="reportequ.REGROUP_DEAL" value="unpass">未通過
+                                <input type="radio" v-model="reportequ.REEQU_DEAL" value="unpass">未通過
                                 </p>
                                 <p>
-                                <input type="radio" v-model="reportequ.REGROUP_DEAL" value="pass">通過&emsp;
+                                <input type="radio" v-model="reportequ.REEQU_DEAL" value="pass">通過&emsp;
                                 </p>     
                             </td>
                             <td>{{reportequ.EQU_SWAPATATNO}}</td>
@@ -362,6 +362,7 @@
             </div>
             `,
         });//小知識管理
+
         //小遊戲
         Vue.component('back-game-manage', { 
             data(){
@@ -370,6 +371,14 @@
                     page1style: "back_btn1",
                     page2style: "back_btn2",
                     questions:[],
+                    question:{
+                        QUE_NO:'',
+                        QUE_TITLE:'',
+                        QUE_OPT1:'',
+                        QUE_OPT2:'',
+                        QUE_OPT3:'',
+                        QUE_ANS:'',
+                    }
                     
                 }
             },
@@ -385,6 +394,25 @@
                     this.page1style= "back_btn2",
                     this.page2style= "back_btn1"
                 },
+                createGame(){
+                    console.log('click')
+                    axios.post('php/backstage/backstage_addgame.php', this.question).then(this.question = {}).then(res => {this.getGameList()})
+                },
+                delQue(q){
+                    alert('確認刪除');
+                    axios.post('php/backstage/backstage_delgame.php', q).then(res => {this.getGameList()})
+                },
+                getGameList(){
+                    axios.get('php/backstage/backstage_game.php').then(res => {
+                this.questions = res.data; 
+                })
+                },
+
+            },
+            created() {
+                axios.get('php/backstage/backstage_game.php').then(res => {
+                this.questions = res.data; 
+                })
             },
             template: `
             <div>
@@ -395,7 +423,7 @@
                     <button :class="page2style" @click="page2">新增題目</button>
                 </div>
                         <div v-if="link == 'allQuestions'">
-                            <table class="back_game_manger_table back_table">
+                            <table class="back_game_table back_table">
                                 <tr>
                                     <th>題目編號</th>
                                     <th>遊戲題目</th>
@@ -403,34 +431,43 @@
                                     <th>正確解答</th>
                                     <th>狀態</th>
                                 </tr>
-                                <tr>
-                                    <td>001</td>
-                                    <td>請問露營遇到熊怎麼辦？</td>
-                                    <td>
-                                    <p>A：與熊搏鬥</p>
-                                    <p>B：爬到樹上</p>
-                                    <p>C：趕緊逃跑</p>
+                                <tr v-for="question in questions">
+                                    <input type="hidden" v-model="question.QUE_NO" >
+                                    <td>{{question.QUE_NO}}</td>
+                                    <td class="qutitle">{{question.QUE_TITLE}}</td>
+                                    <td class="opt">
+                                        <p>1：{{question.QUE_OPT1}}</p>
+                                        <p>2：{{question.QUE_OPT2}}</p>
+                                        <p>3：{{question.QUE_OPT3}}</p>
                                     </td>
-                                    <td>C</td>
-                                    <td><input type="checkbox" class="switch"></td>
+                                    <td>{{question.QUE_ANS}}</td>
+                                    <td><button @click="delQue(question)" type="button" class="back_loginbtn">刪除</button></td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="add_manager" v-else-if="link == 'addQuestion'">
+                        <div class="add_question" v-else-if="link == 'addQuestion'">
                             <form >
                                 <p>
-                                    <label>管理員帳號：</label>
-                                    <input type="text">
+                                    <label>遊戲題目：</label>
+                                    <input type="text"  v-model="question.QUE_TITLE">
                                 </p>
                                 <p>
-                                    <label>管理員姓名：</label>
-                                    <input type="text">
+                                    <label>選項1：</label>
+                                    <input type="text" v-model="question.QUE_OPT1">
                                 </p>
                                 <p>
-                                    <label>管理員密碼：</label>
-                                    <input type="text">
+                                    <label>選項2：</label>
+                                    <input type="text" v-model="question.QUE_OPT2">
                                 </p>
-                            <input type="button" class="thirdbtn1_green back_send" value="送出"></input>
+                                <p>
+                                    <label>選項3：</label>
+                                    <input type="text" v-model="question.QUE_OPT3">
+                                </p>
+                                <p>
+                                    <label>正確解答：</label>
+                                    <input type="text"  v-model="question.QUE_ANS" placeholder="請輸入1,2,3">
+                                </p>
+                            <input @click="createGame" type="button" class="thirdbtn1_green back_send" value="新增"></input>
                             </form>
                         </div>
                 </div>
@@ -439,16 +476,41 @@
         });
 
 
-
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back-rep-group',
+                content:'back-game-manage',
             },
         });
-
-
-
+    </script>
+    <!-- 後台抓姓名&登出 -->
+    <script>
+        let manager;
+        function backstageloginOut(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                window.location.href=`http://localhost/g3-v2/index.html`;
+            }
+            xhr.open("get", "php/backstage/backstage_loginOut.php", true);
+            xhr.send(null);
+            
+        }
+        function init(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                if(xhr.status == 200){ //success
+                    manager = JSON.parse(xhr.responseText);
+                    if(manager.MGR_ID){
+                        document.getElementById('mgrName').innerText = manager.MGR_USER;      
+                    }
+                }else{ //error
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("get", "php/backstage/backstage_getMgrInfo.php", true);
+            xhr.send(null);
+        }
+        window.addEventListener('load',init,false);
     </script>
 </body>
 </html>
