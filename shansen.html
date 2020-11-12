@@ -145,8 +145,8 @@
                             與其自己手忙腳亂自己搭帳篷，不如跟隨專業露營團隊出遊。好隊友自己挑，給你完美揪團體驗。
                         </div>
                         <div class="search_input home_search">
-                            <input type="text" placeholder="尋找地點、主揪、團名...">
-                            <label>搜尋</label>
+                            <input type="text" id="serchText"placeholder="尋找地點、主揪、團名...">
+                            <label id="serch">搜尋</label>
                         </div>
                             
                     </div>
@@ -155,59 +155,7 @@
                     <div class="gMainBottom level5 green1">
                         <div class="sub_title">最新揪團資訊</div>
                         
-                        <div class="gMainGroups">
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
-                                        </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
-                                        </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
-                                        </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="./groupInfo.html">
-                                <div class="gMainGroup">
-                                    <div class="img">
-                                        <img src="./pic/group/G1.jpg" alt="找不到照片">
-                                    </div>
-                                    <div class="gMainGroupInfo">
-                                        <div class="gMainName level2 green1">
-                                            五寶露營鎮盟
-                                        </div>
-                                        <div class="level1 orange1">開團日期:2020-10-30</div>
-                                    </div>
-                                </div>
-                            </a>
+                        <div class="gMainGroups" id="gMainGroups">
                         </div>
                         <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
                     </div>
@@ -619,7 +567,6 @@
     <!-- footer 結束-->
 
 
-
     <!-- 交換設備 -->
     <script>
         
@@ -683,7 +630,7 @@
             });
         });    
     </script>
-
+     
     <script>
         // 首頁滑鼠移動效果
         var scene = document.getElementById('scene');
@@ -693,5 +640,66 @@
     <script src="https://unpkg.com/jquery"></script>
     <script src="./js/main.js"></script>
     <script src="./js/logintext.js"></script>
+    <script>
+        //團
+        let groupxhr = new XMLHttpRequest();
+        groupxhr.onload = function(){
+            if(groupxhr.status == 200){ //success
+                showgroups(groupxhr.responseText);
+            }else{ //error
+                alert(groupxhr.status);
+            }
+        }
+        groupxhr.open("get", "./php/group/groupindex.php", true);
+        groupxhr.send(null);
+        function showgroups(jason){
+            groupDatas = JSON.parse(jason);
+            let grouparrleng=0;
+            if(groupDatas.length > 4){
+                grouparrleng=4;
+            }
+            else{
+                grouparrleng=groupDatas.length;
+            }   
+            let gMainGroups = document.getElementById(`gMainGroups`);
+            console.log(gMainGroups);
+            
+            for(let i =0; i< grouparrleng ; i++){
+                let linkGroup =  document.createElement("a");
+                linkGroup.href = `./groupInfo.html?GROUP_NO=${groupDatas[i].GROUP_NO}`;
+                gMainGroups.appendChild(linkGroup);
+                let gMainGroup =  document.createElement("div");
+                gMainGroup.className = "gMainGroup";
+                linkGroup.appendChild(gMainGroup);
+                let pic =  document.createElement("div");
+                pic.className = "img";
+                gMainGroup.appendChild(pic);
+                let img =  document.createElement("img");
+                img.src=groupDatas[i].GROUP_PIC1;
+                pic.appendChild(img);
+                let gMainGroupInfo =  document.createElement("div");
+                gMainGroupInfo.className = "gMainGroupInfo";
+                gMainGroup.appendChild(gMainGroupInfo);
+                let gMainName =  document.createElement("div");
+                gMainName.className = "gMainName level2 green1";
+                gMainName.innerText = groupDatas[i].GROUP_NAME;
+                gMainGroupInfo.appendChild(gMainName);
+                let gMaindate =  document.createElement("div");
+                gMaindate.className = "level1 orange1";
+                gMaindate.innerText = "開團日期:" + groupDatas[i].GROUP_START_DATE;
+                gMainGroupInfo.appendChild(gMaindate);
+
+            } 
+        }
+        //搜尋揪團
+        document.getElementById("serch").onclick= function(){
+            let text = document.getElementById("serchText").value.trim();
+            if(text!= ""){    
+                // console.log(text);
+                window.location.href=`./group.html?serch=${text}`;
+            }
+        }
+
+    </script>
 </body>
 </html>
