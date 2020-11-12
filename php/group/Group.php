@@ -1,6 +1,23 @@
 <?php
 try{
   require_once("../connectBooks.php");
+  $i = $_GET["loca"];
+  switch($i){
+    case "1":
+      $cond1 = "c.CAM_AREA='北部'";
+      break; 
+    case "2":
+      $cond1 = "c.CAM_AREA='中部'";
+      break; 
+    case "3":
+      $cond1 = "c.CAM_AREA='南區'";
+      break; 
+    case "4":
+      $cond1 = "c.CAM_AREA='東區'";
+      break; 
+    default:
+      $cond1 = 1;
+  }
 
   $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
   a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
@@ -8,7 +25,7 @@ try{
   FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
   JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
   left join (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO) d on c.cam_no=d.campco_camno              
-  WHERE a.GROUP_STATUS = 0
+  WHERE a.GROUP_STATUS = 0 AND $cond1
   order by GROUP_START_DATE desc;";
   $groupRows = $pdo->query($sql);
   $groupRow = $groupRows->fetchAll(PDO::FETCH_ASSOC);

@@ -143,17 +143,27 @@
                         <h2 class="level7 green1">自訂篩選</h2>
                         <div class="serchGroup">
                             <h3 class="level2 green1">選擇地區</h3> 
-                            <select class= "gray1 inputstyle" name="loca">
-                            <option class= "gray1" v-for="city in citys">{{city}}</option>
+                            <select class= "gray1 inputstyle" id="loca" onchange="getgroupinfo()">
+                                <option class= "gray1" value="0" selected>全部地區</option>
+                                <option class= "gray1" value="1">北部</option>
+                                <option class= "gray1" value="2">中部</option>
+                                <option class= "gray1" value="3">南部</option>
+                                <option class= "gray1" value="4">東部</option>
                             </select>
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">剩餘名額</h3> 
-                            <label class= "gray1" v-for="person in people"><input type="checkbox" name="people[]">{{person}}</label>
+                            <label class= "gray1"><input type="radio" value="0" name="people" class="a" checked>不限</label>
+                            <label class= "gray1"><input type="radio" value="1" name="people" class="a" >1~10人</label>
+                            <label class= "gray1"><input type="radio" value="2" name="people" class="a" >11~20人</label>
+                            <label class= "gray1"><input type="radio" value="3" name="people" class="a" >20人以上</label>
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">出團日期</h3> 
-                            <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date[]">{{date}}</label>
+                            <label class= "gray1"><input type="checkbox" name="date[]" checked>不限</label>
+                            <label class= "gray1"><input type="checkbox" name="date[]">一周內</label>
+                            <label class= "gray1"><input type="checkbox" name="date[]">一個月內</label>
+                            <label class= "gray1"><input type="checkbox" name="date[]">一個月以上</label>
                         </div>
                     </div>
                     <div class="groups" id="groups">
@@ -278,7 +288,6 @@
             msgsxhr.onload = function(){
                 if(msgsxhr.status == 200){ //success
                     msgdata = JSON.parse(msgsxhr.responseText); 
-                    console.log(msgdata); 
                     getMSG(i);
                            
                 }else{ //error
@@ -290,147 +299,149 @@
         }
         function showAllGroups(groupsdata){
             let groups= document.getElementById("groups");
-            for(let i=0; i < groupsdata.length; i++){
-                let groupBlock, group, hot, p, gLeft,img, maphashtag, inputg,Right,headLine,h6,fieldset,
-                inform_block,inform_pi,inform_text, h4,span, aboutPepole,right, equthing;
-                //團部分
-                groupBlock =  $create("div");
-                groupBlock.className = "groupBlock";
-                $append(groups,groupBlock);
-                group =  $create("div");
-                group.className = "group gray1";
-                $append(groupBlock,group);
-                if(groupsdata[i].收藏數>=2){
-                    // console.log(groupsdata[i].收藏數);
-                    hot =  $create("div");
-                    hot.className = "hot";
-                    hot.innerHTML = "<p class='white'>熱門景點</p>"
-                    $append(group,hot);
+            groups.innerHTML="";
+            if(groupsdata.length == 0){
+                groups.innerHTML="<p class='green1 level5' style='text-align: center;'>目前尚無相關露營揪團</p>";
+            }else{
+                for(let i=0; i < groupsdata.length; i++){
+                    let groupBlock, group, hot, p, gLeft,img, maphashtag, inputg,Right,headLine,h6,fieldset,
+                    inform_block,inform_pi,inform_text, h4,span, aboutPepole,right, equthing;
+                    //團部分
+                    groupBlock =  $create("div");
+                    groupBlock.className = "groupBlock";
+                    $append(groups,groupBlock);
+                    group =  $create("div");
+                    group.className = "group gray1";
+                    $append(groupBlock,group);
+                    if(groupsdata[i].收藏數>=2){
+                        hot =  $create("div");
+                        hot.className = "hot";
+                        hot.innerHTML = "<p class='white'>熱門景點</p>"
+                        $append(group,hot);
+                    }
+                    gLeft =  $create("div");
+                    gLeft.className = "gLeft";
+                    $append(group,gLeft);
+                    groupBinImg =  $create("div");
+                    groupBinImg.className = "groupBinImg";
+                    $append(gLeft,groupBinImg);
+                    img =  $create("img");
+                    img.src = groupsdata[i].圖片1;
+                    $append(groupBinImg,img);
+                    maphashtag =  $create("div");
+                    maphashtag.className = "maphashtag";
+                    $append(gLeft,maphashtag);
+                    input =  $create("input");
+                    input.className = "tagbtn_green";
+                    input.type="submit";
+                    input.value=groupsdata[i].縣市;
+                    $append(maphashtag,input);
+                    input =  $create("input");
+                    input.className = "tagbtn_green";
+                    input.type="submit";
+                    input.value=groupsdata[i].營地;
+                    $append(maphashtag,input);
+                    gRight =  $create("div");
+                    gRight.className = "gRight";
+                    $append(group,gRight);
+                    headLine =  $create("div");
+                    headLine.className = "headLine";
+                    $append(gRight,headLine);
+                    gname =  $create("h3");
+                    gname.className = "level7 green1";
+                    gname.innerText = groupsdata[i].團名;
+                    $append(headLine,gname);
+                    smallInfo =  $create("div");
+                    smallInfo.className = "smallInfo";
+                    $append(headLine,smallInfo);
+                    h6 =  $create("h6");
+                    h6.className = "level0 gray1";
+                    h6.innerText = "開團日期 :" + groupsdata[i].開團日;
+                    $append(smallInfo,h6);
+                    input =  $create("input");
+                    input.className = "reportbtngGroup";
+                    input.type="submit";
+                    input.value="檢舉";
+                    $append(smallInfo,input);
+                    fieldset =  $create("fieldset");
+                    fieldset.className = "poster_inform";
+                    $append(gRight,fieldset);
+                    legend =  $create("legend");
+                    legend.className = "level1 green3 poster";
+                    legend.innerText = "主揪";
+                    $append(fieldset,legend);
+                    inform_block =  $create("div");
+                    inform_block.className = "inform_block";
+                    $append(fieldset,inform_block);
+                    inform_pic =  $create("div");
+                    inform_pic.className = "inform_pic";
+                    $append(inform_block,inform_pic);
+                    img =  $create("img");
+                    img.src="./pic/member/"+groupsdata[i].會員照片;
+                    $append(inform_pic,img);
+                    inform_text =  $create("div");
+                    inform_text.className = "inform_text";
+                    $append(inform_block,inform_text);
+                    h4 =  $create("h4");
+                    h4.className = "third_title";
+                    h4.innerText=groupsdata[i].會員名;
+                    $append(inform_text,h4);
+                    p =  $create("p");
+                    p.className = "info";
+                    p.innerHTML = "<span>相關介紹 :</span> "+groupsdata[i].揪團介紹;
+                    $append(gRight,p);
+                    p =  $create("p");
+                    p.innerHTML = "<span>出團日期 :</span> "+groupsdata[i].出發日;
+                    $append(gRight,p);
+                    p =  $create("p");
+                    p.innerHTML = "<span>結束日期 :</span> "+groupsdata[i].回程日;
+                    $append(gRight,p);
+                    aboutPepole =  $create("div");
+                    aboutPepole.className = "aboutPepole";
+                    $append(gRight,aboutPepole);
+                    p =  $create("p");
+                    p.innerHTML = "<span>人數上限 :</span> "+groupsdata[i].人數上限 + "人";
+                    $append(aboutPepole,p);
+                    right =  $create("div");
+                    right.className = "right";
+                    right.innerHTML = "<p class='note'>目前只剩"+groupsdata[i].剩餘名額 + "個名額囉~</p>";
+                    $append(aboutPepole,right);
+                    equthing =  $create("div");
+                    equthing.className = "equthing";
+                    equthing.id = "equthing"+i;
+                    equthing.innerHTML = "<span>須具備設備 :</span>";
+                    $append(gRight,equthing);
+                    findEQU(i,groupsdata[i].團編號);
+                    more =  $create("div");
+                    more.className = "more";
+                    more.innerHTML = "<input type='submit' class='mainbtn1' value='我要參加'>";              
+                    more.innerHTML +=`<a href='./groupInfo.html=?GROUP_NO=${groupsdata[i].團編號}'><input type='submit' class='secondbtn1' value='查看詳情'></a>`;
+                    $append(group,more);
+                    //留言部分
+                    div =$create("div");
+                    div.className ="msg gray1";
+                    div.id = "msg"+i;
+                    $append(groupBlock,div);
+                    findMsg(i,groupsdata[i].團編號);
                 }
-                gLeft =  $create("div");
-                gLeft.className = "gLeft";
-                $append(group,gLeft);
-                groupBinImg =  $create("div");
-                groupBinImg.className = "groupBinImg";
-                $append(gLeft,groupBinImg);
-                img =  $create("img");
-                img.src = groupsdata[i].圖片1;
-                $append(groupBinImg,img);
-                maphashtag =  $create("div");
-                maphashtag.className = "maphashtag";
-                $append(gLeft,maphashtag);
-                input =  $create("input");
-                input.className = "tagbtn_green";
-                input.type="submit";
-                input.value=groupsdata[i].縣市;
-                $append(maphashtag,input);
-                input =  $create("input");
-                input.className = "tagbtn_green";
-                input.type="submit";
-                input.value=groupsdata[i].營地;
-                $append(maphashtag,input);
-                gRight =  $create("div");
-                gRight.className = "gRight";
-                $append(group,gRight);
-                headLine =  $create("div");
-                headLine.className = "headLine";
-                $append(gRight,headLine);
-                gname =  $create("h3");
-                gname.className = "level7 green1";
-                gname.innerText = groupsdata[i].團名;
-                $append(headLine,gname);
-                smallInfo =  $create("div");
-                smallInfo.className = "smallInfo";
-                $append(headLine,smallInfo);
-                h6 =  $create("h6");
-                h6.className = "level0 gray1";
-                h6.innerText = "開團日期 :" + groupsdata[i].開團日;
-                $append(smallInfo,h6);
-                input =  $create("input");
-                input.className = "reportbtngGroup";
-                input.type="submit";
-                input.value="檢舉";
-                $append(smallInfo,input);
-                fieldset =  $create("fieldset");
-                fieldset.className = "poster_inform";
-                $append(gRight,fieldset);
-                legend =  $create("legend");
-                legend.className = "level1 green3 poster";
-                legend.innerText = "主揪";
-                $append(fieldset,legend);
-                inform_block =  $create("div");
-                inform_block.className = "inform_block";
-                $append(fieldset,inform_block);
-                inform_pic =  $create("div");
-                inform_pic.className = "inform_pic";
-                $append(inform_block,inform_pic);
-                img =  $create("img");
-                img.src="./pic/member/"+groupsdata[i].會員照片;
-                $append(inform_pic,img);
-                inform_text =  $create("div");
-                inform_text.className = "inform_text";
-                $append(inform_block,inform_text);
-                h4 =  $create("h4");
-                h4.className = "third_title";
-                h4.innerText=groupsdata[i].會員名;
-                $append(inform_text,h4);
-                p =  $create("p");
-                p.className = "info";
-                p.innerHTML = "<span>相關介紹 :</span> "+groupsdata[i].揪團介紹;
-                $append(gRight,p);
-                p =  $create("p");
-                p.innerHTML = "<span>出團日期 :</span> "+groupsdata[i].出發日;
-                $append(gRight,p);
-                p =  $create("p");
-                p.innerHTML = "<span>結束日期 :</span> "+groupsdata[i].回程日;
-                $append(gRight,p);
-                aboutPepole =  $create("div");
-                aboutPepole.className = "aboutPepole";
-                $append(gRight,aboutPepole);
-                p =  $create("p");
-                p.innerHTML = "<span>人數上限 :</span> "+groupsdata[i].人數上限 + "人";
-                $append(aboutPepole,p);
-                right =  $create("div");
-                right.className = "right";
-                right.innerHTML = "<p class='note'>目前只剩"+groupsdata[i].剩餘名額 + "個名額囉~</p>";
-                $append(aboutPepole,right);
-                equthing =  $create("div");
-                equthing.className = "equthing";
-                equthing.id = "equthing"+i;
-                equthing.innerHTML = "<span>須具備設備 :</span>";
-                $append(gRight,equthing);
-                findEQU(i,groupsdata[i].團編號);
-                more =  $create("div");
-                more.className = "more";
-                more.innerHTML = "<input type='submit' class='mainbtn1' value='我要參加'>";              
-                more.innerHTML +=`<a href='./groupInfo.html=?GROUP_NO=${groupsdata[i].團編號}'><input type='submit' class='secondbtn1' value='查看詳情'></a>`;
-                $append(group,more);
-                //留言部分
-                div =$create("div");
-                div.className ="msg gray1";
-                div.id = "msg"+i;
-                $append(groupBlock,div);
-                findMsg(i,groupsdata[i].團編號);
-                
             }
     
         }
         function getgroupinfo(){
+            let loca=document.getElementById("loca").value;
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
                     showAllGroups(groupsdata);
-                    // console.log(groupsdata);
                 }else{ //error
                     alert(groupsxhr.status);
                 }
             }
-            groupsxhr.open("get", `./php/group/group.php`, true);
+            groupsxhr.open("get", `./php/group/group.php?loca=${loca}`, true);
             groupsxhr.send(null);
         }
-        
-    
+       document.getElementsByName("people")
     </script>
     <script>
         //燈箱
@@ -447,22 +458,6 @@
                         $(".report_overlay").removeClass("-on -opacity-zero");
                     }, 1000);
             });
-            
-        });
-        new Vue({
-            el: '#groupAllList',
-            data: {  
-                citys: ['全部地區','北部','中部','南部','東部'],       // 變數存放的地方
-                people: ['不限','1~4人','5~8人','9人以上'],
-                dates: ['不限','一周內','一個月內','一個月以上'],
-            },
-            methods: {
-
-            },
-            computed: {
-            },
-            watch: { 
-            },
         });
     </script>
 </body>
