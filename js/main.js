@@ -6,8 +6,3 @@ $(function(){
         $('.nav_list').slideToggle();
     });
 });
-
-
-
-
-
