@@ -1,4 +1,4 @@
-<?
+<?php
     //移除資訊
     session_start();
     unset($_SESSION["MEMNO"]);
