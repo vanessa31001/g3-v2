@@ -64,6 +64,8 @@
         img{
             display: inline-block;
             border-radius: 50%;
+            max-width: 200px;
+            max-height: 200px;
         }
         .member_imageButton{
             display: inline-block;
@@ -89,22 +91,25 @@
     }
     
 }
+#mem_photochange{
+    cursor: pointer;
+    }
+    
+
+.cgemem{
+    border: 2px solid #00A5A3;
+    border-radius: 5px;
+}
 
 
 //悄悄話
 .member_message_alldetail{
     border: 3px solid $greenColor1;
     .member_message_detail{
-        border: 1px solid $greenColor1;
-        margin: 10px;
+        
         display: flex;
         justify-content: space-around;
         align-items: center;
-        img{
-            width: 150px;
-            border-radius: 50%;
-            padding: 10px;
-        }
     }
     .message_edit_block{
         margin-bottom: 10px;
@@ -113,8 +118,106 @@
         }
     }
 }
+.Mesblock{
+    text-align: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    textarea{
+        vertical-align: middle;
+        font-size: 16px;
+        padding: 10px;
+        width: 64%;
+        height: 49px;
+        color: $grayColor1;
+        
+    }
+}
+
+.member_mes_bigblock{
+    
+    margin: 10px;
+    border: 1px solid #007E85;
+}
 
 
+//回覆訊息
+.message_Re{
+    text-align: right;
+}
+
+// 回復
+.aside{
+    width: 300px;
+}
+.aside a{
+    padding: 10px 10px;
+}
+.main{
+    /* border: 1px solid red; */
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 300px - 20px);
+    padding:  0 20px;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+.breadcrumb{
+    margin: 10px 30px 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.info{
+    text-align: right;
+}
+.ONEline img{
+    display: inline-block;
+    height: 15px;
+}
+.ONEline h4{
+        font-size: 15px;
+        font-weight:normal;
+        margin:0px 20px 0 10px;
+        display: inline-block;
+        color: #833c1d;
+}
+.prod{
+    padding: 20px;
+    border: 1px solid #007E85;
+    border-radius: 10px;
+    width:547px;
+    margin-top: 11px;
+}
+.prod p{
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+@media screen and (max-width: 911px){
+    .main{
+        width:100%;
+    }
+    .bottom {
+        padding: 10px;
+    }
+    .aside{
+        display: none;
+    }
+    .prod h2{
+        font-size: 25px;
+        margin: 0;
+    }
+    .prod h3{
+        font-size: 20px;
+        margin: 0; 
+    }
+    .prod p{
+        font-size: 16px; 
+    }
+    // .prod > div{
+    //     display: none;
+    // } 
+
+}
 //揪團露營
 .member_Group_detail{
     text-align: left;
@@ -215,33 +318,6 @@
             left: 0;
             background-color: rgba($color: #000000, $alpha: .4);
         }
-    }
-}
-.groups_Page{
-    font-weight: bold;
-    text-align: center;
-    li{
-        margin: 0 15px;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        cursor: pointer;
-        a{
-            display: inline-block;
-            line-height: 40px;
-            width: 100%;
-            height: 100%;
-        }
-        &:hover{
-            background-color: $greenColor3;
-            color: $white;
-            border-radius: 5px;
-        }
-    }
-    .thisPage{
-        background-color: $greenColor3;
-        color: $white;
-        border-radius: 5px;
     }
 }
 

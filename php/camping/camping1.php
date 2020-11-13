@@ -1,4 +1,4 @@
-<?PHP
+<?php
 try{
     require_once("../connectBooks.php");
     $sql = "SELECT CAM_NO, CAM_NAME,CAM_INTRODUCTION,CAM_PIC1,CAM_ADDRESS,CAM_FACILITY, IFNULL(收藏數,0) 收藏數

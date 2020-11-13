@@ -1,4 +1,4 @@
-<?
+<?php
 try{
     session_start();
     require_once("../connectBooks.php");
