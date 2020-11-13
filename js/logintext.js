@@ -113,8 +113,7 @@ function getMemberInfo(){
             member = JSON.parse(xhr.responseText);
             if(member.MEM_ID){
                 $id("header_memName").innerText = member.MEM_NICKNAME
-                $id('spanLogin').innerHTML = '登出';  
-                console.log(member);        
+                $id('spanLogin').innerHTML = '登出';         
             }
         }else{ //error
             alert(xhr.status);

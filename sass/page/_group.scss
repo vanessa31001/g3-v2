@@ -235,9 +235,8 @@ input[type="submit"], button{
                 color: $grayColor1;
                 .headLine{
                     display: flex;
-                    // flex-wrap: wrap;
                     justify-content:space-between;
-                    // align-items:center; 
+                    min-height:60px;
                     H3{
                         margin: 0;
                         vertical-align: top;
@@ -260,11 +259,14 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
+                    text-align: left;
                     max-height: 70px;
                     overflow: hidden;
+                    margin: 10px;
                 }
                 .infomore{
                     height: auto;
+                    max-height: 100%;
                 }
                 span{
                     color: $greenColor1;
@@ -547,6 +549,7 @@ input[type="submit"], button{
                         }
                     }
                     .info{
+                        text-align: left;
                         .btns{
                             display: flex;
                             justify-content: space-between;
@@ -664,6 +667,7 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
+                    text-align: left;
                     height: 70px;
                     overflow: hidden;
                 }
