@@ -1,5 +1,3 @@
-let manager;
-
 function $id(id){
     return document.getElementById(id);
 }
@@ -12,7 +10,7 @@ function sendForm_Login(){
     let adminPsw = $id("adminPsw").value;
 	backxhr.onload = function(){
         console.log(JSON.parse(backxhr.responseText));
-        manager = JSON.parse(backxhr.responseText);
+        let manager = JSON.parse(backxhr.responseText);
 		if(manager.MGR_ID = true){
             window.location.href="./backstage.html";
 			// window.alert("OK");
@@ -23,25 +21,11 @@ function sendForm_Login(){
     backxhr.open("Post", "php/backstage/backstage_loginIn.php", true);
     backxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
     let data_info = `MGR_ID=${adminId}&MGR_PSW=${adminPsw}`;
-    console.log(data_info);
     backxhr.send(data_info);
 }
-
-
-function backstageloginOut(){
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        window.location.href="./index.html";
-    }
-    xhr.open("get", "php/backstage/backstage_loginOut.php", true);
-    xhr.send(null);
-	
-}
-
 function init(){
     //登入btn事件處理程序
     $id('btnBacklogin').onclick = sendForm_Login;
-
 };
 
 window.addEventListener('load',init,false);
