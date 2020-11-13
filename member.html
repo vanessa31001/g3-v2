@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
     <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> 
     <!-- <script src="./vender/vue.min.js"></script> -->
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
@@ -52,8 +52,7 @@
     </nav>
 </header>
      <!--header結束-->
-
-
+    
     <!--內容開始-->
     <div class="bgcColor member_page">
         <section class="section1 bgcColor member_section">
@@ -111,11 +110,7 @@
                             <!-- 透過component元素，去指定其屬性is進行v-bind -->
 
                         </div>
-
                     </div> <!--app尾-->
-
-
-
                 </div>
             </div>
         </section>
@@ -283,6 +278,10 @@
                     link : "startGroup",
                     page1style: "mem_page1",
                     page2style: "mem_page2",
+                    setup_groups:'[]',
+                    join_groups:'[]',
+                    img_path: './pic/group/',
+                    page_qua: 2,
                 }
             },
             methods:{
@@ -296,17 +295,54 @@
                     this.link = 'joingroup'
                     this.page1style= "mem_page2",
                     this.page2style= "mem_page1"
-                }
+                },
+                // 刪除開團
+                deleteGroup(g){
+                    let question = confirm('是否確認刪除？');
+                    if(question){
+                        axios.post('php/member/delete_setupGroup.php', g).then(res => {
+                             this.getGroup();
+                        })
+                    }
+                },
+                getGroup(){
+                    axios.get('php/member/setupGroup.php').then(res => {
+                    this.setup_groups = res.data;
+                })
+                },
+                // 刪除參團
+                exitGroup(j){
+                    let question = confirm('是否確認退出？');
+                    if(question){
+                        axios.post('php/member/delete_joinGroup.php', j)
+                        .then(res => {
+                             this.getjoinGroup();
+                        })
+                    }
+                },
+                getjoinGroup(){
+                    let url = 'php/member/joinGroup.php';
+                    axios.get(url).then(res => {
+                    this.join_groups = res.data;
+                })
+                },
+            },
+            created(){
+                axios.get('php/member/setupGroup.php').then(res => {
+                    this.setup_groups = res.data;
+                }),
+                axios.get('php/member/joinGroup.php').then(res => {
+                    this.join_groups = res.data;
+                    console.log(res.data);
+                })
             },
             template: `
-            <div id="member_Group">
-                    
+                <div id="member_Group">
                     <div class="member_information_title sub_title">
                         <!-- 揪團露營標題 -->
                         <img class="memberTitle_img" src="./pic/member/group.png">
                         揪團露營
                     </div>
-                    
                     <div class="member_Group_detail">
                         <div class="group_button">
                             <button :class="page1style" @click="page1">開團管理</button>
@@ -316,87 +352,54 @@
                         <div>
                             <div class="startGroupManage_page" v-if="link == 'startGroup'">
                                 <ul>
-                                    <li class="group_everyRow">
-                                        <img src="./pic/member/member_group.jpg">
+                                    <li class="group_everyRow" v-for="group in setup_groups" v-if="group.status==='0'">
+                                        <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4.參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">2.日期：{{group.group_Date}}</li>
+                                            <li class="level0">3.地點：{{group.CAM_NAME}}</li>
+                                            <li class="level0">4.參加人數：{{group.GROUP_PEOPLE_SIGNUP}}</li>
+                                            <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
-                                        <button class="thirdbtn1_orange">刪除</button>
+                                        <button class="thirdbtn1_orange" @click="deleteGroup(group)">刪除</button>
                                     </li>
-                                    <li class="group_everyRow">
-                                        <img src="./pic/member/member_group.jpg">
+                                    <li class="group_everyRow unlockRow" v-for="group in setup_groups" v-if="group.status==='1'">
+                                        <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4,參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
-                                        </ul>
-                                        <button class="thirdbtn1_orange">刪除</button>
-                                    </li>
-                                    <li class="group_everyRow unlockRow">
-                                        <img src="./pic/member/member_group.jpg">
-                                        <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4.參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">2.日期：{{group.group_Date}}</li>
+                                            <li class="level0">3.地點：{{group.CAM_NAME}}</li>
+                                            <li class="level0">4.參加人數：{{group.GROUP_PEOPLE_SIGNUP}}</li>
+                                            <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
                                     </li>
-            
-                                </ul>
-                                <ul class="level0 green3 groups_Page">
-                                    <li>&lt;</li>
-                                    <li class="thisPage">1</li>
-                                    <li>2</li>
-                                    <li>&gt;</li>
                                 </ul>
                             </div>
                             <div class="joinGroupManage_page"  v-else-if="link == 'joingroup'">
                                 <ul>
-                                    <li class="group_everyRow">
-                                        <img src="./pic/member/member_group.jpg">
+                                    <li class="group_everyRow" v-for="group in join_groups" v-if="group.status==='0'">
+                                        <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4.參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                            <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
+                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">2.日期：{{group.group_Date}}</li>
+                                            <li class="level0">3.地點：{{group.CAM_NAME}}</li>
+                                            <li class="level0">4.參加人數：{{group.G_DATEIL_PARTNUM}}</li>
+                                            <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
-                                        <button class="thirdbtn1_orange">刪除</button>
+                                        <button class="thirdbtn1_orange" @click="exitGroup(group)">刪除</button>
                                     </li>
-                                    <li class="group_everyRow">
-                                        <img src="./pic/member/member_group.jpg">
+                                    <li class="group_everyRow unlockRow" v-for="group in join_groups" v-if="group.status==='1'">
+                                        <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4,參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
-                                        </ul>
-                                        <button class="thirdbtn1_orange">刪除</button>
-                                    </li>
-                                    <li class="group_everyRow unlockRow">
-                                        <img src="./pic/member/member_group.jpg">
-                                        <ul>
-                                            <li class="level0">1.團名：吃飽睡睡飽吃團</li>
-                                            <li class="level0">2.日期：2020/09/14</li>
-                                            <li class="level0">3.地點：中央大學草地</li>
-                                            <li class="level0">4.參加人數：20人</li>
-                                            <li class="level0">5.活動內容：立志吃飽睡睡飽吃....</li>
+                                            <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
+                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">2.日期：{{group.group_Date}}</li>
+                                            <li class="level0">3.地點：{{group.CAM_NAME}}</li>
+                                            <li class="level0">4.參加人數：{{group.G_DATEIL_PARTNUM}}</li>
+                                            <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
                                     </li>
-                                </ul>
-                                <ul class="level0 green3 groups_Page">
-                                    <li>&lt;</li>
-                                    <li class="thisPage">1</li>
-                                    <li>2</li>
-                                    <li>&gt;</li>
                                 </ul>
                             </div>
                         </div>
@@ -478,12 +481,6 @@
                                         <span class="level2">已結束</span>
                                     </li>
                                 </ul>
-                                <ul class="level0 green3 groups_Page">
-                                    <li>&lt;</li>
-                                    <li class="thisPage">1</li>
-                                    <li>2</li>
-                                    <li>&gt;</li>
-                                </ul>
                             </div>
                             <div class="exchange_record_page" v-if="link == 'exchange'">
                                 <ul class="exchange_record">
@@ -512,12 +509,6 @@
                                         <span class="level2">已結束</span>
                                     </li>
                                 </ul>
-                                <ul class="level0 green3 groups_Page">
-                                    <li>&lt;</li>
-                                    <li class="thisPage">1</li>
-                                    <li>2</li>
-                                    <li>&gt;</li>
-                                </ul>
                             </div>
                             <div class="favorites_recode_page" v-if="link == 'favorites'">
                                 <ul class="favorites_record">
@@ -545,12 +536,6 @@
                                         <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
                                         <span class="level2">已結束</span>
                                     </li>
-                                </ul>
-                                <ul class="level0 green3 groups_Page">
-                                    <li>&lt;</li>
-                                    <li class="thisPage">1</li>
-                                    <li>2</li>
-                                    <li>&gt;</li>
                                 </ul>
                             </div>
                         </div>
@@ -602,12 +587,6 @@
                                     <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
                                 </li>
                             </ul>
-                            <ul class="level0 green3 groups_Page">
-                                <li>&lt;</li>
-                                <li class="thisPage">1</li>
-                                <li>2</li>
-                                <li>&gt;</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -629,5 +608,6 @@
         });
 
     </script>
+    <script src="./js/member.js"></script>
 </body>
 </html>

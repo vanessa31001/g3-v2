@@ -118,7 +118,7 @@
                 <ul>
                     <li><a href="./shansen.html"  class="level0 green1">首頁</a></li>
                     <li><a href="./group.html"  class="level0 green1">揪團露營</a></li>
-                    <li class="level0 gray1">九甲林冬天露營團</li>
+                    <li class="level0 gray1" id="thisPage">九甲林冬天露營團</li>
                 </ul>
             </div>
             <!-- 檢舉lightbox -->
@@ -404,6 +404,36 @@
 
     </div>
     <script src="./js/logintext.js"></script>
+    <script>
+        function showgroupinfo(){
+            
+        }
+        function readPage(groupNo){
+            let groupxhr = new XMLHttpRequest();
+            groupxhr.onload = function(){
+                if(groupxhr.status == 200){ //success
+                    let groupsdata = JSON.parse(groupxhr.responseText);
+                    console.log(groupsdata);
+
+                }else{ //error
+                    alert(groupxhr.responseText);
+                }
+            }
+            groupxhr.open("get", `./php/group/groupInfo.php?GROUP_NO=${groupNo}`, true);
+            groupxhr.send(null);
+        }
+        function doFirst(){
+            var url = location.href;
+            if(url.indexOf('?')!=-1){
+                var GROUP_NO = url.split('?')[1].split('=');
+                readPage(GROUP_NO[1]);
+    
+            }else{
+                alert("連結錯誤，請選別頁");
+            }
+        }
+        window.addEventListener('load',doFirst);
+    </script>
     <script>
         let imgCount ='';
         let divWidth='';
