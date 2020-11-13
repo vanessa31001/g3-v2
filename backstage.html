@@ -508,9 +508,8 @@
             }
             xhr.open("get", "php/backstage/backstage_getMgrInfo.php", true);
             xhr.send(null);
-            document.getElementById('baclout').onclick = backstageloginOut;
         }
-        window.addEventListener('load',init);
+        window.addEventListener('load',init,false);
     </script>
 </body>
 </html>
