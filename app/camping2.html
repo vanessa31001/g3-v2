@@ -34,8 +34,9 @@
                         <div class="sub_title">
                             <span name="CAM_NAME" id="CAM_NAME"></span>
                             <div class=" like">
-                                <button onclick="addLike()"; class="collect_btn">
-                                    <img src="./pic/icon/like.png">
+                                <button  class="collect_btn">
+                                    <img id="unlike" onclick="addLike()"; src="./pic/icon/like.png">
+                                    <img id="liked" onclick="deleteLike()"; src="./pic/icon/like_check.png" style="display:none;">
                                 </button>
                                 <span class="level1">收藏</span>
                             </div>
@@ -185,13 +186,34 @@ return document.getElementById(id);
 let CAM_NO;
 window.addEventListener('load',function(){
     CAM_NO = location.href.split('?')[1];
-    // spotNum(CAM_NO);
+    spotNum(CAM_NO);
+
+    var likedxhr = new XMLHttpRequest();
+    likedxhr.onload = function(){
+        if (likedxhr.status == 200) { //連線成功
+                let aaa = likedxhr.responseText;
+                console.log(aaa);
+                if(aaa=='有收藏'){
+                    $id('unlike').style.display='none';
+                    $id('liked').style.display='block';
+                }else{
+                    $id('unlike').style.display='block';
+                    $id('liked').style.display='none';
+                }
+                // document.getElementById('addlike').src=`${aaa['0']}`;
+            } else {
+                alert(likedxhr.status);
+            }
+    }
+    likedxhr.open("Get","php/camping/ifliked.php", true);
+    likedxhr.send(null); 
 })
 
 
 
+
 let spotNum = (CAM_NO) => {
-    // console.log(CAM_NO)
+    console.log(CAM_NO)
     var xhr1 = new XMLHttpRequest();
     xhr1.onload = function(){
         if( xhr1.status == 200 ){
@@ -228,42 +250,33 @@ let spotNum = (CAM_NO) => {
 <script>
 
     function addLike(){
-        alert(CAM_NO);
-        let camping_no = this.camping[0].camping_no;
-        console.log(camping_no);
-    let addlikexhr = new XMLHttpRequest();
-
-    addlikexhr.onload = function() {
-        member = JSON.parse(addlikexhr.responseText);
-        if (member.mem_id) {
+        if (member.MEM_ID) {
             //已經登入了，可以開始做事了
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function(e) {
-                if (xhr.status == 200) { //連線成功
-                    console.log(xhr.responseText);
+            var addlikexhr = new XMLHttpRequest();
+            addlikexhr.onload = function(e) {
+                if (addlikexhr.status == 200) { //連線成功
+                    console.log(addlikexhr.responseText);
+                    $id('unlike').style.display='none';
+                    $id('liked').style.display='block';
                 } else {
-                    swal(xhr.status);
+                    alert(addlikexhr.status);
                 }
             }
-            var url = "php/common/addlike.php";
-            xhr.open("post", url, true);
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+            var url = "php/camping/addlike.php";
+            addlikexhr.open("post", url, true);
+            addlikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
             let data = `CAM_NO=${CAM_NO}`;
-            xhr.send(data);
-
-            // if ($(".heart").attr('src') === "./images/icons/icon_heart.svg") {
-            //     $(".heart").attr("src", "./images/icons/icon_heart_h&c.svg");
-            // } else {
-            //     $(".heart").attr("src", "./images/icons/icon_heart.svg");
-            // }
+            addlikexhr.send(data);
         } else {
             //沒有登入，請先登入
-            alret("請先登入")
+            alert('請先登入');
         }
     }
-    addlikexhr.open("get", "php/common/getMemberInfo.php", true);
-    addlikexhr.send(null);
-}
+
+    function deleteLike(){
+
+    }
+
     
 
 </script>
@@ -326,7 +339,6 @@ let spotNum = (CAM_NO) => {
 });
 // console.log(addLike);
 </script>
-<!-- <script src=".js/like.js"></script> -->
 
 </body>
 </html>
