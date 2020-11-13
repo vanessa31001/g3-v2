@@ -292,7 +292,6 @@
                                     <li class="group_everyRow" v-for="group in setup_groups" v-if="group.status==='0'">
                                         <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
                                             <li class="level0">3.地點：{{group.CAM_NAME}}</li>
@@ -304,7 +303,6 @@
                                     <li class="group_everyRow unlockRow" v-for="group in setup_groups" v-if="group.status==='1'">
                                         <img :src="img_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
                                             <li class="level0">3.地點：{{group.CAM_NAME}}</li>
