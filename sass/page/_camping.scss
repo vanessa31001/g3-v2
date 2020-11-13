@@ -292,7 +292,19 @@ margin-bottom: 60px;
             display: inline-block;
             position: absolute;
             right: 0;
-
+            font-size: 0;
+            .collect_btn{
+                outline: none;
+                border: none;
+                background-color:transparent;
+                img{
+                    width: 25px;
+                }
+                span{
+                    position: relative;
+                    top: -5px;
+                }
+            }
         }
     }
     .camp_slider{
