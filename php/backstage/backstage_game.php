@@ -2,14 +2,14 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT * FROM grade "; 
-    $grade = $pdo->prepare($sql);
-    $grade->execute();
+    $sql = "SELECT * FROM question ORDER by QUE_NO"; 
+    $question = $pdo->prepare($sql);
+    $question->execute();
 
-    $grades = $grade->fetchAll(PDO::FETCH_ASSOC);
+    $questions = $question->fetchAll(PDO::FETCH_ASSOC);
 
     
-    echo json_encode($grades);
+    echo json_encode($questions);
 
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";

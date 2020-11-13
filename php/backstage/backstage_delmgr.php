@@ -2,18 +2,17 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT * FROM manager ORDER by MGR_NO DESC"; 
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
+    // var_dump($data);
+    // die;
+    $sql = "DELETE FROM `manager` WHERE MGR_ID =:MGR_ID";
     $manager = $pdo->prepare($sql);
+    $manager->bindValue(":MGR_ID", $data->MGR_ID);
+    // $manager->bindValue(":MGR_ID", "bbb");
     $manager->execute();
-
-    $managers = $manager->fetchAll(PDO::FETCH_ASSOC);
-
-    
-    echo json_encode($managers);
-
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";
     echo "錯誤訊息:", $e->getMessage(),"<br>";
-    // echo "系統發生不正常狀況,請通知維護人員~";
 }
 ?>

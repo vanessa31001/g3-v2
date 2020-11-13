@@ -41,76 +41,75 @@
                         </div>
                         <div class="pic">
                             <label class="uploadImg">
-                                <input type="file" id="theFile">
-                                <img src="./pic/group/camera-02.svg" alt="">
+                                <input type="file" id="theFile" multiple>
+                                <img src="pic/equipment/photo-camera.svg" alt="">
                                 <span class="level0 gray2">(請上傳三張照片)</span>
                             </label>
                             <div class="imgs">
-                                <div class="img"><img src="./pic/group/G1.jpg" alt=""></div>
-                                <div class="img"><img src="./pic/group/G2.jpg" alt=""></div>
-                                <div class="img"><img src="./pic/group/G3.jpg" alt=""></div>
+                                <div class="img" id="img0">
+                                </div>
+                                <div class="img" id="img1">
+                                </div>
+                                <div class="img" id="img2">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="right">
                         <div class="infoInput">
-                            <table class="level1 gray1">
-                                <tr>
-                                    <td class="green1">露營團名 :</td>
-                                    <td><input type="text" class="text inputstyle" placeholder="請為您的團隊取名"></td>
-                                </tr>
-                                <tr>
-                                    <td class="green1 textinfo ">相關介紹 :</td>
-                                    <td><textarea name="" id="" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td class="green1">選擇地區 :</td>
-                                    <td>
-                                        <select class="inputstyle">
-                                            <option value="0">北部</option>
-                                            <option value="1">中部</option>
-                                            <option value="2">南部</option>
-                                            <option value="3">東部</option>
+                            <div class="level1 gray1">
+                                <div class="block">
+                                    <div class="green1 level1">露營團名 :</div>
+                                    <div><input type="text" class="text inputstyle" placeholder="請為您的團隊取名"></div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 textinfo level1">相關介紹 :</div>
+                                    <div><textarea name="" id="" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯"></textarea></div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 level1">選擇地區 :</div>
+                                    <div>
+                                        <select class="inputstyle level1 gray1" id="camArea">
+                                            <!-- <option >北部</option>
+                                            <option >中部</option>
+                                            <option >南部</option>
+                                            <option >東部</option> -->
                                         </select>
-                                        <select class="inputstyle">
-                                            <option value="0">北部</option>
-                                            <option value="1">中部</option>
-                                            <option value="2">南部</option>
-                                            <option value="3">東部</option>
+                                        <select class="inputstyle level1 gray1" id="camName">
                                         </select>
-                                        <button class="thirdbtn2_orange">營區參考</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="green1 ">人數上限 :</td>
-                                    <td><input type="number" class="inputstyle" placeholder="1" min="1">人(含主揪)</td>
-                                </tr>
-                                <tr>
-                                    <td class="green1">出團日期 :</td>
-                                    <td><input type="date" name="startdate" class="inputstyle" id="startdate"></td>
-                                </tr>
-                                <tr>
-                                    <td class="green1">結束日期 :</td>
-                                    <td><input type="date" name="enddate" class="inputstyle" id="enddate"></td>
-                                </tr>
-                                <tr>
-                                    <td class="green1">須具備設備 :</td>
-                                    <td>
-                                        <label>
+                                        <a href="./camping.html"><input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考"></a>
+                                    </div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 level1">人數上限 :</div>
+                                    <div><input type="number" class="inputstyle" placeholder="1" min="1">人(含主揪)</div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 level1">出團日期 :</div>
+                                    <div><input type="date" name="startdate" class="inputstyle level1 gray1" id="startdate"></div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 level1">結束日期 :</div>
+                                    <div><input type="date" name="enddate" class="inputstyle level1 gray1" id="enddate"></div>
+                                </div>
+                                <div class="block">
+                                    <div class="green1 level1">須具備設備 :</div>
+                                    <div>
+                                        <label class="level1">
                                             <input type="checkbox" class="type">
                                             露營帳篷
                                         </label>
-                                        <label>
+                                        <label class="level1">
                                             <input type="checkbox" class="type">
                                             睡袋
                                         </label>
-                                        <label>
+                                        <label class="level1">
                                             <input type="checkbox" class="type">
                                             其他
                                         </label>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="btn">
                             <input type="button" class="mainbtn2" value="暫存資料">
@@ -125,6 +124,96 @@
         @@include('./layout/footer.html')
         <!-- footer 結束-->
     </div>
+    <Script>
+        $(document).ready(function(){
+            //上傳圖片
+            $("#theFile").change(function(){
+                var imgPath = $(this)[0].value;
+                var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+                    if (typeof (FileReader) != "undefined") {
+                        for (var i = 0; i < 3; i++) {
+                            let image_holder= $("#img"+i);
+                            image_holder.empty();
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("<img />", {
+                                    "src": e.target.result,
+                                    // "class": "thumb-image"
+                                }).appendTo(image_holder);
+                            }
+                            image_holder.show();
+                            reader.readAsDataURL($(this)[0].files[i]);
+                        }
+                    } else {
+                        alert("This browser does not support FileReader.");
+                    }
+                }else{
+                    alert("Pls select only images");
+                }
+            });           
+        });
+    </Script>
     <script src="./js/logintext.js"></script>
+    <script>
+        var city;
+        function listArea(areajson){
+            city = JSON.parse(areajson);
+            // console.log(city);
+            //區域排除重複
+            let area=[];
+            for(let i = 0; i<city.length;i++){
+                area[i]=city[i].CAM_AREA;
+            }
+            let onlyarea = area.filter(function(element, index, arr){
+                return arr.indexOf(element) === index;
+            });
+            for(let i = 0; i < onlyarea.length ; i++){
+                let option = document.createElement("option");
+                option.innerText=onlyarea[i];
+                option.value=onlyarea[i];
+                document.getElementById("camArea").appendChild(option);
+
+            }
+            let nowarea = document.getElementById("camArea").value;
+            for(let i = 0; i<city.length;i++){
+                if(city[i].CAM_AREA == nowarea){
+
+                    let option = document.createElement("option");
+                    option.innerText=city[i].CAM_NAME;
+                    option.value=city[i].CAM_NAME;
+                    document.getElementById("camName").appendChild(option);
+                }
+            }
+        }
+        document.getElementById("camArea").onchange = function(){
+            // console.log(city);
+            document.getElementById("camName").innerHTML="";
+            var nowarea = document.getElementById("camArea").value;
+            for(let i = 0; i<city.length;i++){
+                if(city[i].CAM_AREA == nowarea){
+                    let option = document.createElement("option");
+                    option.innerText=city[i].CAM_NAME;
+                    option.value=city[i].CAM_NAME;
+                    document.getElementById("camName").appendChild(option);
+                }
+            }
+        }
+        function doFirst(){
+            let areaxhr = new XMLHttpRequest();
+                areaxhr.onload = function(){
+                if(areaxhr.status == 200){ //success
+                    // alert(areaxhr.responseText);
+                    listArea(areaxhr.responseText);
+                }else{ //error
+                    alert(areaxhr.status);
+                }
+            }
+            areaxhr.open("get", `./php/group/area.php`, true);
+            areaxhr.send(null);
+        }
+
+        window.addEventListener('load',doFirst);
+    </script>
 </body>
 </html>
