@@ -18,7 +18,7 @@
     <img src="./pic/commom/phone_header.svg">
     <div class="back_login">
         <span class="back_username" id="mgrName">斯斯感冒膠囊</span>
-        <span class="back_loginbtn" id="baclout" onclick="backstageloginOut()">登出</span>
+        <span class="back_loginbtn" id="baclout">登出</span>
     </div>
 </header>
 
@@ -489,11 +489,10 @@
         function backstageloginOut(){
             let xhr = new XMLHttpRequest();
             xhr.onload = function(){
-                window.location.href=`http://localhost/g3-v2/index.html`;
+                window.location.href="./index.html";
             }
             xhr.open("get", "php/backstage/backstage_loginOut.php", true);
             xhr.send(null);
-            
         }
         function init(){
             let xhr = new XMLHttpRequest();
@@ -509,8 +508,9 @@
             }
             xhr.open("get", "php/backstage/backstage_getMgrInfo.php", true);
             xhr.send(null);
+            document.getElementById('baclout').onclick = backstageloginOut;
         }
-        window.addEventListener('load',init,false);
+        window.addEventListener('load',init);
     </script>
 </body>
 </html>
