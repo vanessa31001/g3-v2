@@ -21,7 +21,7 @@ function getMemberInfo(){
             member = JSON.parse(xhr.responseText);
             
             if(member.MEM_ID){
-                test(member)
+                test(member) //1113新增
                 $id("header_memName").innerText = member.MEM_NICKNAME
                 $id('spanLogin').innerHTML = '登出';     
             }else{
