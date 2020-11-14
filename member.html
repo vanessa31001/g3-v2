@@ -22,45 +22,48 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <script src="./js/member.js"></script>
   </head>
 
   <body>
     <!--header開始-->
-    <header >
-    <div class="forphone">
-    <button class="hamburger hamburger--spring" type="button">
-        <span class="hamburger-box">
+    <header>
+      <div class="forphone">
+        <button class="hamburger hamburger--spring" type="button">
+          <span class="hamburger-box">
             <span class="hamburger-inner"></span>
-        </span>
-    </button>
-    </div>
-    <nav class="wrap">
+          </span>
+        </button>
+      </div>
+      <nav class="wrap">
         <div class="nav_logo">
-            <a href="#" class="logo_link -bottom">
-                <img class="desk sun" src="./pic/commom/sun.svg" alt="">
-            </a>
-            <a class="changelogo" href="./shansen.html">
-            <img class="phone" src="./pic/commom/phone_header.svg">
-            </a>
-            <div class="middle_bg"></div>
-            <a href="./shansen.html" class="logo_link -up">
-                <img class="desk" src="./pic/commom/pc_header.svg">
-            </a>
+          <a href="#" class="logo_link -bottom">
+            <img class="desk sun" src="./pic/commom/太陽.svg" alt="" />
+          </a>
+          <a class="changelogo" href="./shansen.html">
+            <img class="phone" src="./pic/commom/手機_header.svg" />
+          </a>
+          <div class="middle_bg"></div>
+          <a href="./shansen.html" class="logo_link -up">
+            <img class="desk" src="./pic/commom/電腦版_header.svg" />
+          </a>
         </div>
         <div class="nav_list">
-            <ul >
-                <li><a class="nav_title @@underline_01" href="./group.html">揪團露營</a></li>
-                <li><a class="nav_title @@underline_02" href="./equipment.html">設備交換</a></li>
-                <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
-                <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
-                <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title orange2" href="#" id="spanLogin">登入|註冊</a></li>
-            </ul>
+          <ul>
+            <li><a class="nav_title" href="./group.html">揪團露營</a></li>
+            <li><a class="nav_title" href="./equipment.html">設備交換</a></li>
+            <li><a class="nav_title" href="./camping.html">營區攻略</a></li>
+            <li><a class="nav_title" href="./letter.html">來去寫信</a></li>
+            <li><a class="nav_title" href="./aboutus.html">關於我們</a></li>
+            <li>
+              <a class="nav_title" href="./member.html"></a
+              ><span class="orange1">董董 </span>您好!
+            </li>
+          </ul>
         </div>
-    </nav>
-</header>
-     <!--header結束-->
-
+      </nav>
+    </header>
+    <!--header結束-->
 
     <!--內容開始-->
     <div class="bgcColor member_page">
@@ -145,9 +148,10 @@
       </section>
     </div>
 
-    <!-- footer 開始-->
+    <!--內容結束-->
+
     <footer>
-    <div class="footer_bgc">
+      <div class="footer_bgc">
         <div class="wrap">
           <div class="footerarrange">
             <div class="footright">
@@ -175,358 +179,230 @@
             </div>
           </div>
         </div>
-    </div>
-    <div class="copyright">Copyright &copy; 2020ShanSen</div>
-</footer>
-    <!-- footer 結束-->
-<!--內容結束-->
-    
+      </div>
+      <div class="copyright">Copyright &copy; 2020ShanSen</div>
+    </footer>
     <script>
-      Vue.component("memberInformation", {
-        data(){
-            return{
-                sss: "編輯",
-            }
-        },
-        template: `
-            <div class="member_information">
-                    
-                <div class="member_information_title level5">
-                    <!-- 會員資訊標題 -->
-                    <img class="memberTitle_img" src="./pic/member/avatar.png">
-                    會員資訊
-                </div>
-            
-                <div class="member_information_detail">
-
-                    <!-- 會員資訊圖片 -->
-                    <div class="member_image">
-                    <div class="member">
-                        <div class="memputPhoto">
-                            <img id="MemberPhotoPut" src='./pic/member/member_01.png'>
-                        </div>
-                        <div class="level0 member_imageButton">
-                          <button class="thirdbtn1_green">
-                          <label for="memupPhoto"  id="mem_photochange">
-                          編輯大頭像</label></button>
-                            <input type="file" id="memupPhoto" style="display:none">
-                            <div>*限定格式png、jpg</div>
-                        </div>
-                    </div>
-
-                    <!-- 會員資訊內容 -->
-                    <div class="member_information_main"> 
-                        <div class="level2">編號<span class="gray1">00000000001</span></div>
-                        <div class="level2">等級<span class="gray1">鑽石會員(目前累積分數共825分)</span></div>
-                        <div class="level2">帳號<span class="gray1">iamwang12345@gmail.com</span></div>
-                        <div class="level2">密碼<span class="gray1 aaa">*************</span></div>
-                        <div class="level2">姓名<span class="gray1 aaa">王大槌</span></div>
-                        <div class="level2">暱稱<span class="gray1 aaa">槌槌</span></div>
-
-                    
-                     
-                        <div class="edit_block">
-                            <button class="thirdbtn1_green modify" @click='hhh' href="javascript:;" >{{sss}}</button>
-                        </div>
-                    </div>
-
-
-                </div>
-            
-                </div>
-                    
-            </div>
-            
-            `,
-
-        methods: {
-          hhh() {
-              this.sss == "確定" ? this.sss ="編輯" : this.sss ="確定";
-            // let str = $(this).text() == "確定" ? "編輯" : "確定";
-            // $(this).text(str); // 按鈕被點擊後，在“编辑”和“確定”之間切換
-
-            let a = document.querySelectorAll(".aaa");
-
-            for (let i = 0; i < a.length; i++) {
-              let obj_text = a[i].childElementCount;
-              if (obj_text == 0) {
-                a[i].innerHTML =
-                  "<input class='changetext' type='text' style='border: 2px solid #00A5A3;border-radius: 5px;' value='" +
-                  a[i].innerText +
-                  "'>";
-
-                // a[i].innerHTML=`<input class='changetext' type='text' value='${a[i].innerText}'>`
-              } else {
-                a[i].innerText = document.querySelectorAll(
-                  ".changetext"
-                )[0].value;
+      
+      
+        Vue.component("memberInformation", {
+          data(){
+              return{
+                  sss: "編輯",
               }
+          },
+          template: `
+              <div class="member_information">
+                      
+                  <div class="member_information_title level5">
+                      <!-- 會員資訊標題 -->
+                      <img class="memberTitle_img" src="./pic/member/avatar.png">
+                      會員資訊
+                  </div>
+                
+                  <div class="member_information_detail">
+
+                      <!-- 會員資訊圖片 -->
+                      <div class="member_image">
+                      <div class="member">
+                          <div class="memputPhoto">
+                              <img id="MemberPhotoPut" src='./pic/member/member_01.png'>
+                          </div>
+                          <div class="level0 member_imageButton">
+                            <button class="thirdbtn1_green">
+                            <label for="memupPhoto"  id="mem_photochange">
+                            編輯大頭像</label></button>
+                              <input type="file" id="memupPhoto" style="display:none" name="upFile[]">
+                              <div>*限定格式png、jpg</div>
+                          </div>
+                      </div>
+
+                      <!-- 會員資訊內容 -->
+                      <div class="member_information_main"> 
+                          <div class="level2">編號<span class="gray1">00000000001</span></div>
+                          <div class="level2">帳號<span class="gray1">iamwang12345@gmail.com</span></div>
+                          <div class="level2">密碼<span class="gray1 aaa">*************</span></div>
+                          <div class="level2">姓名<span class="gray1 aaa">王大槌</span></div>
+                          <div class="level2">暱稱<span class="gray1 aaa">槌槌</span></div>
+
+                      
+                      
+                          <div class="edit_block">
+                              <button class="thirdbtn1_green modify" @click='hhh' href="javascript:;" >{{sss}}</button>
+                          </div>
+                      </div>
+
+
+                  </div>
+              
+                  </div>
+                      
+              </div>
+              
+              `,
+
+          methods: {
+            hhh() {
+                this.sss == "確定" ? this.sss ="編輯" : this.sss ="確定";
+              // let str = $(this).text() == "確定" ? "編輯" : "確定";
+              // $(this).text(str); // 按鈕被點擊後，在“编辑”和“確定”之間切換
+
+              let a = document.querySelectorAll(".aaa");
+
+              for (let i = 0; i < a.length; i++) {
+                let obj_text = a[i].childElementCount;
+                if (obj_text == 0) {
+                  a[i].innerHTML =
+                    "<input class='changetext' type='text' style='border: 2px solid #00A5A3;border-radius: 5px;' value='" +
+                    a[i].innerText +
+                    "'>";
+
+                  // a[i].innerHTML=`<input class='changetext' type='text' value='${a[i].innerText}'>`
+                } else {
+                  a[i].innerText = document.querySelectorAll(
+                    ".changetext"
+                  )[0].value;
+                }
+              }
+            },
+          },
+        });
+
+
+    function test(mymember){ //如果有取得會員資料來源 就可以刪
+      
+        Vue.component("memberMessage", {
+          data: function () {
+            /*
+            {
+                "MEMNO": "3",
+                "MEM_IMG": "defaul_header.png",
+                "MEM_NAME": "許光漢",
+                "MES_CONTENT": "可以面交嗎如果能交換能在交通大學面交嗎? 我這裡不太方便呢。"
+              }
+            */
+            return {
+              msg_data: []
             }
           },
-        },
-      });
+          methods:{ 
+            mems(e){
+              //以上jq
+              //留言
+      
+                  if($(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val()!= ""){
+                      let msg = $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val();
+                    // alert(msg);
+                    // let date = new Date();
+                    $(e.target).closest(".member_mes_bigblock").find('.mes_append').append(`
+  
+                      <div class="message_Re" action="message_return_inadmin.php" method="get">
+                          <span class="third_title">已回覆訊息:</span>
+                          <pre class="gray1 level2" name"mesginback">${msg}</pre>
+                      </div> 
 
-      Vue.component("memberMessage", {
-        methods:{ 
-          mems(){
-            //以上jq
-             //留言
-      $('#sendMsg').click(function(){
-                if($('#leaveMsg').val()!= ""){
-                    let msg = $('#leaveMsg').val();
-                // alert(msg);
-                // let date = new Date();
-                $('#Q1').append(`
-                <!--<div class="msgInfo">
-                    <div class="inform_block">
-                        <div class="inform_pic">
-                                <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                        </div>
-                        <div class="inform_text">
-                            <p class="level1 "><a href="#" class="green1 third_title">Bella</a></p>
-                            <p class="level1 gray1">會員等級：金牌</p>
-                        </div>                                                                      
-                    </div>
-                    <div class="level1">
-                        <span class="third_title">留言:</span>
-                        <pre class="gray1">${msg}</pre>
-                    </div>
-                    <div class="level0 gray1">
-                        留言日期:2020-09-30
-                    </div>
-                    <input type="submit" class="reportbtnMsg" value="檢舉">
-                </div>
-            
-                     <div class="member_message_detail">
-                        
-                    
-                        <div class="message_bigpic_01">
-                          <img src="./pic/member/member_01.png">
-                        </div>
-
-                       <div class="prod -phon big_message" id="Q1" id="massages">
-
-                        <div class="message_onetext">
-
-                       
-                        <div class="message_text_01">
-                        <!--<span class="gray1 level2">王大槌: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>-->
-                        
-                        <div class="message_Re">
-                        <span class="third_title">已回覆訊息:</span>
-                        <pre class="gray1 level2">${msg}</pre>
-                        </div> 
-
-
-                        </div>
-
-                        </div>
-
-                        <div class="QAinfo ">
-                        <div class="info">
-                            <div class="ONEline">
-                                <!--<img src="./image/icon/time.png" alt="時間icon">
-                                    <h4>2017/05/12 15:06</h4>-->
-                            </div>
-                        </div>
-
-                        
-                        
-                    
-                        
-         
-
-                    </div>                        
-                </div>
-               
-           
-
-                         
-`);
-                }
-                
-                $('#leaveMsg').val("");
-            });
-            
-            //以下jq
-          }
-        },
-        mounted() {
-          $(function () {
-            //QA
-            $(".-phon").on("click", function () {
-              $(this).children(":last").slideToggle();
-            });
-          });
-        },
-        template: `
-            <div class="member_message">
-                    
-                    <div class="member_information_title level5">
-                        <!-- 悄悄話標題 -->
-                        <img class="memberTitle_img" src="./pic/member/message.png">
-                        悄悄話
-                    </div>
-
-                    <div class="member_message_alldetail">
-                         
-
-                      <div class="member_mes_bigblock">
-                        <!--大頭像及訊息-->
-                        <div class="member_message_detail">
-                        
-                    
-                        <div class="message_bigpic_01">
-                          <img src="./pic/member/member_01.png">
-                        </div>
-
-                       <div class="prod -phon big_message" id="Q1">
-
-                        <div class="message_onetext">
-
-                       
-                        <div class="message_text_01">
-                        <span class="nav_title">王大槌</span>
-                        <span class="gray1 level2">: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
-                        </div>
-
-                        </div>
-
-                        <div class="QAinfo ">
-                        <span class="gray1 level2">請問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?
-                        </span>
-                        <div class="info">
-                            <div class="ONEline">
-                                <!--<img src="./image/icon/time.png" alt="時間icon">
-                                    <h4>2017/05/12 15:06</h4>-->
-                            </div>
-                        </div>
-                    </div>                        
-                </div>
-               
-              </div> <!--  <div class="member_message_detail">結束-->
-
-
-                <div class="Mesblock">
-                        
-                        
-                            <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="請於此回覆訊息" ></textarea>
-                            <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg" @click="mems">
-                        
-                        
-                </div>
-           
-
-                </div><!--<div class="member_mes_bigblock">結束-->
-
-                        
-                   
-
-
-
-
-
-
-
-                  <div class="member_mes_bigblock">
-                        <!--大頭像及訊息-->
-                        <div class="member_message_detail">
-                        
-                    
-                        <div class="message_bigpic_01">
-                          <img src="./pic/member/member_01.png">
-                        </div>
-
-                       <div class="prod -phon big_message" id="Q1">
-
-                        <div class="message_onetext">
-
-                       
-                        <div class="message_text_01">
-                        <span class="nav_title">王大槌</span>
-                        <span class="gray1 level2">: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
-                        </div>
-
-                        </div>
-
-                        <div class="QAinfo ">
-                        <span class="gray1 level2">請問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?
-                        </span>
-                        <div class="info">
-                            <div class="ONEline">
-                                <!--<img src="./image/icon/time.png" alt="時間icon">
-                                    <h4>2017/05/12 15:06</h4>-->
-                            </div>
-                        </div>
-                    </div>                        
-                </div>
-               
-              </div> <!--  <div class="member_message_detail">結束-->
-
-
-                <div class="Mesblock">
-                        
-                        
-                            <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="請於此回覆訊息" ></textarea>
-                            <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg" @click="mems">
-                        
-                        
-                </div>
-           
-
-                </div><!--<div class="member_mes_bigblock">結束-->
+                  `);
+                  }
                   
-                        
-                  <div class="member_mes_bigblock">
-                        <!--大頭像及訊息-->
-                        <div class="member_message_detail">
-                        
-                    
-                        <div class="message_bigpic_01">
-                          <img src="./pic/member/member_01.png">
-                        </div>
+                  $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val("");
+            
+              
+              //以下jq
+            },
+            phon(){
+            
+            }
+          },
+          mounted() {  //串接後台API
+            var that = this;
+            fetch("http://localhost/ED103_g3/php/member/message_formadmin.php?memail="+mymember.MEM_ID).then(function(response){
+              return response.json();
+            }).then(function(data){
+              // console.log(data);
+              
+              that.msg_data = data;
+            })
+            
 
-                       <div class="prod -phon big_message" id="Q1">
+          //   $(function () {
+              
 
-                        <div class="message_onetext">
+          //     //QA 下面開闔
+          //     $(".-phon").on("click", function () {
+          //       // console.log($(this))
+          //       let message_Re =  document.querySelectorAll('.message_Re').length; //message_Re為回覆訊息那邊的class
 
-                       
-                        <div class="message_text_01">
-                        <span class="nav_title">王大槌</span>
-                        <span class="gray1 level2">: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
-                        </div>
+          //       if(message_Re==0){
+          //         $(this).children(":last").slideToggle(); //沒有留言訊息時,下面可關閉
+          //       }else{
+          //         for(var i =0;i<message_Re;i++){
+          //           $(this).children(`:nth-last-of-type(${i+2})`).slideToggle(); //有留言訊息時,下面小孩們都要關閉
+          //         }
+          //       $(this).children(":last").slideToggle(); //然後保留第一條
+          //       }
+        
+                
+          //     });
+          //   });
+          },
+          template: `
 
-                        </div>
 
-                        <div class="QAinfo ">
-                        <span class="gray1 level2">請問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?問本周三之後可以嗎?
-                        </span>
-                        <div class="info">
-                            <div class="ONEline">
-                                <!--<img src="./image/icon/time.png" alt="時間icon">
-                                    <h4>2017/05/12 15:06</h4>-->
+
+              <div class="member_message">
+                      
+                      <div class="member_information_title level5">
+                          <!-- 悄悄話標題 -->
+                          <img class="memberTitle_img" src="./pic/member/message.png">
+                          悄悄話
+                      </div>
+
+                      <div class="member_message_alldetail">
+                          
+
+                        <div class="member_mes_bigblock" v-if="msg_data.length > 0" v-for="item in msg_data" :key="item.MES_NO">
+                          <!--大頭像及訊息-->
+                          <div class="member_message_detail">
+                          
+                      
+                          <div class="message_bigpic_01">
+                            <img :src="'./pic/member/' + item.MEM_IMG">
+                          </div>
+
+                          <div class="Q_parent">
+                            <div class="prod -phon big_message mes_append">
+                              <div class="message_onetext">
+                                <div class="message_text_01">
+                                  <span class="nav_title">{{ item.MEM_NAME }}</span>
+                                  <span class="gray1 level2">: {{ item.MES_CONTENT }}</span>
+                                </div>
+                              </div>             
                             </div>
-                        </div>
-                    </div>                        
-                </div>
-               
-              </div> <!--  <div class="member_message_detail">結束-->
+                          </div>
+                
+                        
+                </div> <!--  <div class="member_message_detail">結束-->
 
 
-                <div class="Mesblock">
-                        
-                        
-                            <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="請於此回覆訊息" ></textarea>
-                            <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg" @click="mems">
-                        
-                        
-                </div>
-           
+                  <div class="Mesblock">
+                          
+                          
+                              <textarea name="" class="inputstyle leaveMsg" cols="60" rows="3" placeholder="請於此回覆訊息" ></textarea>
+                              <input type="submit" value="送出" class="thirdbtn1_green sendMsg" @click="mems">
+                          
+                          
+                  </div>
+            
 
-                </div><!--<div class="member_mes_bigblock">結束-->
-            </div>
-            `,
-      });
+                  </div><!--<div class="member_mes_bigblock">結束-->
+
+              </div>
+              </div>
+              `,
+        });
+      
+      }
+      
       Vue.component("memberGroup", {
         template: `
             <div class="member_Group">
@@ -744,47 +620,18 @@
         BigHeadPhoto.readAsDataURL(memupPhoto1); //使用FileReader的物件方法
         BigHeadPhoto.addEventListener("load", function (e) {
           //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
-          MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
-          MemberPhotoPut.style.width = "200px"; //設定寬
-          MemberPhotoPut.style.height = "200px"; //設定高
+        MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
+        MemberPhotoPut.style.width = "200px"; //設定寬
+        MemberPhotoPut.style.height = "200px"; //設定高
         });
       }
 
-      // $(".modify").click(function() {
-
-      //       let str = $(this).text() == "確定" ? "編輯" : "確定";
-      //       $(this).text(str);   // 按鈕被點擊後，在“编辑”和“确定”之間切換
-
-      //      let a =document.querySelectorAll('.aaa');
-
-      //      for(let i =0 ; i < a.length ; i++){
-
-      //           let obj_text = a[i].childElementCount
-
-      //           console.log(obj_text)
-      //           if(obj_text == 0 ){
-      //               a[i].innerHTML="<input class='changetext' type='text' value='"+ a[i].innerText+"'>"
-      //               // a[i].innerHTML=`<input class='changetext' type='text' value='${a[i].innerText}'>`
-
-      //           }else{
-
-      //               a[i].innerText= document.querySelectorAll('.changetext')[0].value;
-      //           }
-      //      }
-      //   });
+     
     </script>
 
     <script>
      
     </script>
 
-    <!--會員專區編輯-->
-    <!-- <script type="text/javascript">
-        $(function(){
-            
-      
-            // aaaaa();
-        }); 
-    </script> -->
-  </body>
+ </body>
 </html>
