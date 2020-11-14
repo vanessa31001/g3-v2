@@ -330,13 +330,28 @@
                     dateChoice[j] = date[i].value;
                     j++;
                 }
-            }
-            
+            }            
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
                     showAllGroups(groupsdata);
+                    var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
+                    for(let i =0; i<reportbtngGroup.length; i++){
+                        reportbtngGroup[i].addEventListener("click", function () {
+                            if(member.MEM_ID){
+                                overlay = document.querySelector(".report_overlay");
+                                overlay.className += " -on";
+                                document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
+                                document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
+                                document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+                            }else{
+                                showLoginForm();
+                            }
+
+                            // alert(overlay);
+                        },false);
+                    }
                     // console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);

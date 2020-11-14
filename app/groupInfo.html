@@ -147,17 +147,8 @@
             <div class="level11 green1">
                 參加團員
             </div>
-            <div class="gPepole groupBlock">
-                <!-- <div class="inform_block" v-for="person in gPepole">
-                    <div class="inform_pic">
+            <div class="gPepole groupBlock" id="memberIn">
 
-                            <a href=""><img :src="person.pic" alt=""></a>
-                    </div>
-                    <div class="inform_text" >
-                        <h4><a href="" class="third_title">{{person.name}}</a></h4>
-                        <p class="level1 gray1">會員等級：{{person.gread}}</p>
-                    </div>                                                                     
-                </div> -->
             </div>
         </div>
     </section>
@@ -167,63 +158,7 @@
             <div class="level11 green1">
                 留言
                 <div class="gPepole groupBlock gMessage" id="massages">
-                    <div class="msgInfo">
-                        <div class="inform_block">
-                            <div class="inform_pic">
-                                    <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                            </div>
-                            <div class="inform_text">
-                                <p class="level1 "><a href="#" class="green1 third_title">Bella</a></p>
-                                <p class="level1 gray1">會員等級：金牌</p>
-                            </div>                                                                      
-                        </div>
-                        <div class="level1">
-                            <span class="third_title">留言:</span>
-                            <p class="gray1">需要自備水壺嗎? 另外需自行準備食物及飲用水嗎?謝謝?</p>
-                        </div>
-                        <div class="level0 gray1">
-                            留言日期:2020-09-20   
-                        </div>
-                        <input type="submit" class="reportbtnMsg" value="檢舉">
-                    </div>
-                    <div class="msgInfo">
-                        <div class="inform_block">
-                            <div class="inform_pic">
-                                    <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                            </div>
-                            <div class="inform_text">
-                                <p class="level1 "><a href="#" class="green1 third_title">Joe Chen</a></p>
-                                <p class="level1 gray1">會員等級：鑽石</p>
-                            </div>                                                                      
-                        </div>
-                        <div class="level1">
-                            <span class="third_title">留言:</span>
-                            <p class="gray1">需要自備水壺嗎? 另外需自行準備食物及飲用水嗎?謝謝?</p>
-                        </div>
-                        <div class="level0 gray1">
-                            留言日期:2020-09-26   
-                        </div>
-                        <input type="submit" class="reportbtnMsg" value="檢舉">
-                    </div>
-                    <div class="msgInfo grouper">
-                        <div class="inform_block">
-                            <div class="inform_pic">
-                                    <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                            </div>
-                            <div class="inform_text">
-                                <p class="level1 "><a href="#" class="green1 third_title">Yong Hwa</a></p>
-                                <p class="level1 gray1">會員等級：鑽石</p>
-                            </div>                                                                      
-                        </div>
-                        <div class="level1">
-                            <span class="third_title">留言:</span>
-                            <p class="gray1">To Bella, 不用喔，露營區有提供食材和飲用水。<br>To Yong Hwa, 開車十分鐘的方有便利商店喔。</p>
-                        </div>
-                        <div class="level0 gray1">
-                            留言日期:2020-09-30   
-                        </div>
-                        <input type="submit" class="reportbtnMsg" value="檢舉">
-                    </div>
+      
                 </div>
                 <div class="myMsg level5">
                     我要留言
@@ -248,27 +183,7 @@
             <div class="gPepole groupBlock moreGroups">
                 <button class="tagbtn_yellow" id="leftBtn">&lt;</button>
                 <div class="oGroups">
-                    <ul class="allGroup">
-
-                        <li class="group" v-for="group in othergroup">
-                            <div class="img">
-                                <img :src="group.pic" alt="圖片出問題">
-                            </div>
-                            <div class="info ">
-                                <div class="gName level5 green1">
-                                    {{group.gname}}
-                                </div>
-                                <div class="btns">
-                                    <div class="maphashtagI maphashtag ">
-                                        <input type="submit" class="tagbtn_green" value=台中市>
-                                        <input type="submit" class="tagbtn_green" :value="group.camp">
-                                    </div>
-                                    <div class="more">
-                                        <a href="./groupInfo.html"><input type="submit" class="secondbtn1" value="查看詳情"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                    <ul class="allGroup" id="allGroup">
                     </ul>
                 </div>
                 <button class="tagbtn_yellow" id="rightBtn">&gt;</button>
@@ -294,7 +209,35 @@
         }
         //參加團員
         function peopleIn(){
-            
+            let memberIn=$id("memberIn");
+            if(groupsdata[2]==""){
+                memberIn.innerText = "目前尚無人參加";
+                memberIn.style.textAlign="center";
+                memberIn.className+=" green1 level5";
+            }
+            else{
+                for(let i=0; i<groupsdata[2].length ;i++){
+                    let inform_block =$create("div");
+                    inform_block.className="inform_block";
+                    if(groupsdata[2].length>4){
+                        inform_block.style["margin-bottom"] = "10px";
+                    }
+                    $append(memberIn,inform_block);
+                    let inform_pic = $create("div");
+                    inform_pic.className =  "inform_pic";
+                    $append(inform_block,inform_pic);
+                    let img = $create("img");
+                    img.src = "./pic/member/"+groupsdata[2][i].MEM_IMG;
+                    $append(inform_pic,img);
+                    let inform_text = $create("div");
+                    inform_text.className =  "inform_text";
+                    $append(inform_block,inform_text);
+                    let h4 = $create("H4");
+                    h4.className ="third_title";
+                    h4.innerText = groupsdata[2][i].MEM_NICKNAME;
+                    $append(inform_text,h4);
+                }
+            }
         }
         //設備
         function getEQU(){
@@ -318,9 +261,36 @@
                 
             }
         }
+        //其他揪團
+        function othergroups(){
+            let allGroup = $id("allGroup");
+            for(let i=0;i<groupsdata[4].length;i++){
+                let li=$create("li");
+                li.className="group";
+                li.innerHTML=`
+                <div class="img">
+                    <img src="./pic/group/${groupsdata[4][i].GROUP_PIC1}" alt="圖片出問題">
+                </div>
+                <div class="info ">
+                    <div class="gName level5 green1">
+                        ${groupsdata[4][i].GROUP_NAME}
+                    </div>
+                    <div class="btns">
+                        <div class="maphashtagI maphashtag">
+                            <input type="submit" class="tagbtn_green" value="${groupsdata[4][i].CAM_COUNTY}">
+                            <input type="submit" class="tagbtn_green" value="${groupsdata[4][i].CAM_NAME}">
+                        </div>
+                        <div class="more">
+                            <a href="./groupInfo.html?GROUP_NO=${groupsdata[4][i].GROUP_NO}"><input type="submit" class="secondbtn1" value="查看詳情"></a>
+                        </div>
+                    </div>
+                </div>
+                `;
+                $append(allGroup,li);
+            }
+        }
         //揪團
         function showgroupinfo(){
-            // let a =  document.getElementById("thisPage")
             $id("thisPage").innerText = groupsdata[0].GROUP_NAME;
             $id("title").innerText = groupsdata[0].GROUP_NAME;
             $id("pic1").src ="./pic/group/"+groupsdata[0].GROUP_PIC1;
@@ -330,7 +300,7 @@
             $id("county").value=groupsdata[0].CAM_COUNTY;
             $id("camName").value=groupsdata[0].CAM_NAME;
             $id("GROUPNAME").innerText = groupsdata[0].GROUP_NAME;
-            $id("GROUP_START_DATE").innerText = "開團日期" + groupsdata[0].GROUP_START_DATE;
+            $id("GROUP_START_DATE").innerText = "開團日期 :" + groupsdata[0].GROUP_START_DATE;
             $id("MEMIMG").src ="./pic/member/"+groupsdata[0].MEM_IMG;
             $id("MEMNICKNAME").innerText = groupsdata[0].MEM_NICKNAME;
             $id("GROUP_INTRO").innerText = groupsdata[0].GROUP_INTRO;
@@ -338,7 +308,6 @@
             $id("GROUP_DEADLINE").innerHTML = "<span>結束日期 :</span>"+groupsdata[0].GROUP_DEADLINE;
             $id("GROUP_PEOPLE_LIMIT").innerHTML ="<span>人數上限 :</span>"+groupsdata[0].GROUP_PEOPLE_LIMIT+"人";
             $id("REMAIN_PEOPLE").innerHTML ="目前剩下"+groupsdata[0].REMAIN_PEOPLE+"個名額囉~";
-            // getMemberInfo();
             let forBtn = $id("forBtn");
             let joinGroupBtn = $id("joinGroup");
             let report = $id("report");
@@ -366,6 +335,48 @@
             }
 
         }
+        //已留言
+        function showMsg(){
+            let massages = $id("massages");
+            if(groupsdata[1]==""){
+                let msgInfo = $create("div");
+                msgInfo.className="msgInfo green1 level5";
+                msgInfo.innerText="尚未有人留言";
+                msgInfo.style.textAlign="center";
+                msgInfo.style.display="block";
+                msgInfo.style["font-weight"]="normal";
+                $append(massages,msgInfo);    
+            }else{
+                for(let i=0; i<groupsdata[1].length ;i++){
+                    let msgInfo = $create("div");
+                    msgInfo.className="msgInfo";
+                    msgInfo.innerHTML=`<div class="inform_block">
+                            <div class="inform_pic">
+                                    <img src="./pic/member/${groupsdata[1][i].MEM_IMG}" alt="">
+                            </div>
+                            <div class="inform_text">
+                                <p class="green1 third_title">${groupsdata[1][i].MEM_NICKNAME}</p>
+                            </div>                                                                      
+                        </div>
+                        <div class="level1">
+                            <span class="third_title">留言:</span>
+                            <p class="gray1">${groupsdata[1][i].GROUP_MES_CONTENT}</p>
+                        </div>
+                        <div class="level0 gray1">
+                            留言日期:${groupsdata[1][i].GROUP_MES_TIME} 
+                        </div>
+                        <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
+                        <input type="submit" class="reportbtnMsg" value="檢舉">
+                    </div>`;
+                    if(groupsdata[1][i].GROUP_MES_MEMNO==groupsdata[0].GROUP_MEMNO){
+                        msgInfo.className+=" grouper";
+                    }
+                    $append(massages,msgInfo);
+
+                }
+            }
+
+        }
         function readPage(groupNo){
             let groupxhr = new XMLHttpRequest();
             groupxhr.onload = function(){
@@ -374,6 +385,38 @@
                     showgroupinfo();
                     getEQU();
                     peopleIn();
+                    showMsg();
+                    othergroups();
+                    var reportbtngGroup = document.querySelector(".reportbtngGroup");
+                    reportbtngGroup.addEventListener("click", function () {
+                        if(member.MEM_ID){
+                            overlay = document.querySelector(".report_overlay");
+                            overlay.className += " -on";
+                            document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
+                            document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
+                            document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+                        }else{
+                            showLoginForm();
+                        }
+
+                            // alert(overlay);
+                    },false);
+                    var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
+                    for(let i =0; i<reportbtnMsg.length; i++){
+                        reportbtnMsg[i].addEventListener("click", function () {
+                            if(member.MEM_ID){
+                                overlay = document.querySelector(".report_overlay");
+                                overlay.className += " -on";
+                                document.querySelector(".report_reason1 label").innerText="此留言與露營不相關";
+                                document.querySelector(".report_reason2 label").innerText="此留言為不當發言";
+                                document.querySelector(".report_reason3 label").innerText="此留言含污辱文字"; 
+                            }else{
+                                showLoginForm();
+                            }
+
+                            // alert(overlay);
+                        },false);
+                    }
 
                 }else{ //error
                     alert(groupxhr.responseText);
@@ -394,6 +437,7 @@
         }
         window.addEventListener('load',doFirst);
     </script>
+
     <script>
         let imgCount ='';
         let divWidth='';
@@ -401,20 +445,20 @@
         let count=0;
         $(window).resize(function(){
             divWidth = $('.oGroups').width(); 
-                if(divWidth == 880){
-                    $('.allGroup').width(Math.ceil(imgCount / 2) * divWidth);
-                    allwidth =(Math.ceil(imgCount / 2));
-                }else{
-                    $('.allGroup').width(Math.ceil(imgCount) * divWidth);
-                    allwidth =(Math.ceil(imgCount));
-                }
-                count=1;
-                $('.allGroup').animate({
-                        right: divWidth * count,
-                });
+            if(divWidth == 880){
+                $('.allGroup').width(Math.ceil(imgCount / 2) * divWidth);
+                allwidth =(Math.ceil(imgCount / 2));
+            }else{
+                $('.allGroup').width(Math.ceil(imgCount) * divWidth);
+                allwidth =(Math.ceil(imgCount));
+            }
+            count=1;
+            $('.allGroup').animate({
+                    right: divWidth * count,
             });
+        });
          
-        $(document).ready(function(){
+        $(function(){
             //要更換的圖片位置
             $('.pic .imgs .img img').click(function(){ 
                 let mig = $(this).attr("src");
@@ -452,13 +496,7 @@
                 
                 $('#leaveMsg').val("");
             });
-            // 檢舉留言
-            $(".reportbtnMsg").on("click", function(){
-                $(".report_overlay").addClass("-on");
-                $(".report_reason1 label").html("此留言與露營不相關");
-                $(".report_reason2 label").html("此留言為不當發言");
-                $(".report_reason3 label").html("此留言含污辱文字");
-            });
+            // 燈箱留言
             $(".btn_modal_close").on("click", function(){
                 $(".report_overlay").addClass("-opacity-zero");
                 $("input[name=reason0]").each(function(){
@@ -467,14 +505,7 @@
                 setTimeout(function(){
                     $(".report_overlay").removeClass("-on -opacity-zero");
                 }, 1000);
-            });
-            $(".reportbtngGroup").on("click", function(){
-                $(".report_overlay").addClass("-on");
-                // alert($(".report_reason2 label").html()); 
-                $(".report_reason1 label").html("此揪團與露營不相關");
-                $(".report_reason2 label").html("此揪團含有色情內容");
-                $(".report_reason3 label").html("此揪團含違法內容");
-            });
+            }); 
             //更多揪團
             imgCount = $('.allGroup .group').length;
             divWidth = $('.oGroups').width(); 
@@ -540,7 +571,7 @@
         
             }
         });       
-
+        
             
 
         new Vue({

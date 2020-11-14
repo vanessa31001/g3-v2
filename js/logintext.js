@@ -37,7 +37,8 @@ function showLoginForm(){
 		let xhr = new XMLHttpRequest();
 		xhr.onload = function(){
 			$id('header_memName').innerHTML = '&nbsp;';
-			$id('spanLogin').innerHTML = '登入|註冊';
+            $id('spanLogin').innerHTML = '登入|註冊';
+            location.reload();
         }
 		xhr.open("get", "php/common/loginOut.php", true);
 		xhr.send(null);
@@ -56,7 +57,8 @@ function sendForm_Login(){
 			//將登入表單上的資料清空，並隱藏起來
 			$id('outerDiv').style.display = 'none';
 			$id('LoginMemId').value = '';
-			$id('LoginMemPsw').value = '';
+            $id('LoginMemPsw').value = '';  
+            location.reload();          
 		}else{
 			// if(!member.errorMsg){
 			//   alert("系統錯誤",member.errorMsg);
@@ -113,7 +115,8 @@ function getMemberInfo(){
             member = JSON.parse(xhr.responseText);
             if(member.MEM_ID){
                 $id("header_memName").innerText = member.MEM_NICKNAME
-                $id('spanLogin').innerHTML = '登出';         
+                $id('spanLogin').innerHTML = '登出';
+                console.log(member);         
             }
         }else{ //error
             alert(xhr.status);
