@@ -94,8 +94,8 @@
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">須具備設備 :</div>
-                                    <div>
-                                        <label class="level1">
+                                    <div id="equSort">
+                                        <!-- <label class="level1">
                                             <input type="checkbox" class="type">
                                             露營帳篷
                                         </label>
@@ -106,7 +106,7 @@
                                         <label class="level1">
                                             <input type="checkbox" class="type">
                                             其他
-                                        </label>
+                                        </label> -->
                                     </div>
                                 </div>
                             </div>
@@ -159,11 +159,11 @@
         var city;
         function listArea(areajson){
             city = JSON.parse(areajson);
-            // console.log(city);
+            console.log(city);
             //區域排除重複
             let area=[];
-            for(let i = 0; i<city.length;i++){
-                area[i]=city[i].CAM_AREA;
+            for(let i = 0; i<city[0].length;i++){
+                area[i]=city[0][i].CAM_AREA;
             }
             let onlyarea = area.filter(function(element, index, arr){
                 return arr.indexOf(element) === index;
@@ -176,25 +176,31 @@
 
             }
             let nowarea = document.getElementById("camArea").value;
-            for(let i = 0; i<city.length;i++){
-                if(city[i].CAM_AREA == nowarea){
+            for(let i = 0; i<city[0].length;i++){
+                if(city[0][i].CAM_AREA == nowarea){
 
                     let option = document.createElement("option");
-                    option.innerText=city[i].CAM_NAME;
-                    option.value=city[i].CAM_NAME;
+                    option.innerText=city[0][i].CAM_NAME;
+                    option.value=city[0][i].CAM_NAME;
                     document.getElementById("camName").appendChild(option);
                 }
+            }
+            for(let i = 0; i<city[1].length;i++){
+                let label = document.createElement("label");
+                label.className = "level1";
+                label.innerHTML = `<input type="checkbox" class="type">${city[1][i].EQUSORT_EQUNAME} `;
+                document.getElementById("equSort").appendChild(label);
             }
         }
         document.getElementById("camArea").onchange = function(){
             // console.log(city);
             document.getElementById("camName").innerHTML="";
             var nowarea = document.getElementById("camArea").value;
-            for(let i = 0; i<city.length;i++){
-                if(city[i].CAM_AREA == nowarea){
+            for(let i = 0; i<city[0].length;i++){
+                if(city[0][i].CAM_AREA == nowarea){
                     let option = document.createElement("option");
-                    option.innerText=city[i].CAM_NAME;
-                    option.value=city[i].CAM_NAME;
+                    option.innerText=city[0][i].CAM_NAME;
+                    option.value=city[0][i].CAM_NAME;
                     document.getElementById("camName").appendChild(option);
                 }
             }
