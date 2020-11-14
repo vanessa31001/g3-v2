@@ -207,6 +207,18 @@
         function $append(father,child){
             return  father.appendChild(child);
         }
+        function formatDate(date) {  
+            var y = date.getFullYear();  
+            var m = date.getMonth() + 1;  
+            m = m < 10 ? ('0' + m) : m;  
+            var d = date.getDate();  
+            d = d < 10 ? ('0' + d) : d;  
+            var h = date.getHours();  
+            var minute = date.getMinutes();  
+            minute = minute < 10 ? ('0' + minute) : minute;
+            var s =  date.getSeconds();
+            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
+        }; 
         //參加團員
         function peopleIn(){
             let memberIn=$id("memberIn");
@@ -375,7 +387,7 @@
 
                 }
             }
-
+            
         }
         function readPage(groupNo){
             let groupxhr = new XMLHttpRequest();
@@ -387,6 +399,7 @@
                     peopleIn();
                     showMsg();
                     othergroups();
+                    //檢舉留言
                     var reportbtngGroup = document.querySelector(".reportbtngGroup");
                     reportbtngGroup.addEventListener("click", function () {
                         if(member.MEM_ID){
@@ -398,8 +411,6 @@
                         }else{
                             showLoginForm();
                         }
-
-                            // alert(overlay);
                     },false);
                     var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
                     for(let i =0; i<reportbtnMsg.length; i++){
@@ -417,7 +428,33 @@
                             // alert(overlay);
                         },false);
                     }
-
+                    //留言
+                    let leaveMsg = $id("sendMsg");
+                    leaveMsg.addEventListener("click", function (){
+                        if(member.MEM_ID){
+                            let leaveMsg =document.querySelector("#leaveMsg").value;
+                            if(leaveMsg.trim()!= ""){
+                                let date = formatDate(new Date());
+                                let msgxhr = new XMLHttpRequest();
+                                msgxhr.onload = function(){
+                                    if(msgxhr.status == 200){ //success 
+                                        location.reload(); 
+                                    }else{
+                                        alert(msgxhr.responseText);
+                                    }  
+                                }
+                                msgxhr.open("Post", "./php/group/leaveMsg.php", true);
+                                msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                                let data_info = `GROUP_MES_GROUPNO=${groupsdata[0].GROUP_NO}&GROUP_MES_MEMNO=${member.MEMNO}&GROUP_MES_TIME=${date}&GROUP_MES_CONTENT=${leaveMsg}`;
+                                msgxhr.send(data_info);
+                            }else{
+                                alert("請輸入文字再送出~");
+                            }
+                            
+                        }else{
+                            showLoginForm();
+                        }
+                    });
                 }else{ //error
                     alert(groupxhr.responseText);
                 }
@@ -465,38 +502,8 @@
                 $('.pic .imgs .img').removeClass("now");
                 $(this).parent().addClass("now");
                 $(".nowPic").attr("src", mig);      
-            });
-            //留言
-            $('#sendMsg').click(function(){
-                if($('#leaveMsg').val().trim()!= ""){
-                    let msg = $('#leaveMsg').val();
-                // alert(msg);
-                // let date = new Date();
-                $('#massages').append(`
-                <div class="msgInfo">
-                    <div class="inform_block">
-                        <div class="inform_pic">
-                                <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                        </div>
-                        <div class="inform_text">
-                            <p class="level1 "><a href="#" class="green1 third_title">Bella</a></p>
-                            <p class="level1 gray1">會員等級：金牌</p>
-                        </div>                                                                      
-                    </div>
-                    <div class="level1">
-                        <span class="third_title">留言:</span>
-                        <pre class="gray1">${msg}</pre>
-                    </div>
-                    <div class="level0 gray1">
-                        留言日期:2020-09-30
-                    </div>
-                    <input type="submit" class="reportbtnMsg" value="檢舉">
-                </div>`);
-                }
-                
-                $('#leaveMsg').val("");
-            });
-            // 燈箱留言
+            });   
+            // 燈箱
             $(".btn_modal_close").on("click", function(){
                 $(".report_overlay").addClass("-opacity-zero");
                 $("input[name=reason0]").each(function(){
@@ -571,62 +578,6 @@
         
             }
         });       
-        
-            
-
-        new Vue({
-            el: '#groupAllList',
-            data: {  
-                citys: ['全部地區','北部','中部','南部','東部'],       // 變數存放的地方
-                dates: ['不限','一周內','一個月內','一個月以上'],
-                equs: ['帳篷','睡袋','其他'], 
-                groupNames: ['九甲林冬天露營團','宇宙第一露營隊','一起來去露營'],
-                gPepole:[{name:'阿花',gread:'金牌',pic:'./pic/equipment/member.png'},
-                {name:'小羊',gread:'銀牌',pic:'./pic/equipment/member.png'},
-                {name:'綿',gread:'銅牌',pic:'./pic/equipment/member.png'},
-                {name:'阿花',gread:'鐵牌',pic:'./pic/equipment/member.png'}],
-                othergroup:[{gname:'宇宙第一露營隊',camp:'水映親子露營區',pic:'./pic/group/G2.jpg'},
-                {gname:'一起來去露營',camp:'野Fun趣露營區',pic:'./pic/group/G3.jpg'},
-                {gname:'揪起來',camp:'小路露營區',pic:'./pic/group/G1.jpg'},
-                {gname:'一起來去露營',camp:'小路露營區',pic:'./pic/group/G2.jpg'},
-                {gname:'宇宙第一露營隊',camp:'水映親子露營區',pic:'./pic/group/G2.jpg'},
-                {gname:'一起來去露營',camp:'野Fun趣露營區',pic:'./pic/group/G3.jpg'},
-                {gname:'揪起來',camp:'小路露營區',pic:'./pic/group/G1.jpg'},
-                {gname:'一起來去露營',camp:'水映親子露營區',pic:'./pic/group/G2.jpg'}
-
-                ],                
-                today: '',
-                start:'2020-12-15',
-                numPepole: 5,
-                limPepole: 20,
-            },
-            methods: {
-
-            },
-            computed: {
-                now(){
-                    let today = new Date();
-                    var  seperator1 =  "-" ;
-                    var  year = today.getFullYear();
-                    var  month = today.getMonth() + 1;
-                    var  strDate = today.getDate();
-                    if  (month >= 1 && month <= 9) {
-                    month =  "0"  + month;
-                    }
-                    if  (strDate >= 0 && strDate <= 9) {
-                        strDate =  "0"  + strDate;
-                    }
-                    var  currentdate = year + seperator1 + month + seperator1 + strDate;
-                    return  currentdate;
-                },
-                leastPepole(){
-                    let least = this.limPepole - this.numPepole
-                    return least;
-                }
-            },
-            watch: { 
-            },
-        });
     </script>
 </body>
 </html>
