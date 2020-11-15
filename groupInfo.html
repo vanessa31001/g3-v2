@@ -311,36 +311,30 @@
 
     </div>
     <script src="./js/logintext.js"></script>
+    <script src="./js/normalFunc.js"></script>
     <script>
-        function $id(id){
-            return document.getElementById(id);
-        }
-        function $create(tag){
-            return  document.createElement(tag);
-        }
-        function $append(father,child){
-            return  father.appendChild(child);
-        }
-        function formatDate(date) {  
-            var y = date.getFullYear();  
-            var m = date.getMonth() + 1;  
-            m = m < 10 ? ('0' + m) : m;  
-            var d = date.getDate();  
-            d = d < 10 ? ('0' + d) : d;  
-            var h = date.getHours();  
-            var minute = date.getMinutes();  
-            minute = minute < 10 ? ('0' + minute) : minute;
-            var s =  date.getSeconds();
-            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
-        }; 
-        //開團
-        function startNewGroup(){
-            if(member.MEM_ID){
-                window.location.href='./groupNewStart.html';
-            }else{
-                showLoginForm();
-            }
-        }
+        // function $id(id){
+        //     return document.getElementById(id);
+        // }
+        // function $create(tag){
+        //     return  document.createElement(tag);
+        // }
+        // function $append(father,child){
+        //     return  father.appendChild(child);
+        // }
+        // function formatDate(date) {  
+        //     var y = date.getFullYear();  
+        //     var m = date.getMonth() + 1;  
+        //     m = m < 10 ? ('0' + m) : m;  
+        //     var d = date.getDate();  
+        //     d = d < 10 ? ('0' + d) : d;  
+        //     var h = date.getHours();  
+        //     var minute = date.getMinutes();  
+        //     minute = minute < 10 ? ('0' + minute) : minute;
+        //     var s =  date.getSeconds();
+        //     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
+        // }; 
+        
         //參加團員
         function peopleIn(){
             let memberIn=$id("memberIn");
@@ -434,7 +428,7 @@
             $id("county").value=groupsdata[0].CAM_COUNTY;
             $id("camName").value=groupsdata[0].CAM_NAME;
             $id("GROUPNAME").innerText = groupsdata[0].GROUP_NAME;
-            $id("GROUP_START_DATE").innerText = "開團日期 :" + groupsdata[0].GROUP_START_DATE;
+            $id("GROUP_START_DATE").innerText = "開團時間 :" + groupsdata[0].GROUP_START_DATE;
             $id("MEMIMG").src ="./pic/member/"+groupsdata[0].MEM_IMG;
             $id("MEMNICKNAME").innerText = groupsdata[0].MEM_NICKNAME;
             $id("GROUP_INTRO").innerText = groupsdata[0].GROUP_INTRO;
@@ -472,6 +466,7 @@
         //已留言
         function showMsg(){
             let massages = $id("massages");
+            massages.innerHTML="";
             if(groupsdata[1]==""){
                 let msgInfo = $create("div");
                 msgInfo.className="msgInfo green1 level5";
@@ -497,7 +492,7 @@
                             <p class="gray1">${groupsdata[1][i].GROUP_MES_CONTENT}</p>
                         </div>
                         <div class="level0 gray1">
-                            留言日期:${groupsdata[1][i].GROUP_MES_TIME} 
+                            留言時間:${groupsdata[1][i].GROUP_MES_TIME} 
                         </div>
                         <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
                         <input type="submit" class="reportbtnMsg" value="檢舉">
@@ -521,7 +516,7 @@
                     peopleIn();
                     showMsg();
                     othergroups();
-                    //檢舉留言
+                    // //檢舉留言
                     var reportbtngGroup = document.querySelector(".reportbtngGroup");
                     reportbtngGroup.addEventListener("click", function () {
                         if(member.MEM_ID){
@@ -560,7 +555,8 @@
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
-                                        location.reload(); 
+                                        // location.reload(); 
+                                        showMsg();
                                     }else{
                                         alert(msgxhr.responseText);
                                     }  

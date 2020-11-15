@@ -207,8 +207,17 @@
         }
         function doFirst(){
             let areaxhr = new XMLHttpRequest();
-                areaxhr.onload = function(){
+            areaxhr.onload = function(){
                 if(areaxhr.status == 200){ //success
+                    if(!member.MEM_ID){
+                        showLoginForm();
+                        btnLoginCancel=$id("btnLoginCancel");
+                        btnLoginCancel.addEventListener('click',function(){
+                            history.go(-1);
+                        });
+                            // window.location.href='./groupNewStart.html';
+                        }
+                    // alert(member.MEM_ID);
                     // alert(areaxhr.responseText);
                     listArea(areaxhr.responseText);
                 }else{ //error
