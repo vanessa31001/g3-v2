@@ -24,7 +24,7 @@
     </div>
     <nav class="wrap_nav">
         <div class="nav_logo">
-            <a href="#" class="logo_link -bottom">
+            <a class="logo_link -bottom">
                 <img class="desk sun" src="./pic/commom/sun.svg" alt="">
             </a>
             <a class="changelogo" href="./shansen.html">
@@ -42,7 +42,7 @@
                 <li><a class="nav_title orange2" href="./camping.html">營區攻略</a></li>
                 <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
                 <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" href="#" id="spanLogin">登入|註冊</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a></li>
             </ul>
         </div>
     </nav>
@@ -54,7 +54,7 @@
         <div class="login_container">
             <div id="logiMember">
                 <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html"  class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
@@ -74,7 +74,7 @@
             </div>
             <form id="reiMember">
                 <table align="center" cellspacing="0" id="register" class="login_block_right">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html" class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
@@ -298,33 +298,16 @@ function $id(id){
 return document.getElementById(id);
 }
 let CAM_NO;
-window.addEventListener('load',function(){
+// window.addEventListener('load',function(){
+//     CAM_NO = location.href.split('?')[1];
+//     spotNum(CAM_NO);
+
+// })
+
+function openpage(){
     CAM_NO = location.href.split('?')[1];
     spotNum(CAM_NO);
-
-    var likedxhr = new XMLHttpRequest();
-    likedxhr.onload = function(){
-        if (likedxhr.status == 200) { //連線成功
-                let aaa = likedxhr.responseText;
-                console.log(aaa);
-                if(aaa=='有收藏'){
-                    $id('unlike').style.display='none';
-                    $id('liked').style.display='block';
-                }else{
-                    $id('unlike').style.display='block';
-                    $id('liked').style.display='none';
-                }
-                // document.getElementById('addlike').src=`${aaa['0']}`;
-            } else {
-                alert(likedxhr.status);
-            }
-    }
-    likedxhr.open("Get","php/camping/ifliked.php", true);
-    likedxhr.send(null); 
-})
-
-
-
+}
 
 let spotNum = (CAM_NO) => {
     console.log(CAM_NO)
@@ -362,10 +345,37 @@ let spotNum = (CAM_NO) => {
 }
 </script> 
 <script>
+    //檢查是否有登入,有的話檢查是否有加入收藏，調整愛心
+    function checkheart(){  
+            // alert(xhr2.CAM_NO);
+        var xhr1 = new XMLHttpRequest();
+        xhr1.onload = function(){
+            if (xhr1.status == 200) { //連線成功
+                let confirmlike = xhr1.responseText;
+                console.log(confirmlike);
+                if(confirmlike==='有收藏'){
+                    $id('unlike').style.display='none';
+                    $id('liked').style.display='block';
+                }else{
+                    $id('unlike').style.display='block';
+                    $id('liked').style.display='none';
+                }
+            } else {
+                // alert(xhr1.status);
+                alert('還沒登入無法判斷愛心');
+            }
+        }
+        xhr1.open("post","php/camping/ifliked1.php", true);
+        xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+        let data = `CAM_NO=${CAM_NO}`;
+        xhr1.send(data);
+          
+
+
+    }
 
     function addLike(){
         if (member.MEM_ID) {
-            //已經登入了，可以開始做事了
             var addlikexhr = new XMLHttpRequest();
             addlikexhr.onload = function(e) {
                 if (addlikexhr.status == 200) { //連線成功
@@ -388,10 +398,28 @@ let spotNum = (CAM_NO) => {
     }
 
     function deleteLike(){
-
+        if (member.MEM_ID) {
+            var dellikexhr = new XMLHttpRequest();
+            dellikexhr.onload = function(e) {
+                if (dellikexhr.status == 200) { //連線成功
+                    console.log(dellikexhr.responseText);
+                    $id('unlike').style.display='block';
+                    $id('liked').style.display='none';
+                } else {
+                    alert(dellikexhr.status);
+                }
+            }
+            var url = "php/camping/deletelike.php";
+            dellikexhr.open("post", url, true);
+            dellikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+            let data = `CAM_NO=${CAM_NO}`;
+            dellikexhr.send(data);
+        } else {
+            //沒有登入，請先登入
+            alert('請先登入');
+        }
     }
 
-    
 
 </script>
 
@@ -452,6 +480,16 @@ let spotNum = (CAM_NO) => {
     })
 });
 // console.log(addLike);
+
+</script>
+<script>
+    function init(){
+        openpage();
+        checkheart();
+    };
+
+window.addEventListener('load',init,false);
+
 </script>
 
 </body>
