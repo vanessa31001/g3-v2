@@ -479,6 +479,9 @@
                 for(let i=0; i<groupsdata[1].length ;i++){
                     let msgInfo = $create("div");
                     msgInfo.className="msgInfo";
+                    if(groupsdata[1][i].GROUP_MES_MEMNO==groupsdata[0].GROUP_MEMNO){
+                        msgInfo.className+=" grouper";
+                    }
                     msgInfo.innerHTML=`<div class="inform_block">
                             <div class="inform_pic">
                                     <img src="./pic/member/${groupsdata[1][i].MEM_IMG}" alt="">
@@ -495,13 +498,19 @@
                             留言時間:${groupsdata[1][i].GROUP_MES_TIME} 
                         </div>
                         <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
-                        <input type="submit" class="reportbtnMsg" value="檢舉">
-                    </div>`;
-                    if(groupsdata[1][i].GROUP_MES_MEMNO==groupsdata[0].GROUP_MEMNO){
-                        msgInfo.className+=" grouper";
-                    }
+                        
+                    </div>`;                    
                     $append(massages,msgInfo);
-
+                    let input = $create("input");
+                        input.type = "submit";
+                        input.className ="reportbtnMsg";
+                    if(groupsdata[1][i].GROUP_MES_MEMNO==member.MEMNO){
+                        // <input type="submit" class="reportbtnMsg" value="檢舉">
+                        input.value="刪除";
+                    }else{
+                        input.value="檢舉";
+                    }
+                    $append(msgInfo,input);
                 }
             }
             
@@ -518,44 +527,24 @@
                     othergroups();
                     // //檢舉留言
                     var reportbtngGroup = document.querySelector(".reportbtngGroup");
-                    reportbtngGroup.addEventListener("click", function () {
-                        if(member.MEM_ID){
-                            overlay = document.querySelector(".report_overlay");
-                            overlay.className += " -on";
-                            document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
-                            document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
-                            document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
-                        }else{
-                            showLoginForm();
-                        }
-                    },false);
+                    reportbtngGroup.addEventListener("click", function() { report() });
+
                     var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
                     for(let i =0; i<reportbtnMsg.length; i++){
-                        reportbtnMsg[i].addEventListener("click", function () {
-                            if(member.MEM_ID){
-                                overlay = document.querySelector(".report_overlay");
-                                overlay.className += " -on";
-                                document.querySelector(".report_reason1 label").innerText="此留言與露營不相關";
-                                document.querySelector(".report_reason2 label").innerText="此留言為不當發言";
-                                document.querySelector(".report_reason3 label").innerText="此留言含污辱文字"; 
-                            }else{
-                                showLoginForm();
-                            }
-
-                            // alert(overlay);
-                        },false);
+                        reportbtnMsg[i].addEventListener("click", function() { report("reportbtnMsg") });
                     }
                     //留言
                     let leaveMsg = $id("sendMsg");
                     leaveMsg.addEventListener("click", function (){
                         if(member.MEM_ID){
-                            let leaveMsg =document.querySelector("#leaveMsg").value;
+                            var leaveMsg =document.querySelector("#leaveMsg").value;
                             if(leaveMsg.trim()!= ""){
                                 let date = formatDate(new Date());
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
                                         // location.reload(); 
+                                        leaveMsg = "";
                                         showMsg();
                                     }else{
                                         alert(msgxhr.responseText);
@@ -614,7 +603,7 @@
             });
         });
          
-        $(function(){
+        $(setTimeout(function(){
             //要更換的圖片位置
             $('.pic .imgs .img img').click(function(){ 
                 let mig = $(this).attr("src");
@@ -696,7 +685,7 @@
             })
         
             }
-        });       
+        }, 500));       
     </script>
 </body>
 </html>
