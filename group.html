@@ -26,7 +26,7 @@
     </div>
     <nav class="wrap_nav">
         <div class="nav_logo">
-            <a href="#" class="logo_link -bottom">
+            <a class="logo_link -bottom">
                 <img class="desk sun" src="./pic/commom/sun.svg" alt="">
             </a>
             <a class="changelogo" href="./shansen.html">
@@ -44,7 +44,7 @@
                 <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
                 <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
                 <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" href="#" id="spanLogin">登入|註冊</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a></li>
             </ul>
         </div>
     </nav>
@@ -56,7 +56,7 @@
         <div class="login_container">
             <div id="logiMember">
                 <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html"  class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
@@ -76,7 +76,7 @@
             </div>
             <form id="reiMember">
                 <table align="center" cellspacing="0" id="register" class="login_block_right">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html" class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
@@ -247,7 +247,6 @@
                 if(EQUsxhr.status == 200){ //success
                     equdata = JSON.parse(EQUsxhr.responseText);  
                     getEQU(i);
-                           
                 }else{ //error
                     alert(EQUsxhr.status);
                 }

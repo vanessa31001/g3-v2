@@ -59,7 +59,7 @@
     map.on("popupopen", function(e1){
         document.querySelectorAll('.spot').forEach(element=>element.addEventListener('click',function(e2){
             let where = e2.target.getAttribute('data');
-            location.href=`http://localhost/g3-v2/camping2.html?${where}`;
+            location.href=`./camping2.html?${where}`;
         }))
     });
     
