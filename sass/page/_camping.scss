@@ -242,47 +242,47 @@ margin-bottom: 60px;
     }
 }
 
-//近期揪團
+
 .currently_gruop{
-    border-bottom: 2px solid $grayColor2;
-    padding: 0 0 30px 0;
-    display: flex;
-    justify-content: space-evenly;
-    .card{
-        max-width: 350px;
-        box-shadow: 3px 3px 3px 0px #888,-1px 0px 3px 0px #cccccc;
-        border-radius: 10px;
-        width: 100%;
-        text-align: left;
-        overflow: hidden;
-        img{
-            max-width: 350px;
+// border: 1px solid red;
+text-align: center;
+    .gMainGroups{
+        width:100%;
+        border: 1px solid red;
+        height: 250px;
+        margin: 20px 0 40px 0;
+        font-size: 0;
+        a{
+            background-color: $white;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 100%;
             width: 100%;
-        }
-        .text{
-            padding: 3px;
-            .detail{
-                text-align: right;
-                button{
-                    display:inline-block;
-                    margin: 5px;
+            margin-right: 40px;
+            display: inline-block; 
+            width: calc( (100% - 120px) / 4);
+            &:last-child{
+                margin-right: 0px;
+            }    
+            .gMainGroup{
+                
+                .img{
+                    width: 100%;
+                    height: 180px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
             }
         }
-    }
-    .card:nth-child(1){
-        margin-right: 30px;
-    }
-    .card:nth-child(2){
-        margin-right: 30px;
+        
+        
     }
 }
-.camping_btn{
-    .more_btn{
-        display: block;
-        margin: 20px auto 10px;
-    }
-}
+
+
 //------------------------------------------------------------
 //camping2
 .location{
@@ -292,7 +292,19 @@ margin-bottom: 60px;
             display: inline-block;
             position: absolute;
             right: 0;
-
+            font-size: 0;
+            .collect_btn{
+                outline: none;
+                border: none;
+                background-color:transparent;
+                img{
+                    width: 25px;
+                }
+                span{
+                    position: relative;
+                    top: -5px;
+                }
+            }
         }
     }
     .camp_slider{
@@ -363,44 +375,6 @@ margin-bottom: 60px;
         }
     }
 }
-//探訪相似的團
-.linkgroup{
-    .gMainGroups{
-        width:100%;
-        // border: 1px solid red;
-        height: 250px;
-        margin: 20px 0 40px 0;
-        font-size: 0;
-        a{
-            background-color: $white;
-            overflow: hidden;
-            border-radius: 5px;
-            height: 100%;
-            width: 100%;
-            margin-right: 40px;
-            display: inline-block; 
-            width: calc( (100% - 120px) / 4);
-            &:last-child{
-                margin-right: 0px;
-            }    
-            .gMainGroup{
-                .img{
-                    width: 100%;
-                    height: 180px;
-                    img{
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-            }
-        }
-    }
-    .linktogroupbtn{
-        text-align: center;
-    }
-}
-
 
 //聯絡會員
 .contact_page{
@@ -732,7 +706,9 @@ margin-bottom: 60px;
             margin-right: 0px;
         }
     }
-    .linkgroup{
+    .currently_gruop{
+        // border: 1px solid red;
+        text-align: center;
         .gMainGroups{
             a{
                 width: calc( (100% - 80px) / 3);
@@ -851,16 +827,20 @@ margin-bottom: 60px;
 
     //近期揪團
     .currently_gruop{
-        border-bottom: none;
-        display: block;
-        .card:nth-child(1){
-            margin: 0 auto 20px;
-        }
-        .card:nth-child(2){
-            margin: 0 auto 20px;
-        }
-        .card:nth-child(3){
-            margin: 0 auto;
+        border: 1px solid red;
+        text-align: center;
+        .gMainGroups{
+            margin: 10px 0;
+            a{
+                width: calc( (100% - 40px) / 2);
+                &:nth-child(2){
+                    margin-right: 0px;
+                }
+                &:last-child, &:nth-child(3){
+                    display: none;
+                    margin-right: 0px;
+                }    
+            }
         }
     }
     //page2-營區介紹-營區資訊
@@ -881,21 +861,7 @@ margin-bottom: 60px;
             }
         }
     }
-    .linkgroup{
-        .gMainGroups{
-            margin: 10px 0;
-            a{
-                width: calc( (100% - 40px) / 2);
-                &:nth-child(2){
-                    margin-right: 0px;
-                }
-                &:last-child, &:nth-child(3){
-                    display: none;
-                    margin-right: 0px;
-                }    
-            }
-        }
-    }
+
     .contact_page{
         .camping_block{
             .contact_list{

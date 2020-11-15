@@ -26,7 +26,7 @@
     </div>
     <nav class="wrap_nav">
         <div class="nav_logo">
-            <a href="#" class="logo_link -bottom">
+            <a class="logo_link -bottom">
                 <img class="desk sun" src="./pic/commom/sun.svg" alt="">
             </a>
             <a class="changelogo" href="./shansen.html">
@@ -44,7 +44,7 @@
                 <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
                 <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
                 <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" href="#" id="spanLogin">登入|註冊</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a></li>
             </ul>
         </div>
     </nav>
@@ -56,7 +56,7 @@
         <div class="login_container">
             <div id="logiMember">
                 <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html"  class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
@@ -76,7 +76,7 @@
             </div>
             <form id="reiMember">
                 <table align="center" cellspacing="0" id="register" class="login_block_right">
-                    <tr><td colspan="2" align="center"><a href="#" class="logo_link_logo">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html" class="logo_link_logo">
                         <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
                     </a></td></tr>
                     <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="groupMain">
                     <div class="nav">
-                        <a href="./groupNewStart.html" class="startNewGroup"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
+                        <a href="#" class="startNewGroup" onclick="startNewGroup()"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
                         <h2 class="level7 green1">自訂篩選</h2>
                         <div class="serchGroup">
                             <h3 class="level2 green1">選擇地區</h3> 
@@ -207,6 +207,7 @@
     <!-- footer 結束-->
     </div>
     <script src="./js/logintext.js"></script>
+    <script src="./js/normalFunc.js"></script>
     <!-- 載入資料 -->
     <script>
         getgroupinfo();
@@ -246,7 +247,6 @@
                 if(EQUsxhr.status == 200){ //success
                     equdata = JSON.parse(EQUsxhr.responseText);  
                     getEQU(i);
-                           
                 }else{ //error
                     alert(EQUsxhr.status);
                 }
@@ -324,7 +324,7 @@
                     groupBinImg.className = "groupBinImg";
                     $append(gLeft,groupBinImg);
                     img =  $create("img");
-                    img.src = groupsdata[i].圖片1;
+                    img.src = "./pic/group/"+groupsdata[i].圖片1;
                     $append(groupBinImg,img);
                     maphashtag =  $create("div");
                     maphashtag.className = "maphashtag";
@@ -444,13 +444,28 @@
                     dateChoice[j] = date[i].value;
                     j++;
                 }
-            }
-            
+            }            
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
                     showAllGroups(groupsdata);
+                    var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
+                    for(let i =0; i<reportbtngGroup.length; i++){
+                        reportbtngGroup[i].addEventListener("click", function () {
+                            if(member.MEM_ID){
+                                overlay = document.querySelector(".report_overlay");
+                                overlay.className += " -on";
+                                document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
+                                document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
+                                document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+                            }else{
+                                showLoginForm();
+                            }
+
+                            // alert(overlay);
+                        },false);
+                    }
                     // console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);

@@ -12,7 +12,7 @@ try{
     $camping = $pdo->query($sql);
     $allcamping=[];
     while($campingRow = $camping->fetch(PDO::FETCH_ASSOC)){
-        $allcamping[] = array("CAM_NAME"=>$campingRow["CAM_NAME"],"CAM_INTRODUCTION"=>$campingRow["CAM_INTRODUCTION"],"CAM_PIC1"=>$campingRow["CAM_PIC1"],"CAM_ADDRESS"=>$campingRow["CAM_ADDRESS"],"CAM_FACILITY"=>$campingRow["CAM_FACILITY"]);
+        $allcamping[] = array("CAM_NO"=>$campingRow["CAM_NO"],"CAM_NAME"=>$campingRow["CAM_NAME"],"CAM_INTRODUCTION"=>$campingRow["CAM_INTRODUCTION"],"CAM_PIC1"=>$campingRow["CAM_PIC1"],"CAM_ADDRESS"=>$campingRow["CAM_ADDRESS"],"CAM_FACILITY"=>$campingRow["CAM_FACILITY"]);
         
     }
     
