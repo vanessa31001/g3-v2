@@ -329,32 +329,26 @@
             border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
+            padding-bottom: 16px;
             *{
                 display: inline-block;
-                vertical-align: middle;
+                // vertical-align: middle;
                 text-align: center;
-            }
-            img{
-                width: 130px;
             }
             :first-child{
                 width: 10%;
-
             }
             :nth-child(2){
-                width: 30%;
+                width: 50%;
             }
             :nth-child(3){
-                width: 40%;
-                text-align: left;
-            }
-            :last-child{
                 width: 15%;
-                
+                text-align: center;
             }
         }
         li:first-child{
-            background-color:$yellowColor2;
+            background-color:$greenColor2;
+            color:black;
             :nth-child(3){
                 text-align: center;
             }
@@ -394,7 +388,7 @@
             }
             :nth-child(3){
                 width: 40%;
-                text-align: left;
+                text-align: center;
             }
             :last-child{
                 width: 15%;
@@ -402,20 +396,12 @@
             }
         }
         li:first-child{
-            background-color: $yellowColor2;
+            background-color:$greenColor2;
+            color:black;
             :nth-child(3){
                 text-align: center;
             }
         }
-    }
-    .lookexchange::after{
-        content: '';
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        position: absolute;
-        background-color: rgba($color: #000000, $alpha: .4);
     }
 }
 .favorites_recode_page{
@@ -425,32 +411,25 @@
             border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
+            padding-bottom: 16px;
             *{
                 display: inline-block;
                 vertical-align: middle;
                 text-align: center;
             }
-            img{
-                width: 130px;
-            }
             :first-child{
                 width: 10%;
-
             }
             :nth-child(2){
-                width: 30%;
+                width: 50%;
             }
             :nth-child(3){
-                width: 40%;
-                text-align: left;
-            }
-            :last-child{
-                width: 15%;
-                
+                width: 20%;
             }
         }
         li:first-child{
-            background-color:$yellowColor2;
+            background-color:$greenColor2;
+            color:$black;
             :nth-child(3){
                 text-align: center;
             }
@@ -522,32 +501,33 @@
 .camptotal_page{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-}
-.campItem{
-    width: 200px;
-    border: 1px solid black;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 16px;
-    position: relative;
-    img{
-        width: 100%;
-    }
-    div{
-        text-align: left;
-        padding: 8px;
-    }
-    span{
-        position: absolute;
-        right: 10px;
-        top: 0;
-        cursor: pointer;
+    text-align: center;
+    .campItem{
+        width: 29%;
+        border: 1px solid black;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 16px;
+        position: relative;
         img{
-            width: 30px;
+            width: 100%;
+        }
+        div{
+            text-align: left;
+            padding: 8px;
+        }
+        span{
+            position: absolute;
+            right: 10px;
+            top: 0;
+            cursor: pointer;
+            img{
+                width: 30px;
+            }
         }
     }
 }
+
 
 //rwd
 @media screen and (min-width: 1200px){
@@ -624,6 +604,11 @@
             
         }
     }
+    .camptotal_page{
+        .campItem{
+            width: 45%;
+        }
+    }
 }
 @media screen and (max-width: 767px){
     .app_anyway{
@@ -683,20 +668,17 @@
             .Equipment_record_page{
                 .Equipment_record{
                     li{
-                        img{
-                            width: 100%;
-                        }
                         :first-child{
-                            width: 20%;
-                        }
-                        :nth-child(2){
-                            width: 50%;
-                        }
-                        :nth-child(3){
                             display: none;
                         }
+                        :nth-child(2){
+                            width: 65%;
+                        }
+                        :nth-child(3){
+                            width: 15%;
+                        }
                         :last-child{
-                            width: 25%;
+                            width: 15%;
                             
                         }
                     }
@@ -714,6 +696,30 @@
                     }
                 }
             }
+            .favorites_recode_page{
+                .favorites_record{
+                    li{
+                        :first-child{
+                            display: none;
+                        }
+                        :nth-child(2){
+                            width: 50%;
+                        }
+                        :nth-child(3){
+                            width: 20%;
+                            text-align: center;
+                        }
+                        :last-child{
+                            width: 20%;
+                        }
+                    }
+                }
+            }
+        }
+        .camptotal_page{
+            .campItem{
+                width: 100%;
+            }
         }
     }
 
@@ -723,22 +729,6 @@
         display: block;
         .app_left_aside{
             display: none;
-            // justify-content: space-around;
-            // width: 100%;
-            // border-bottom: 1px solid black;
-            // .aside_subtitle{
-            //     display: none;
-            // }
-            // .buttonClassification{
-            //     flex-direction: column;
-            //     justify-content: flex-end;
-            //     img{
-            //         cursor: pointer;
-            //     }
-            //     button{
-            //         margin: 0;
-            //     }
-            // }
         }
         .app_left_aside_selector{
             display: block;
@@ -784,44 +774,77 @@
                     }
                 }
             }
-        }
-        //開團露營
-        .group_everyRow{
-            display: block;
-            height: auto;
-            text-align: center;
-            img{
-                display: none;
-            }
-            ul{
+                    //開團露營
+            .group_everyRow{
+                display: block;
                 height: auto;
-                padding: 0;
-                width: 100%;
-                li{
-                    text-align: left;
+                text-align: center;
+                img{
+                    display: none;
+                }
+                ul{
+                    height: auto;
+                    padding: 0;
+                    width: 100%;
+                    li{
+                        text-align: left;
+                    }
+                }
+                button{
+                    text-align: center;
                 }
             }
-            button{
-                text-align: center;
+            //設備交換
+            .Equipment_record_page{
+                .Equipment_record{
+                    li{
+                        :nth-child(2){
+                            width: 70%;
+                        }
+                        :nth-child(3){
+                            display: none;
+                        }
+                        :last-child{
+                            width: 25%;
+                            
+                        }
+                    }
+                }
             }
-        }
-        //設備交換
-        .Equipment_record_page{
-            .Equipment_record{
-                li{
-                    padding: 8px;
-                    img{
-                        width: 100%;
+            .exchange_record_page{
+                .exchange_record{
+                    li{
+                        img{
+                            width: 130px;
+                        }
+                        :first-child{
+                            display: none;
+                        }
+                        :nth-child(2){
+                            display: none;
+                        }
+                        :nth-child(3){
+                            width: 70%;
+                            text-align: center;
+                        }
+                        :last-child{
+                            width: 25%;
+                        }
                     }
-                    :first-child{
-                        display: none;
-                    }
-                    :nth-child(2){
-                        width: 60%;
-                    }
-                    :last-child{
-                        width: 30%;
-                        
+                }
+            }
+            .favorites_recode_page{
+                .favorites_record{
+                    li{
+                        :nth-child(2){
+                            width: 70%;
+                        }
+                        :nth-child(3){
+                            display: none;
+                        }
+                        :last-child{
+                            width: 25%;
+                        }
                     }
                 }
             }

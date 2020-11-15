@@ -91,7 +91,19 @@
 <!--內容結束-->
     
     <script>
-        Vue.component('memberInformation', { 
+        Vue.component('memberInformation', {             
+            data(){
+                return{
+                    peoInfo:'{}',
+                    memImg:'./pic/member/',
+                }
+            },
+            created(){
+                axios.get('php/member/getInfo.php').then(res => {
+                    this.peoInfo = res.data;
+                    console.log(this.peoInfo);
+                })
+            },
             template: `
             <div class="member_information">
                     
@@ -111,26 +123,21 @@
                             <div>*限定格式png、jpg</div>
                         </div>
                     </div>
-
                     <!-- 會員資訊內容 -->
                     <div class="member_information_main"> 
-                        <div class="level2">編號<span class="gray1">00000000001</span></div>
-                        <div class="level2">等級<span class="gray1">鑽石會員(目前累積分數共825分)</span></div>
-                        <div class="level2">帳號<span class="gray1">iamwang12345@gmail.com</span></div>
-                        <div class="level2">密碼<span class="gray1">*************</span></div>
-                        <div class="level2">姓名<span class="gray1">王大槌</span></div>
-                        <div class="level2">暱稱<span class="gray1">槌槌</span></div>
+                        <div class="level2">編號<span class="gray1">{{peoInfo.MEMNO}}</span></div>
+                        <div class="level2">帳號<span class="gray1">{{peoInfo.MEM_ID}}</span></div>
+                        <div class="level2">密碼<span class="gray1">{{peoInfo.MEM_PSW}}</span></div>
+                        <div class="level2">姓名<span class="gray1">{{peoInfo.MEM_NAME}}</span></div>
+                        <div class="level2">暱稱<span class="gray1">{{peoInfo.MEM_NICKNAME}}</span></div>
 
                         <div class="edit_block">
                             <button class="tagbtn_green">編輯</button>
                         </div>
                     </div>
                 </div>
-            
                 </div>
-                    
             </div>
-            
             `,
         });
         Vue.component('memberMessage', { 
@@ -270,7 +277,6 @@
                 }),
                 axios.get('php/member/joinGroup.php').then(res => {
                     this.join_groups = res.data;
-                    console.log(res.data);
                 })
             },
             template: `
@@ -348,31 +354,74 @@
             data(){
                 return{
                     link : "publication",
-                    page1style: "secondbtn1",
-                    page2style: "secondbtn2",
-                    page3style: "secondbtn2"
+                    page1style: "mem_page1",
+                    page2style: "mem_page2",
+                    page3style: "mem_page2",
+                    publishing_equipment: '[]',
+                    change_equipment: '[]',
+                    like_equipment: '[]',
+                    img_path:'./pic/equipment',
                 }
             },
             methods:{
                 page1(){
                     this.link = 'publication'
-                    this.page1style= "secondbtn1",
-                    this.page2style= "secondbtn2",
-                    this.page3style= "secondbtn2"
+                    this.page1style= "mem_page1",
+                    this.page2style= "mem_page2",
+                    this.page3style= "mem_page2"
 
                 },
                 page2(){
                     this.link = 'exchange'
-                    this.page1style= "secondbtn2",
-                    this.page2style= "secondbtn1",
-                    this.page3style= "secondbtn2"
+                    this.page1style= "mem_page2",
+                    this.page2style= "mem_page1",
+                    this.page3style= "mem_page2"
                 },
                 page3(){
                     this.link = 'favorites'
-                    this.page1style= "secondbtn2",
-                    this.page2style= "secondbtn2"
-                    this.page3style= "secondbtn1"
-                }
+                    this.page1style= "mem_page2",
+                    this.page2style= "mem_page2"
+                    this.page3style= "mem_page1"
+                },
+                //刪除設備
+                deleteEquipment(e){
+                    let question = confirm('是否確認下架？');
+                    if(question){
+                        axios.post('php/member/change_equipment.php', e).then(res => {
+                             this.getEquipment();
+                        })
+                    }
+                },
+                getEquipment(){
+                    axios.get('php/member/publishing_equipment.php').then(res => {
+                        this.publishing_equipment = res.data;
+                    })
+                },
+                //取消收藏
+                deleteLike(e){
+                    let question = confirm('是否確認刪除？');
+                    if(question){
+                        axios.post('php/member/delete_like.php', e).then(res => {
+                             this.getLike();
+                        })
+                    }
+                },
+                getLike(){
+                    axios.get('php/member/like_equipment.php').then(res => {
+                        this.like_equipment = res.data;
+                    })
+                },
+            },
+            created(){
+                axios.get('php/member/publishing_equipment.php').then(res => {
+                    this.publishing_equipment = res.data;
+                })
+                axios.get('php/member/get_change_info.php').then(res => {
+                    this.change_equipment = res.data;;
+                })
+                axios.get('php/member/like_equipment.php').then(res => {
+                    this.like_equipment = res.data;
+                })
             },
             template: `
             <div class="member_Equipment">
@@ -395,27 +444,20 @@
                                 <ul class="Equipment_record">
                                     <li>
                                         <div class="level1">設備編號</div>
-                                        <div class="level1">設備照片</div>
                                         <div class="level1">設備名稱</div>
-                                        <div class="level1">目前狀態</div>
+                                        <div class="level1">設備狀態</div>
+                                        <div class="level1">下架設備</div>
                                     </li>
-                                    <li>
-                                        <div class="level1">001</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
+                                    <li v-for="equipment in publishing_equipment" v-if="equipment.EQU_SWAPATATNO==='進行中'">
+                                        <div class="level1">{{equipment.EQU_NO}}</div>
+                                        <div class="level1">{{equipment.EQU_NAME}}</div>
+                                        <span class="level2">{{equipment.EQU_SWAPATATNO}}</span>
+                                        <button class="thirdbtn2_orange" @click="deleteEquipment(equipment)">下架</button>
                                     </li>
-                                    <li>
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
-                                    </li>
-                                    <li class="lookEquipment">
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">已結束</span>
+                                    <li class="lookEquipment" v-for="equipment in publishing_equipment" v-if="equipment.EQU_SWAPATATNO!=='進行中'">
+                                        <div class="level1">{{equipment.EQU_NO}}</div>
+                                        <div class="level1">{{equipment.EQU_NAME}}</div>
+                                        <span class="level2">{{equipment.EQU_SWAPATATNO}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -427,23 +469,11 @@
                                         <div class="level1">設備名稱</div>
                                         <div class="level1">目前狀態</div>
                                     </li>
-                                    <li>
-                                        <div class="level1">001</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
-                                    </li>
-                                    <li>
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
-                                    </li>
-                                    <li class="lookexchange">
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">已結束</span>
+                                    <li v-for="equipment in change_equipment">
+                                        <div class="level1">{{equipment.EQU_NO}}</div>
+                                        <img :src="img_path + equipment.EQU_PIC1" alt="">
+                                        <div class="level1">{{equipment.EQU_NAME}}</div>
+                                        <span class="level2">已成功</span>
                                     </li>
                                 </ul>
                             </div>
@@ -451,26 +481,19 @@
                                 <ul class="favorites_record">
                                     <li>
                                         <div class="level1">設備編號</div>
-                                        <div class="level1">設備照片</div>
                                         <div class="level1">設備名稱</div>
                                         <div class="level1">目前狀態</div>
+                                        <div class="level1">取消收藏</div>
                                     </li>
-                                    <li>
-                                        <div class="level1">001</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
+                                    <li v-for="equipment in like_equipment" v-if="equipment.status==='尚可交換'">
+                                        <div class="level1">{{equipment.EQU_NO}}</div>
+                                        <div class="level1">{{equipment.equ_name}}</div>
+                                        <span class="level2">可交換</span>
+                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">取消</button>
                                     </li>
-                                    <li>
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
-                                        <span class="level2">進行中</span>
-                                    </li>
-                                    <li class="lookfavorites">
-                                        <div class="level1">002</div>
-                                        <img src="./pic/member/member_group.jpg" alt="">
-                                        <div class="level1">高階多功能機能包 — 登山背包 D00566</div>
+                                    <li class="lookfavorites" v-for="equipment in like_equipment" v-if="equipment.status!=='尚可交換'">
+                                        <div class="level1">{{equipment.EQU_NO}}</div>
+                                        <div class="level1">{{equipment.equ_name}}</div>
                                         <span class="level2">已結束</span>
                                     </li>
                                 </ul>
@@ -481,6 +504,33 @@
                 `,
         });
         Vue.component('memberCamp', { 
+            data(){
+                return{
+                    likeCamp: '[]',
+                    img_path:'/pic/camping/',
+                }
+            },
+            methods:{
+                //取消收藏
+                dislike(c){
+                    let question = confirm('是否確認刪除？');
+                    if(question){
+                        axios.post('php/member/delete_camping.php', c).then(res => {
+                             this.getCamp();
+                        })
+                    }
+                },
+                getCamp(){
+                    axios.get('php/member/Get_favorites.php').then(res => {
+                        this.likeCamp = res.data;
+                    })
+                },
+            },
+            created(){
+                axios.get('php/member/Get_favorites.php').then(res => {
+                    this.likeCamp = res.data;
+                })
+            },
             template: `
             <div class="member_Camp">
                     
@@ -493,35 +543,10 @@
                     <div class="member_Camp_detail">
                         <div>
                             <ul class="camptotal_page">
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                </li>
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                </li>
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                </li>
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                </li>
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
-                                </li>
-                                <li class="campItem">
-                                    <span><img src="./pic/member/cancel.png"></span>
-                                    <img src="./pic/member/member_group.jpg">
-                                    <div class="level1">尖石寧靜的私房營地，獨享雲霧繚繞的夢幻感受。7Mx8M大帳篷，四周高聳的山嵐環繞，營主用心植栽的樹林花卉</div>
+                                <li class="campItem" v-for="camp in likeCamp">
+                                    <span><img @click="dislike(camp)" src="./pic/member/cancel.png"></span>
+                                    <img :src="img_path + camp.CAM_PIC1">
+                                    <div class="level1">{{camp.CAM_NAME}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -533,7 +558,7 @@
         new Vue({
             el: '#app',
             data: {
-                content: 'memberGroup',
+                content: 'memberCamp',
                 now_page: 'thirdbtn1_green',
                 other_page: 'thirdbtn2_green',
             },
