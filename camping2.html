@@ -42,7 +42,9 @@
                 <li><a class="nav_title orange2" href="./camping.html">營區攻略</a></li>
                 <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
                 <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a>
+                    <a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -309,7 +311,7 @@ let spotNum = (CAM_NO) => {
                 }
             } else {
                 // alert(xhr1.status);
-                alert('還沒登入無法判斷愛心');
+                // alert('還沒登入無法判斷愛心');
             }
         }
         xhr1.open("post","php/camping/ifliked1.php", true);

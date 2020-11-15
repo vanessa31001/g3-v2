@@ -278,7 +278,7 @@
                         <tr v-for="reportmsg in reportmsgs">
                             <input type="hidden" v-model="reportmsg.REGROUP_MES_NO">
                             <td>{{ reportmsg.REGROUP_MES_NO }}</td>
-                            <td>{{ reportmsg.GROUP_MES_CONTENT }}</td>
+                            <td><a v-bind:href="'groupInfo.html?GROUP_NO=' + reportmsg.GROUP_MES_GROUPNO" target="_blank">{{ reportmsg.GROUP_MES_CONTENT }}</a></td>
                             <td>{{ reportmsg.MEM_NAME }}</td>
                             <td>{{ reportmsg.REGROUP_RESON }}</td>
                             <td>{{ reportmsg.REGROUP_MES_STATUS }}
