@@ -216,7 +216,7 @@
                         <tr v-for="reportgroup in reportgroups">
                             <input type="hidden" v-model="reportgroup.REGROUP_NO">
                             <td>{{reportgroup.REGROUP_NO}}</td>
-                            <td>{{reportgroup.GROUP_NAME}}</td>
+                            <td><a v-bind:href="'groupInfo.html?GROUP_NO=' + reportgroup.GROUP_NO" target="_blank">{{reportgroup.GROUP_NAME}}</a></td>
                             <td>{{reportgroup.MEM_NAME}}</td>
                             <td>{{reportgroup.REGROUP_RESON}}</td>
                             <td>{{reportgroup.REGROUP_STATUS}}

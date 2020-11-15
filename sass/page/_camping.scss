@@ -171,6 +171,10 @@
 //熱門營區
 .section_hot{
 margin-bottom: 60px;
+a{
+    text-decoration: none;
+    color: black;
+}
 }
 .popular_area{
     display: flex;
@@ -257,15 +261,14 @@ margin-bottom: 60px;
 
 
 .currently_gruop{
-// border: 1px solid red;
 text-align: center;
     .gMainGroups{
         width:100%;
-        border: 1px solid red;
         height: 250px;
         margin: 20px 0 40px 0;
         font-size: 0;
         a{
+            text-decoration: none;
             background-color: $white;
             overflow: hidden;
             border-radius: 5px;
@@ -720,7 +723,6 @@ text-align: center;
         }
     }
     .currently_gruop{
-        // border: 1px solid red;
         text-align: center;
         .gMainGroups{
             a{
@@ -840,7 +842,6 @@ text-align: center;
 
     //近期揪團
     .currently_gruop{
-        border: 1px solid red;
         text-align: center;
         .gMainGroups{
             margin: 10px 0;
