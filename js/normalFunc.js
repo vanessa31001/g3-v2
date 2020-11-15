@@ -24,20 +24,20 @@ function startNewGroup(){
         showLoginForm();
     }
 }
-// function report(reportbtn){
-//     if(member.MEM_ID){
-//         overlay = document.querySelector(".report_overlay");
-//         overlay.className += " -on";
-//         if(reportbtn=="reportbtngGroup"){
-//             document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
-//             document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
-//             document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
-//         }else{
-//             document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
-//             document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
-//             document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
-//         }
-//     }else{
-//         showLoginForm();
-//     }
-// }
+function report(reportbtn){
+    if(member.MEM_ID){
+        overlay = document.querySelector(".report_overlay");
+        overlay.className += " -on";
+        if(reportbtn=="reportbtngGroup"){
+            document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
+            document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
+            document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+        }else{
+            document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
+            document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
+            document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+        }
+    }else{
+        showLoginForm();
+    }
+}

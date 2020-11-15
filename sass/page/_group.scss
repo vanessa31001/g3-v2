@@ -627,6 +627,16 @@ input[type="submit"], button{
                     // padding: 5px;
                     font-size: 16px;
                 }
+                #equSort{
+                    &::after{
+                        content: "abc";
+                        display: block;
+                        clear: both;
+                      }
+                    label{
+                        float: left;
+                    }
+                }
             }
             .btn{
                 width: 100%;
