@@ -27,45 +27,132 @@
 
 .wrap{
     .stepBreadcrumbs{
-        display: flex;
-        justify-content: space-between;
         width: 100%;
-        margin: 0 auto;
         margin-bottom: 3%;
-        .cardStep{
-            background-color: $yellowColor2;
-            padding: 1.2rem;
-            border-radius: 50%;
-            p{
-                text-align: center;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-around;
+        position: relative;
+        .cardStepContent{
+            text-align: -webkit-center;
+            float: left;
+            .cardStep{
+                background-color: $white;
+                padding: 1.2rem;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                width: 90px;
+                border: 6px solid $grayColor2;
+                display: inline-block;  
+                p{
+                    text-align: center;
+                    font-size: 28px;
+                    color: $grayColor1  ;
+                    
+                }
+            }
+            .cardStepTitle{
+                color: $grayColor1;
+                position: relative;
+            }
+            .cardStepTitle::after{
+                
+            }
+            .chooseCardStep{
+                width: 90px;
+                background-color: $yellowColor1;
+                padding: 1.2rem;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                border: 6px solid $orangeColor1;
+                display: inline-block;
+                p{
+                    text-align: center;
+                    font-size: 28px;
+                    color: #FFFFFF;
+                }
+            }
+            .cardStepTitleChoose{
+                border-bottom: 6px solid $yellowColor1;
+                color: $yellowColor1;
+            }
+            .cardStepTitle1{
+                color: $yellowColor1;
+                position: relative;
+            }
+            .cardStepTitle1::after{
+                content: "";
+                border-bottom: 6px solid $yellowColor1;
+                width: 100%;
+                position: absolute;
+                bottom: -20%;
+                left: 0%;
+                animation-name: bottomWidth;
+                animation-duration: 0.5s;
+                animation-iteration-count: 1;
+            }
+            .cardStepTitleHistory{
+                color: $yellowColor1;
+            }
+            @keyframes bottomWidth {
+                from {width: 0%;}
+                to{width: 100%;}
             }
         }
-        .chooseCardStep{
-            background-color: $orangeColor1;
-            padding: 1.2rem;
-            border-radius: 50%;
-            p{
-                text-align: center;
-            }
-        }        
+        .stepLine{
+            border: 1px;
+            float: left;
+            height: 1px;
+            border-top: 6px solid $grayColor2;
+            position: absolute;
+        }
+        #stepLine1{
+            width: 100.312px;
+            left: 12.3%;
+            top: 29%;
+        }
+        #stepLine2{
+            width: 100.312px;
+            left: 29%;
+            top: 29%;
+        }
+        #stepLine3{
+            width: 100.312px;
+            left: 45.6%;
+            top: 29%;
+        }
+        #stepLine4{
+            width: 100.312px;
+            left: 62.3%;
+            top: 29%;
+        }
+        #stepLine5{
+            width: 105.312px;
+            left: 78.5%;
+            top: 29%;
+        }
+    }
+    .posCover{
+        margin: 20px;
     }
     .postcard_content{
         display: flex;
         width: 100%;
         margin: 0 auto;
+        flex-wrap: wrap;
         #canv{
-            width: 840px;
-            height: 560px;
+            width: auto;
+            height: auto;
         }
         .postcard{
             display: block;
-            margin-right: 15px;
+            margin-right: 10px;
             width: 840px;
             height: 560px;
             position: relative;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url("../../pic/postcardMaterial/paper/paper1.png");
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
             padding-top: 15px;
             border-radius: 10px;
             
@@ -73,11 +160,12 @@
                 width: 15%;
                 position: absolute;
                 bottom: 0%;
-                left: 43%;
+                left: 50%;
+                transform: translateX(-50%);
                 border-radius: 50%;
                 padding: 15px 25px 15px 25px;
                 display: block;
-                background-image: url("../../pic/postcardMaterial/paper/paper1.png");
+                background-image: url("../pic/postcardMaterial/paper/paper1.png");
                     background-size: cover;
             }
 
@@ -93,23 +181,23 @@
         }
         .leftPostcard1{
             display: none;
-            margin-right: 15px;
+            margin-right: 10px;
             width: 840px;
             height: 560px;
             position: relative;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url("../../pic/postcardMaterial/paper/paper1.png");
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
         }
         .postcard2{
             display: none;
-            margin-right: 15px;
+            margin-right: 10px;
             width: 840px;
             height: 560px;
             position: absolute;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url("../../pic/postcardMaterial/paper/paper1.png");
+            background-image: url("../pic/postcardMaterial/paper/paper1.png");
             .leftPostcardIconClass{
                 width: 100px;
                 height: 100px;
@@ -120,13 +208,12 @@
         }
         .leftPostcard2{
             display: block;
-            margin-right: 15px;
+            margin-right: 10px;
             width: 840px;
             height: 560px;
             position: relative;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url("../../pic/postcardMaterial/paper/paper1.png");
             border-radius: 10px;
             text-align: center;
             padding: 1%;
@@ -187,6 +274,30 @@
                     white-space: nowrap;
                     position: absolute;
                 }
+                #testLeftWordLimit4{
+                    visibility: hidden;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
+                }
+                #testLeftWordLimit5{
+                    visibility: hidden;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
+                }
+                #testLeftWordLimit6{
+                    visibility: hidden;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;
+                    white-space: nowrap;
+                    position: absolute;
+                }
                 .posFromTo{
                     position: absolute;
                     left: 5%;
@@ -197,6 +308,10 @@
                     width: 90%;
                     #posFrom{
                         margin-bottom: 5%;
+                        color: $orangeColor1;
+                    }
+                    #posTo{
+                        color: $orangeColor1;
                     }
                 }
             }
@@ -216,7 +331,6 @@
             }
             .stylePostcard{
                 display: none;
-                flex-direction: column;
                 height: 400px;
                 width: 88%;
                 margin: 0 auto;
@@ -247,16 +361,16 @@
                     
                         }
                         #paper1{
-                            background-image: url("../../pic/postcardMaterial/paper/paper1.png");
+                            background-image: url("../pic/postcardMaterial/paper/paper1.png");
                             background-size: cover;
                             border: 5px solid rgba(255, 0, 0, 0.4);
                         }
                         #paper2{
-                            background-image: url("../../pic/postcardMaterial/paper/paper2.png");
+                            background-image: url("../pic/postcardMaterial/paper/paper2.png");
                             background-size: cover;
                         }
                         #paper3{
-                            background-image: url("../../pic/postcardMaterial/paper/paper3.png");
+                            background-image: url("../pic/postcardMaterial/paper/paper3.png");
                             background-size: cover;
                         }
                     }
@@ -338,7 +452,7 @@
                     }
                     .posColorTitle{
                         width: 100%;
-                        font-size: 18px;
+                        font-size: 16px;
                         margin-bottom: 3%;
                         
                     }
@@ -365,7 +479,93 @@
                         text-align: left;
                         margin-top: 10px;
                         color: darkred;
-                        display: none;
+                        visibility: hidden;
+                    }
+                }
+            }
+            #rightStep5{
+                .posFromToTitle{
+                    margin-top: 2%;
+                }
+                .posWriteFromTo{
+                    margin-bottom: 10px;
+                }
+                .fromWordColor{
+                    width: 25px;
+                        height: 25px;
+                        display: inline-block;
+                        margin: 3px;
+                        border: 2px;
+                        border-radius: 50%;
+                        border: 3px solid rgba(0, 0, 0, 0);
+                }
+                #fromWordBlue{
+                    background-color: $greenColor3;
+                    
+                }
+                #fromWordOrange{
+                    background-color: $orangeColor1;
+                    border-color: rgba(255, 0, 0, 0.4)
+                }
+                #fromWordBlack{
+                    background-color: $black;
+                }
+                #fromWordYellow{
+                    background-color: $yellowColor2;
+                }
+                #fromWordGray{
+                    background-color: $grayColor1;
+                }
+                .toColorTitle{
+                    margin-bottom: 4%;
+                }
+                .fromColorTitle{
+                    margin-bottom: 4%;
+                }
+                .toWordColor{
+                    width: 25px;
+                        height: 25px;
+                        display: inline-block;
+                        margin: 3px;
+                        border: 2px;
+                        border-radius: 50%;
+                        border: 3px solid rgba(0, 0, 0, 0);
+                }
+                #toWordBlue{
+                    background-color: $greenColor3;
+                    
+                }
+                #toWordOrange{
+                    background-color: $orangeColor1;
+                    border-color: rgba(255, 0, 0, 0.4);
+                }
+                #toWordBlack{
+                    background-color: $black;
+                }
+                #toWordYellow{
+                    background-color: $yellowColor2;
+                }
+                #toWordGray{
+                    background-color: $grayColor1;
+                }
+                .posButtonSend{
+                    margin-top: 3%;
+                    #posDelFromTo{
+                        margin: 0 auto;
+                    }
+                }
+            }
+            #rightStep6{
+                .posButtonContentBack{
+                    width: 100%;
+                    #downloadBack{
+                        margin-top: 15%;
+                    }
+                }
+                .posButtonContentFront{
+                    width: 100%;
+                    #downloadFront{
+                        margin-top: 15%;
                     }
                 }
             }
@@ -393,4 +593,1008 @@
     }
 
 
+}
+@media screen and (max-width: 1199px) and (min-width: 992px){
+    .wrap{
+        .stepBreadcrumbs{
+            #stepLine1{
+                width: 70px;
+                left: 13.1%;    
+            }
+            #stepLine2{
+                width: 70px;
+                left: 29.7%;    
+            }
+            #stepLine3{
+                width: 70px;
+                left: 46.4%;    
+            }
+            #stepLine4{
+                width: 70px;
+                left: 63%;    
+            }
+            #stepLine5{
+                width: 75px;
+                left: 79.3%;    
+            }
+        }
+        .postcard_content{
+            .postcardLeftAll{
+                margin: 0 auto;
+                margin-bottom: 3%;
+            }
+            .rightPostcard{
+                
+                width: 850px;
+                height: 350px;
+                margin: 0 auto;
+                background-image: url(../pic/postcardMaterial/leftBackground1.svg);
+                background-size: cover;
+                .stylePostcard{
+                    width: 715px;
+                    height: 190px;
+                    
+                    .paperTexture{
+                        width: 31%;
+                        height: 100%;
+                        display: inline-block;
+                        .posBackground{
+                            width: 75%;
+                            height: 65%;
+                        }
+                        p{
+                            margin-bottom: 8%;
+                        }
+                    }
+                    .photoChoose{
+                        display: inline-block;
+                        width: 200px;
+                        height: 100%;
+                        margin-left: 15px;  
+                        .postPhoto{
+                            width: 200px;
+                            left: 0%;
+                            top: 15%;
+                        }
+                    }
+                    label{
+                        height: 124px;
+                        width: 200px;
+                        margin-top: 0%;
+                        margin-left: 3%;
+                        height: 100%;
+                        position: relative;
+                        margin-right: 3%;
+                        .updatePicPos{
+                            width: 100%;
+                            height: 124px;
+                            position: absolute;
+                            top: 15%;
+                        }
+                    }
+                    .posLittlePic{
+                        width: 125px;
+                        display: inline-block;
+                        margin-bottom: 0%;
+                        margin-top: 3%;
+                        margin-left: 15px;
+                        img{
+                            width: 100%;
+                        }
+                        #LittlePic8{
+                            margin-right: 15px;
+                        }
+                    }
+                    .step4TopContent{
+                        display: inline-block;
+
+                    }
+                    .postcardWordCreate{
+                        display: inline-block;
+                        text-align: center;
+                        width: 44%;
+                        .posColorTitle{
+                            text-align: center;
+                        }
+                        #posWarningSign{
+                            margin-top: 6px;
+                        }
+                    }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 10px;
+                    width: 0;
+                }
+                #rightStep2{
+                    width: 715px;
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    
+                }
+                
+                .stepContent{
+                    width: 60%;
+                }
+                p{
+                    margin-top: 4%;
+                }
+                #rightStep3{
+                    white-space: nowrap;
+                }
+                #rightStep4{
+                    #postcardInsideText{
+                        
+                    }
+                }
+                #rightStep5{
+                    white-space: nowrap;
+                    .colorBig{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .colorBig1{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .posButtonSend{
+                        margin-top: 1%;
+                        #posDelFromTo{
+                            margin-left: 3%;
+                        }
+                    }
+                }
+                #rightStep6{
+                    .posButtonContentBack{
+                        width: 30%;
+                        margin: 0 auto;
+                    }
+                    .posButtonContentFront{
+                        width: 30%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media screen and (max-width: 991px) and (min-width: 768px){
+    .wrap{
+        .stepBreadcrumbs{
+            width: 100%;
+            #stepLine1{
+                top: 32%;
+                width: 33px;
+                left: 14.6%;    
+            }
+            #stepLine2{
+                top: 32%;
+                width: 33px;
+                left: 31.2%;    
+            }
+            #stepLine3{
+                top: 32%;
+                width: 33px;
+                left: 47.6%;    
+            }
+            #stepLine4{
+                top: 32%;
+                width: 33px;
+                left: 64.2%;    
+            }
+            #stepLine5{
+                top: 32%;
+                width: 38px;
+                left: 81%;    
+            }
+        }
+        .postcard_content{
+            .postcardLeftAll{
+                margin: 0 auto;
+                margin-bottom: 3%;
+                .leftPostcard1{
+                    width: 720px;
+                    height: 483px;
+                    
+                }
+                .leftPostcard2{
+                    width: 720px;
+                    height: 483px;
+                }
+                .postcard{
+                    width: 720px;
+                    height: 483px;
+                }
+                .postcard2{
+                    width: 720px;
+                    height: 483px;
+                } 
+            }
+            .rightPostcard{
+                
+                width: 720px;
+                height: 303px;
+                margin: 0 auto;
+                background-image: url(../pic/postcardMaterial/leftBackground1.svg);
+                background-size: contain;
+                .stylePostcard{
+                    width: 550px;
+                    height: 169px;
+                    .paperTexture{
+                        width: 31%;
+                        height: 90%;
+                        display: inline-block;
+                        .posBackground{
+                            width: 75%;
+                            height: 65%;
+                        }
+                        p{
+                            padding: 0;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .photoChoose{
+                        display: inline-block;
+                        width: 200px;
+                        height: 100%;
+                        margin-left: 15px;  
+                        .postPhoto{
+                            width: 200px;
+                            left: 0%;
+                            top: 8%;
+                        }
+                    }
+                    label{
+                        height: 124px;
+                        width: 200px;
+                        margin-top: 0%;
+                        margin-left: 3%;
+                        height: 100%;
+                        position: relative;
+                        margin-right: 3%;
+                        .updatePicPos{
+                            width: 100%;
+                            height: 124px;
+                            position: absolute;
+                            top: 15%;
+                        }
+                    }
+                    .posLittlePic{
+                        width: 125px;
+                        display: inline-block;
+                        margin-bottom: 0%;
+                        margin-top: 3%;
+                        margin-left: 15px;
+                        img{
+                            width: 100%;
+                        }
+                        #LittlePic8{
+                            margin-right: 15px;
+                        }
+                    }
+                    .step4TopContent{
+                        display: inline-block;
+
+                    }
+                    .postcardWordCreate{
+                        display: inline-block;
+                        text-align: center;
+                        width: 44%;
+                        .posColorTitle{
+                            text-align: center;
+                        }
+                        #posWarningSign{
+                            margin-top: 6px;
+                        }
+                    }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 10px;
+                    width: 0;
+                }
+                #rightStep2{
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    
+                }
+                
+                .stepContent{
+                    width: 60%;
+                    margin-top: 8px;
+                }
+                p{
+                    margin-top: 4%;
+                }
+                #rightStep3{
+                    white-space: nowrap;
+                }
+                #rightStep4{
+                    #postcardInsideText{
+                        margin-top: 0;
+                    }
+                    
+                }
+                #rightStep5{
+                    white-space: nowrap;
+                    .posFromToTitle{
+                        margin-top: 0%;
+                    }
+                    .colorBig{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .colorBig1{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .posButtonSend{
+                        margin-top: 1%;
+                        #posDelFromTo{
+                            margin-left: 3%;
+                        }
+                    }
+                }
+                #rightStep6{
+                    .posButtonContentBack{
+                        width: 30%;
+                        height: 45%;
+                        margin: 0 auto;
+                    }
+                    .posButtonContentFront{
+                        width: 30%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media screen and (max-width: 767px){
+    .wrap{
+        .stepBreadcrumbs{
+            width: 100%;
+            #stepLine1{
+                width: 40px;
+                left: 13%;
+                top: 20%;    
+            }
+            #stepLine2{
+                width: 40px;
+                left: 29.6%;
+                top: 20%;    
+            }
+            #stepLine3{
+                width: 40px;
+                left: 46.3%;
+                top: 20%;    
+            }
+            #stepLine4{
+                width: 40px;
+                left: 62.9%;
+                top: 20%;    
+            }
+            #stepLine5{
+                width: 45px;
+                left: 78.9%;
+                top: 20%;    
+            }
+            .cardStepContent{
+                .cardStepTitle{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .cardStepTitle1{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .cardStepTitle1::after{
+                    border-bottom: 3px solid #FFAE08;
+                    bottom: -5%;
+                }
+                .cardStepTitleHistory{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .chooseCardStep{
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
+                    margin-bottom: 0px;
+                    p{
+                        position: absolute;
+                        font-size: 16px;
+                        top: 20%;
+                        left: 40%;
+                    }
+                }
+                .cardStep{
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
+                    margin-bottom: 0px;
+                    p{
+                        position: absolute;
+                        font-size: 16px;
+                        top: 20%;
+                        left: 40%;
+                    }
+                }
+            }
+        }
+        .postcard_content{
+            #canv{
+                width: 100%;
+            }
+            .postcardLeftAll{
+                margin: 0 auto;
+                margin-bottom: 3%;
+                width: 100%;
+                .leftPostcard1{
+                    width: 100%;
+                    height: 362px;
+                    
+                }
+                .leftPostcard2{
+                    width: 100%;
+                    height: 362px;
+                }
+                .postcard{
+                    width: 100%;
+                    height: 362px;
+                    .pdContentImg{
+                        width: 18%;
+                    }
+                }
+                .postcard2{
+                    width: 100%;
+                    height: 362px;
+                } 
+            }
+            .rightPostcard{
+                
+                width: 100%;
+                height: 227px;
+                margin: 0 auto;
+                background-image: url(../pic/postcardMaterial/leftBackground1.svg);
+                background-size: contain;
+                .stylePostcard{
+                    width: 80%;
+                    height: 100px;
+                        
+                    .paperTexture{
+                        width: 31%;
+                        height: 90%;
+                        display: inline-block;
+                        .posBackground{
+                            width: 75%;
+                            height: 65%;
+                        }
+                        p{
+                            padding: 0;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .photoChoose{
+                        display: inline-block;
+                        width: 130px;
+                        height: 100%;
+                        margin-left: 0;  
+                        .postPhoto{
+                            width: 130px;
+                            left: 0%;
+                            top: 0%;
+                        }
+                    }
+                    label{
+                        height: 83px;
+                        width: 124px;
+                        margin-top: 0%;
+                        margin-left: 1%;
+                        height: 100%;
+                        position: relative;
+                        margin-right: 3%;
+                        .updatePicPos{
+                            width: 124px;
+                            height: 83px;
+                            position: absolute;
+                            top: 0%;
+                        }
+                    }
+                    .posLittlePic{
+                        width: 75px;
+                        display: inline-block;
+                        margin-bottom: 0%;
+                        margin-top: 0%;
+                        margin-left: 15px;
+                        img{
+                            width: 100%;
+                        }
+                        #LittlePic8{
+                            margin-right: 15px;
+                        }
+                    }
+                    .step4TopContent{
+                        display: inline-block;
+                        vertical-align: top;
+
+                    }
+                    .postcardWordCreate{
+                        display: inline-block;
+                        text-align: center;
+                        width: 100%;
+                        .posColorTitle{
+                            text-align: center;
+                        }
+                        #posWarningSign{
+                            margin-top: 6px;
+                        }
+                    }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 10px;
+                    width: 0;
+                }
+                #rightStep2{
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    
+                }
+                
+                .stepContent{
+                    width: 60%;
+                    margin-top: 0;
+                }
+                p{
+                    margin-top: 4%;
+                }
+                #rightStep3{
+                    white-space: nowrap;
+                }
+                #rightStep4{
+                    #postcardInsideText{
+                        margin-top: 0;
+                    }
+                    
+                }
+                #rightStep5{
+                    white-space: nowrap;
+                    .posFromToTitle{
+                        margin-top: 0%;
+                    }
+                    .colorBig{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .colorBig1{
+                        width: 45%;
+                        display: inline-block;
+                    }
+                    .posButtonSend{
+                        margin-top: 1%;
+                        #posDelFromTo{
+                            margin-left: 3%;
+                        }
+                    }
+                }
+                #rightStep6{
+                    .posButtonContentBack{
+                        width: 30%;
+                        height: 45%;
+                        margin-top: 5%;
+                        display: inline-block;
+                        #downloadBack{
+                            margin-top: 5%;
+                        }
+                    }
+                    .posButtonContentFront{
+                        width: 30%;
+                        display: inline-block;
+                        #downloadFront{
+                            margin-top: 5%;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media screen and (max-width: 576px){
+    .wrap{
+        .stepBreadcrumbs{
+            width: 100%;
+            #stepLine1{
+                width: 6.5%;
+                left: 13.9%;
+                top: 20%;    
+            }
+            #stepLine2{
+                width: 6.5%;
+                left: 30%;
+                top: 20%;    
+            }
+            #stepLine3{
+                width: 6.5%;
+                left: 47%;
+                top: 20%;    
+            }
+            #stepLine4{
+                width: 6.5%;
+                left: 63.8%;
+                top: 20%;    
+            }
+            #stepLine5{
+                width: 7%;
+                left: 80%;
+                top: 20%;    
+            }
+            .cardStepContent{
+                .cardStepTitle{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .cardStepTitle1{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .cardStepTitle1::after{
+                    border-bottom: 3px solid #FFAE08;
+                    bottom: -5%;
+                }
+                .cardStepTitleHistory{
+                    font-size: 16px;
+                    width: 36px;
+                }
+                .chooseCardStep{
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
+                    margin-bottom: 0px;
+                    p{
+                        position: absolute;
+                        font-size: 16px;
+                        top: 20%;
+                        left: 40%;
+                    }
+                }
+                .cardStep{
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
+                    margin-bottom: 0px;
+                    p{
+                        position: absolute;
+                        font-size: 16px;
+                        top: 20%;
+                        left: 40%;
+                    }
+                }
+            }
+        }
+        .postcard_content{
+            #canv{
+                width: 100%;
+            }
+            
+            .postcardLeftAll{
+                margin: 0 auto;
+                margin-bottom: 3%;
+                width: 100%;
+                .leftPostcard1{
+                    width: 100%;
+                    height: 362px;
+                    
+                }
+                .leftPostcard2{
+                    width: 100%;
+                    height: 362px;
+                }
+                .postcard{
+                    width: 100%;
+                    height: 362px;
+                    .pdContentImg{
+                        width: 80px;
+                        
+                    }
+                }
+                .postcard2{
+                    width: 100%;
+                    height: 362px;
+                } 
+            }
+            #canv1{
+                width: 100%;
+            }
+            .rightPostcard{
+                
+                width: 100%;
+                height: 236px;
+                margin: 0 auto;
+                background-image: url(../pic/postcardMaterial/leftBackground1.svg);
+                background-size: contain;
+                .stylePostcard{
+                    width: 80%;
+                    height: 135px;
+                        
+                    .paperTexture{
+                        width: 31%;
+                        height: 90%;
+                        display: inline-block;
+                        .posBackground{
+                            width: 75%;
+                            height: 65%;
+                        }
+                        p{
+                            padding: 0;
+                            margin-bottom: 0;
+                            font-size: 12px;
+                        }
+                    }
+                    .photoChoose{
+                        display: inline-block;
+                        width: 130px;
+                        height: 100%;
+                        margin-left: 0;  
+                        .postPhoto{
+                            width: 130px;
+                            left: 0%;
+                            top: 20%;
+                        }
+                    }
+                    label{
+                        height: 83px;
+                        width: 124px;
+                        margin-top: 0%;
+                        margin-left: 3%;
+                        height: 100%;
+                        position: relative;
+                        margin-right: 3%;
+                        .updatePicPos{
+                            width: 124px;
+                            height: 83px;
+                            position: absolute;
+                            top: 0%;
+                        }
+                    }
+                    .posLittlePic{
+                        width: 75px;
+                        display: inline-block;
+                        margin-bottom: 0%;
+                        margin-top: 6%;
+                        margin-left: 0;
+                        img{
+                            width: 100%;
+                        }
+                        #LittlePic8{
+                            margin-right: 15px;
+                        }
+                    }
+                    .step4TopContent{
+                        display: inline-block;
+                        
+
+                    }
+                    .postcardWordCreate{
+                        display: inline-block;
+                        text-align: center;
+                        width: 44%;
+                        .posColorTitle{
+                            text-align: center;
+                        }
+                        #posWarningSign{
+                            margin-top: 6px;
+                        }
+                    }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 10px;
+                    width: 0;
+                }
+                #rightStep2{
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    
+                }
+                
+                .stepContent{
+                    width: 60%;
+                    margin-top: 6%;
+                }
+                p{
+                    margin-top: 2%;
+                    font-size: 12px;
+                    padding-bottom: 0;
+                }
+                #rightStep3{
+                    white-space: nowrap;
+                }
+                #rightStep4{
+                    #postcardInsideText{
+                        margin-top: 0;
+                    }
+                    
+                }
+                #rightStep5{
+                    white-space: nowrap;
+                    .posFromToTitle{
+                        margin-top: 0%;
+                    }
+                    .colorBig{
+                        width: 100%;
+                        display: block;
+
+                    }
+                    .colorBig1{
+                        width: 100%;
+                        display: block;
+                    }
+                    .posButtonSend{
+                        margin-top: 1%;
+                        #posDelFromTo{
+                            margin-left: 3%;
+                        }
+                    }
+                }
+                #rightStep6{
+                    .posButtonContentBack{
+                        width: 36%;
+                        height: 45%;
+                        margin-top: 10%;
+                        display: inline-block;
+                        #downloadBack{
+                            margin-top: 5%;
+                        }
+                    }
+                    .posButtonContentFront{
+                        width: 30%;
+                        display: inline-block;
+                        #downloadFront{
+                            margin-top: 5%;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media screen and (max-width: 490px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 117px;
+                    .photoChoose{
+                        .postPhoto{
+                            top: 10%;
+                        }
+                    }
+                }
+                .stepContent{
+                    margin-top: 4%;
+                }
+            }
+        }
+    }
+}    
+@media screen and (max-width: 430px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                height: 200px;
+                .stylePostcard{
+                    height: 104px;
+                    .paperTexture{
+                        width: 100%;
+                        display: block;
+                    }
+                    .posLittlePic{
+                        margin-top: 0%;
+                        display: block;
+                        margin: 0 auto;
+                        width: 100px;
+                    }
+                    .photoChoose{
+                        width: 165px;
+                        display: block;
+                        margin: 0 auto;
+                        margin-bottom: 20px;
+                        .postPhoto{
+                            width: 165px;
+                            top: 0%;
+                        }
+                        .postPhoto:hover{
+                            transform: scale(1,1);
+                        }
+                    }
+                label{
+                    width: 165px;
+                    .updatePicPos{
+                        width: 165px;
+                    }
+                }
+                }
+                .stylePostcard::-webkit-scrollbar{
+                    height: 0px;
+                    width: 5px;
+                }
+                .stepContent{
+                    margin-top: 5%;
+            }
+            #rightStep6{
+                .posButtonContentFront{
+                    width: 45%;
+                }
+                .posButtonContentBack{
+                    width: 45%;
+                }
+            }
+            #rightStep2{
+                white-space: normal;
+
+            }
+            #rightStep3{
+                white-space: normal;
+            }
+        }
+    }
+    
+    }
+}
+@media screen and (max-width: 400px){
+    .wrap{
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 90px;
+                    .photoChoose{
+                        margin-bottom: 50px;
+                    }
+                    .posLittlePic{
+                        width: 70px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        display: inline-block;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px){
+    .wrap{
+        .stepBreadcrumbs{
+            #stepLine1{
+                display: none;
+            }
+            #stepLine2{
+                display: none;
+            }
+            #stepLine3{
+                display: none;
+            }
+            #stepLine4{
+                display: none;
+            }
+            #stepLine5{
+                display: none;
+            }
+        }
+        .postcard_content{
+            .rightPostcard{
+                .stylePostcard{
+                    height: 65px;
+                    .paperTexture{
+                        height: 100%;
+                    }
+                }
+            .stepContent{
+                margin-top: 12%;
+            }
+            }
+        }
+    }
+    
 }
