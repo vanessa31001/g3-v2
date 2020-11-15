@@ -194,63 +194,10 @@
                 <div class="title">
                     探訪相似的揪團景點
                 </div>
-
-                <div class="gMainGroups">
-                    <a href="./groupInfo.html">
-                        <div class="gMainGroup">
-                            <div class="img">
-                                <img src="./pic/group/G1.jpg" alt="找不到照片">
-                            </div>
-                            <div class="gMainGroupInfo">
-                                <div class="gMainName level2 green1">
-                                    五寶露營鎮盟
-                                </div>
-                                <div class="level1 orange1">開團日期:2020-10-30</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./groupInfo.html">
-                        <div class="gMainGroup">
-                            <div class="img">
-                                <img src="./pic/group/G1.jpg" alt="找不到照片">
-                            </div>
-                            <div class="gMainGroupInfo">
-                                <div class="gMainName level2 green1">
-                                    五寶露營鎮盟
-                                </div>
-                                <div class="level1 orange1">開團日期:2020-10-30</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./groupInfo.html">
-                        <div class="gMainGroup">
-                            <div class="img">
-                                <img src="./pic/group/G1.jpg" alt="找不到照片">
-                            </div>
-                            <div class="gMainGroupInfo">
-                                <div class="gMainName level2 green1">
-                                    五寶露營鎮盟
-                                </div>
-                                <div class="level1 orange1">開團日期:2020-10-30</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./groupInfo.html">
-                        <div class="gMainGroup">
-                            <div class="img">
-                                <img src="./pic/group/G1.jpg" alt="找不到照片">
-                            </div>
-                            <div class="gMainGroupInfo">
-                                <div class="gMainName level2 green1">
-                                    五寶露營鎮盟
-                                </div>
-                                <div class="level1 orange1">開團日期:2020-10-30</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="linktogroupbtn">
-                    <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
+                <div class="camping_block currently_gruop">
+                    <div class="gMainGroups" id="gMainGroups">
+                    </div>
+                    <a href="./group.html"><button class="secondbtn1">看更多精選</button></a>
                 </div>
             </div>
         </section>
@@ -419,7 +366,24 @@ let spotNum = (CAM_NO) => {
             alert('請先登入');
         }
     }
-
+    function getMemberInfo_forcamp(callback){
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        callback();
+        if(xhr.status == 200){ //success
+            member = JSON.parse(xhr.responseText);
+            if(member.MEM_ID){
+                $id("header_memName").innerText = member.MEM_NICKNAME
+                $id('spanLogin').innerHTML = '登出';
+                console.log(member);         
+            }
+        }else{ //error
+            alert(xhr.status);
+        }
+    }
+    xhr.open("get", "php/common/getMemberInfo.php", true);
+    xhr.send(null);
+}
 
 </script>
 
@@ -485,13 +449,13 @@ let spotNum = (CAM_NO) => {
 <script>
     function init(){
         openpage();
-        checkheart();
+        getMemberInfo_forcamp(checkheart);
     };
 
 window.addEventListener('load',init,false);
 
 </script>
-
+<script src="./js/currentlygroup.js"></script>
 </body>
 </html>
 
