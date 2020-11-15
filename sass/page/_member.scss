@@ -104,39 +104,38 @@
 
 //悄悄話
 .member_message_alldetail{
+    .member_mes_bigblock{
+    padding:16px;
+    margin: 10px;
     border: 3px solid $greenColor1;
-    .member_message_detail{
-        
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .message_edit_block{
-        margin-bottom: 10px;
-        button{
-            cursor: pointer;
+        .member_message_detail{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .message_bigpic_01{
+                width: 100px;
+                margin-right: 16px;
+                img{
+                    width: 100%;
+                }
+            }
+            .Q_parent{
+                width: 100%;
+                .mes_append{
+                    width: 95%;
+                }
+            }
         }
-    }
-}
-.Mesblock{
-    text-align: right;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    textarea{
-        vertical-align: middle;
-        font-size: 16px;
-        padding: 10px;
-        width: 64%;
-        height: 49px;
-        color: $grayColor1;
-        
+        .message_edit_block{
+            margin-bottom: 10px;
+            button{
+                cursor: pointer;
+            }
+        }
     }
 }
 
 .member_mes_bigblock{
-    
-    margin: 10px;
-    border: 1px solid #007E85;
 }
 
 
@@ -647,12 +646,18 @@
             .member_message_alldetail{
                 border: 3px solid $greenColor1;
                 .member_message_detail{
+                    width: 100%;
                     display: inline-block;
-                    padding: 32px;
-                    img{
+                    .message_bigpic_01{
                         width: 150px;
                         border-radius: 50%;
                         padding: 10px;
+                        margin: 0 auto;
+                    }
+                    .Q_parent{
+                        .mes_append{
+                            width: 100%;
+                        }
                     }
                 }
                 .message_edit_block{
@@ -755,14 +760,7 @@
                 border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
-                    padding: 16px;
                     text-align: center;
-                    width: calc(100% - 20px);
-                    img{
-                        width: 150px;
-                        border-radius: 50%;
-                        padding: 10px;
-                    }
                 }
                 .message_edit_block{
                     margin-bottom: 10px;

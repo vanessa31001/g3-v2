@@ -154,131 +154,167 @@
 <!--內容結束-->
     
     <script>
-        Vue.component('memberInformation', {             
-            data(){
-                return{
-                    peoInfo:'{}',
-                    memImg:'./pic/member/',
+        Vue.component("memberInformation", {
+          data(){
+              return{
+                  sss: "編輯",
+              }
+          },
+          template: `
+              <div class="member_information">
+                      
+                  <div class="member_information_title level5">
+                      <!-- 會員資訊標題 -->
+                      <img class="memberTitle_img" src="./pic/member/avatar.png">
+                      會員資訊
+                  </div>
+                
+                  <div class="member_information_detail">
+
+                      <!-- 會員資訊圖片 -->
+                      <div class="member_image">
+                      <div class="member">
+                          <div class="memputPhoto">
+                              <img id="MemberPhotoPut" src='./pic/member/member_01.png'>
+                          </div>
+                          <div class="level0 member_imageButton">
+                            <button class="thirdbtn1_green">
+                            <label for="memupPhoto"  id="mem_photochange">
+                            編輯大頭像</label></button>
+                              <input type="file" id="memupPhoto" style="display:none" name="upFile[]">
+                              <div>*限定格式png、jpg</div>
+                          </div>
+                      </div>
+
+                      <!-- 會員資訊內容 -->
+                      <div class="member_information_main"> 
+                          <div class="level2">編號<span class="gray1">00000000001</span></div>
+                          <div class="level2">帳號<span class="gray1">iamwang12345@gmail.com</span></div>
+                          <div class="level2">密碼<span class="gray1 aaa">*************</span></div>
+                          <div class="level2">姓名<span class="gray1 aaa">王大槌</span></div>
+                          <div class="level2">暱稱<span class="gray1 aaa">槌槌</span></div>
+
+                      
+                      
+                          <div class="edit_block">
+                              <button class="thirdbtn1_green modify" @click='hhh' href="javascript:;" >{{sss}}</button>
+                          </div>
+                      </div>
+
+
+                  </div>
+              
+                  </div>
+                      
+              </div>
+              
+              `,
+
+          methods: {
+            hhh() {
+                this.sss == "確定" ? this.sss ="編輯" : this.sss ="確定";
+              // let str = $(this).text() == "確定" ? "編輯" : "確定";
+              // $(this).text(str); // 按鈕被點擊後，在“编辑”和“確定”之間切換
+
+              let a = document.querySelectorAll(".aaa");
+
+              for (let i = 0; i < a.length; i++) {
+                let obj_text = a[i].childElementCount;
+                if (obj_text == 0) {
+                  a[i].innerHTML =
+                    "<input class='changetext' type='text' style='border: 2px solid #00A5A3;border-radius: 5px;' value='" +
+                    a[i].innerText +
+                    "'>";
+
+                  // a[i].innerHTML=`<input class='changetext' type='text' value='${a[i].innerText}'>`
+                } else {
+                  a[i].innerText = document.querySelectorAll(
+                    ".changetext"
+                  )[0].value;
                 }
+              }
             },
-            created(){
-                axios.get('php/member/getInfo.php').then(res => {
-                    this.peoInfo = res.data;
-                    console.log(this.peoInfo);
+          },
+        });
+      
+      Vue.component("memberMessage", {
+        data() {
+          return {
+            msg_data: [],
+          }
+        },
+        methods:{ 
+          mems(e){
+            //以上jq
+            //留言
+    
+                if($(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val()!= ""){
+                    let msg = $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val();
+                  // alert(msg);
+                  // let date = new Date();
+                  $(e.target).closest(".member_mes_bigblock").find('.mes_append').append(`
+
+                    <div class="message_Re" action="message_return_inadmin.php" method="get">
+                        <span class="third_title">已回覆訊息:</span>
+                        <pre class="gray1 level2" name"mesginback">${msg}</pre>
+                    </div> 
+
+                `);
+                }
+                $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val("");
+          
+          },
+          phon(){
+          
+          }
+        },
+        mounted() {  //串接後台API
+            let mymember;
+            var that = this;
+            axios.get('php/common/getMemberInfo.php').then(res => {
+                    return  res.data.MEM_ID;
+                }).then(mymember => fetch("http://localhost/ed103g3/php/member/message_formadmin.php?memail="+ mymember))
+                .then(function(response) {
+                    return response.json();
+                }).then(function(data){
+                    that.msg_data = data;
                 })
-            },
-            template: `
-            <div class="member_information">
-                    
-                <div class="member_information_title level5">
-                    <!-- 會員資訊標題 -->
-                    <img class="memberTitle_img" src="./pic/member/avatar.png">
-                    會員資訊
-                </div>
-            
-                <div class="member_information_detail">
-
-                    <!-- 會員資訊圖片 -->
-                    <div class="member_image">
-                        <img src="./pic/member/member_01.png">
-                        <div class="level0 member_imageButton">
-                            <button class="tagbtn_green">編輯大頭像</button>
-                            <div>*限定格式png、jpg</div>
-                        </div>
-                    </div>
-                    <!-- 會員資訊內容 -->
-                    <div class="member_information_main"> 
-                        <div class="level2">編號<span class="gray1">{{peoInfo.MEMNO}}</span></div>
-                        <div class="level2">帳號<span class="gray1">{{peoInfo.MEM_ID}}</span></div>
-                        <div class="level2">密碼<span class="gray1">{{peoInfo.MEM_PSW}}</span></div>
-                        <div class="level2">姓名<span class="gray1">{{peoInfo.MEM_NAME}}</span></div>
-                        <div class="level2">暱稱<span class="gray1">{{peoInfo.MEM_NICKNAME}}</span></div>
-
-                        <div class="edit_block">
-                            <button class="tagbtn_green">編輯</button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            `,
-        });
-        Vue.component('memberMessage', { 
-            template: `
+        },
+        template: `
             <div class="member_message">
-                    
-                    <div class="member_information_title level5">
-                        <!-- 悄悄話標題 -->
-                        <img class="memberTitle_img" src="./pic/member/message.png">
-                        悄悄話
-                    </div>
+                <div class="member_information_title level5">
+                    <!-- 悄悄話標題 -->
+                    <img class="memberTitle_img" src="./pic/member/message.png">
+                    悄悄話
+                </div>
 
-                    <div class="member_message_alldetail">
-                         
-                        <!--大頭像及訊息-->
-                        <div class="member_message_detail">
-                            <img src="./pic/member/member_01.png">
-                                <div class="big_message">
-                                    <span class="gray1 level2">王大槌: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
-                                </div>
-                         
-                            <!--查看回覆刪除按鈕-->
-                            <div class="message_edit_block"> 
-                                <div class="one_button">
-                                    <button class="thirdbtn1_green">查看</button>
-                                </div>
-                                <div class="two_button">
-                                    <button class="thirdbtn1_green">回覆</button>
-                                </div>
-                                <div class="three_button">
-                                    <button class="thirdbtn1_green">刪除</button>
-                                </div>
-                            </div>
+                <div class="member_message_alldetail">
+                <div class="member_mes_bigblock" v-if="msg_data.length > 0" v-for="item in msg_data" :key="item.MES_NO">
+                    <!--大頭像及訊息-->
+                    <div class="member_message_detail">
+                        <div class="message_bigpic_01">
+                            <img :src="'./pic/member/' + item.MEM_IMG">
                         </div>
-
-                        <div class="member_message_detail">
-                            <img src="./pic/member/member_02.png">
-                                <div class="big_message">
-                                    <span class="gray1 level2">郭小美: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
-                                </div>
-                         
-                            <!--查看回覆刪除按鈕-->
-                            <div class="message_edit_block"> 
-                                <div class="one_button">
-                                    <button class="thirdbtn1_green">查看</button>
-                                </div>
-                                <div class="two_button">
-                                    <button class="thirdbtn1_green">回覆</button>
-                                </div>
-                                <div class="three_button">
-                                    <button class="thirdbtn1_green">刪除</button>
-                                </div>
-                            </div>
-                        </div>  
-                  
-                        
-                        <div class="member_message_detail">
-                                <img src="./pic/member/member_03.jpg">
-                                    <div class="big_message">
-                                        <span class="gray1 level2">陳先生: 哈囉! 想跟您交換露營帳篷! 何時方便面交呢?</span>
+                        <div class="Q_parent">
+                            <div class="prod -phon big_message mes_append">
+                                <div class="message_onetext">
+                                    <div class="message_text_01">
+                                        <span class="nav_title">{{ item.MEM_NAME }}</span>
+                                        <span class="gray1 level2">: {{ item.MES_CONTENT }}</span>
                                     </div>
-                            <!--查看回覆刪除按鈕-->
-                            <div class="message_edit_block"> 
-                                <div class="one_button">
-                                    <button class="thirdbtn1_green">查看</button>
-                                </div>
-                                <div class="two_button">
-                                    <button class="thirdbtn1_green">回覆</button>
-                                </div>
-                                <div class="three_button">
-                                    <button class="thirdbtn1_green">刪除</button>
-                                </div>
+                                </div>             
                             </div>
                         </div>
-                    </div>
+                </div> <!--  <div class="member_message_detail">結束-->
+
+                </div><!--<div class="member_mes_bigblock">結束-->
+
+            </div>
             </div>
             `,
-        });
+      });
+    
+    
         Vue.component('memberGroup', {
             data(){
                 return{
@@ -621,7 +657,7 @@
         new Vue({
             el: '#app',
             data: {
-                content: 'memberCamp',
+                content: 'memberMessage',
                 now_page: 'thirdbtn1_green',
                 other_page: 'thirdbtn2_green',
             },
@@ -633,6 +669,25 @@
         });
 
     </script>
+        <script>
+            let MemberPhotoPut = document.getElementById("MemberPhotoPut"); //放置PHOTO的img標籤的ID
+            let memupPhoto = document.getElementById("memupPhoto"); //inputID標籤
+            // console.log(memupPhoto);
+            let mem_photochange = document.getElementById("mem_photochange");
+            // memupPhoto.addEventListener("change", BigHead); //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
+      
+            function BigHead() {
+              let memupPhoto1 = memupPhoto.files[0]; //抓input內的FILE資訊為FILES陣列中的第一個
+              let BigHeadPhoto = new FileReader(); //將FileReader物件命名
+              BigHeadPhoto.readAsDataURL(memupPhoto1); //使用FileReader的物件方法
+              BigHeadPhoto.addEventListener("load", function (e) {
+                //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
+                MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
+                MemberPhotoPut.style.width = "200px"; //設定寬
+                MemberPhotoPut.style.height = "200px"; //設定高
+              });
+            }
+          </script>
     <script src="./js/member.js"></script>
 </body>
 </html>
