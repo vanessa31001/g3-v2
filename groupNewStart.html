@@ -315,6 +315,17 @@
         $id("camArea").onchange = function(){
             listName();
         }
+        function listEQU(){
+           var equSort = $id("equSort");
+           for(let i= 0 ; i < city[2].length; i++){
+                if( city[1][i].CAM_AREA ==camArea.value){
+                    let option = document.createElement("option");
+                    option.innerText=city[1][i].CAM_NAME;
+                    option.value=city[1][i].CAM_NAME;
+                    $append(camName,option);
+                }
+            }
+        }
         function listName(){
             var camName = $id("camName");
             camName.innerHTML="";
@@ -351,6 +362,7 @@
                         }
                     city = JSON.parse(areaxhr.responseText);
                     listArea();
+                    listEQU();
                 }else{ //error
                     alert(areaxhr.status);
                 }

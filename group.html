@@ -472,9 +472,11 @@
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
+                    console.log(groupsxhr.responseText);
                     let groupsdata = JSON.parse(groupsxhr.responseText);
+                    console.log(groupsdata);
                     showAllGroups(groupsdata);
-                    //檢舉揪團
+                    檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
                     for(let i =0; i<reportbtngGroup.length; i++){
                         // alert(groupsdata[i].檢舉揪團編號);
@@ -488,7 +490,7 @@
                             
                         });
                     }
-                    // console.log(groupsxhr.responseText);
+                    console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);
                 }

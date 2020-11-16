@@ -79,12 +79,14 @@ function report(reportbtn,btnName,numID){
                 document.querySelector(".report_reason1 label").innerText="此留言與露營不相關";
                 document.querySelector(".report_reason2 label").innerText="此留言為不當發言";
                 document.querySelector(".report_reason3 label").innerText="此留言含污辱文字"; 
-                $id("reportSend").addEventListener("click",function(){
+                $id("reportSend").addEventListener("click",function rrr(e){
+
                     let reason = document.getElementsByName("reason0").length;
                     var REGROUP_RESON="";
                     for(let i=1; i<reason+1; i++){
                         if($id(`report_equ${i}`).checked){
                             REGROUP_RESON= i-1;
+                            // console.log()
                         }
                     }
                     if(REGROUP_RESON!==""){
@@ -97,11 +99,20 @@ function report(reportbtn,btnName,numID){
                                 setTimeout(function(){
                                     submit_btn.className = "report_overlay";
                                 }, 1000);
+
                                 for(let i=1; i<reason+1; i++){
                                     $id(`report_equ${i}`).checked = false;
                                 }
-                                location.reload(); 
+                                // location.reload(); 
                                 // readPage(GROUP_NO[1]);
+                                var url = location.href;
+                                if(url.indexOf('?')!=-1){
+                                    var GROUP_NO = url.split('?')[1].split('=');
+                                    readPage(GROUP_NO[1]);
+                        
+                                }
+                                
+                                $id("reportSend").removeEventListener("click",rrr)
                             }else{
                                 alert(repMsgxhr.responseText);
                             }  
