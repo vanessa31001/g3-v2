@@ -122,19 +122,20 @@
                             <div class="level7 bold green1 report_title">檢舉原因</div>                        
                             <div class="report_reason1 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ1">
-                                <label for="report_equ1">此揪團與露營不相關</label>
+                                <label for="report_equ1">1</label>
                             </div>
                             <div class="report_reason2 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ2">
-                                <label for="report_equ2">此揪團含有色情內容</label>
+                                <label for="report_equ2">2</label>
                             </div>
                             <div class="report_reason3 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ3">
-                                <label for="report_equ3">此揪團含違法內容</label>
+                                <label for="report_equ3">3</label>
                             </div>
                             <div class="report_close_btn">
-                                <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
-                                <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
+                                <button type="button" class="thirdbtn1_green submit_btn" id="reportSend">送出</button>
+                                <!-- <input class="thirdbtn1_green submit_btn" type="submit" id="reportSend" value="送出"> -->
+                                <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
                             </div>                                        
                         </form>                      
                     </article>
@@ -256,6 +257,7 @@
             EQUsxhr.open("get", `./php/group/groupUseEqu.php?GROUP_NO=${equs}`, true);
             EQUsxhr.send(null);
         }
+        // 最新留言
         function getMSG(i){
             let msg = document.getElementById(`msg${i}`);
             let a = $create("a");
@@ -283,6 +285,7 @@
                 $append(msg,div);               
             }
         }
+        // 留言
         function findMsg(i,msgs){
             let msgsxhr = new XMLHttpRequest();
             msgsxhr.onload = function(){
@@ -297,9 +300,11 @@
             msgsxhr.open("get", `./php/group/msg.php?GROUP_NO=${msgs}`, true);
             msgsxhr.send(null);
         }
+        // 團
         function showAllGroups(groupsdata){
             let groups= document.getElementById("groups");
             groups.innerHTML="";
+            console.log(groupsdata);
             if(groupsdata.length == 0){
                 groups.innerHTML="<p class='green1 level5' style='text-align: center;'>目前尚無相關露營揪團</p>";
             }else{
@@ -359,10 +364,27 @@
                     h6.innerText = "開團日期 :" + groupsdata[i].開團日;
                     $append(smallInfo,h6);
                     input =  $create("input");
-                    input.className = "reportbtngGroup";
-                    input.type="submit";
-                    input.value="檢舉";
+                    input.type = "hidden";
+                    input.value=groupsdata[i].團編號;
                     $append(smallInfo,input);
+                    if(groupsdata[i].檢舉揪團編號 == null){
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.value="檢舉";
+                        $append(smallInfo,input);
+                    }else{
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.disabled = true;
+                        input.style.color='#C4C4C4';
+                        input.style["border-color"]="#C4C4C4";
+                        input.value="已檢舉";
+                        $append(smallInfo,input);
+                    }
+                    
+
                     fieldset =  $create("fieldset");
                     fieldset.className = "poster_inform";
                     $append(gRight,fieldset);
@@ -446,27 +468,25 @@
                     dateChoice[j] = date[i].value;
                     j++;
                 }
-            }            
+            }      
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
                     showAllGroups(groupsdata);
+                    //檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
                     for(let i =0; i<reportbtngGroup.length; i++){
-                        reportbtngGroup[i].addEventListener("click", function () {
-                            if(member.MEM_ID){
-                                overlay = document.querySelector(".report_overlay");
-                                overlay.className += " -on";
-                                document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
-                                document.querySelector(".report_reason2 label").innerText="此揪團含有色情內容";
-                                document.querySelector(".report_reason3 label").innerText="此揪團含違法內容"; 
+                        // alert(groupsdata[i].檢舉揪團編號);
+                        reportbtngGroup[i].addEventListener("click", function(){
+                            // alert();
+                            if(groupsdata[i].會員編號 == member.MEMNO){
+                                alert("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
                             }else{
-                                showLoginForm();
+                                report("reportbtngGroup",this.value,this.previousSibling.value);
                             }
-
-                            // alert(overlay);
-                        },false);
+                            
+                        });
                     }
                     // console.log(groupsxhr.responseText);
                 }else{ //error
@@ -480,17 +500,14 @@
     <script>
         //燈箱
         $(document).ready(function(){
-            $(".reportbtngGroup").on("click", function(){
-                    $(".report_overlay").addClass("-on");
-                });
-                $(".btn_modal_close").on("click", function(){
-                    $(".report_overlay").addClass("-opacity-zero");
-                    $("input[name=reason0]").each(function(){
-                        $(this).prop("checked",false);//把所有的核方框的property都取消勾選
-                    }); 
-                    setTimeout(function(){
-                        $(".report_overlay").removeClass("-on -opacity-zero");
-                    }, 1000);
+            $(".btn_modal_close").on("click", function(){
+                $(".report_overlay").addClass("-opacity-zero");
+                $("input[name=reason0]").each(function(){
+                    $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+                }); 
+                setTimeout(function(){
+                    $(".report_overlay").removeClass("-on -opacity-zero");
+                }, 1000);
             });
         });
     </script>
