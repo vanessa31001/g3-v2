@@ -56,8 +56,9 @@
                             <label for="report_equ3">3</label>
                         </div>
                         <div class="report_close_btn">
-                            <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
-                            <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
+                            <button type="button" class="thirdbtn1_green submit_btn" id="reportSend">送出</button>
+                            <!-- <input class="thirdbtn1_green submit_btn" type="submit" id="reportSend" value="送出"> -->
+                            <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
                         </div>                                        
                     </form>                      
                 </article>
@@ -91,6 +92,7 @@
                                 <h3 class="level7 green1" id="GROUPNAME"></h3>
                                 <div class="smallInfo">
                                     <h6 class="level0 gray1" id="GROUP_START_DATE"></h6>
+                                    <input type="hidden" id="groupID">
                                     <input type="submit" class="reportbtngGroup" value="檢舉" id="report">
 
                                 </div>
@@ -198,32 +200,11 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script src="./js/normalFunc.js"></script>
-    <script>
-        // function $id(id){
-        //     return document.getElementById(id);
-        // }
-        // function $create(tag){
-        //     return  document.createElement(tag);
-        // }
-        // function $append(father,child){
-        //     return  father.appendChild(child);
-        // }
-        // function formatDate(date) {  
-        //     var y = date.getFullYear();  
-        //     var m = date.getMonth() + 1;  
-        //     m = m < 10 ? ('0' + m) : m;  
-        //     var d = date.getDate();  
-        //     d = d < 10 ? ('0' + d) : d;  
-        //     var h = date.getHours();  
-        //     var minute = date.getMinutes();  
-        //     minute = minute < 10 ? ('0' + minute) : minute;
-        //     var s =  date.getSeconds();
-        //     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
-        // }; 
-        
+    <script>     
         //參加團員
         function peopleIn(){
             let memberIn=$id("memberIn");
+            memberIn.innerHTML="";
             if(groupsdata[2]==""){
                 memberIn.innerText = "目前尚無人參加";
                 memberIn.style.textAlign="center";
@@ -256,7 +237,7 @@
         //設備
         function getEQU(){
             let equthing = $id(`equthing`);
-            console.log(groupsdata);
+            equthing.innerHTML="";
             if(groupsdata[3] == "沒資料"){
                 equthing.innerText = "此團無須自備設備";
                 equthing.style.fontSize ="16px";
@@ -278,6 +259,7 @@
         //其他揪團
         function othergroups(){
             let allGroup = $id("allGroup");
+            allGroup.innerHTML="";
             for(let i=0;i<groupsdata[4].length;i++){
                 let li=$create("li");
                 li.className="group";
@@ -304,7 +286,8 @@
             }
         }
         //揪團
-        function showgroupinfo(){
+        function showgroupinfo(groupNo){
+            $id("groupID").value=groupNo;
             $id("thisPage").innerText = groupsdata[0].GROUP_NAME;
             $id("title").innerText = groupsdata[0].GROUP_NAME;
             $id("pic1").src ="./pic/group/"+groupsdata[0].GROUP_PIC1;
@@ -330,9 +313,7 @@
                 joinGroupBtn.value = "關閉此團";
                 joinGroupBtn.className = "secondbtn2";
                 forBtn.style["text-align"] = "right";
-                report.style["display"] = "none";
-                // console.log(member.MEMNO); 
-                // console.log(groupsdata[0].GROUP_MEMNO);  
+                report.style["display"] = "none";  
             }else{
                 //若是參團者:我要退團，關閉檢舉
                 joinGroupBtn.className = "mainbtn1";
@@ -351,8 +332,9 @@
         }
         //已留言
         function showMsg(){
-            let massages = $id("massages");
+            let massages = document.querySelector("#massages");
             massages.innerHTML="";
+            document.querySelector("#leaveMsg").value="";
             if(groupsdata[1]==""){
                 let msgInfo = $create("div");
                 msgInfo.className="msgInfo green1 level5";
@@ -363,40 +345,75 @@
                 $append(massages,msgInfo);    
             }else{
                 for(let i=0; i<groupsdata[1].length ;i++){
-                    let msgInfo = $create("div");
-                    msgInfo.className="msgInfo";
-                    if(groupsdata[1][i].GROUP_MES_MEMNO==groupsdata[0].GROUP_MEMNO){
-                        msgInfo.className+=" grouper";
-                    }
-                    msgInfo.innerHTML=`<div class="inform_block">
-                            <div class="inform_pic">
-                                    <img src="./pic/member/${groupsdata[1][i].MEM_IMG}" alt="">
+                    // 判斷是否被檢舉
+                    if(groupsdata[1][i].REGROUP_MES_NO == null){
+                        //若沒有被檢舉
+                        let msgInfo = $create("div");
+                        msgInfo.className="msgInfo";
+                        //若是主揪留言
+                        if(groupsdata[1][i].GROUP_MES_MEMNO==groupsdata[0].GROUP_MEMNO){
+                            msgInfo.className+=" grouper";
+                        }
+                        msgInfo.innerHTML=`<div class="inform_block">
+                                <div class="inform_pic">
+                                        <img src="./pic/member/${groupsdata[1][i].MEM_IMG}" alt="">
+                                </div>
+                                <div class="inform_text">
+                                    <p class="green1 third_title">${groupsdata[1][i].MEM_NICKNAME}</p>
+                                </div>                                                                      
                             </div>
-                            <div class="inform_text">
-                                <p class="green1 third_title">${groupsdata[1][i].MEM_NICKNAME}</p>
-                            </div>                                                                      
-                        </div>
-                        <div class="level1">
-                            <span class="third_title">留言:</span>
-                            <p class="gray1">${groupsdata[1][i].GROUP_MES_CONTENT}</p>
-                        </div>
-                        <div class="level0 gray1">
-                            留言時間:${groupsdata[1][i].GROUP_MES_TIME} 
-                        </div>
-                        <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
-                        
-                    </div>`;                    
-                    $append(massages,msgInfo);
-                    let input = $create("input");
+                            <div class="level1">
+                                <span class="third_title">留言:</span>
+                                <p class="gray1">${groupsdata[1][i].GROUP_MES_CONTENT}</p>
+                            </div>
+                            <div class="level0 gray1">
+                                留言時間:${groupsdata[1][i].GROUP_MES_TIME} 
+                            </div>
+                            <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
+                            
+                        </div>`;                    
+                        $append(massages,msgInfo);
+                        let input = $create("input");
                         input.type = "submit";
                         input.className ="reportbtnMsg";
-                    if(groupsdata[1][i].GROUP_MES_MEMNO==member.MEMNO){
-                        // <input type="submit" class="reportbtnMsg" value="檢舉">
-                        input.value="刪除";
-                    }else{
-                        input.value="檢舉";
+                        if(groupsdata[1][i].GROUP_MES_MEMNO==member.MEMNO){
+                            // <input type="submit" class="reportbtnMsg" value="檢舉">
+                            input.value="刪除";
+                        }else{
+                            input.value="檢舉";
+                        }
+                        $append(msgInfo,input);
+                    }else{//若被檢舉
+                        let msgInfo = $create("div");
+                        msgInfo.className="msgInfo";
+                        // console.log(`GROUP_MES_MEMNO:${groupsdata[1][i].GROUP_MES_MEMNO} = GROUP_MEMNO: ${groupsdata[0].GROUP_MEMNO}`);
+                        if(groupsdata[1][i].GROUP_MES_MEMNO==member.MEMNO){
+                            //若是我的留言被檢舉
+                            msgInfo.innerHTML=`<div class="inform_block">
+                                                    <div class="inform_pic">
+                                                            <img src="./pic/member/${groupsdata[1][i].MEM_IMG}" alt="">
+                                                    </div>
+                                                    <div class="inform_text">
+                                                        <p class="green1 third_title">${groupsdata[1][i].MEM_NICKNAME}</p>
+                                                    </div>                                                                      
+                                                </div>
+                                                <div class="level1">
+                                                    <span class="third_title">留言:</span>
+                                                    <p class="gray1">${groupsdata[1][i].GROUP_MES_CONTENT}</p>
+                                                </div>
+                                                <div class="level0 gray1">
+                                                    (您的留言遭檢舉，目前待小編審核中)
+                                                </div>
+                                                <input type="hidden" value="${groupsdata[1][i].GROUP_MES_NO}">
+                                                
+                                            </div>`;
+                        }else{
+                            msgInfo.innerHTML=` <div class="level1">
+                                                    <p class="gray1" style="text-align: center;">糟糕，此留言遭檢舉!</p>
+                                                </div>`;
+                        }
+                        $append(massages,msgInfo);
                     }
-                    $append(msgInfo,input);
                 }
             }
             
@@ -406,18 +423,22 @@
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
                     groupsdata = JSON.parse(groupxhr.responseText);
-                    showgroupinfo();
+                    showgroupinfo(groupNo);
                     getEQU();
                     peopleIn();
                     showMsg();
                     othergroups();
-                    // //檢舉留言
+                    // 檢舉揪團
                     var reportbtngGroup = document.querySelector(".reportbtngGroup");
-                    reportbtngGroup.addEventListener("click", function() { report() });
-
+                    reportbtngGroup.addEventListener("click", function() {
+                        report("reportbtngGroup",this.value,this.previousSibling.previousSibling.value) 
+                    });
+                    //檢舉留言
                     var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
                     for(let i =0; i<reportbtnMsg.length; i++){
-                        reportbtnMsg[i].addEventListener("click", function() { report("reportbtnMsg") });
+                        reportbtnMsg[i].addEventListener("click", function() { 
+                            report("reportbtnMsg",this.value,this.previousSibling.previousSibling.value);
+                        });
                     }
                     //留言
                     let leaveMsg = $id("sendMsg");
@@ -430,8 +451,9 @@
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
                                         // location.reload(); 
-                                        leaveMsg = "";
-                                        showMsg();
+                                        var url = location.href;
+                                        var GROUP_NO = url.split('?')[1].split('=');
+                                        readPage(GROUP_NO[1]);
                                     }else{
                                         alert(msgxhr.responseText);
                                     }  

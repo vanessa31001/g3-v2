@@ -124,7 +124,7 @@
                         </div>
                         <div class="pic">
                             <label class="uploadImg">
-                                <input type="file" id="theFile" multiple>
+                                <input type="file" id="theFile" accept="image/png, image/jpeg"   multiple>
                                 <img src="pic/equipment/photo-camera.svg" alt="">
                                 <span class="level0 gray2">(請上傳三張照片)</span>
                             </label>
@@ -143,20 +143,16 @@
                             <div class="level1 gray1">
                                 <div class="block">
                                     <div class="green1 level1">露營團名 :</div>
-                                    <div><input type="text" class="text inputstyle" placeholder="請為您的團隊取名"></div>
+                                    <div><input type="text" class="text inputstyle" placeholder="請為您的團隊取名" id="groupName" ></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 textinfo level1">相關介紹 :</div>
-                                    <div><textarea name="" id="" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯"></textarea></div>
+                                    <div><textarea id="groupIntro" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯" ></textarea></div>
                                 </div>
                                 <div class="block">
-                                    <div class="green1 level1">選擇地區 :</div>
+                                    <div class="green1 level1" >選擇地區 :</div>
                                     <div>
                                         <select class="inputstyle level1 gray1" id="camArea">
-                                            <!-- <option >北部</option>
-                                            <option >中部</option>
-                                            <option >南部</option>
-                                            <option >東部</option> -->
                                         </select>
                                         <select class="inputstyle level1 gray1" id="camName">
                                         </select>
@@ -165,38 +161,26 @@
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">人數上限 :</div>
-                                    <div><input type="number" class="inputstyle" placeholder="1" min="1">人(含主揪)</div>
+                                    <div><input type="number" class="inputstyle" placeholder="1" min="1" id="peopleLimit">人(含主揪)</div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">出團日期 :</div>
-                                    <div><input type="date" name="startdate" class="inputstyle level1 gray1" id="startdate"></div>
+                                    <div><input type="date" class="inputstyle level1 gray1" id="startdate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">結束日期 :</div>
-                                    <div><input type="date" name="enddate" class="inputstyle level1 gray1" id="enddate"></div>
+                                    <div><input type="date" class="inputstyle level1 gray1" id="enddate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">須具備設備 :</div>
                                     <div id="equSort">
-                                        <!-- <label class="level1">
-                                            <input type="checkbox" class="type">
-                                            露營帳篷
-                                        </label>
-                                        <label class="level1">
-                                            <input type="checkbox" class="type">
-                                            睡袋
-                                        </label>
-                                        <label class="level1">
-                                            <input type="checkbox" class="type">
-                                            其他
-                                        </label> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn">
-                            <input type="button" class="mainbtn2" value="暫存資料">
-                            <a href="./groupNewStart_check.html"><input type="button" class="mainbtn1" value="預覽發文"></a>
+                        <div class="btn" style="text-align: center;">
+                            <!-- <input type="button" class="mainbtn2" value="暫存資料" id="save"> -->
+                            <a href="./groupNewStart_check.html"><input type="button" class="mainbtn1" value="預覽發文" ></a>
                         </div>
                     </div>
 
@@ -302,7 +286,7 @@
             for(let i = 0; i<city[1].length;i++){
                 let label = document.createElement("label");
                 label.className = "level1";
-                label.innerHTML = `<input type="checkbox" class="type">${city[1][i].EQUSORT_EQUNAME} `;
+                label.innerHTML = `<input type="checkbox" class="type equ">${city[1][i].EQUSORT_EQUNAME} `;
                 document.getElementById("equSort").appendChild(label);
             }
         }
@@ -318,6 +302,51 @@
                     document.getElementById("camName").appendChild(option);
                 }
             }
+        }
+        function getSession(){
+            let groupName = $id("groupName");
+            let groupIntro = $id("groupIntro");
+            let peopleLimit = $id("peopleLimit");
+            let startdate = $id("startdate");
+            let enddate = $id("enddate");
+            let camArea = $id("camArea");
+            let camName = $id("camName");
+            let toCamping = $id("toCamping");
+            let equSort = $id('equSort');
+            let equ = document.querySelectorAll(".equ");
+            //顯示sessionStorage
+            if(sessionStorage['groupName'] != null || sessionStorage['groupIntro'] != null || sessionStorage['peopleLimit']!= null || sessionStorage['startdate']!= null || sessionStorage['enddate']!= null){
+                groupName.value = sessionStorage['groupName'];
+                groupIntro.value = sessionStorage['groupIntro'];
+                peopleLimit.value = sessionStorage['peopleLimit'];
+                startdate.value = sessionStorage['startdate'];
+                enddate.value = sessionStorage['enddate'];
+                equs=sessionStorage['equSort'].split(','); 
+                for(let i=0; i<equ.length-1; i++){
+                    for(let j=0; j<equs.length; j++){  
+                        if(i==equs[j]){
+                            equ[i].checked=true;
+                        }
+                    }
+                }
+            }
+            //暫存存入顯示sessionStorage
+            toCamping.addEventListener("click", function(){
+                    sessionStorage['groupName'] = groupName.value;
+                    sessionStorage['groupIntro'] = groupIntro.value;
+                    sessionStorage['peopleLimit'] = peopleLimit.value;
+                    sessionStorage['startdate'] = startdate.value;
+                    sessionStorage['enddate'] = enddate.value;
+                    sessionStorage['camArea'] = camArea.value;
+                    sessionStorage['camName'] = camName.value;
+                    let equs="";
+                    for(let i=0; i<equ.length; i++ ){
+                        if(equ[i].checked){
+                            equs+=`${i},`;
+                        }
+                    }
+                    sessionStorage['equSort']=equs;
+            });
         }
         function doFirst(){
             let areaxhr = new XMLHttpRequest();
@@ -340,7 +369,9 @@
             }
             areaxhr.open("get", `./php/group/area.php`, true);
             areaxhr.send(null);
-        }
+
+            setTimeout("getSession()",100);
+        }   
 
         window.addEventListener('load',doFirst);
     </script>
