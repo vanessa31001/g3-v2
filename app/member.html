@@ -38,7 +38,7 @@
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/message.png">
-                                <button class="thirdbtn2_green" @click="content='memberMessage'">悄悄話</button>    
+                                <button :class="{ thirdbtn2_green: isActive, thirdbtn1_green: hasError }" @click="content='memberMessage'">悄悄話</button>    
                             </div>
                             <div class="level5 grayColor1 aside_subtitle">會員足跡</div>
                             <div class="buttonClassification">
@@ -54,7 +54,7 @@
                                 <button class="thirdbtn2_green" @click="content='memberCamp'">營區攻略</button>
                             </div>
                         </div>
-                        <div class="app_left_aside_selector" @change="onChange($event)">
+                        <div class="app_left_aside_selector" @change="onChange">
                             <select name="memberSelector" id="memberSelector" >
                                 <OPTGROUP label="會員小屋">
                                     <option value="memberInformation">會員資訊</option>
@@ -99,9 +99,9 @@
                 }
             },
             created(){
-                    axios.get('php/member/getInfo.php').then(res => {
-                        this.memInfo = res.data;
-                    })
+                axios.get('php/member/getInfo.php').then(res => {
+                    this.memInfo = res.data;
+                })
             },
             template: `
                 <div class="member_information">
@@ -164,37 +164,28 @@
                             swal('欄位不可空白');
                         }
                     }else{
-                        document.getElementById('memPsw').innerHTML = "<input type='password'>";
-                        document.getElementById('memName').innerHTML = "<input type='text'>";
-                        document.getElementById('memNick').innerHTML = "<input type='text'>";
+                        document.getElementById('memPsw').innerHTML = "<input type='password' value='" + document.getElementById('memPsw').innerText + "'>";
+                        document.getElementById('memName').innerHTML = "<input type='text' value='" + document.getElementById('memName').innerText + "'>";
+                        document.getElementById('memNick').innerHTML = "<input type='text' value='" + document.getElementById('memNick').innerText + "'>";;
                         this.sss ="確定";
                     }
                 },
                 ChangeImg(event){
-                            var fd = new FormData();
-                            console.log(event.target.files[0]);
-                            fd.append('upFile', event.target.files[0]);
-                            let config = {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            }
-                            axios.post('php/member/change_memImg.php', fd,config).then( res => {
-                                // console.log(res.data);
-                                // document.getElementById('MemberPhotoPut').src = './pic/member/' + res.data;
-                                // alert('修改完成');
-                                this.getImg();
-                            })
-                            .catch( res => {
-                                console.log(res)
-                            })
-                },
-                getImg(){
-                    axios.get('php/member/getInfo.php').then(res => {
-                        this.memInfo = res.data;
+                    var fd = new FormData();
+                    fd.append('upFile', event.target.files[0]);
+                    let config = {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                    axios.post('php/member/change_memImg.php', fd,config).then( res => {
+                        // alert('修改完成');
+                        document.getElementById('MemberPhotoPut').src = this.imgSrc + res.data+ "?t=" + Math.random(); ;
                     })
-
-                }
+                    .catch( res => {
+                        console.log(res)
+                    })
+                },
             },
         });
         Vue.component("memberMessage", {
@@ -281,7 +272,7 @@
                     page2style: "mem_page2",
                     setup_groups:'[]',
                     join_groups:'[]',
-                    img_path: './pic/group/',
+                    group_path:'./pic/group/',
                     page_qua: 2,
                 }
             },
@@ -382,7 +373,7 @@
                             <div class="startGroupManage_page" v-if="link == 'startGroup'">
                                 <ul>
                                     <li class="group_everyRow" v-for="group in setup_groups" v-if="group.status==='0'">
-                                        <img :src="img_path + group.GROUP_PIC1">
+                                        <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
@@ -393,7 +384,7 @@
                                         <button class="thirdbtn1_orange" @click="deleteGroup(group)">刪除</button>
                                     </li>
                                     <li class="group_everyRow unlockRow" v-for="group in setup_groups" v-if="group.status==='1'">
-                                        <img :src="img_path + group.GROUP_PIC1">
+                                        <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
@@ -407,7 +398,7 @@
                             <div class="joinGroupManage_page"  v-else-if="link == 'joingroup'">
                                 <ul>
                                     <li class="group_everyRow" v-for="group in join_groups" v-if="group.status==='0'">
-                                        <img :src="img_path + group.GROUP_PIC1">
+                                        <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
                                             <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
@@ -419,7 +410,7 @@
                                         <button class="thirdbtn1_orange" @click="exitGroup(group)">刪除</button>
                                     </li>
                                     <li class="group_everyRow unlockRow" v-for="group in join_groups" v-if="group.status==='1'">
-                                        <img :src="img_path + group.GROUP_PIC1">
+                                        <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
                                             <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
@@ -446,7 +437,7 @@
                     publishing_equipment: '[]',
                     change_equipment: '[]',
                     like_equipment: '[]',
-                    img_path:'./pic/equipment',
+                    img_path:'./pic/equipment/',
                 }
             },
             methods:{
@@ -601,12 +592,13 @@
                                         <div class="level1">{{equipment.EQU_NO}}</div>
                                         <div class="level1">{{equipment.equ_name}}</div>
                                         <span class="level2">可交換</span>
-                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">取消</button>
+                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">刪除</button>
                                     </li>
                                     <li class="lookfavorites" v-for="equipment in like_equipment" v-if="equipment.status!=='尚可交換'">
                                         <div class="level1">{{equipment.EQU_NO}}</div>
                                         <div class="level1">{{equipment.equ_name}}</div>
                                         <span class="level2">已結束</span>
+                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">刪除</button>
                                     </li>
                                 </ul>
                             </div>
@@ -619,7 +611,7 @@
             data(){
                 return{
                     likeCamp: '[]',
-                    img_path:'/pic/camping/',
+                    GroupImg_path:'./pic/camping/camping_spot_img/',
                 }
             },
             methods:{
@@ -670,7 +662,7 @@
                             <ul class="camptotal_page">
                                 <li class="campItem" v-for="camp in likeCamp">
                                     <span><img @click="dislike(camp)" src="./pic/member/cancel.png"></span>
-                                    <img :src="img_path + camp.CAM_PIC1">
+                                    <img :src="GroupImg_path + camp.CAM_PIC1 + '.jpg'">
                                     <div class="level1">{{camp.CAM_NAME}}</div>
                                 </li>
                             </ul>
@@ -684,8 +676,8 @@
             el: '#app',
             data: {
                 content: 'memberInformation',
-                now_page: 'thirdbtn1_green',
-                other_page: 'thirdbtn2_green',
+                activeClass: 'thirdbtn1_green',
+                errorClass: 'thirdbtn2_green'
             },
             methods:{
                 onChange(event){
@@ -695,25 +687,25 @@
         });
 
     </script>
-        <script>
-            let MemberPhotoPut = document.getElementById("MemberPhotoPut"); //放置PHOTO的img標籤的ID
-            let memupPhoto = document.getElementById("memupPhoto"); //inputID標籤
-            // console.log(memupPhoto);
-            let mem_photochange = document.getElementById("mem_photochange");
-            // memupPhoto.addEventListener("change", BigHead); //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
+    <script>
+        let MemberPhotoPut = document.getElementById("MemberPhotoPut"); //放置PHOTO的img標籤的ID
+        let memupPhoto = document.getElementById("memupPhoto"); //inputID標籤
+        // console.log(memupPhoto);
+        let mem_photochange = document.getElementById("mem_photochange");
+        // memupPhoto.addEventListener("change", BigHead); //建立事件聆聽，偵測input發生change事件，執行PhotoPut函數
       
-            function BigHead() {
-              let memupPhoto1 = memupPhoto.files[0]; //抓input內的FILE資訊為FILES陣列中的第一個
-              let BigHeadPhoto = new FileReader(); //將FileReader物件命名
-              BigHeadPhoto.readAsDataURL(memupPhoto1); //使用FileReader的物件方法
-              BigHeadPhoto.addEventListener("load", function (e) {
-                //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
-                MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
-                MemberPhotoPut.style.width = "200px"; //設定寬
-                MemberPhotoPut.style.height = "200px"; //設定高
-              });
-            }
-          </script>
+        function BigHead() {
+            let memupPhoto1 = memupPhoto.files[0]; //抓input內的FILE資訊為FILES陣列中的第一個
+            let BigHeadPhoto = new FileReader(); //將FileReader物件命名
+            BigHeadPhoto.readAsDataURL(memupPhoto1); //使用FileReader的物件方法
+            BigHeadPhoto.addEventListener("load", function (e) {
+            //建立事件聆聽 等待讀到檔案，LOAD事件發生執行function
+            MemberPhotoPut.src = BigHeadPhoto.result; //結果放入img標籤的src
+            MemberPhotoPut.style.width = "200px"; //設定寬
+            MemberPhotoPut.style.height = "200px"; //設定高
+            });
+        }
+    </script>
     <script src="./js/member.js"></script>
 </body>
 </html>
