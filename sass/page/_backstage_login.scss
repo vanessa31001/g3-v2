@@ -128,6 +128,7 @@
     th{
         padding: 10px;
         background-color: $yellowColor1;
+        border: 1px solid $yellowColor1;
     }
     td{
         border-bottom: 1px solid $yellowColor1;
@@ -233,7 +234,6 @@ input[type="checkbox"].switch{
             }
         }
     }
-
     .add_question{
         border: 1px solid $yellowColor1;
         p{

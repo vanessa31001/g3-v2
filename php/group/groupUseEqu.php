@@ -1,6 +1,5 @@
 <?php
-try{
-    
+try{   
     require_once("../connectBooks.php");
     $sql = "SELECT G_USE_EQU_NO `揪團使用設備編號`, GROUP_NO `揪團編號`, G_EQU_NO `揪團設備類別編號`, EQUSORT_EQUNAME `設備類別名稱`
     FROM G_USE_EQU a JOIN EQUSORT b ON b.EQUSORT_NO = a.G_EQU_NO

@@ -35,6 +35,7 @@ input[type="submit"], button{
                 height: auto;
                 a{
                     font-weight:bold;
+                    text-decoration: none;
                     &:hover{
                         color: $greenColor3;
                     }
@@ -235,9 +236,8 @@ input[type="submit"], button{
                 color: $grayColor1;
                 .headLine{
                     display: flex;
-                    // flex-wrap: wrap;
                     justify-content:space-between;
-                    // align-items:center; 
+                    min-height:60px;
                     H3{
                         margin: 0;
                         vertical-align: top;
@@ -260,11 +260,14 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
+                    text-align: left;
                     max-height: 70px;
                     overflow: hidden;
+                    margin: 10px;
                 }
                 .infomore{
                     height: auto;
+                    max-height: 100%;
                 }
                 span{
                     color: $greenColor1;
@@ -408,8 +411,7 @@ input[type="submit"], button{
             display: inline-block; 
             width: calc((100% - 30px )/ 4 ); 
             margin-right: 10px; 
-            margin-bottom: 10px;
-            &:last-child{
+            &:nth-child(4){
                 margin-right: 0px; 
             }  
             .inform_pic{
@@ -547,6 +549,7 @@ input[type="submit"], button{
                         }
                     }
                     .info{
+                        text-align: left;
                         .btns{
                             display: flex;
                             justify-content: space-between;
@@ -625,6 +628,16 @@ input[type="submit"], button{
                     // padding: 5px;
                     font-size: 16px;
                 }
+                #equSort{
+                    &::after{
+                        content: "abc";
+                        display: block;
+                        clear: both;
+                      }
+                    label{
+                        float: left;
+                    }
+                }
             }
             .btn{
                 width: 100%;
@@ -664,6 +677,7 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
+                    text-align: left;
                     height: 70px;
                     overflow: hidden;
                 }
@@ -912,11 +926,6 @@ input[type="submit"], button{
                 }
             }
         }      
-    }
-    .gPepole{
-        .inform_block{
-            text-align: center;
-        }
     }
     .groupNewStart {
         display: flex;
