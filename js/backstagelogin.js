@@ -9,13 +9,13 @@ function sendForm_Login(){
 	let adminId = $id("adminId").value;
     let adminPsw = $id("adminPsw").value;
 	backxhr.onload = function(){
-        console.log(JSON.parse(backxhr.responseText));
+        // console.log(JSON.parse(backxhr.responseText));
         let manager = JSON.parse(backxhr.responseText);
-		if(manager.MGR_ID = true){
+		if(manager.MGR_ID){
             window.location.href="./backstage.html";
-			// window.alert("OK");
+			// alert("OK");
 		}else{
-			window.alert("帳密錯誤");
+			swal("帳密錯誤");
 		}
     }
     backxhr.open("Post", "php/backstage/backstage_loginIn.php", true);

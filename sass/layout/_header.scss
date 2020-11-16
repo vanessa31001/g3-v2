@@ -102,6 +102,10 @@ header div.nav_logo a.logo_link.-up{
             a{
                 position: relative;
                 text-decoration: none;
+                font-size: 18px;
+            }
+            #header_memName{
+                color: $orangeColor2;
             }
             a::after{
                 content: "";

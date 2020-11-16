@@ -482,12 +482,46 @@ stroke-miterlimit: 10;
     justify-content: space-around;
     align-items: center;
     font-size: 0;
-    a{
+    .ori_pic{
+        img{
+            display: block;
+            width: 400px;
+        }
+    }
+    .pic1{
+        animation: top1 3s linear infinite;
+    }
+    @keyframes top1 { 
+        0% {             
+            transform: translate(0px, 0px);            
+            }            
+            50% {                
+                transform: translate(0px, -40px);            
+            }            
+            100% {                
+                transform: translate(0px, 0px);
+            }
+        }
+    .pic2{
+        animation: top2 3s linear infinite;
+    }
+    @keyframes top2 { 
+        0% {             
+            transform: translate(0px, -5px);            
+            }            
+            50% {                
+                transform: translate(0px, 35px);            
+            }            
+            100% {                
+                transform: translate(0px, -5px);
+            }
+        }
+    .font{
         font-size: 48px;
         line-height: 96px;
         padding: 50px;
         border-radius: 50%;
-        display: inline-block;
+        display: none;
         text-decoration: none;
         color: #F3F8F4;
         // border: 1px solid red;
@@ -498,6 +532,12 @@ stroke-miterlimit: 10;
             background-color: #F3F8F4;
             color: #00A5A3;
         }
+    }
+    .font1{
+        animation: top1 3s linear infinite;
+    }
+    .font2{
+        animation: top2 3s linear infinite;
     }
 }
 
@@ -517,9 +557,16 @@ stroke-miterlimit: 10;
 
 @media screen and (min-width: 992px) and (max-width: 1199px){
     .FrontBack{
-        a{
+        justify-content: space-between;
+        .font{
         font-size: 36px;
         line-height: 72px;
+        }
+        .ori_pic{
+            img{
+                display: block;
+                width: 300px;
+            }
         }
     }
     .initialscreen_logo{
@@ -530,10 +577,23 @@ stroke-miterlimit: 10;
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
     .FrontBack{
-        a{
+        // justify-content: space-around;
+        .font{
+            display: inline-block;
             font-size: 28px;
             line-height: 56px;
             padding: 45px;
+        }
+        .font1{
+            position: absolute;
+            left: 6%;
+        }
+        .font2{
+            position: absolute;
+            right: 6%;
+        }
+        .ori_pic{
+            display: none;
         }
     }
     .initialscreen_logo{
@@ -544,13 +604,17 @@ stroke-miterlimit: 10;
 }
 @media screen and (max-width: 767px){
     .FrontBack{
-        a{
+        .font{
+            display: inline-block;
             font-size: 20px;
             line-height: 40px;
             padding: 30px;
             position: relative;
             top: -15%;
             padding: 40px;
+        }
+        .ori_pic{
+            display: none;
         }
     }
     .container_2{
@@ -568,10 +632,38 @@ stroke-miterlimit: 10;
 }
 @media screen and (max-width: 576px){
     .FrontBack{
-        a{
+        .font{
             font-size: 20px;
             line-height: 40px;
             padding: 30px;
         }
+        .font1{
+            animation: top3 3s linear infinite;
+        }
+        @keyframes top3 { 
+            0% {             
+                transform: translate(0px, 0px);            
+                }            
+                50% {                
+                    transform: translate(0px, -20px);            
+                }            
+                100% {                
+                    transform: translate(0px, 0px);
+                }
+            }
+        .font2{
+            animation: top4 3s linear infinite;
+        }
+        @keyframes top4 { 
+            0% {             
+                transform: translate(0px, -3px);            
+                }            
+                50% {                
+                    transform: translate(0px, 17px);            
+                }            
+                100% {                
+                    transform: translate(0px, -3px);
+                }
+            }
     }
 }

@@ -40,7 +40,9 @@
                 <li><a class="nav_title orange2" href="./camping.html">營區攻略</a></li>
                 <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
                 <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
-                <li><a href="./member.html" id="header_memName">&nbsp;</a><a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a>
+                    <a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -101,7 +103,7 @@
     <!-- 燈箱結束 -->
     <div class="bgcColor page">
 
-    <section class="section0">
+    <section class="section1">
         <div class="wrap">
             <div class="title">營區攻略</div>
             <div class="breadcrumbs">
@@ -215,23 +217,21 @@
                     <div class="hot">
                         <p class="white">熱門景點</p>
                     </div>
-                        <div class="area_pic">
-                            <img id="hot_camp_img0" src="./pic/camping/北1-1.jpg" alt="">
+                    <div class="area_pic">
+                        <img id="hot_camp_img0">
+                    </div>
+                    <div class="area_info">
+                        <div class="sub_title" id="hot_camp_name0">
+                            <div class="third_title coll_num">收藏數：888</div>
                         </div>
-                        <div class="area_info">
-                            <div class="sub_title" id="hot_camp_name0">
-                                <div class="third_title coll_num">收藏數：888</div>
-                            </div>
-                            <div class="level1" id="hot_camp_inner0"></div>
+                        <div class="level1" id="hot_camp_inner0"></div>
 
-                            <div class="third_title lineheight">聯絡資訊</div>
-                            <div class="level1" id="hot_camp_address"></div>
-                            
-                            <div class="third_title lineheight">相關設備</div>
-                            <div class="level1" id="hot_camp_facility"></div>
-                    
-                    
-                        </div>
+                        <div class="third_title lineheight">聯絡資訊</div>
+                        <div class="level1" id="hot_camp_address"></div>
+                        
+                        <div class="third_title lineheight">相關設備</div>
+                        <div class="level1" id="hot_camp_facility"></div>
+                    </div>
                 </div>
             </a>
 
@@ -281,37 +281,10 @@
     <section  class="camppart">
         <div class="wrap">
             <div class="title">近期揪團</div>
-            <div class="camping_block">
-                <!-- <div class="currently_gruop">
-                    <div class="card">
-                        <img src="./pic/camping/北2-2.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./pic/camping/北2-3.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./pic/camping/北2-5.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                    </div>
-                    </div>
-                </div> -->
+            <div class="camping_block currently_gruop">
                 <div class="gMainGroups" id="gMainGroups">
                 </div>
                 <a href="./group.html"><button class="secondbtn1">看更多精選</button></a>
-                
             </div>
         </div>
     </section>
@@ -387,65 +360,14 @@ function showhotspot(json){
     
 }
 </script>
-<script>
-    //團
-    let groupxhr = new XMLHttpRequest();
-    groupxhr.onload = function(){
-        if(groupxhr.status == 200){ //success
-            showgroups(groupxhr.responseText);
-        }else{ //error
-            alert(groupxhr.status);
-        }
-    }
-    groupxhr.open("get", "./php/group/groupindex.php", true);
-    groupxhr.send(null);
-    function showgroups(jason){
-        groupDatas = JSON.parse(jason);
-        let grouparrleng=0;
-        if(groupDatas.length > 4){
-            grouparrleng=4;
-        }
-        else{
-            grouparrleng=groupDatas.length;
-        }   
-        let gMainGroups = document.getElementById(`gMainGroups`);
-        console.log(gMainGroups);
-        
-        for(let i =0; i< grouparrleng ; i++){
-            let linkGroup =  document.createElement("a");
-            linkGroup.href = `./groupInfo.html?GROUP_NO=${groupDatas[i].GROUP_NO}`;
-            gMainGroups.appendChild(linkGroup);
-            let gMainGroup =  document.createElement("div");
-            gMainGroup.className = "gMainGroup";
-            linkGroup.appendChild(gMainGroup);
-            let pic =  document.createElement("div");
-            pic.className = "img";
-            gMainGroup.appendChild(pic);
-            let img =  document.createElement("img");
-            img.src="./pic/group/"+groupDatas[i].GROUP_PIC1;
-            pic.appendChild(img);
-            let gMainGroupInfo =  document.createElement("div");
-            gMainGroupInfo.className = "gMainGroupInfo";
-            gMainGroup.appendChild(gMainGroupInfo);
-            let gMainName =  document.createElement("div");
-            gMainName.className = "gMainName level2 green1";
-            gMainName.innerText = groupDatas[i].GROUP_NAME;
-            gMainGroupInfo.appendChild(gMainName);
-            let gMaindate =  document.createElement("div");
-            gMaindate.className = "level1 orange1";
-            gMaindate.innerText = "開團日期:" + groupDatas[i].GROUP_START_DATE;
-            gMainGroupInfo.appendChild(gMaindate);
 
-        } 
-    }
-
-</script>
 
 <script src="./js/logintext.js"></script>
 <script src="https://unpkg.com/jquery"></script>
 <script src="./js/map.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/weather.js"></script>
+<script src="./js/currentlygroup.js"></script>
 
 
 
