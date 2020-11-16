@@ -47,8 +47,8 @@ function showLoginForm(){
 //送出登入
 function sendForm_Login(){
 	//=====使用Ajax 回server端,取回登入者姓名, 放到頁面上
-	let memId = $id("LoginMemId").value;
-	let memPsw = $id("LoginMemPsw").value;
+	let memId = $id("LoginMemId").value.trim();
+	let memPsw = $id("LoginMemPsw").value.trim();
 	xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
 		if(member.MEM_ID){
@@ -60,9 +60,6 @@ function sendForm_Login(){
             $id('LoginMemPsw').value = '';  
             location.reload();          
 		}else{
-			// if(!member.errorMsg){
-			//   alert("系統錯誤",member.errorMsg);
-			// }拿來接收後端傳的
 			window.alert("帳密錯誤");
 		}
     }
@@ -73,35 +70,42 @@ function sendForm_Login(){
 }
 //送出註冊
 function sendForm_Regi(){
-    if($id('RegiMemPsw').value === $id('RegiDCMemPsw').value){
-        let memid = $id('RegiMemId').value;
-        let mempsw = $id('RegiMemPsw').value;
-        let memname = $id('RegiMemName').value;
-        let memnick = $id('RegiMemNickname').value;
-        xhr.onload = function(){
-            member = JSON.parse(xhr.responseText);
-            if(member.MEM_ID){
-            $id("header_memName").innerText = member.MEM_NICKNAME;
-            $id('spanLogin').innerHTML = '登出';
-            //將登入表單上的資料清空，並隱藏起來
-            $id('outerDiv').style.display = 'none';
-            $id('RegiMemId').value = '';
-            $id('RegiMemPsw').value = '';
-            $id('RegiDCMemPsw').value = '';
-            $id('RegiMemName').value = '';
-            $id('RegiMemNickname').value = '';
+    let mempsw = $id('RegiMemPsw').value.trim();
+    let memname = $id('RegiMemName').value.trim();
+    let memnick = $id('RegiMemNickname').value.trim();
+    let memid = $id('RegiMemId').value;
+    if(mempsw !== '' && memname !== '' && memnick !== '' && memid !== ''){
+        if($id('RegiMemPsw').value === $id('RegiDCMemPsw').value){
+            if(memid.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/)!= -1){
+                xhr.onload = function(){
+                    member = JSON.parse(xhr.responseText);
+                    if(member.MEM_ID){
+                        $id("header_memName").innerText = member.MEM_NICKNAME;
+                        $id('spanLogin').innerHTML = '登出';
+                        //將登入表單上的資料清空，並隱藏起來
+                        $id('outerDiv').style.display = 'none';
+                        $id('RegiMemId').value = '';
+                        $id('RegiMemPsw').value = '';
+                        $id('RegiDCMemPsw').value = '';
+                        $id('RegiMemName').value = '';
+                        $id('RegiMemNickname').value = '';
+                    }else{
+                        window.alert("此帳號已被使用");
+                    }
+                }
+
+                xhr.open("Post", "php/common/registered.php", true);
+                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
+                xhr.send(data_info); 
+            }else{
+                alert('請輸入正確的email')
+            }
         }else{
-            window.alert("此帳號已被使用");
+            alert('密碼需一致，請再確認');
         }
-        }
-
-        xhr.open("Post", "php/common/registered.php", true);
-        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-        let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
-        xhr.send(data_info); 
-
     }else{
-        alert('密碼需一致，請再確認');
+        alert('欄位不可為空');
     }
 }
 //忘記密碼
@@ -115,11 +119,11 @@ function getMemberInfo(){
             member = JSON.parse(xhr.responseText);
             if(member.MEM_ID){
                 $id("header_memName").innerText = member.MEM_NICKNAME
-                $id('spanLogin').innerHTML = '登出';
-                console.log(member);         
+                $id('spanLogin').innerHTML = '登出';  
             }
         }else{ //error
-            alert(xhr.status);
+            // alert(xhr.status);
+            alert('系統錯誤，請聯繫管理員謝謝')
         }
     }
     xhr.open("get", "php/common/getMemberInfo.php", true);
