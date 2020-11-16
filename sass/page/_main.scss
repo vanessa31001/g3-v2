@@ -48,10 +48,32 @@
         }
     }
 }
-.indexicon{
+.decoration1{
     img{
-        width: 120px;
+        width: 200px;
     }
+    .indexicon6{
+        position: absolute;
+        right: 0;
+        bottom: -150px;
+    }
+    .indexicon7{
+        position: absolute;
+        left: 0;
+        bottom: -110px;
+    }
+}
+@media screen and (max-width: 1200px){
+    .decoration1{
+        display: none;
+    }
+    .decoration2{
+        display: none;
+    }
+    .decoration3{
+        display: none;
+    }
+    
 }
 //首頁形象圖
 .home {
@@ -171,7 +193,7 @@
         .indexicon1{
             width: 100px;
             position: absolute;
-
+            right: 0;
         }
     }
     
@@ -394,6 +416,20 @@
             .moreeqbtn{
                 text-align: center;
             }
+        }
+    }
+    .decoration3{
+        .indexicon2{
+            width: 100px;
+            position: absolute;
+            left: 0;
+            bottom: 400px;
+        }
+        .indexicon3{
+            width: 100px;
+            position: absolute;
+            right: 0;
+            bottom: -70px;
         }
     }
 }
@@ -782,6 +818,20 @@
             }
         }
 
+    }
+    .decoration4{
+        .indexicon4{
+            width: 100px;
+            position: absolute;
+            left: 0;
+            bottom: -70px;
+        }
+        .indexicon5{
+            width: 100px;
+            position: absolute;
+            right: 0;
+            top:-80px;
+        }
     }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
