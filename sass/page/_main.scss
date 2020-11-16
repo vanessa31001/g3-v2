@@ -48,9 +48,13 @@
         }
     }
 }
+.indexicon{
+    img{
+        width: 120px;
+    }
+}
 //首頁形象圖
 .home {
-    // height: 750px;
     .container {
     background: url("../pic/index/1020_bg_pic.svg") no-repeat;
     background-position: center;
@@ -90,6 +94,7 @@
     z-index: 7;
     margin: 0 auto 50px;
     .wrap{
+        position: relative;
         a{
             text-decoration: none;
         }
@@ -160,6 +165,13 @@
                 
                 
             }
+        }
+    }
+    .decoration2{
+        .indexicon1{
+            width: 100px;
+            position: absolute;
+
         }
     }
     
