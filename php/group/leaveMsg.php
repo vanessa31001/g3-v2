@@ -10,7 +10,7 @@ try{
     $msg ->bindValue(":GROUP_MES_CONTENT", $_POST["GROUP_MES_CONTENT"]);
     // $groupRows ->bindValue(":GROUP_NO", 3);
     $msg->execute();
-    echo "執行成功";
+    echo json_encode("執行成功");
     
 }catch(PDOException $e){
 	$error = array("errorMsg"=>$e->getMessage());
