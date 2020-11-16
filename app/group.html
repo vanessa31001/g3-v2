@@ -251,11 +251,24 @@
                     input.type = "hidden";
                     input.value=groupsdata[i].團編號;
                     $append(smallInfo,input);
-                    input =  $create("input");
-                    input.className = "reportbtngGroup";
-                    input.type="submit";
-                    input.value="檢舉";
-                    $append(smallInfo,input);
+                    if(groupsdata[i].檢舉揪團編號 == null){
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.value="檢舉";
+                        $append(smallInfo,input);
+                    }else{
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.disabled = true;
+                        input.style.color='#C4C4C4';
+                        input.style["border-color"]="#C4C4C4";
+                        input.value="已檢舉";
+                        $append(smallInfo,input);
+                    }
+                    
+
                     fieldset =  $create("fieldset");
                     fieldset.className = "poster_inform";
                     $append(gRight,fieldset);
@@ -339,15 +352,25 @@
                     dateChoice[j] = date[i].value;
                     j++;
                 }
-            }            
+            }      
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
                     let groupsdata = JSON.parse(groupsxhr.responseText);
                     showAllGroups(groupsdata);
+                    //檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
                     for(let i =0; i<reportbtngGroup.length; i++){
-                        reportbtngGroup[i].addEventListener("click", function(){report("reportbtngGroup")});
+                        // alert(groupsdata[i].檢舉揪團編號);
+                        reportbtngGroup[i].addEventListener("click", function(){
+                            // alert();
+                            if(groupsdata[i].會員編號 == member.MEMNO){
+                                alert("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
+                            }else{
+                                report("reportbtngGroup",this.value,this.previousSibling.value);
+                            }
+                            
+                        });
                     }
                     // console.log(groupsxhr.responseText);
                 }else{ //error

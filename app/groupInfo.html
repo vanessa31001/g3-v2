@@ -409,7 +409,7 @@
                                             </div>`;
                         }else{
                             msgInfo.innerHTML=` <div class="level1">
-                                                    <p class="gray1" style="text-align: center;">糟糕，此留言遭檢舉!</p>
+                                                    <p class="gray1" style="text-align: center;">此留言已遭檢舉!</p>
                                                 </div>`;
                         }
                         $append(massages,msgInfo);
@@ -450,10 +450,9 @@
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
-                                        // location.reload(); 
-                                        var url = location.href;
-                                        var GROUP_NO = url.split('?')[1].split('=');
-                                        readPage(GROUP_NO[1]);
+                                        location.reload(); 
+                                        // readPage(GROUP_NO[1]);
+                                        // showMsg();
                                     }else{
                                         alert(msgxhr.responseText);
                                     }  

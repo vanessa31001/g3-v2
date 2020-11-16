@@ -30,6 +30,7 @@ function report(reportbtn,btnName,numID){
     let date = formatDate(new Date());
     if(member.MEM_ID){//檢舉揪團
         if(reportbtn==="reportbtngGroup"){
+            // alert(`${reportbtn},${btnName},${numID}`);
             overlay = document.querySelector(".report_overlay");
             overlay.className += " -on";
             document.querySelector(".report_reason1 label").innerText="此揪團與露營不相關";
@@ -43,27 +44,36 @@ function report(reportbtn,btnName,numID){
                         REGROUP_RESON= i-1;
                     }
                 }
-                if(REGROUP_RESON!=""){
+                if(REGROUP_RESON!==""){
+                    // alert(REGROUP_RESON);
+                    // 送出檢舉
                     let repxhr = new XMLHttpRequest();
                     repxhr.onload = function(){
                         if(repxhr.status == 200){ //success
-                            alert(repxhr.responseText);
-                            // readPage(numID);
+                            let submit_btn=document.querySelector(".report_overlay");
+                            // submit_btn.className = " -opacity-zero";
+                            setTimeout(function(){
+                                submit_btn.className = "report_overlay";
+                            }, 1000);
+                            for(let i=1; i<reason+1; i++){
+                                $id(`report_equ${i}`).checked = false;
+                            }
                         }else{
                             alert(repxhr.responseText);
                         }  
                     }
-                    repxhr.open("Post", "./php/group/delectMsg.php", true);
+                    repxhr.open("Post", "./php/group/reportGroup.php", true);
                     repxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
                     let data_info = `REGROUP_GROUP_NO=${numID}&REGROUP_MEMNO=${member.MEMNO}&REGROUP_RESON=${REGROUP_RESON}&REGROUP_DATE=${date}`;
                     repxhr.send(data_info);
                 }else{
                     alert("請勾選檢舉原因");
                 }
+                location.reload(); 
             });
         }else{
             var GROUP_NO = url.split('?')[1].split('=');
-            if(btnName==="檢舉"){//檢舉
+            if(btnName==="檢舉"){//檢舉留言
                 overlay = document.querySelector(".report_overlay");
                 overlay.className += " -on";
                 document.querySelector(".report_reason1 label").innerText="此留言與露營不相關";
@@ -87,7 +97,11 @@ function report(reportbtn,btnName,numID){
                                 setTimeout(function(){
                                     submit_btn.className = "report_overlay";
                                 }, 1000);
-                                readPage(GROUP_NO[1]);
+                                for(let i=1; i<reason+1; i++){
+                                    $id(`report_equ${i}`).checked = false;
+                                }
+                                location.reload(); 
+                                // readPage(GROUP_NO[1]);
                             }else{
                                 alert(repMsgxhr.responseText);
                             }  
@@ -104,7 +118,8 @@ function report(reportbtn,btnName,numID){
                 let delMsgxhr = new XMLHttpRequest();
                 delMsgxhr.onload = function(){
                     if(delMsgxhr.status == 200){ //success 
-                        readPage(GROUP_NO[1]);
+                        // readPage(GROUP_NO[1]);
+                        location.reload(); 
                     }else{
                         alert(delMsgxhr.responseText);
                     }  
