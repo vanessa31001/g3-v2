@@ -333,7 +333,7 @@
                 }
             }
             .home_equ_pic_title {
-                margin-top: 60px;
+                margin-top: 40px;
                 text-align: center;
             }
             .home_equ_pic {
@@ -341,9 +341,9 @@
                 align-items: center;
                 justify-content: center;
                 margin: 20px 0;
-                #equ_leftBtn {
-                    margin-right: 15px;
-                }
+                // #equ_leftBtn {
+                //     margin-right: 15px;
+                // }
                 .home_equ_block {
                     width: 1025px;
                     height: 320px;
@@ -377,6 +377,9 @@
                         }
                     }
                 }
+            }
+            .moreeqbtn{
+                text-align: center;
             }
         }
     }
