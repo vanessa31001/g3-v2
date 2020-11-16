@@ -97,7 +97,7 @@
                         </div>
                         <div class="btn" style="text-align: center;">
                             <!-- <input type="button" class="mainbtn2" value="暫存資料" id="save"> -->
-                            <input type="button" class="mainbtn1" value="預覽發文" >
+                            <input type="button" class="mainbtn1" value="發佈" id="create">
                         </div>
                     </div>
 
@@ -141,69 +141,17 @@
     <script src="./js/logintext.js"></script>
     <script src="./js/normalFunc.js"></script>
     <script>
-
-        // function listArea(areajson){
-        //     city = JSON.parse(areajson);
-        //     console.log(city);
-        //     //區域排除重複
-        //     let area=[];
-        //     for(let i = 0; i<city[0].length;i++){
-        //         area[i]=city[0][i].CAM_AREA;
-        //     }
-        //     let onlyarea = area.filter(function(element, index, arr){
-        //         return arr.indexOf(element) === index;
-        //     });
-        //     for(let i = 0; i < onlyarea.length ; i++){
-        //         let option = document.createElement("option");
-        //         option.innerText=onlyarea[i];
-        //         option.value=onlyarea[i];
-        //         document.getElementById("camArea").appendChild(option);
-
-        //     }
-        //     let nowarea = document.getElementById("camArea").value;
-        //     for(let i = 0; i<city[0].length;i++){
-        //         if(city[0][i].CAM_AREA == nowarea){
-
-        //             let option = document.createElement("option");
-        //             option.innerText=city[0][i].CAM_NAME;
-        //             option.value=city[0][i].CAM_NAME;
-        //             document.getElementById("camName").appendChild(option);
-        //         }
-        //     }
-        //     for(let i = 0; i<city[1].length;i++){
-        //         let label = document.createElement("label");
-        //         label.className = "level1";
-        //         label.innerHTML = `<input type="checkbox" class="type equ">${city[1][i].EQUSORT_EQUNAME} `;
-        //         document.getElementById("equSort").appendChild(label);
-        //     }
-        // }
-        // function selectName(){
-        //     document.getElementById("camName").innerHTML="";
-        //     var nowarea = document.getElementById("camArea").value;
-        //     for(let i = 0; i<city[0].length;i++){
-        //         if(city[0][i].CAM_AREA == nowarea){
-        //             let option = document.createElement("option");
-        //             option.innerText=city[0][i].CAM_NAME;
-        //             option.value=city[0][i].CAM_NAME;
-        //             document.getElementById("camName").appendChild(option);
-        //         }
-        //     }
-        // }
-        document.getElementById("camArea").onchange = function(){
-            // console.log(city);
-            selectName();
-        }
+        let groupName = $id("groupName");
+        let groupIntro = $id("groupIntro");
+        let peopleLimit = $id("peopleLimit");
+        let startdate = $id("startdate");
+        let enddate = $id("enddate");
+        let camArea = $id("camArea");
+        let camName = $id("camName");
+        let toCamping = $id("toCamping");
+        let equSort = $id('equSort');
+        let equ = document.querySelectorAll(".equ");
         function getSession(){
-            let groupName = $id("groupName");
-            let groupIntro = $id("groupIntro");
-            let peopleLimit = $id("peopleLimit");
-            let startdate = $id("startdate");
-            let enddate = $id("enddate");
-            let camArea = $id("camArea");
-            let camName = $id("camName");
-            let toCamping = $id("toCamping");
-            let equSort = $id('equSort');
-            let equ = document.querySelectorAll(".equ");
             //顯示sessionStorage
             if(sessionStorage['groupName'] != null || sessionStorage['groupIntro'] != null || sessionStorage['peopleLimit']!= null || sessionStorage['startdate']!= null || sessionStorage['enddate']!= null){
                 groupName.value = sessionStorage['groupName'];
@@ -211,8 +159,6 @@
                 peopleLimit.value = sessionStorage['peopleLimit'];
                 startdate.value = sessionStorage['startdate'];
                 enddate.value = sessionStorage['enddate'];
-                camArea.value = sessionStorage['camArea'];
-                camName.value = sessionStorage['camName'];
                 equs=sessionStorage['equSort'].split(','); 
                 for(let i=0; i<equ.length-1; i++){
                     for(let j=0; j<equs.length; j++){  
@@ -240,16 +186,38 @@
                     sessionStorage['equSort']=equs;
             });
         }
+        $id("create").addEventListener("click", function(){
+            alert(groupName.value);
+            alert(groupIntro.value);
+            alert(peopleLimit.value);
+            alert(startdate.value);
+            alert(enddate.value);
+            alert(camArea.value);
+            alert(camName.value);
+
+        });
+        $id("camArea").onchange = function(){
+            listName();
+        }
         function listName(){
-           alert(camArea.value);
+            var camName = $id("camName");
+            camName.innerHTML="";
+            for(let i= 0 ; i < city[1].length; i++){
+                if( city[1][i].CAM_AREA ==camArea.value){
+                    let option = document.createElement("option");
+                    option.innerText=city[1][i].CAM_NAME;
+                    option.value=city[1][i].CAM_NAME;
+                    $append(camName,option);
+                }
+            }
         }
         function listArea(){
-            var camArea = $id(camArea);
+            var camArea = $id("camArea");
             for(let i=0;i<city[0].length;i++){
                 let option = document.createElement("option");
                 option.innerText=city[0][i].CAM_AREA;
                 option.value=city[0][i].CAM_AREA;
-                document.getElementById("camArea").appendChild(option);
+                $append(camArea,option);
             }
             listName();
         }
