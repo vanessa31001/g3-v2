@@ -11,7 +11,7 @@ function loginOut(){
     }
 	xhr.open("get", "php/common/loginOut.php", true);
     xhr.send(null);
-    alert("已登出");
+    swal("已登出");
     location.href = './shansen.html';
 }
 //抓是否已登入並顯示在頁面
@@ -23,7 +23,7 @@ function getMemberInfo(){
                 $id("header_memName").innerText = member.MEM_NICKNAME
                 $id('spanLogin').innerHTML = '登出';
             }else{
-                alert("尚未登入");
+                swal("尚未登入");
                 location.replace("./shansen.html");
             }
         }else{ //error
