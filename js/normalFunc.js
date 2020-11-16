@@ -67,7 +67,8 @@ function report(reportbtn,btnName,numID){
                     let data_info = `REGROUP_GROUP_NO=${numID}&REGROUP_MEMNO=${member.MEMNO}&REGROUP_RESON=${REGROUP_RESON}&REGROUP_DATE=${date}`;
                     repxhr.send(data_info);
                 }else{
-                    alert("請勾選檢舉原因");
+                    // alert("請勾選檢舉原因");
+                    swal("請勾選檢舉原因");
                 }
                 location.reload(); 
             });
@@ -111,7 +112,8 @@ function report(reportbtn,btnName,numID){
                         let data_info = `REGROUP_MES_GROUP_NO=${numID}&REGROUP_MES_MEMNO=${member.MEMNO}&REGROUP_RESON=${REGROUP_RESON}&REGROUP_DATE=${date}`;
                         repMsgxhr.send(data_info);
                     }else{
-                        alert("請勾選檢舉原因");
+                        // alert("請勾選檢舉原因");
+                        swal("請勾選檢舉原因");
                     }
                 });
             }else{//刪除

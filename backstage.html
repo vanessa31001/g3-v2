@@ -89,9 +89,18 @@
                     axios.post('php/backstage/backstage_addmgr.php', this.manager).then(this.manager = {}).then(res => {this.getMGRList()})
                 },
                 delMgr(u){
-                    // alert('確認刪除');
-                    swal("確認刪除", "您將刪除一筆管理員資料" ,"warning");
-                    axios.post('php/backstage/backstage_delmgr.php', u).then(res => {this.getMGRList()})
+                    let question = swal({
+                            title: "確認刪除?",
+                            text: "您將刪除一筆管理員資料!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                            if (willDelete) {
+                                axios.post('php/backstage/backstage_delmgr.php', u).then(res => {this.getMGRList()});
+                            }
+                            });
                 },
                 getMGRList() {
                     let url = 'php/backstage/backstage_mgr.php'
@@ -400,9 +409,18 @@
                     axios.post('php/backstage/backstage_addgame.php', this.question).then(this.question = {}).then(res => {this.getGameList()})
                 },
                 delQue(q){
-                    alert('確認刪除');
-                    swal("確認刪除", "您將刪除一筆小知識題目" ,"warning");
-                    axios.post('php/backstage/backstage_delgame.php', q).then(res => {this.getGameList()})
+                    let question = swal({
+                            title: "確認刪除?",
+                            text: "您將刪除一筆題目!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                            if (willDelete) {
+                                axios.post('php/backstage/backstage_delgame.php', q).then(res => {this.getGameList()});
+                            }
+                            });
                 },
                 getGameList(){
                     axios.get('php/backstage/backstage_game.php').then(res => {

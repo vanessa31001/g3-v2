@@ -63,7 +63,8 @@ function sendForm_Login(){
 			// if(!member.errorMsg){
 			//   alert("系統錯誤",member.errorMsg);
 			// }拿來接收後端傳的
-			window.alert("帳密錯誤");
+			// window.alert("帳密錯誤");
+			swal("帳密錯誤");
 		}
     }
     xhr.open("post", "php/common/loginIn.php", true);
@@ -91,7 +92,8 @@ function sendForm_Regi(){
             $id('RegiMemName').value = '';
             $id('RegiMemNickname').value = '';
         }else{
-            window.alert("此帳號已被使用");
+            // window.alert("此帳號已被使用");
+            swal("此帳號已被使用");
         }
         }
 
@@ -101,7 +103,8 @@ function sendForm_Regi(){
         xhr.send(data_info); 
 
     }else{
-        alert('密碼需一致，請再確認');
+        // alert('密碼需一致，請再確認');
+        swal('密碼需一致，請再確認');
     }
 }
 //忘記密碼
