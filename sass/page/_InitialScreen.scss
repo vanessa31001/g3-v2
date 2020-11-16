@@ -482,6 +482,9 @@ stroke-miterlimit: 10;
     justify-content: space-around;
     align-items: center;
     font-size: 0;
+    .ori_pic_phone{
+        display: none;
+    }
     .ori_pic{
         img{
             display: block;
@@ -492,53 +495,31 @@ stroke-miterlimit: 10;
         animation: top1 3s linear infinite;
     }
     @keyframes top1 { 
-        0% {             
-            transform: translate(0px, 0px);            
-            }            
-            50% {                
-                transform: translate(0px, -40px);            
-            }            
-            100% {                
-                transform: translate(0px, 0px);
-            }
+    0% {             
+        transform: translate(0px, 0px);            
+        }            
+        50% {                
+            transform: translate(0px, -40px);            
+        }            
+        100% {                
+            transform: translate(0px, 0px);
         }
+    }
     .pic2{
         animation: top2 3s linear infinite;
     }
     @keyframes top2 { 
-        0% {             
-            transform: translate(0px, -5px);            
-            }            
-            50% {                
-                transform: translate(0px, 35px);            
-            }            
-            100% {                
-                transform: translate(0px, -5px);
-            }
-        }
-    .font{
-        font-size: 48px;
-        line-height: 96px;
-        padding: 50px;
-        border-radius: 50%;
-        display: none;
-        text-decoration: none;
-        color: #F3F8F4;
-        // border: 1px solid red;
-        background-color: #00A5A3;
-        &:hover{
-            transform: scaleX(1.2) scaleY(1.2);
-            transition: all 0.8s ease-out;
-            background-color: #F3F8F4;
-            color: #00A5A3;
+    0% {             
+        transform: translate(0px, -5px);            
+        }            
+        50% {                
+            transform: translate(0px, 35px);            
+        }            
+        100% {                
+            transform: translate(0px, -5px);
         }
     }
-    .font1{
-        animation: top1 3s linear infinite;
-    }
-    .font2{
-        animation: top2 3s linear infinite;
-    }
+
 }
 
 .initialscreen_logo{
@@ -558,10 +539,6 @@ stroke-miterlimit: 10;
 @media screen and (min-width: 992px) and (max-width: 1199px){
     .FrontBack{
         justify-content: space-between;
-        .font{
-        font-size: 36px;
-        line-height: 72px;
-        }
         .ori_pic{
             img{
                 display: block;
@@ -577,23 +554,19 @@ stroke-miterlimit: 10;
 }
 @media screen and (min-width: 768px) and (max-width: 991px){
     .FrontBack{
-        // justify-content: space-around;
-        .font{
-            display: inline-block;
-            font-size: 28px;
-            line-height: 56px;
-            padding: 45px;
+        .ori_pic{
+            img{
+                display: block;
+                width: 230px;
+            }
         }
-        .font1{
+        .pic1{
             position: absolute;
             left: 6%;
         }
-        .font2{
+        .pic2{
             position: absolute;
             right: 6%;
-        }
-        .ori_pic{
-            display: none;
         }
     }
     .initialscreen_logo{
@@ -604,66 +577,58 @@ stroke-miterlimit: 10;
 }
 @media screen and (max-width: 767px){
     .FrontBack{
-        .font{
-            display: inline-block;
-            font-size: 20px;
-            line-height: 40px;
-            padding: 30px;
-            position: relative;
-            top: -15%;
-            padding: 40px;
-        }
         .ori_pic{
-            display: none;
-        }
-    }
-    .container_2{
-        .initialscreen_logo{
             img{
-            width:100px;
-            top: 40%;
+                display: block;
+                width: 210px;
             }
         }
-        svg {
-            display: block;
-            height: 70vh;
+        .pic1{
+            position: absolute;
+            left: 2%;
+        }
+        .pic2{
+            position: absolute;
+            right: 2%;
+        }
+    }
+    .initialscreen_logo{
+        img{
+        width:160px;
         }
     }
 }
 @media screen and (max-width: 576px){
     .FrontBack{
-        .font{
-            font-size: 20px;
-            line-height: 40px;
-            padding: 30px;
+        .ori_pic{
+            display: none;
         }
-        .font1{
-            animation: top3 3s linear infinite;
-        }
-        @keyframes top3 { 
-            0% {             
-                transform: translate(0px, 0px);            
-                }            
-                50% {                
-                    transform: translate(0px, -20px);            
-                }            
-                100% {                
-                    transform: translate(0px, 0px);
-                }
+        .ori_pic_phone{
+            width: 100%;
+            display: block;
+            img{
+                display: inline-block;
             }
-        .font2{
-            animation: top4 3s linear infinite;
         }
-        @keyframes top4 { 
-            0% {             
-                transform: translate(0px, -3px);            
-                }            
-                50% {                
-                    transform: translate(0px, 17px);            
-                }            
-                100% {                
-                    transform: translate(0px, -3px);
-                }
+        .pic3{
+            position: absolute;
+            top: 0;
+        }
+        .pic4{
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    .container_2{
+        .initialscreen_logo{
+            img{
+            width:130px;
+            top: 34%;
             }
+        }
+        svg {
+            display: block;
+            height: 55vh;
+        }
     }
 }
