@@ -384,6 +384,11 @@
                             input.value="檢舉";
                         }
                         $append(msgInfo,input);
+
+
+
+
+
                     }else{//若被檢舉
                         let msgInfo = $create("div");
                         msgInfo.className="msgInfo";
@@ -416,10 +421,13 @@
                         $append(massages,msgInfo);
                     }
                 }
+     
+                    
             }
             
         }
         function readPage(groupNo){
+            
             let groupxhr = new XMLHttpRequest();
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
@@ -437,13 +445,15 @@
                     //檢舉留言
                     var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
                     for(let i =0; i<reportbtnMsg.length; i++){
-                        reportbtnMsg[i].addEventListener("click", function() { 
+                      
+                        reportbtnMsg[i].addEventListener("click", function (e) {
                             report("reportbtnMsg",this.value,this.previousSibling.previousSibling.value);
                         });
                     }
                     //留言
                     let leaveMsg = $id("sendMsg");
-                    leaveMsg.addEventListener("click", function (){
+                    leaveMsg.addEventListener("click", function ttt(e){
+                        
                         if(member.MEM_ID){
                             var leaveMsg =document.querySelector("#leaveMsg").value;
                             if(leaveMsg.trim()!= ""){
@@ -451,12 +461,15 @@
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
-                                        location.reload(); 
-                                        // readPage(GROUP_NO[1]);
+                                         console.log(e.target)
+
+                                        // location.reload(); 
+                                        readPage(groupNo);
                                         // showMsg();
                                     }else{
                                         alert(msgxhr.responseText);
                                     }  
+                                    $id("sendMsg").removeEventListener('click',ttt);
                                 }
                                 msgxhr.open("Post", "./php/group/leaveMsg.php", true);
                                 msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
@@ -476,6 +489,7 @@
             }
             groupxhr.open("get", `./php/group/groupInfo.php?GROUP_NO=${groupNo}`, true);
             groupxhr.send(null);
+            
         }
         function doFirst(){
             var url = location.href;

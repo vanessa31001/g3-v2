@@ -2,13 +2,9 @@
 session_start();
 try{
   require_once("../connectBooks.php");
-  // $loca = $_GET["loca"];
-  $member = $_SESSION["MEMNO"];
+  
   $people = $_GET["people"];
-  // echo  $people;
-  // echo $people;
   $date = $_GET["date"];
-  // echo $date;
   switch($_GET["loca"]){
     case "1":
       $cond1 = "c.CAM_AREA='北部'";
@@ -70,19 +66,39 @@ try{
   }
 
   
-
-  $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
-  a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
-  date(a.GROUP_DEPART_DATE)  `出發日`, date(a.GROUP_DEADLINE)  `回程日`, a.GROUP_STATUS  `團目前狀態`, a.GROUP_REASON , IFNULL(收藏數,0) `收藏數`, REGROUP_NO `檢舉揪團編號`
-  FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
-  JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
-  left join (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO) d on c.cam_no=d.campco_camno             
-  left JOIN (select * from REPORTGROUP a join MEMBER b on b.MEMNO = a.REGROUP_MEMNO where REGROUP_MEMNO = $member) e on e.REGROUP_GROUP_NO = a.GROUP_NO
-  WHERE a.GROUP_STATUS = 0 AND $cond1 AND $cond2 AND $cond3
-  order by GROUP_START_DATE desc;";
-  $groupRows = $pdo->query($sql);
-  $groupRow = $groupRows->fetchAll(PDO::FETCH_ASSOC);
-  echo json_encode($groupRow);   
+  if(isset($_SESSION["MEMNO"])){
+    $member = $_SESSION["MEMNO"];
+    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
+    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
+    date(a.GROUP_DEPART_DATE)  `出發日`, date(a.GROUP_DEADLINE)  `回程日`, a.GROUP_STATUS  `團目前狀態`, a.GROUP_REASON , IFNULL(收藏數,0) `收藏數`, REGROUP_NO `檢舉揪團編號`
+    FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
+    JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
+    left join (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO) d on c.cam_no=d.campco_camno             
+    left JOIN (select * from REPORTGROUP a join MEMBER b on b.MEMNO = a.REGROUP_MEMNO where REGROUP_MEMNO = $member) e on e.REGROUP_GROUP_NO = a.GROUP_NO
+    WHERE a.GROUP_STATUS = 0 AND $cond1 AND $cond2 AND $cond3
+    order by GROUP_START_DATE desc;";
+    $groupRows = $pdo->query($sql);
+    $groupRow = $groupRows->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($groupRow);
+  }else{
+    
+    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
+    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
+    date(a.GROUP_DEPART_DATE)  `出發日`, date(a.GROUP_DEADLINE)  `回程日`, a.GROUP_STATUS  `團目前狀態`, a.GROUP_REASON , IFNULL(收藏數,0) `收藏數`
+    FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
+    JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
+    left join (select CAMPCO_CAMNO , count(*) `收藏數` from campcolloection group by CAMPCO_CAMNO) d on c.cam_no=d.campco_camno              
+    WHERE a.GROUP_STATUS = 0 AND $cond1 AND $cond2 AND $cond3
+    order by GROUP_START_DATE desc;";
+    $groupRows = $pdo->query($sql);
+    $groupRow = $groupRows->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($groupRow);
+ 
+  }
+// var_dump($groupRow);
+// die;
+  
+     
     
 }catch(PDOException $e){
 	$error = array("errorMsg"=>$e->getMessage());
