@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="任何想說或是想問的嗎?" ></textarea>
+        <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg">
+    </div>
+    <script>
+        function formatDate(date) {  
+            var y = date.getFullYear();  
+            var m = date.getMonth() + 1;  
+            m = m < 10 ? ('0' + m) : m;  
+            var d = date.getDate();  
+            d = d < 10 ? ('0' + d) : d;  
+            var h = date.getHours();  
+            var minute = date.getMinutes();  
+            minute = minute < 10 ? ('0' + minute) : minute;
+            var s =  date.getSeconds();
+            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
+        };
+        function $id(id){
+            return document.getElementById(id);
+        }
+        let groupNo =1;
+        let member = 2;
+        let date = formatDate(new Date());
+        let leaveMsg = $id("sendMsg");
+        leaveMsg.addEventListener("click", function (){
+            let leaveMsg =document.querySelector("#leaveMsg").value;
+            if(leaveMsg.trim()!= ""){
+                let date = formatDate(new Date());
+                let msgxhr = new XMLHttpRequest();
+                msgxhr.onload = function(){
+                    if(msgxhr.status == 200){ //success 
+                        alert(msgxhr.responseText);
+                    }else{
+                        alert(msgxhr.responseText);
+                    }  
+                }
+                msgxhr.open("Post", "./leaveMsg.php", true);
+                msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                let data_info = `GROUP_MES_GROUPNO=${groupNo}&GROUP_MES_MEMNO=${member}&GROUP_MES_TIME=${date}&GROUP_MES_CONTENT=${leaveMsg}`;
+                msgxhr.send(data_info);
+            }else{
+                alert("請輸入文字再送出~");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -6,6 +6,7 @@
     <title>營區攻略</title>
     <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
@@ -127,55 +128,65 @@
     <section class="section_hot" id="section_hot">
         <div class="wrap">
             <div class="title">熱門營區</div>
-            <div class="popular_area camping_block">
-                <div class="hot">
-                    <p class="white">熱門景點</p>
-                </div>
-                <div class="area_pic">
-                    <img id="hot_camp_img0" src="./pic/camping/北1-1.jpg" alt="">
-                </div>
-                <div class="area_info">
-                    <div class="sub_title" id="hot_camp_name0">
-                        <div class="third_title coll_num">收藏數：888</div>
+            <a id="hot_camp_link0" href="">
+                <div class="popular_area camping_block">
+                    <div class="hot">
+                        <p class="white">熱門景點</p>
                     </div>
-                    <div class="level1" id="hot_camp_inner0"></div>
+                    <div class="area_pic">
+                        <img id="hot_camp_img0">
+                    </div>
+                    <div class="area_info">
+                        <div class="sub_title" id="hot_camp_name0">
+                            <div class="third_title coll_num">收藏數：888</div>
+                        </div>
+                        <div class="level1" id="hot_camp_inner0"></div>
 
-                    <div class="third_title lineheight">聯絡資訊</div>
-                    <div class="level1" id="hot_camp_address"></div>
-                    
-                    <div class="third_title lineheight">相關設備</div>
-                    <div class="level1" id="hot_camp_facility"></div>
-            </div>
-        </div>
+                        <div class="third_title lineheight">聯絡資訊</div>
+                        <div class="level1" id="hot_camp_address"></div>
+                        
+                        <div class="third_title lineheight">相關設備</div>
+                        <div class="level1" id="hot_camp_facility"></div>
+                    </div>
+                </div>
+            </a>
 
         <div class="wrap">
             <div class="other_popular_area">
                 <div class="card camping_block">
                     <div class="content">
-                        <img id="hot_camp_img1">
-                        <div class="sub_title" id="hot_camp_name1"></div>
-                        <div class="level1 ellipsis" id="hot_camp_inner1"></div>
+                        <a id="hot_camp_link1" href="https://www.google.com">
+                            <img id="hot_camp_img1">
+                            <div class="sub_title" id="hot_camp_name1"></div>
+                            <div class="level1 ellipsis" id="hot_camp_inner1"></div>
+                        </a>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img id="hot_camp_img2">
-                        <div class="sub_title" id="hot_camp_name2"></div>
-                        <div class="level1 ellipsis" id="hot_camp_inner2"></div>
+                        <a id="hot_camp_link2" href="">
+                            <img id="hot_camp_img2">
+                            <div class="sub_title" id="hot_camp_name2"></div>
+                            <div class="level1 ellipsis" id="hot_camp_inner2"></div>
+                        </a>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img id="hot_camp_img3">
-                        <div class="sub_title" id="hot_camp_name3"></div>
-                        <div class="level1 ellipsis" id="hot_camp_inner3"></div>
+                        <a id="hot_camp_link3" href="">
+                            <img id="hot_camp_img3">
+                            <div class="sub_title" id="hot_camp_name3"></div>
+                            <div class="level1 ellipsis" id="hot_camp_inner3"></div>
+                        </a>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <img id="hot_camp_img4">
-                        <div class="sub_title" id="hot_camp_name4"></div>
-                        <div class="level1 ellipsis" id="hot_camp_inner4"></div>
+                        <a id="hot_camp_link4" href="">
+                            <img id="hot_camp_img4">
+                            <div class="sub_title" id="hot_camp_name4"></div>
+                            <div class="level1 ellipsis" id="hot_camp_inner4"></div>
+                        </a>
                     </div>
                 </div>
 
@@ -186,36 +197,10 @@
     <section  class="camppart">
         <div class="wrap">
             <div class="title">近期揪團</div>
-            <div class="camping_block">
-                <div class="currently_gruop">
-                    <div class="card">
-                        <img src="./pic/camping/北2-2.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./pic/camping/北2-3.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./pic/camping/北2-5.jpg" alt="">
-                        <div class="text">
-                            <div class="level2 orange1 near_group">2020/10/10開團   即將額滿</div>
-                            <div class="sub_title">相思園露營區</div>
-                            <div class="detail"><button class="thirdbtn2_green">查看詳情</button></div>
-                    </div>
-                    </div>
+            <div class="camping_block currently_gruop">
+                <div class="gMainGroups" id="gMainGroups">
                 </div>
-                <div class="camping_btn">
-                    <button class="mainbtn1 more_btn">看更多精選</button>
-                </div>
+                <a href="./group.html"><button class="secondbtn1">看更多精選</button></a>
             </div>
         </div>
     </section>
@@ -247,9 +232,11 @@ function showhotspot(json){
         let likeID = "hot_camp_name"+i;
         let likeInner = "hot_camp_inner"+i;
         let likeImg = "hot_camp_img"+i;
+        let likeLink = "hot_camp_link"+i;
         $id(likeID).innerText = hotspotDatas[i].CAM_NAME;
         $id(likeInner).innerText = hotspotDatas[i].CAM_INTRODUCTION;
         $id(likeImg).src = `./pic/camping/camping_spot_img/${hotspotDatas[i].CAM_PIC1}.jpg`;
+        $id(likeLink).href=`camping2.html?${hotspotDatas[i].CAM_NO}`;
     }
     $id('hot_camp_address').innerText = hotspotDatas[0].CAM_ADDRESS;
     $id('hot_camp_facility').innerText = hotspotDatas[0].CAM_FACILITY;
@@ -259,11 +246,13 @@ function showhotspot(json){
 }
 </script>
 
+
 <script src="./js/logintext.js"></script>
 <script src="https://unpkg.com/jquery"></script>
 <script src="./js/map.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/weather.js"></script>
+<script src="./js/currentlygroup.js"></script>
 
 
 

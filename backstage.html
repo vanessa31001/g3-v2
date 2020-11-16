@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +8,25 @@
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- <script src="./vender/vue/vue.min.js"></script> -->
 </head>
 <body class="bgcColor">
 <header class="back_header">
     <img src="./pic/commom/phone_header.svg">
     <div class="back_login">
-        <span class="back_username">斯斯感冒膠囊</span>
-        <span class="back_loginbtn">登出</span>
+        <span class="back_username" id="mgrName"></span>
+        <span class="back_loginbtn" id="baclout">登出</span>
     </div>
 </header>
 
- <div id="app" class="back_page"><!--HTML DOM template-->
+<div id="app" class="back_page"><!--HTML DOM template-->
         <div class="back_page_leftside">
             
 
                 <div class="back_list_title">管理員管理
                     <button class="back_list" @click="content='back-manager'">管理員管理</button>
-                </div>
-
-                <div class="back_list_title">會員管理
-                    <button class="back_list" @click="content='back-mem-manage'">會員管理</button>
-                    <button class="back_list" @click="content='back-mem-grade'">會員等級管理</button>
                 </div>
 
                 <div class="back_list_title">檢舉管理
@@ -45,9 +39,6 @@
                     <button class="back_list" @click="content='back-game-manage'">小知識管理</button>
                 </div>
 
-                <div class="back_list_title">明信片管理
-                    <button class="back_list" @click="content='back-postcard-material'">素材管理</button>
-                </div>
 
 
         </div>
@@ -56,9 +47,10 @@
 
         <div class="back_page_rightside">
             <!--Vue開始-->
-        
-            <component :is="content"></component>
-            <!-- 透過component元素，去指定其屬性is進行v-bind -->
+            <keep-alive>
+                <component :is="content"></component>
+                <!-- 透過component元素，去指定其屬性is進行v-bind -->
+            </keep-alive>
 
     </div>
 </div><!--app尾-->
@@ -74,6 +66,11 @@
                     page1style: "back_btn1",
                     page2style: "back_btn2",
                     managers:[],
+                    manager:{
+                        MGR_ID:'',
+                        MGR_USER:'',
+                        MGR_PSW:'',
+                    }
                 }
             },
             methods:{
@@ -87,7 +84,31 @@
                     this.link = 'addManager'
                     this.page1style= "back_btn2",
                     this.page2style= "back_btn1"
-                }
+                },
+                createMgr(){
+                    axios.post('php/backstage/backstage_addmgr.php', this.manager).then(this.manager = {}).then(res => {this.getMGRList()})
+                },
+                delMgr(u){
+                    let question = swal({
+                            title: "確認刪除?",
+                            text: "您將刪除一筆管理員資料!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                            if (willDelete) {
+                                axios.post('php/backstage/backstage_delmgr.php', u).then(res => {this.getMGRList()});
+                            }
+                            });
+                },
+                getMGRList() {
+                    let url = 'php/backstage/backstage_mgr.php'
+                    axios.get(url)
+                    .then(res => {
+                        this.managers = res.data;
+                    })
+                },
             },
             created() {
                 axios.get('php/backstage/backstage_mgr.php').then(res => {
@@ -105,174 +126,42 @@
                     <div v-if="link == 'allManagers'">
                         <table class="back_manager_table1 back_table">
                             <tr>
-                                <th>編號</th>
-                                <th>管理員名稱</th>
-                                <th>是否刪除</th>
+                                <th>管理員帳號</th>
+                                <th>管理員姓名</th>
+                                <th>管理員密碼</th>
+                                <th>刪除</th>
                             </tr>
                             <tr v-for="manager in managers">
-                                <td>{{manager.MGR_NO }}</td>
-                                <td>{{manager.MGR_USER }}</td>
-                                <td><input type="checkbox" class="switch"></td>
-                            </tr>
+                                <input type="hidden" v-model="manager.MGR_ID" >
+                                    <td>
+                                        {{manager.MGR_ID }}
+                                    </td>
+                                    <td>
+                                        {{manager.MGR_USER }}
+                                    </td>
+                                    <td>
+                                        {{manager.MGR_PSW }}
+                                    </td>
+                                    <td><button @click="delMgr(manager)" type="button" class="back_loginbtn">刪除</button></td>
+                                    
+                                </tr>
                         </table>
                     </div>
                     <div class="add_manager" v-else-if="link == 'addManager'">
-                        <form action="">
+                        <form >
                             <p>
-                                <label for="">管理員帳號：</label>
-                                <input type="text">
-                            </p>
-                            <p>
-                                <label for="">管理員姓名：</label>
-                                <input type="text">
+                                <label>管理員帳號：</label>
+                                <input type="text" v-model="manager.MGR_ID">
                             </p>
                             <p>
-                                <label for="">管理員密碼：</label>
-                                <input type="text">
-                            </p>
-                        <input type="submit" class="thirdbtn1_green back_send" value="送出"></input>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            `,
-        });
-        //會員管理
-        Vue.component('back-mem-manage', { 
-            data() {
-                return {
-                    members:[],
-                }
-            },
-            created() {
-                axios.get('php/backstage/backstage_mem.php').then(res => {
-                this.members = res.data; 
-                })
-            },
-            template: `
-            <div>
-                <div class="back_mem_manage_area back_area">
-                    <div class="back_title">會員管理</div>
-                    <div class=" search_back_mem">
-                        <input type="text">
-                        <label>搜尋</label>
-                    </div>
-                    <table class="back_mem_manage_table back_table">
-                        <tr>
-                            <th>編號</th>
-                            <th>會員名稱</th>
-                            <th>會員積分</th>
-                            <th>狀態</th>
-                            <th>開通時間</th>
-                            <th>修改</th>
-                        </tr>
-                        <tr v-for="member in members">
-                            <td>{{member.MEMNO}}</td>
-                            <td>{{member.MEM_NAME}}</td>
-                            <td>{{member.MEMGRADE_NO }}</td>
-                            <td>{{member.MEM_STATUS }}</td>
-                            <td><select>
-                                <option>{{member.MEM_BAN_FREQUENCY}}</option>
-                                </select>
-                            </td>
-                            <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            `,
-        });
-        //會員等級管理
-        Vue.component('back-mem-grade', {
-            data(){
-                return{
-                    link : "allGrade",
-                    page1style: "back_btn1",
-                    page2style: "back_btn2",
-                    preview: null,
-                    image: null,
-                    grades:[],
-                }
-            },
-            methods:{
-                page1(){
-                    this.link = 'allGrade'
-                    this.page1style= "back_btn1",
-                    this.page2style= "back_btn2"
-
-                },
-                page2(){
-                    this.link = 'addGrade'
-                    this.page1style= "back_btn2",
-                    this.page2style= "back_btn1"
-                },
-                previewImage(event) {
-                    var input = event.target;
-                    if (input.files) {
-                        var reader = new FileReader();
-                        reader.onload = (e) => {
-                        this.preview = e.target.result;
-                        }
-                        this.image=input.files[0];
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                },
-            },
-            created(){
-                axios.get('php/backstage/backstage_grade.php').then(res => {
-                this.grades = res.data; 
-                })
-            },
-            template: `
-            <div>
-                <div class="back_grade_area back_area">
-                <div class="back_title">會員等級管理</div>
-                <div class="back_btn_style">
-                    <button :class="page1style" @click="page1">等級</button>
-                    <button :class="page2style" @click="page2">新增等級</button>
-                </div>
-                    <div v-if="link == 'allGrade'">
-                        <table class="back_grade_table1 back_table">
-                            <tr>
-                                <th>編號</th>
-                                <th>等級名稱</th>
-                                <th>等級上限</th>
-                                <th>等級下限</th>
-                                <th>等級圖片</th>
-                                <th>修改</th>
-                            </tr>
-                            <tr v-for="grade in grades">
-                                <td>{{grade.GRADE_NO }}</td>
-                                <td>{{grade.GRADE_NAME }}</td>
-                                <td>{{grade.GRADE_UPLIMIT }}</td>
-                                <td>{{grade.GRADE_LOLIMIT }}</td>
-                                <td>$</td>
-                                <td><input type="submit" class="back_loginbtn" value="修改"></input></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="add_grade" v-else-if="link == 'addGrade'">
-                        <form action="">
-                            <p>
-                                <label for="">等級名稱：</label>
-                                <input type="text">
+                                <label>管理員姓名：</label>
+                                <input type="text" v-model="manager.MGR_USER">
                             </p>
                             <p>
-                                <label for="">等級上限：</label>
-                                <input type="text">
+                                <label>管理員密碼：</label>
+                                <input type="text" v-model="manager.MGR_PSW">
                             </p>
-                            <p>
-                                <label for="">等級下限：</label>
-                                <input type="text">
-                            </p>
-                            <p>
-                                <label for="">等級圖片：</label>
-                                <input class="upimg" type="file" accept="image/*" @change="previewImage">
-                            </p>
-                            <p v-if="preview">
-                                <img :src="preview" class="add_grade_img" />
-                            </p>
-                        <input type="submit" class="thirdbtn1_green back_send" value="確認新增"></input>
+                        <input @click="createMgr" type="button" class="thirdbtn1_green back_send" value="送出"></input>
                         </form>
                     </div>
                 </div>
@@ -284,12 +173,41 @@
             data(){
                 return{
                     reportgroups:[],
+                    managers:[],
                 }
+            },
+        
+            methods: {
+                updateRegro(g){
+                        console.log(g)
+                        axios.post('php/backstage/backstage_updateRegro.php', g).then(res => {this.getRGList()}).then(res=>this.buttonBan(this.reportgroups.indexOf(g)))
+    
+                },
+                buttonBan(i) {
+                document.querySelectorAll('.backclicked')[i].disabled=true;
+                document.querySelectorAll('.backclicked')[i].style.color='gray';
+                },
+                // updateRegro(m){
+                //         console.log(m)
+                //         axios.post('php/backstage/backstage_updateRegro.php', m).then(res => {this.getRGList()}).then(res=>this.buttonBan())
+    
+                // },
+                // buttonBan(){
+                //         for(i=0 ; i<this.reportgroups.length ; i++){
+                //             document.querySelectorAll('.backclicked')[i].disabled=true;
+                // },
+                getRGList() {
+                let url = 'php/backstage/backstage_reportgroup.php';
+                axios.get(url)
+                .then(res => {this.reportgroups = res.data;
+                    })
+                },
             },
             created(){
                 axios.get('php/backstage/backstage_reportgroup.php').then(res => {
                 this.reportgroups = res.data; 
                 })
+
             },
             template: `
             <div>
@@ -299,18 +217,28 @@
                         <tr>
                             <th>編號</th>
                             <th>揪團名稱</th>
-                            <th>開團會員</th>
+                            <th>被檢舉人</th>
                             <th>檢舉原因</th>
-                            <th>處理狀態</th>
+                            <th>檢舉狀態</th>
                             <th>揪團狀態</th>
+                            <th>確認</th>
                         </tr>
                         <tr v-for="reportgroup in reportgroups">
+                            <input type="hidden" v-model="reportgroup.REGROUP_NO">
                             <td>{{reportgroup.REGROUP_NO}}</td>
-                            <td>{{reportgroup.GROUP_NAME}}</td>
+                            <td><a v-bind:href="'groupInfo.html?GROUP_NO=' + reportgroup.GROUP_NO" target="_blank">{{reportgroup.GROUP_NAME}}</a></td>
                             <td>{{reportgroup.MEM_NAME}}</td>
                             <td>{{reportgroup.REGROUP_RESON}}</td>
-                            <td>{{reportgroup.REGROUP_STATUS}}</td>
+                            <td>{{reportgroup.REGROUP_STATUS}}
+                                <p>
+                                <input type="radio" v-model="reportgroup.REGROUP_DEAL" value="unpass">未通過
+                                </p>
+                                <p>
+                                <input type="radio" v-model="reportgroup.REGROUP_DEAL" value="pass">通過&emsp;
+                                </p>
+                            </td>
                             <td>{{reportgroup.GROUP_STATUS}}</td>
+                            <td><button @click="updateRegro(reportgroup)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -319,6 +247,30 @@
         });
         //揪團留言檢舉管理
         Vue.component('back-rep-message', { 
+            data(){
+                return{
+                    reportmsgs:[],
+                }
+            },
+            methods: {
+                updateRemsg(m){
+                    console.log(m)
+                        axios.post('php/backstage/backstage_updateRemsg.php', m).then(res => {this.getRGMList()}).then(res=>this.buttonBan(this.reportmsgs.indexOf(m)))
+                },
+                buttonBan(i) {
+                document.querySelectorAll('.backclicked')[i].disabled=true;
+                },
+                getRGMList(){
+                    axios.get('php/backstage/backstage_reportmsg.php').then(res=>{
+                    this.reportmsgs = res.data;
+                })
+                }
+            },
+            created(){
+                axios.get('php/backstage/backstage_reportmsg.php').then(res=>{
+                    this.reportmsgs = res.data;
+                })
+            },
             template: `
             <div>
                 <div class="back_rep_message_area back_area">
@@ -326,35 +278,29 @@
                     <table class="back_rep_message_table back_table">
                         <tr>
                             <th>編號</th>
-                            <th>留言會員</th>
                             <th>留言內容</th>
+                            <th>被檢舉人</th>
                             <th>檢舉原因</th>
-                            <th>處理狀態</th>
+                            <th>檢舉狀態</th>
                             <th>留言狀態</th>
+                            <th>確認</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>7878</td>
-                            <td>團主很爛，大家不要被他騙...</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>5566</td>
-                            <td>團主很爛，大家不要被他騙...</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>9527</td>
-                            <td>團主很爛，大家不要被他騙...</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
+                        <tr v-for="reportmsg in reportmsgs">
+                            <input type="hidden" v-model="reportmsg.REGROUP_MES_NO">
+                            <td>{{ reportmsg.REGROUP_MES_NO }}</td>
+                            <td><a v-bind:href="'groupInfo.html?GROUP_NO=' + reportmsg.GROUP_MES_GROUPNO" target="_blank">{{ reportmsg.GROUP_MES_CONTENT }}</a></td>
+                            <td>{{ reportmsg.MEM_NAME }}</td>
+                            <td>{{ reportmsg.REGROUP_RESON }}</td>
+                            <td>{{ reportmsg.REGROUP_MES_STATUS }}
+                                <p>
+                                <input type="radio" v-model="reportmsg.REGROUP_DEAL" value="unpass">未通過
+                                </p>
+                                <p>
+                                <input type="radio" v-model="reportmsg.REGROUP_DEAL" value="pass">通過&emsp;
+                                </p>    
+                            </td>
+                            <td>{{reportmsg.GROUP_MES_STATUS}}</td>
+                            <td><button @click="updateRemsg(reportmsg)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -363,6 +309,33 @@
         });
         //設備檢舉管理
         Vue.component('back-rep-equ', { 
+            data(){
+                return{
+                    reportequs:[],
+                }
+            },
+            methods: {                
+                updateReequ(e){
+                    console.log(e)
+                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{this.getREList()}).then(res=>this.buttonBan(this.reportequs.indexOf(e)))
+                    },
+
+                buttonBan(i){
+                    document.querySelectorAll('.backclick')[i].disabled=true;
+                },
+
+                getREList(){
+                    axios.get('php/backstage/backstage_reportequ.php').then(res=>{
+                    this.reportequs = res.data;
+                    })
+                },
+                
+            },
+            created(){
+                axios.get('php/backstage/backstage_reportequ.php').then(res=>{
+                    this.reportequs = res.data;
+                })
+            },
             template: `
             <div>
                 <div class="back_rep_equ_area back_area">
@@ -370,131 +343,153 @@
                     <table class="back_rep_equ_table back_table">
                         <tr>
                             <th>編號</th>
-                            <th>刊登會員</th>
-                            <th>設備詳細</th>
+                            <th>設備名稱</th>
+                            <th>被檢舉人</th>
                             <th>檢舉原因</th>
-                            <th>處理狀態</th>
+                            <th>檢舉狀態</th>
                             <th>設備狀態</th>
+                            <th>確認</th>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>7878</td>
-                            <td>可愛的二手娃娃</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>5566</td>
-                            <td>可愛的二手娃娃</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>9527</td>
-                            <td>可愛的二手娃娃</td>
-                            <td>不符合主題</td>
-                            <td><input type="checkbox" class="switch"></td>
-                            <td>已下架</td>
+                        <tr v-for="reportequ in reportequs">
+                            <input type="hidden" v-model="reportequ.REP_OUT_NO">
+                            <td>{{reportequ.REP_OUT_NO}}</td>
+                            <td>{{reportequ.EQU_NAME}}</td>
+                            <td>{{reportequ.MEM_NAME}}</td>
+                            <td>{{reportequ.REPOUP_RESON}}</td>
+                            <td>{{reportequ.REP_OUT_STATUS}}
+                                <p>{{reportequ.REGROUP_MES_status}}
+                                <input type="radio" v-model="reportequ.REEQU_DEAL" value="unpass">未通過
+                                </p>
+                                <p>
+                                <input type="radio" v-model="reportequ.REEQU_DEAL" value="pass">通過&emsp;
+                                </p>     
+                            </td>
+                            <td>{{reportequ.EQU_SWAPATATNO}}</td>
+                            <td><button @click="updateReequ(reportequ)" class="back_loginbtn backclicked">送出</button></td>
                         </tr>
                     </table>
                 </div>
             </div>
             `,
-        });
-        //小知識管理
+        });//小知識管理
+
+        //小遊戲
         Vue.component('back-game-manage', { 
+            data(){
+                return{
+                    link : "allQuestions",
+                    page1style: "back_btn1",
+                    page2style: "back_btn2",
+                    questions:[],
+                    question:{
+                        QUE_NO:'',
+                        QUE_TITLE:'',
+                        QUE_OPT1:'',
+                        QUE_OPT2:'',
+                        QUE_OPT3:'',
+                        QUE_ANS:'',
+                    }
+                    
+                }
+            },
+            methods:{
+                page1(){
+                    this.link = 'allQuestions'
+                    this.page1style= "back_btn1",
+                    this.page2style= "back_btn2"
+
+                },
+                page2(){
+                    this.link = 'addQuestion'
+                    this.page1style= "back_btn2",
+                    this.page2style= "back_btn1"
+                },
+                createGame(){
+                    console.log('click')
+                    axios.post('php/backstage/backstage_addgame.php', this.question).then(this.question = {}).then(res => {this.getGameList()})
+                },
+                delQue(q){
+                    let question = swal({
+                            title: "確認刪除?",
+                            text: "您將刪除一筆題目!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                            if (willDelete) {
+                                axios.post('php/backstage/backstage_delgame.php', q).then(res => {this.getGameList()});
+                            }
+                            });
+                },
+                getGameList(){
+                    axios.get('php/backstage/backstage_game.php').then(res => {
+                this.questions = res.data; 
+                })
+                },
+
+            },
+            created() {
+                axios.get('php/backstage/backstage_game.php').then(res => {
+                this.questions = res.data; 
+                })
+            },
             template: `
             <div>
                 <div class="back_game_manger_area back_area">
-                    <div class="back_title">小知識管理</div>
-                    <div class="back_loginbtn back_add">新增</div>
-                    <table class="back_game_manger_table back_table">
-                        <tr>
-                            <th>題目編號</th>
-                            <th>遊戲題目</th>
-                            <th>選項</th>
-                            <th>正確解答</th>
-                            <th>狀態</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>C</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>A</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>請問露營遇到熊怎麼辦？</td>
-                            <td>
-                            <p>A：與熊搏鬥</p>
-                            <p>B：爬到樹上</p>
-                            <p>C：趕緊逃跑</p>
-                            </td>
-                            <td>D</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                    </table>
+                <div class="back_title">小知識題庫</div>
+                <div class="back_btn_style">
+                    <button :class="page1style" @click="page1">遊戲題庫</button>
+                    <button :class="page2style" @click="page2">新增題目</button>
                 </div>
-            </div>
-            `,
-        });
-        //素材管理
-        Vue.component('back-postcard-material', { 
-            template: `
-            <div>
-                <div class="back_postcard_material_area back_area">
-                    <div class="back_title">素材管理</div>
-                    <div class="back_loginbtn back_add">新增</div>
-                    <table class="back_postcard_material_table back_table">
-                        <tr>
-                            <th>樣式編號</th>
-                            <th>樣式類別</th>
-                            <th>圖片/材質名稱</th>
-                            <th>圖片</th>
-                            <th>狀態</th>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>1:材質</td>
-                            <td>大理石</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>2:圖樣</td>
-                            <td>營火</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>1:材質</td>
-                            <td>石頭</td>
-                            <td>--</td>
-                            <td><input type="checkbox" class="switch"></td>
-                        </tr>
-                    </table>
+                        <div v-if="link == 'allQuestions'">
+                            <table class="back_game_table back_table">
+                                <tr>
+                                    <th>題目編號</th>
+                                    <th>遊戲題目</th>
+                                    <th>選項</th>
+                                    <th>正確解答</th>
+                                    <th>狀態</th>
+                                </tr>
+                                <tr v-for="question in questions">
+                                    <input type="hidden" v-model="question.QUE_NO" >
+                                    <td>{{question.QUE_NO}}</td>
+                                    <td class="qutitle">{{question.QUE_TITLE}}</td>
+                                    <td class="opt">
+                                        <p>1：{{question.QUE_OPT1}}</p>
+                                        <p>2：{{question.QUE_OPT2}}</p>
+                                        <p>3：{{question.QUE_OPT3}}</p>
+                                    </td>
+                                    <td>{{question.QUE_ANS}}</td>
+                                    <td><button @click="delQue(question)" type="button" class="back_loginbtn">刪除</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="add_question" v-else-if="link == 'addQuestion'">
+                            <form >
+                                <p>
+                                    <label>遊戲題目：</label>
+                                    <input type="text"  v-model="question.QUE_TITLE">
+                                </p>
+                                <p>
+                                    <label>選項1：</label>
+                                    <input type="text" v-model="question.QUE_OPT1">
+                                </p>
+                                <p>
+                                    <label>選項2：</label>
+                                    <input type="text" v-model="question.QUE_OPT2">
+                                </p>
+                                <p>
+                                    <label>選項3：</label>
+                                    <input type="text" v-model="question.QUE_OPT3">
+                                </p>
+                                <p>
+                                    <label>正確解答：</label>
+                                    <input type="text"  v-model="question.QUE_ANS" placeholder="請輸入1,2,3">
+                                </p>
+                            <input @click="createGame" type="button" class="thirdbtn1_green back_send" value="新增"></input>
+                            </form>
+                        </div>
                 </div>
             </div>
             `,
@@ -504,12 +499,38 @@
         new Vue({ 
             el:'#app', 
             data:{
-                content:'back-mem-manage',
+                content:'back-manager',
             },
         });
-
-
-
+    </script>
+    <!-- 後台抓姓名&登出 -->
+    <script>
+        let manager;
+        function backstageloginOut(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                window.location.href="./index.html";
+            }
+            xhr.open("get", "php/backstage/backstage_loginOut.php", true);
+            xhr.send(null);
+        }
+        function init(){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                if(xhr.status == 200){ //success
+                    manager = JSON.parse(xhr.responseText);
+                    if(manager.MGR_ID){
+                        document.getElementById('mgrName').innerText = manager.MGR_USER;      
+                    }
+                }else{ //error
+                    alert(xhr.status);
+                }
+            }
+            xhr.open("get", "php/backstage/backstage_getMgrInfo.php", true);
+            xhr.send(null);
+            document.getElementById('baclout').onclick = backstageloginOut;
+        }
+        window.addEventListener('load',init);
     </script>
 </body>
 </html>

@@ -1,0 +1,258 @@
+//小遊戲
+.game_title{
+    margin: 0 auto;
+    margin-left: 20%;
+    max-width: 200px;
+}
+
+
+.game_title_word{
+    margin: 0 auto;
+    margin-left: 20%;
+    max-width: 200px;
+}
+
+
+.game_table{
+    // height: 100vh;
+    min-height:80vh;
+    background-color: #f6f3ed;
+    background-image: url(../pic/game/game.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position:relative;
+}
+
+
+.game_title_question01{
+    margin: 0 auto;  
+    text-align: center;
+}
+
+
+.myMOUSE{ 
+    cursor: pointer; 
+}
+
+
+#game_button_answer01, #game_button_answer02, #game_button_answer03{
+    text-align:center;
+    display: inline-block;
+}
+
+.game_button_01, .game_button_02, .game_button_03{
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+}
+
+
+.scoreWindow{
+    width: 800px;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    text-align: center;
+    margin: 0 auto;
+    text-decoration:none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    
+}
+
+.rightBox, .wrongBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 44%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 0 auto;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.section_001{
+    padding-top:100px;
+    padding-bottom: 25px;
+}
+
+
+
+.from_group, .from_again{
+    margin-bottom:10px;
+}
+
+
+
+
+// 小遊戲RWD
+@media screen and (max-width: 767px){
+.section1_001 {
+    display: inline-block;
+    margin: 0 auto;
+    width:100%;
+    padding:0;
+}
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .rightBox, .wrongBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 59%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 0 auto;
+    pointer-events: none;
+    }
+
+    .scoreWindow{
+        width: 700px;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+        text-align: center;
+        margin: 0 auto;
+        text-decoration:none;
+        
+    }
+
+    .game_title{
+        margin: 0 auto;
+        margin-left: 19%;
+        max-width: 200px;
+    }
+    
+    
+    .game_title_word{
+        margin: 0 auto;
+        margin-left: 19%;
+        max-width: 200px;
+    }
+
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+
+    .rightBox, .wrongBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 600px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+    }
+
+    .scoreWindow{
+        width: 600px;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+        text-align: center; 
+    }
+
+    .game_title{
+        margin: 0 auto;
+        margin-left: 10%;
+        max-width: 200px;
+    }
+    
+    
+    .game_title_word{
+        margin: 0 auto;
+        margin-left: 10%;
+        max-width: 200px; 
+    }
+
+}
+
+
+@media screen and (max-width: 767px){
+
+    .rightBox, .wrongBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 56%;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+    }
+
+
+    .scoreWindow{
+    width: 85%;
+    background-color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.game_final_img{
+    img{
+      width: 80%;
+    }
+}
+
+.game_title{
+    margin: 0 auto;
+    max-width: 200px;
+}
+
+
+.game_title_word{
+    margin: 0 auto;
+    max-width: 200px; 
+}
+}
+
+
+@media screen and (max-width: 576px){
+
+    .rightBox, .wrongBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 86%;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+    }
+    
+
+    .scoreWindow{
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    text-align: center;
+}
+
+.game_final_img{
+    img{
+      width:70%;
+}
+}
+
+
+.game_title{
+    margin: 0 auto;
+}
+
+
+.game_title_word{
+    margin: 0 auto;
+    max-width: 200px;
+}
+}
+
+
+

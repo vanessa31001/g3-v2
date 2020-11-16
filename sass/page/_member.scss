@@ -64,6 +64,8 @@
         img{
             display: inline-block;
             border-radius: 50%;
+            max-width: 200px;
+            max-height: 200px;
         }
         .member_imageButton{
             display: inline-block;
@@ -89,32 +91,132 @@
     }
     
 }
+#mem_photochange{
+    cursor: pointer;
+    }
+    
+
+.cgemem{
+    border: 2px solid #00A5A3;
+    border-radius: 5px;
+}
 
 
 //悄悄話
 .member_message_alldetail{
+    .member_mes_bigblock{
+    padding:16px;
+    margin: 10px;
     border: 3px solid $greenColor1;
-    .member_message_detail{
-        border: 1px solid $greenColor1;
-        margin: 10px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        img{
-            width: 150px;
-            border-radius: 50%;
-            padding: 10px;
+        .member_message_detail{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .message_bigpic_01{
+                width: 100px;
+                margin-right: 16px;
+                img{
+                    width: 100%;
+                }
+            }
+            .Q_parent{
+                width: 100%;
+                .mes_append{
+                    width: 95%;
+                }
+            }
         }
-    }
-    .message_edit_block{
-        margin-bottom: 10px;
-        button{
-            cursor: pointer;
+        .message_edit_block{
+            margin-bottom: 10px;
+            button{
+                cursor: pointer;
+            }
         }
     }
 }
 
+.member_mes_bigblock{
+}
 
+
+//回覆訊息
+.message_Re{
+    text-align: right;
+}
+
+// 回復
+.aside{
+    width: 300px;
+}
+.aside a{
+    padding: 10px 10px;
+}
+.main{
+    /* border: 1px solid red; */
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 300px - 20px);
+    padding:  0 20px;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+.breadcrumb{
+    margin: 10px 30px 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.info{
+    text-align: right;
+}
+.ONEline img{
+    display: inline-block;
+    height: 15px;
+}
+.ONEline h4{
+        font-size: 15px;
+        font-weight:normal;
+        margin:0px 20px 0 10px;
+        display: inline-block;
+        color: #833c1d;
+}
+.prod{
+    padding: 20px;
+    border: 1px solid #007E85;
+    border-radius: 10px;
+    width:547px;
+    margin-top: 11px;
+}
+.prod p{
+    line-height: 30px;
+    letter-spacing: 2px;
+}
+@media screen and (max-width: 911px){
+    .main{
+        width:100%;
+    }
+    .bottom {
+        padding: 10px;
+    }
+    .aside{
+        display: none;
+    }
+    .prod h2{
+        font-size: 25px;
+        margin: 0;
+    }
+    .prod h3{
+        font-size: 20px;
+        margin: 0; 
+    }
+    .prod p{
+        font-size: 16px; 
+    }
+    // .prod > div{
+    //     display: none;
+    // } 
+
+}
 //揪團露營
 .member_Group_detail{
     text-align: left;
@@ -217,33 +319,6 @@
         }
     }
 }
-.groups_Page{
-    font-weight: bold;
-    text-align: center;
-    li{
-        margin: 0 15px;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        cursor: pointer;
-        a{
-            display: inline-block;
-            line-height: 40px;
-            width: 100%;
-            height: 100%;
-        }
-        &:hover{
-            background-color: $greenColor3;
-            color: $white;
-            border-radius: 5px;
-        }
-    }
-    .thisPage{
-        background-color: $greenColor3;
-        color: $white;
-        border-radius: 5px;
-    }
-}
 
 //交換設備
 .Equipment_record_page{
@@ -253,32 +328,26 @@
             border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
+            padding-bottom: 16px;
             *{
                 display: inline-block;
-                vertical-align: middle;
+                // vertical-align: middle;
                 text-align: center;
-            }
-            img{
-                width: 130px;
             }
             :first-child{
                 width: 10%;
-
             }
             :nth-child(2){
-                width: 30%;
+                width: 50%;
             }
             :nth-child(3){
-                width: 40%;
-                text-align: left;
-            }
-            :last-child{
                 width: 15%;
-                
+                text-align: center;
             }
         }
         li:first-child{
-            background-color:$yellowColor2;
+            background-color:$greenColor2;
+            color:black;
             :nth-child(3){
                 text-align: center;
             }
@@ -318,7 +387,7 @@
             }
             :nth-child(3){
                 width: 40%;
-                text-align: left;
+                text-align: center;
             }
             :last-child{
                 width: 15%;
@@ -326,20 +395,12 @@
             }
         }
         li:first-child{
-            background-color: $yellowColor2;
+            background-color:$greenColor2;
+            color:black;
             :nth-child(3){
                 text-align: center;
             }
         }
-    }
-    .lookexchange::after{
-        content: '';
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        position: absolute;
-        background-color: rgba($color: #000000, $alpha: .4);
     }
 }
 .favorites_recode_page{
@@ -349,45 +410,32 @@
             border: 1px solid $grayColor1;
             position: relative;
             width: 100%;
+            padding-bottom: 16px;
             *{
                 display: inline-block;
                 vertical-align: middle;
                 text-align: center;
             }
-            img{
-                width: 130px;
-            }
             :first-child{
                 width: 10%;
-
             }
             :nth-child(2){
-                width: 30%;
+                width: 50%;
             }
             :nth-child(3){
-                width: 40%;
-                text-align: left;
-            }
-            :last-child{
-                width: 15%;
-                
+                width: 20%;
             }
         }
         li:first-child{
-            background-color:$yellowColor2;
+            background-color:$greenColor2;
+            color:$black;
             :nth-child(3){
                 text-align: center;
             }
         }
     }
-    .lookfavorites::after{
-        content: '';
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        position: absolute;
-        background-color: rgba($color: #000000, $alpha: .4);
+    .lookfavorites{
+        background-color: $grayColor2;
     }
 }
 
@@ -446,32 +494,33 @@
 .camptotal_page{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-}
-.campItem{
-    width: 200px;
-    border: 1px solid black;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 16px;
-    position: relative;
-    img{
-        width: 100%;
-    }
-    div{
-        text-align: left;
-        padding: 8px;
-    }
-    span{
-        position: absolute;
-        right: 10px;
-        top: 0;
-        cursor: pointer;
+    text-align: center;
+    .campItem{
+        width: 29%;
+        border: 1px solid black;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 16px;
+        position: relative;
         img{
-            width: 30px;
+            width: 100%;
+        }
+        div{
+            text-align: left;
+            padding: 8px;
+        }
+        span{
+            position: absolute;
+            right: 10px;
+            top: 0;
+            cursor: pointer;
+            img{
+                width: 30px;
+            }
         }
     }
 }
+
 
 //rwd
 @media screen and (min-width: 1200px){
@@ -548,6 +597,11 @@
             
         }
     }
+    .camptotal_page{
+        .campItem{
+            width: 45%;
+        }
+    }
 }
 @media screen and (max-width: 767px){
     .app_anyway{
@@ -586,12 +640,18 @@
             .member_message_alldetail{
                 border: 3px solid $greenColor1;
                 .member_message_detail{
+                    width: 100%;
                     display: inline-block;
-                    padding: 32px;
-                    img{
+                    .message_bigpic_01{
                         width: 150px;
                         border-radius: 50%;
                         padding: 10px;
+                        margin: 0 auto;
+                    }
+                    .Q_parent{
+                        .mes_append{
+                            width: 100%;
+                        }
                     }
                 }
                 .message_edit_block{
@@ -607,20 +667,17 @@
             .Equipment_record_page{
                 .Equipment_record{
                     li{
-                        img{
-                            width: 100%;
-                        }
                         :first-child{
-                            width: 20%;
-                        }
-                        :nth-child(2){
-                            width: 50%;
-                        }
-                        :nth-child(3){
                             display: none;
                         }
+                        :nth-child(2){
+                            width: 65%;
+                        }
+                        :nth-child(3){
+                            width: 15%;
+                        }
                         :last-child{
-                            width: 25%;
+                            width: 15%;
                             
                         }
                     }
@@ -638,6 +695,30 @@
                     }
                 }
             }
+            .favorites_recode_page{
+                .favorites_record{
+                    li{
+                        :first-child{
+                            display: none;
+                        }
+                        :nth-child(2){
+                            width: 50%;
+                        }
+                        :nth-child(3){
+                            width: 20%;
+                            text-align: center;
+                        }
+                        :last-child{
+                            width: 20%;
+                        }
+                    }
+                }
+            }
+        }
+        .camptotal_page{
+            .campItem{
+                width: 100%;
+            }
         }
     }
 
@@ -647,22 +728,6 @@
         display: block;
         .app_left_aside{
             display: none;
-            // justify-content: space-around;
-            // width: 100%;
-            // border-bottom: 1px solid black;
-            // .aside_subtitle{
-            //     display: none;
-            // }
-            // .buttonClassification{
-            //     flex-direction: column;
-            //     justify-content: flex-end;
-            //     img{
-            //         cursor: pointer;
-            //     }
-            //     button{
-            //         margin: 0;
-            //     }
-            // }
         }
         .app_left_aside_selector{
             display: block;
@@ -689,14 +754,7 @@
                 border: 3px solid $greenColor1;
                 .member_message_detail{
                     display: inline-block;
-                    padding: 16px;
                     text-align: center;
-                    width: calc(100% - 20px);
-                    img{
-                        width: 150px;
-                        border-radius: 50%;
-                        padding: 10px;
-                    }
                 }
                 .message_edit_block{
                     margin-bottom: 10px;
@@ -708,44 +766,77 @@
                     }
                 }
             }
-        }
-        //開團露營
-        .group_everyRow{
-            display: block;
-            height: auto;
-            text-align: center;
-            img{
-                display: none;
-            }
-            ul{
+                    //開團露營
+            .group_everyRow{
+                display: block;
                 height: auto;
-                padding: 0;
-                width: 100%;
-                li{
-                    text-align: left;
+                text-align: center;
+                img{
+                    display: none;
+                }
+                ul{
+                    height: auto;
+                    padding: 0;
+                    width: 100%;
+                    li{
+                        text-align: left;
+                    }
+                }
+                button{
+                    text-align: center;
                 }
             }
-            button{
-                text-align: center;
+            //設備交換
+            .Equipment_record_page{
+                .Equipment_record{
+                    li{
+                        :nth-child(2){
+                            width: 70%;
+                        }
+                        :nth-child(3){
+                            display: none;
+                        }
+                        :last-child{
+                            width: 25%;
+                            
+                        }
+                    }
+                }
             }
-        }
-        //設備交換
-        .Equipment_record_page{
-            .Equipment_record{
-                li{
-                    padding: 8px;
-                    img{
-                        width: 100%;
+            .exchange_record_page{
+                .exchange_record{
+                    li{
+                        img{
+                            width: 130px;
+                        }
+                        :first-child{
+                            display: none;
+                        }
+                        :nth-child(2){
+                            display: none;
+                        }
+                        :nth-child(3){
+                            width: 70%;
+                            text-align: center;
+                        }
+                        :last-child{
+                            width: 25%;
+                        }
                     }
-                    :first-child{
-                        display: none;
-                    }
-                    :nth-child(2){
-                        width: 60%;
-                    }
-                    :last-child{
-                        width: 30%;
-                        
+                }
+            }
+            .favorites_recode_page{
+                .favorites_record{
+                    li{
+                        :nth-child(2){
+                            width: 70%;
+                        }
+                        :nth-child(3){
+                            display: none;
+                        }
+                        :last-child{
+                            width: 25%;
+                        }
                     }
                 }
             }

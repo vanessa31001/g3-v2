@@ -1,12 +1,19 @@
 <?php
 try{
   require_once("../connectBooks.php");
+  $sql = "select CAM_NO, CAM_AREA from camping group by CAM_AREA";
+  $area = $pdo->query($sql);
+  $result[0] = $area->fetchAll(PDO::FETCH_ASSOC);
   $sql = "select CAM_NO, CAM_NAME, CAM_AREA, CAM_COUNTY from camping";
-  $products = $pdo->query($sql);
-  $result=[];
-  while( $groupRow = $products->fetch(PDO::FETCH_ASSOC)){
-    $result[] = array("CAM_NO"=>$groupRow["CAM_NO"],"CAM_NAME"=>$groupRow["CAM_NAME"],"CAM_AREA"=>$groupRow["CAM_AREA"],"CAM_COUNTY"=>$groupRow["CAM_COUNTY"]);
-  }
+  $area = $pdo->query($sql);
+  $area = $pdo->query($sql);
+  $result[1] = $area->fetchAll(PDO::FETCH_ASSOC);
+  $sql = "select * from EQUSORT";
+  $EQU = $pdo->query($sql);
+  $EQU = $pdo->query($sql);
+  $result[2] = $EQU->fetchAll(PDO::FETCH_ASSOC);
+
+
   echo json_encode($result);
    
     

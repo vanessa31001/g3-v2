@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -31,6 +32,12 @@
                 <img src="./pic/index/cloud-01.svg">
             </div>
         </div>
+            <!-- <img src="./pic/index/index_icon1.svg" class="indexicon1">
+            <img src="./pic/index/index_icon2.svg" class="indexicon2">
+            <img src="./pic/index/index_icon3.svg" class="indexicon3">
+            <img src="./pic/index/index_icon4.svg" class="indexicon4">
+            <img src="./pic/index/index_icon5.svg" class="indexicon5"> -->
+
 
         <!-- 首頁形象圖 -->
         <section class="home">
@@ -343,9 +350,9 @@
                             <p class="level3">半年後的你，一定會更有魅力，更有能力，
                             讓自己發光，也讓更多人看見你的夢想。
                             那時的你，也能找到那份等待多時的幸福。</p>
-                            <img class="HomePosLittle" id="Poslittle1" src="./pic/postcardMaterial/littlePic/pic-01.svg">
-                            <img class="HomePosLittle" id="Poslittle2" src="./pic/postcardMaterial/littlePic/pic-02.svg">
-                            <img class="HomePosLittle" id="Poslittle3" src="./pic/postcardMaterial/littlePic/pic-03.svg">
+                            <img class="HomePosLittle" id="Poslittle1" src="./pic/postcardMaterial/littlePic/LittlePic1.svg">
+                            <img class="HomePosLittle" id="Poslittle2" src="./pic/postcardMaterial/littlePic/LittlePic2.svg">
+                            <img class="HomePosLittle" id="Poslittle3" src="./pic/postcardMaterial/littlePic/LittlePic3.svg">
                         </div>
                             <div class="posFromTo">
                                 <p class="level2">From: 阿銘</p>
@@ -372,35 +379,29 @@
                         <div class="img">
                             <img src="./pic/index/1020_icon_game.svg" alt="尚未載入">
                         </div>
-                        <div class="title_text title">露營小知識</div>
+                        <div class="title_text title">
+                            露營小知識
+                        </div>
                     </div>
                     <div class="homepage_sub_title">
                         <div class="sub_text green3 level1 blod">
-                            挑戰露營知識智慧王!答對一題即可獲得200分!
+                        挑戰露營知識智慧王!趕緊來玩小遊戲吧~!
                         </div>
                     </div>
                 </div>
                 <div class="content5">
-                    <div class="game_table">
-
-
-                        <form action="#">
-                            <div class="sub_title game_title_question01">
-                                Q1:請問露營時遇到熊怎麼辦?
-                            </div>
-                            
-                            <div class="game_button">
-                                <button class="mainbtn2" id="game_button_answer01"> A:爬到樹上</button>
-                            </div>
-                            
-                            <div class="game_button">
-                                <button class="mainbtn2" id="game_button_answer01"> B:躺在地上裝死</button>
-                            </div>
-                            
-                            <div class="game_button">
-                                <button class="mainbtn2" id="game_button_answer01"> C:與熊搏鬥</button>
-                            </div>
-                        </form>
+                    <div class="game_table_01">
+                        <div class="game_pic_main">
+                            <img src="./pic/index/game_mainpic.svg" alt="">
+                        </div>
+                        <div class="game_button">
+                            <a href="./game.html"> 
+                                <button class="mainbtn1">開始玩遊戲！</button>
+                            </a>
+                        </div>
+                        <div class="game_pic_main2">   
+                            <img src="./pic/index/mainpage_game_bg.svg" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -456,7 +457,7 @@
                 pic.className = "img";
                 gMainGroup.appendChild(pic);
                 let img =  document.createElement("img");
-                img.src=groupDatas[i].GROUP_PIC1;
+                img.src="./pic/group/"+groupDatas[i].GROUP_PIC1;
                 pic.appendChild(img);
                 let gMainGroupInfo =  document.createElement("div");
                 gMainGroupInfo.className = "gMainGroupInfo";

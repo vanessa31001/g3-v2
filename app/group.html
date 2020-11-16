@@ -8,6 +8,7 @@
     <script src="./vender/vue/vue.min.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -37,246 +38,364 @@
                             <div class="level7 bold green1 report_title">檢舉原因</div>                        
                             <div class="report_reason1 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ1">
-                                <label for="report_equ1">此揪團與露營不相關</label>
+                                <label for="report_equ1">1</label>
                             </div>
                             <div class="report_reason2 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ2">
-                                <label for="report_equ2">此揪團含有色情內容</label>
+                                <label for="report_equ2">2</label>
                             </div>
                             <div class="report_reason3 level1 gray1">
                                 <input type="radio" name="reason0" id="report_equ3">
-                                <label for="report_equ3">此揪團含違法內容</label>
+                                <label for="report_equ3">3</label>
                             </div>
                             <div class="report_close_btn">
-                                <input class="thirdbtn1_green submit_btn" type="submit" name="SB" value="送出">
-                                <button type="button" class="thirdbtn1_green btn_modal_close">取消</button>
+                                <button type="button" class="thirdbtn1_green submit_btn" id="reportSend">送出</button>
+                                <!-- <input class="thirdbtn1_green submit_btn" type="submit" id="reportSend" value="送出"> -->
+                                <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
                             </div>                                        
                         </form>                      
                     </article>
                 </div>
                 <div class="groupMain">
                     <div class="nav">
-                        <a href="./groupNewStart.html" class="startNewGroup"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
+                        <a href="#" class="startNewGroup" onclick="startNewGroup()"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
                         <h2 class="level7 green1">自訂篩選</h2>
                         <div class="serchGroup">
                             <h3 class="level2 green1">選擇地區</h3> 
-                            <select class= "gray1 inputstyle" name="loca">
-                            <option class= "gray1" v-for="city in citys">{{city}}</option>
+                            <select class= "gray1 inputstyle" id="loca" onchange="getgroupinfo()">
+                                <option class= "gray1" value="0" selected>全部地區</option>
+                                <option class= "gray1" value="1">北部</option>
+                                <option class= "gray1" value="2">中部</option>
+                                <option class= "gray1" value="3">南部</option>
+                                <option class= "gray1" value="4">東部</option>
                             </select>
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">剩餘名額</h3> 
-                            <label class= "gray1" v-for="person in people"><input type="checkbox" name="people[]">{{person}}</label>
+                            <label class= "gray1"><input type="checkbox" value="0" name="people" onchange="getgroupinfo()">1~10人</label>
+                            <label class= "gray1"><input type="checkbox" value="1" name="people" onchange="getgroupinfo()">11~20人</label>
+                            <label class= "gray1"><input type="checkbox" value="2" name="people" onchange="getgroupinfo()">20人以上</label>
                         </div>
                         <div class="serchGroup">
                             <h3 class="level2 green1">出團日期</h3> 
-                            <label class= "gray1" v-for="date in dates"><input type="checkbox" name="date[]">{{date}}</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="0" onchange="getgroupinfo()">一周內</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="1" onchange="getgroupinfo()">一個月內</label>
+                            <label class= "gray1"><input type="checkbox" name="date" value="2" onchange="getgroupinfo()">一個月以上</label>
                         </div>
                     </div>
-                    <div class="groups">
-                        <div class="groupBlock"  v-for="gname in groupNames">
-                            <div class="group gray1">
-                                <div class="hot">
-                                    <p class="white">熱門景點</p>
-                                </div>
-                                <div class="gLeft">
-                                    <div class="groupBinImg">
-                                        <img src="./pic/group/G1.jpg" alt="">
-                                    </div>
-                                    <div class="maphashtag">
-                                        <input type="submit" class="tagbtn_green" value="台中市">
-                                        <input type="submit" class="tagbtn_green" value="九甲林露營區">
-                                    </div>
-                                    
-                                </div>
-                                <div class="gRight">
-                                    <div class="headLine">
-                                        <h3 class="level7 green1">{{gname}}</h3>
-                                        <div class="smallInfo">
-                                            <h6 class="level0 gray1">開團日期 :{{now}}</h6>
-                                            <input type="submit" class="reportbtngGroup" value="檢舉">
-                                        </div>
-                                    </div>
-                                    <fieldset class="poster_inform">
-                                        <legend class="level1 green3 poster">主揪</legend>
-                                        <!-- <h4 class="third_title poster">主揪</h4> -->
-                                        <div class="inform_block">
-                                            <div class="inform_pic">
-                                                    <a href=""><img src="pic/equipment/member.png" alt=""></a>
-                                            </div>
-                                            <div class="inform_text">
-                                                <h4><a href="" class="third_title">Yong Hwa</a></h4>
-                                                <p class="level1 gray1">會員等級：鑽石</p>
-                                            </div>                                                                     
-                                        </div>
-                                    </fieldset>
-                                    <span>相關介紹 :</span>
-                                    <p class="info">
-                                        想吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空這裡環境優美，想呼吸新鮮空氣，看美的歡迎參加。吃想玩的歡迎參加，這裡環境優美，想呼吸新鮮空氣，看美麗星空的。
-                                    </p>
-                                    <p>
-                                        <span>出團日期 :</span> 2020年10月15日
-                                    </p>
-                                    <p>
-                                        <span>結束日期 :</span> 2020年10月17日
-                                    </p>
-                                    <div class="aboutPepole">
-                                        <div>
-                                            <p>
-                                                <span>人數上限 :</span> {{limPepole}}人
-                                            </p>
-                                        </div>
-                                        <div class="right">
-                                            <p class="note">
-                                                目前只剩{{leastPepole}}個名額囉~
-                                            </p>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="equthing">
-                                        <span>須具備設備 :</span>
-                                        <div>
-                                            <a href="#" v-for="equ in equs" class="equ">
-                                                <button class="tagbtn_yellow">{{equ}}</button>
-                                            </a>
-                                        </div>
-                                        <p class="gray2 ">
-                                            (標籤可到設備交換區)
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="more">
-                                    <input type="submit" class="mainbtn1" value="我要參加">
-                                    <a href="./groupInfo.html"><input type="submit" class="secondbtn1" value="查看詳情"></a>
-                                </div>
-                            </div>
-                            <div class="msg gray1">
-                                <a class="third_title">最新留言（目前5則留言)</a>
-                                <div class="msgInfo">
-                                    <div class="inform_block">
-                                        <div class="inform_pic">
-                                                <a href="#"><img src="pic/equipment/member.png" alt=""></a>
-                                        </div>
-                                        <div class="inform_text">
-                                            <h4><a href="" class="third_title">Yong Hwa</a></h4>
-                                        </div>                                                                      
-                                    </div>
-                                    <div class="level1">
-                                        <span>留言:</span>
-                                        <p>To Bella, 不用喔，露營區有提供食材和飲用水。<br>To Yong Hwa, 開車十分鐘的方有便利商店喔。</p>
-                                    </div>
-                                    <div class="level0">
-                                        留言日期:2020-09-30
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="groups" id="groups">
                     </div>
-                    <!-- <div class="groupsPage">
-                        <ul class="level0 green3">
-                            <li>&lt;</li>
-                            <li class="thisPage">1</li>
-                            <li><a href="./group2.html" class="level0 green3">2</a></li>
-                            <li><a href="./group2.html" class="level0 green3">&gt;</a></li>
 
-                        </ul>
-                    </div> -->
                 </div>
             </div>
         </section>
-        <!-- <section class="bgcColor">
-            <div class="wrap">
-                <div class="title">
-                    內容寫在這裡2
-                </div>
-            </div>
-        </section> -->
 
     <!-- footer 開始-->
     @@include('./layout/footer.html')
     <!-- footer 結束-->
     </div>
     <script src="./js/logintext.js"></script>
+    <script src="./js/normalFunc.js"></script>
     <!-- 載入資料 -->
     <script>
-        function showAllGroups(json){
-            let groups = JSON.parse(json);
-            console.log(groups);
-            let groups = document.getElementById(`groups`);
-            let gMainGroup =  document.createElement("div");
-                gMainGroup.className = "gMainGroup";
-                linkGroup.appendChild(gMainGroup);
-
-
+        getgroupinfo();
+        function $create(tag){
+            return  document.createElement(tag);
         }
-        let areaxhr = new XMLHttpRequest();
-            areaxhr.onload = function(){
-            if(areaxhr.status == 200){ //success
-                showAllGroups(areaxhr.responseText);
-            }else{ //error
-                alert(areaxhr.status);
+        function $append(father,child){
+            return  father.appendChild(child);
+        }
+        function getEQU(i){
+            let equthing = document.getElementById(`equthing${i}`);
+            if(equdata == "沒資料"){
+                let div = $create("div");
+                div.innerText = "此團無須自備設備";
+                div.style.fontSize ="16px";
+                $append(equthing,div);
+            }else{
+                let div = $create("div");
+                $append(equthing,div);
+                let a;
+                for(let j=0; j<equdata.length ; j++){
+                    a=$create("a");
+                    a.className="equ";
+                    a.innerHTML = ` <button class="tagbtn_yellow">${equdata[j].設備類別名稱}</button>`;
+                    $append(div,a);
+                }
+                let p = $create("p");
+                p.className = "gray2";
+                p.innerText = "(標籤可到設備交換區)"
+                $append(equthing,p);
+                
             }
         }
-        areaxhr.open("get", `./php/group/group.php`, true);
-        areaxhr.send(null);
+        function findEQU(i,equs){
+            let EQUsxhr = new XMLHttpRequest();
+            EQUsxhr.onload = function(){
+                if(EQUsxhr.status == 200){ //success
+                    equdata = JSON.parse(EQUsxhr.responseText);  
+                    getEQU(i);
+                }else{ //error
+                    alert(EQUsxhr.status);
+                }
+            }
+            EQUsxhr.open("get", `./php/group/groupUseEqu.php?GROUP_NO=${equs}`, true);
+            EQUsxhr.send(null);
+        }
+        // 最新留言
+        function getMSG(i){
+            let msg = document.getElementById(`msg${i}`);
+            let a = $create("a");
+            a.className="third_title";
+            a.innerText=`最新留言（目前${msgdata[0].多少留言}則留言)`;
+            $append(msg,a);
+            if(msgdata[0].多少留言!=0){
+                let div = $create("div");
+                div.className= "msgInfo";
+                div.innerHTML=`<div class="inform_block">
+                                    <div class="inform_pic">
+                                            <a href="#"><img src="./pic/member/${msgdata[0].會員頭貼}" alt=""></a>
+                                    </div>
+                                    <div class="inform_text">
+                                        <h4><a href="" class="third_title">${msgdata[0].會員暱稱}</a></h4>
+                                    </div>                                                                      
+                                </div>
+                                <div class="level1">
+                                    <span>留言:</span>
+                                    <p>${msgdata[0].留言內容}</p>
+                                </div>
+                                <div class="level0">
+                                    留言日期:${msgdata[0].留言時間}
+                                </div>`;
+                $append(msg,div);               
+            }
+        }
+        // 留言
+        function findMsg(i,msgs){
+            let msgsxhr = new XMLHttpRequest();
+            msgsxhr.onload = function(){
+                if(msgsxhr.status == 200){ //success
+                    msgdata = JSON.parse(msgsxhr.responseText); 
+                    getMSG(i);
+                           
+                }else{ //error
+                    alert(msgsxhr.status);
+                }
+            }
+            msgsxhr.open("get", `./php/group/msg.php?GROUP_NO=${msgs}`, true);
+            msgsxhr.send(null);
+        }
+        // 團
+        function showAllGroups(groupsdata){
+            let groups= document.getElementById("groups");
+            groups.innerHTML="";
+            console.log(groupsdata);
+            if(groupsdata.length == 0){
+                groups.innerHTML="<p class='green1 level5' style='text-align: center;'>目前尚無相關露營揪團</p>";
+            }else{
+                for(let i=0; i < groupsdata.length; i++){
+                    let groupBlock, group, hot, p, gLeft,img, maphashtag, inputg,Right,headLine,h6,fieldset,
+                    inform_block,inform_pi,inform_text, h4,span, aboutPepole,right, equthing;
+                    //團部分
+                    groupBlock =  $create("div");
+                    groupBlock.className = "groupBlock";
+                    $append(groups,groupBlock);
+                    group =  $create("div");
+                    group.className = "group gray1";
+                    $append(groupBlock,group);
+                    if(groupsdata[i].收藏數>=2){
+                        hot =  $create("div");
+                        hot.className = "hot";
+                        hot.innerHTML = "<p class='white'>熱門景點</p>"
+                        $append(group,hot);
+                    }
+                    gLeft =  $create("div");
+                    gLeft.className = "gLeft";
+                    $append(group,gLeft);
+                    groupBinImg =  $create("div");
+                    groupBinImg.className = "groupBinImg";
+                    $append(gLeft,groupBinImg);
+                    img =  $create("img");
+                    img.src = "./pic/group/"+groupsdata[i].圖片1;
+                    $append(groupBinImg,img);
+                    maphashtag =  $create("div");
+                    maphashtag.className = "maphashtag";
+                    $append(gLeft,maphashtag);
+                    input =  $create("input");
+                    input.className = "tagbtn_green";
+                    input.type="submit";
+                    input.value=groupsdata[i].縣市;
+                    $append(maphashtag,input);
+                    input =  $create("input");
+                    input.className = "tagbtn_green";
+                    input.type="submit";
+                    input.value=groupsdata[i].營地;
+                    $append(maphashtag,input);
+                    gRight =  $create("div");
+                    gRight.className = "gRight";
+                    $append(group,gRight);
+                    headLine =  $create("div");
+                    headLine.className = "headLine";
+                    $append(gRight,headLine);
+                    gname =  $create("h3");
+                    gname.className = "level7 green1";
+                    gname.innerText = groupsdata[i].團名;
+                    $append(headLine,gname);
+                    smallInfo =  $create("div");
+                    smallInfo.className = "smallInfo";
+                    $append(headLine,smallInfo);
+                    h6 =  $create("h6");
+                    h6.className = "level0 gray1";
+                    h6.innerText = "開團日期 :" + groupsdata[i].開團日;
+                    $append(smallInfo,h6);
+                    input =  $create("input");
+                    input.type = "hidden";
+                    input.value=groupsdata[i].團編號;
+                    $append(smallInfo,input);
+                    if(groupsdata[i].檢舉揪團編號 == null){
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.value="檢舉";
+                        $append(smallInfo,input);
+                    }else{
+                        input =  $create("input");
+                        input.className = "reportbtngGroup";
+                        input.type="submit";
+                        input.disabled = true;
+                        input.style.color='#C4C4C4';
+                        input.style["border-color"]="#C4C4C4";
+                        input.value="已檢舉";
+                        $append(smallInfo,input);
+                    }
+                    
 
+                    fieldset =  $create("fieldset");
+                    fieldset.className = "poster_inform";
+                    $append(gRight,fieldset);
+                    legend =  $create("legend");
+                    legend.className = "level1 green3 poster";
+                    legend.innerText = "主揪";
+                    $append(fieldset,legend);
+                    inform_block =  $create("div");
+                    inform_block.className = "inform_block";
+                    $append(fieldset,inform_block);
+                    inform_pic =  $create("div");
+                    inform_pic.className = "inform_pic";
+                    $append(inform_block,inform_pic);
+                    img =  $create("img");
+                    img.src="./pic/member/"+groupsdata[i].會員照片;
+                    $append(inform_pic,img);
+                    inform_text =  $create("div");
+                    inform_text.className = "inform_text";
+                    $append(inform_block,inform_text);
+                    h4 =  $create("h4");
+                    h4.className = "third_title";
+                    h4.innerText=groupsdata[i].會員名;
+                    $append(inform_text,h4);
+                    p =  $create("p");
+                    p.className = "info";
+                    p.innerHTML = "<span>相關介紹 :</span> "+groupsdata[i].揪團介紹;
+                    $append(gRight,p);
+                    p =  $create("p");
+                    p.innerHTML = "<span>出團日期 :</span> "+groupsdata[i].出發日;
+                    $append(gRight,p);
+                    p =  $create("p");
+                    p.innerHTML = "<span>結束日期 :</span> "+groupsdata[i].回程日;
+                    $append(gRight,p);
+                    aboutPepole =  $create("div");
+                    aboutPepole.className = "aboutPepole";
+                    $append(gRight,aboutPepole);
+                    p =  $create("p");
+                    p.innerHTML = "<span>人數上限 :</span> "+groupsdata[i].人數上限 + "人";
+                    $append(aboutPepole,p);
+                    right =  $create("div");
+                    right.className = "right";
+                    right.innerHTML = "<p class='note'>目前只剩"+groupsdata[i].剩餘名額 + "個名額囉~</p>";
+                    $append(aboutPepole,right);
+                    equthing =  $create("div");
+                    equthing.className = "equthing";
+                    equthing.id = "equthing"+i;
+                    equthing.innerHTML = "<span>須具備設備 :</span>";
+                    $append(gRight,equthing);
+                    findEQU(i,groupsdata[i].團編號);
+                    more =  $create("div");
+                    more.className = "more";
+                    more.innerHTML = "<input type='submit' class='mainbtn1' value='我要參加'>";              
+                    more.innerHTML +=`<a href='./groupInfo.html?GROUP_NO=${groupsdata[i].團編號}'><input type='submit' class='secondbtn1' value='查看詳情'></a>`;
+                    $append(group,more);
+                    //留言部分
+                    div =$create("div");
+                    div.className ="msg gray1";
+                    div.id = "msg"+i;
+                    $append(groupBlock,div);
+                    findMsg(i,groupsdata[i].團編號);
+                }
+            }
+    
+        }
+        function getgroupinfo(){
+            let loca=document.getElementById("loca").value;
+            let people = document.getElementsByName("people");
+            let date = document.getElementsByName("date");
+            var peopleChoice =[];
+            var dateChoice =[];
+            let j=0;
+            for(i=0; i< people.length; i++){
+                if(people[i].checked){
+                    peopleChoice[j] = people[i].value;
+                    j++;
+                }
+            }
+            j=0;
+            for(i=0; i< date.length; i++){
+                if(date[i].checked){
+                    dateChoice[j] = date[i].value;
+                    j++;
+                }
+            }      
+            let groupsxhr = new XMLHttpRequest();
+            groupsxhr.onload = function(){
+                if(groupsxhr.status == 200){ //success
+                    console.log(groupsxhr.responseText);
+                    let groupsdata = JSON.parse(groupsxhr.responseText);
+                    console.log(groupsdata);
+                    showAllGroups(groupsdata);
+                    // 檢舉揪團
+                    var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
+                    for(let i =0; i<reportbtngGroup.length; i++){
+                        // alert(groupsdata[i].檢舉揪團編號);
+                        reportbtngGroup[i].addEventListener("click", function(){
+                            // alert();
+                            if(groupsdata[i].會員編號 == member.MEMNO){
+                                alert("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
+                            }else{
+                                report("reportbtngGroup",this.value,this.previousSibling.value);
+                            }
+                            
+                        });
+                    }
+                    console.log(groupsxhr.responseText);
+                }else{ //error
+                    alert(groupsxhr.responseText);
+                }
+            }
+            groupsxhr.open("get", `./php/group/group.php?loca=${loca}&people=${peopleChoice}&date=${dateChoice}`, true);
+            groupsxhr.send(null);
+        }
     </script>
     <script>
         //燈箱
         $(document).ready(function(){
-            $(".reportbtngGroup").on("click", function(){
-                    $(".report_overlay").addClass("-on");
-                });
-                $(".btn_modal_close").on("click", function(){
-                    $(".report_overlay").addClass("-opacity-zero");
-                    $("input[name=reason0]").each(function(){
-                        $(this).prop("checked",false);//把所有的核方框的property都取消勾選
-                    }); 
-                    setTimeout(function(){
-                        $(".report_overlay").removeClass("-on -opacity-zero");
-                    }, 1000);
+            $(".btn_modal_close").on("click", function(){
+                $(".report_overlay").addClass("-opacity-zero");
+                $("input[name=reason0]").each(function(){
+                    $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+                }); 
+                setTimeout(function(){
+                    $(".report_overlay").removeClass("-on -opacity-zero");
+                }, 1000);
             });
-            
-        });
-        new Vue({
-            el: '#groupAllList',
-            data: {  
-                citys: ['全部地區','北部','中部','南部','東部'],       // 變數存放的地方
-                people: ['不限','1~4人','5~8人','9人以上'],
-                dates: ['不限','一周內','一個月內','一個月以上'],
-                equs: ['帳篷','睡袋','其他'], 
-                groupNames: ['九甲林冬天露營團','宇宙第一露營隊','一起來去露營'],
-                today: '',
-                start:'2020-12-15',
-                numPepole: 5,
-                limPepole: 20,
-            },
-            methods: {
-
-            },
-            computed: {
-                now(){
-                    let today = new Date();
-                    var  seperator1 =  "-" ;
-                    var  year = today.getFullYear();
-                    var  month = today.getMonth() + 1;
-                    var  strDate = today.getDate();
-                    if  (month >= 1 && month <= 9) {
-                    month =  "0"  + month;
-                    }
-                    if  (strDate >= 0 && strDate <= 9) {
-                        strDate =  "0"  + strDate;
-                    }
-                    var  currentdate = year + seperator1 + month + seperator1 + strDate;
-                    return  currentdate;
-                },
-                leastPepole(){
-                    let least = this.limPepole - this.numPepole
-                    return least;
-                }
-            },
-            watch: { 
-            },
         });
     </script>
 </body>

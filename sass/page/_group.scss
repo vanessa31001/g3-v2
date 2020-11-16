@@ -20,137 +20,6 @@ input[type="submit"], button{
     cursor: pointer;
     position: static;
 }
-//燈箱
-// .overlay{
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100vh;
-//     background-color: hsla(0, 0%, 0%, .5);
-//     opacity: 0;
-//     z-index: -1;
-//     transition: opacity 1s;
-//     article{
-//         background-color: #fff;
-//         width: 90%;
-//         max-width: 500px;
-//         border-radius: 5px;
-//         padding: 30px;
-//         position: absolute;
-//         top: 50%;
-//         left: 50%;
-//         transform: translate(-50%, -50%);
-//         .report_title{
-//             text-align: center;
-//         }
-//         .report_form{
-//             margin-top: 20px;
-//             .report_reason1{
-//                 text-align: center;
-//                 padding: 20px;
-//                 input[type="radio"]{
-//                     display: none;
-//                 }
-//                 label{
-//                     border-radius: 50px;
-//                     border: 1px solid $orangeColor1;
-//                     cursor: $cursor;
-//                     padding: 15px;
-//                     max-width: 200px;
-//                     width: 100%;
-//                     display: block;
-//                     margin: auto;
-
-//                     &:hover{
-//                         background-color: $orangeColor1;
-//                         color: $white;
-//                     }
-//                 }
-//                 input[type="radio"]:checked + label{
-//                     background-color: $orangeColor1;
-//                     color: $white;
-//                 }
-                
-//             }
-//             .report_reason2{
-//                 text-align: center;
-//                 padding: 20px;
-//                 input[type="radio"]{
-//                     display: none;
-//                 }
-//                 label{
-//                     border-radius: 50px;
-//                     border: 1px solid $orangeColor1;
-//                     cursor: $cursor;
-//                     padding: 15px;
-//                     max-width: 200px;
-//                     width: 100%;
-//                     display: block;
-//                     margin: auto;
-
-//                     &:hover{
-//                         background-color: $orangeColor1;
-//                         color: $white;
-//                     }
-//                 }
-//                 input[type="radio"]:checked + label{
-//                     background-color: $orangeColor1;
-//                     color: $white;
-//                 }
-//             }
-//             .report_reason3{
-//                 text-align: center;
-//                 padding: 20px;
-//                 input[type="radio"]{
-//                     display: none;
-//                 }
-//                 label{
-//                     border-radius: 50px;
-//                     border: 1px solid $orangeColor1;
-//                     cursor: $cursor;
-//                     padding: 15px;
-//                     max-width: 200px;
-//                     width: 100%;
-//                     display: block;
-//                     margin: auto;
-
-//                     &:hover{
-//                         background-color: $orangeColor1;
-//                         olor: $white;
-//                     }
-//                 }
-//                 input[type="radio"]:checked + label{
-//                     background-color: $orangeColor1;
-//                     color: $white;
-//                 }
-//             }
-//             .report_close_btn{
-//                 text-align: center;
-//                 margin: 30px 0 0 0;
-//                 .submit_btn{
-//                     margin-right: 20px;
-//                 }
-//                 .btn_modal_close{
-//                     cursor: pointer;
-                    
-//                     &:focus{
-//                         outline: none;
-//                     }
-//                 }
-//             }
-
-//         }
-//     }
-// }
-// .overlay.-on{
-//     opacity: 1;
-//     z-index: 5;
-// }
-
-// .overlay.-opacity-zero{
-//     opacity: 0;
-// }
 
 // #app{
     //麵包屑
@@ -166,6 +35,7 @@ input[type="submit"], button{
                 height: auto;
                 a{
                     font-weight:bold;
+                    text-decoration: none;
                     &:hover{
                         color: $greenColor3;
                     }
@@ -366,9 +236,8 @@ input[type="submit"], button{
                 color: $grayColor1;
                 .headLine{
                     display: flex;
-                    // flex-wrap: wrap;
                     justify-content:space-between;
-                    // align-items:center; 
+                    min-height:60px;
                     H3{
                         margin: 0;
                         vertical-align: top;
@@ -391,14 +260,18 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
-                    height: 70px;
+                    text-align: left;
+                    max-height: 70px;
                     overflow: hidden;
+                    margin: 10px;
                 }
                 .infomore{
                     height: auto;
+                    max-height: 100%;
                 }
                 span{
                     color: $greenColor1;
+                    font-size: 16px;
                 }
                 //會員資訊
                 .poster_inform{
@@ -451,7 +324,8 @@ input[type="submit"], button{
                         .equ{
                             display: inline-block;
                             margin: 0;
-                            margin-right: 15px;
+                            margin-left: 15px;
+                            margin-top: 10px;
                         }
                     }
 
@@ -537,8 +411,7 @@ input[type="submit"], button{
             display: inline-block; 
             width: calc((100% - 30px )/ 4 ); 
             margin-right: 10px; 
-            margin-bottom: 10px;
-            &:last-child{
+            &:nth-child(4){
                 margin-right: 0px; 
             }  
             .inform_pic{
@@ -649,6 +522,7 @@ input[type="submit"], button{
             font-size: 0;
             overflow: hidden;
             div{
+                text-align: center;
                 margin-top : 5px;
                 font-weight: bold;
             }
@@ -676,6 +550,7 @@ input[type="submit"], button{
                         }
                     }
                     .info{
+                        text-align: left;
                         .btns{
                             display: flex;
                             justify-content: space-between;
@@ -754,6 +629,16 @@ input[type="submit"], button{
                     // padding: 5px;
                     font-size: 16px;
                 }
+                #equSort{
+                    &::after{
+                        content: "abc";
+                        display: block;
+                        clear: both;
+                      }
+                    label{
+                        float: left;
+                    }
+                }
             }
             .btn{
                 width: 100%;
@@ -793,6 +678,7 @@ input[type="submit"], button{
                     font-weight: 30px;
                 }
                 .info{
+                    text-align: left;
                     height: 70px;
                     overflow: hidden;
                 }
@@ -855,6 +741,7 @@ input[type="submit"], button{
                             display: inline-block;
                             margin: 0;
                             margin-right: 15px;
+                            margin-top: 10px;
                         }
                     }
 
@@ -1040,11 +927,6 @@ input[type="submit"], button{
                 }
             }
         }      
-    }
-    .gPepole{
-        .inform_block{
-            text-align: center;
-        }
     }
     .groupNewStart {
         display: flex;
@@ -1251,6 +1133,7 @@ input[type="submit"], button{
                     position: static;
                     width: 100%;
                     max-width: 300px;
+                    margin-right:10px;
                 }
                 .secondbtn1{
                     display: inline-block;
