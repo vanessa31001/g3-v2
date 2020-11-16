@@ -5,7 +5,7 @@
             header("Access-Control-Allow-Origin: *");
             require_once("../connectBooks.php");
             $sql = 
-            "SELECT MEMNO,MEM_ID,repeat('*',length(MEM_PSW)) 'MEM_PSW',MEM_NAME,MEM_NICKNAME,MEM_IMG,MEM_STATUS FROM member";
+            "SELECT MEMNO,MEM_ID,MEM_NAME,MEM_NICKNAME,MEM_IMG,MEM_STATUS FROM member";
             $equipment = $pdo->prepare($sql);
             $equipment->bindValue(':memNo', $_SESSION["MEMNO"]);
             $equipment->execute();

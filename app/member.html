@@ -92,89 +92,113 @@
     
     <script>
         Vue.component("memberInformation", {
-          data(){
-              return{
-                  sss: "編輯",
-              }
-          },
-          template: `
-              <div class="member_information">
-                      
-                  <div class="member_information_title level5">
-                      <!-- 會員資訊標題 -->
-                      <img class="memberTitle_img" src="./pic/member/avatar.png">
-                      會員資訊
-                  </div>
-                
-                  <div class="member_information_detail">
-
-                      <!-- 會員資訊圖片 -->
-                      <div class="member_image">
-                      <div class="member">
-                          <div class="memputPhoto">
-                              <img id="MemberPhotoPut" src='./pic/member/member_01.png'>
-                          </div>
-                          <div class="level0 member_imageButton">
-                            <button class="thirdbtn1_green">
-                            <label for="memupPhoto"  id="mem_photochange">
-                            編輯大頭像</label></button>
-                              <input type="file" id="memupPhoto" style="display:none" name="upFile[]">
-                              <div>*限定格式png、jpg</div>
-                          </div>
-                      </div>
-
-                      <!-- 會員資訊內容 -->
-                      <div class="member_information_main"> 
-                          <div class="level2">編號<span class="gray1">00000000001</span></div>
-                          <div class="level2">帳號<span class="gray1">iamwang12345@gmail.com</span></div>
-                          <div class="level2">密碼<span class="gray1 aaa">*************</span></div>
-                          <div class="level2">姓名<span class="gray1 aaa">王大槌</span></div>
-                          <div class="level2">暱稱<span class="gray1 aaa">槌槌</span></div>
-
-                      
-                      
-                          <div class="edit_block">
-                              <button class="thirdbtn1_green modify" @click='hhh' href="javascript:;" >{{sss}}</button>
-                          </div>
-                      </div>
-
-
-                  </div>
-              
-                  </div>
-                      
-              </div>
-              
-              `,
-
-          methods: {
-            hhh() {
-                this.sss == "確定" ? this.sss ="編輯" : this.sss ="確定";
-              // let str = $(this).text() == "確定" ? "編輯" : "確定";
-              // $(this).text(str); // 按鈕被點擊後，在“编辑”和“確定”之間切換
-
-              let a = document.querySelectorAll(".aaa");
-
-              for (let i = 0; i < a.length; i++) {
-                let obj_text = a[i].childElementCount;
-                if (obj_text == 0) {
-                  a[i].innerHTML =
-                    "<input class='changetext' type='text' style='border: 2px solid #00A5A3;border-radius: 5px;' value='" +
-                    a[i].innerText +
-                    "'>";
-
-                  // a[i].innerHTML=`<input class='changetext' type='text' value='${a[i].innerText}'>`
-                } else {
-                  a[i].innerText = document.querySelectorAll(
-                    ".changetext"
-                  )[0].value;
+            data(){
+                return{
+                    sss: "編輯",
+                    memInfo:{},
+                    imgSrc:'./pic/member/',
                 }
-              }
             },
-          },
+            created(){
+                    axios.get('php/member/getInfo.php').then(res => {
+                        this.memInfo = res.data;
+                    })
+            },
+            template: `
+                <div class="member_information">
+                    <div class="member_information_title level5">
+                        <!-- 會員資訊標題 -->
+                        <img class="memberTitle_img" src="./pic/member/avatar.png">
+                        會員資訊
+                    </div>
+                    <div class="member_information_detail">
+                        <!-- 會員資訊圖片 -->
+                        <div class="member_image">
+                        <div  class="member" enctype="multipart/form-data">
+                            <div class="memputPhoto">
+                                <img id="MemberPhotoPut" :src="imgSrc + memInfo.MEM_IMG">
+                            </div>
+                            <div class="level0 member_imageButton">
+                                <button class="thirdbtn1_green">
+                                <label for="memupPhoto"  id="mem_photochange">
+                                編輯大頭像</label></button>
+                                <input type="file" id="memupPhoto" style="display:none" name="upFile" @change="ChangeImg">
+                                <div>*限定格式png、jpg</div>
+                            </div>
+                        </div>
+                        <!-- 會員資訊內容 -->
+                        <div class="member_information_main"> 
+                            <div class="level2">編號<span class="gray1">{{memInfo.MEMNO}}</span></div>
+                            <div class="level2">帳號<span class="gray1">{{memInfo.MEM_ID}}</span></div>
+                            <div class="level2">密碼<span class="gray1 aaa" id="memPsw"></span></div>
+                            <div class="level2">姓名<span class="gray1 aaa" id="memName">{{memInfo.MEM_NAME}}</span></div>
+                            <div class="level2">暱稱<span class="gray1 aaa" id="memNick">{{memInfo.MEM_NICKNAME}}</span></div>
+                            <div class="edit_block">
+                                <button class="thirdbtn1_green modify" @click='hhh()'>{{sss}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                `,
+
+            methods: {
+                hhh() {
+                    if(this.sss == "確定"){
+                        if(document.getElementById('memPsw').firstChild.value !== '' &&
+                           document.getElementById('memName').firstChild.value !== '' &&
+                           document.getElementById('memNick').firstChild.value !== ''){
+                                let info = {MEM_PSW: document.getElementById('memPsw').firstChild.value,
+                                            MEM_NAME: document.getElementById('memName').firstChild.value,
+                                            MEM_NICKNAME: document.getElementById('memNick').firstChild.value};
+                                axios.post('php/member/change_memInfo.php', info).then(res => {
+                                    alert('修改完成');
+                                }).then(res => {
+                                    axios.get('php/member/getInfo.php').then(res => {
+                                        document.getElementById('memPsw').innerHTML = '';
+                                        document.getElementById('memName').innerHTML = res.data.MEM_NAME;
+                                        document.getElementById('memNick').innerHTML = res.data.MEM_NICKNAME;
+                                    })
+                                })
+                            this.sss ="編輯";
+                        }else{
+                            alert('欄位不可空白');
+                        }
+                    }else{
+                        document.getElementById('memPsw').innerHTML = "<input type='password'>";
+                        document.getElementById('memName').innerHTML = "<input type='text'>";
+                        document.getElementById('memNick').innerHTML = "<input type='text'>";
+                        this.sss ="確定";
+                    }
+                },
+                ChangeImg(event){
+                            var fd = new FormData();
+                            console.log(event.target.files[0]);
+                            fd.append('upFile', event.target.files[0]);
+                            let config = {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            }
+                            axios.post('php/member/change_memImg.php', fd,config).then( res => {
+                                // console.log(res.data);
+                                // document.getElementById('MemberPhotoPut').src = './pic/member/' + res.data;
+                                // alert('修改完成');
+                                this.getImg();
+                            })
+                            .catch( res => {
+                                console.log(res)
+                            })
+                },
+                getImg(){
+                    axios.get('php/member/getInfo.php').then(res => {
+                        this.memInfo = res.data;
+                    })
+
+                }
+            },
         });
-      
-      Vue.component("memberMessage", {
+        Vue.component("memberMessage", {
         data() {
           return {
             msg_data: [],
@@ -250,8 +274,6 @@
             </div>
             `,
       });
-    
-    
         Vue.component('memberGroup', {
             data(){
                 return{
@@ -594,7 +616,7 @@
         new Vue({
             el: '#app',
             data: {
-                content: 'memberMessage',
+                content: 'memberInformation',
                 now_page: 'thirdbtn1_green',
                 other_page: 'thirdbtn2_green',
             },
