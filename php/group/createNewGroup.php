@@ -14,9 +14,9 @@ try{
     $msg ->bindValue(":GROUP_START_DATE", $_POST["GROUP_START_DATE"]);
     $msg ->bindValue(":GROUP_DEADLINE", $_POST["GROUP_DEADLINE"]);
     $msg ->bindValue(":GROUP_DEPART_DATE", $_POST["GROUP_DEPART_DATE"]);
-    $msg ->bindValue(":GROUP_PIC1", $_POST["GROUP_PIC1"]);
-    $msg ->bindValue(":GROUP_PIC2", $_POST["GROUP_PIC2"]);
-    $msg ->bindValue(":GROUP_PIC3", $_POST["GROUP_PIC3"]);
+    $msg ->bindValue(":GROUP_PIC1", "G1.jpg");
+    $msg ->bindValue(":GROUP_PIC2", "G2.jpg");
+    $msg ->bindValue(":GROUP_PIC3", "G3.jpg");
     $msg->execute();
 
 
