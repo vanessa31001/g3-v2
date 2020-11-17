@@ -217,7 +217,7 @@
                     this.selnumber = value;
                     
                     this.$emit('update',this.selnumber);
-                
+                    // alert('1');
                     
                 }
             },
@@ -627,6 +627,8 @@
                 },
 
                 thisequ(equ){
+                    document.getElementsByClassName('equmain')[0].style.display = 'block';
+                    document.getElementsByClassName('otherblock2')[0].style.display = 'block';
                     this.equ = this.allRows2[equ];
                     console.log(this.equ);
                     
@@ -647,8 +649,7 @@
                     document.getElementsByClassName('page')[0].style.display ='none';
                     this.allRows2=[];
                     
-                    document.getElementsByClassName('equmain')[0].style.display = 'block';
-                    document.getElementsByClassName('otherblock2')[0].style.display = 'block';
+                    
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -896,15 +897,6 @@
                     let equmain =document.getElementsByClassName('equmain')[0];
                     let otherblock2= document.getElementsByClassName('otherblock2')[0];
                     let minsorts= document.getElementsByClassName('minsorts');
-                    for(let i=0;i<minsorts.length;i++){
-                        minsorts[i].addEventListener('click',function(){
-                            let nowValue = minsorts[i].value;
-                            cliclLiftnow(nowValue);
-                        })
-                        function cliclLiftnow(nowValue){
-                            console.log(nowValue);
-                        }
-                    }
                 }
         window.addEventListener('load',doFirst);
     </script>
