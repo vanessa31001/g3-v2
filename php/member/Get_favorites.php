@@ -5,7 +5,7 @@
             header("Access-Control-Allow-Origin: *");
             require_once("../connectBooks.php");
             $sql = 
-            "SELECT CAMPCO_NO,CAM_NAME,CAM_PIC1 FROM campcolloection c1 join camping c2 on c1.CAMPCO_CAMNO=c2.CAM_NO where CAMPCO_MEMNO=:memId";
+            "SELECT CAM_NO,CAMPCO_NO,CAM_NAME,CAM_PIC1 FROM campcolloection c1 join camping c2 on c1.CAMPCO_CAMNO=c2.CAM_NO where CAMPCO_MEMNO=:memId";
             $camping = $pdo->prepare($sql);
             $camping->bindValue(':memId', $_SESSION["MEMNO"]);
             $camping->execute();

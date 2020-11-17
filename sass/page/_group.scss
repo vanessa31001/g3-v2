@@ -214,7 +214,7 @@ input[type="submit"], button{
                 .maphashtag{
                     margin: 30px 0 ;
                     input{
-                        margin: 0 15px 0 0;
+                        margin: 0 15px 10px 0;
                     }
                 }
                 // .maphashtagI{
@@ -253,18 +253,17 @@ input[type="submit"], button{
                         }
                     }
                 }
-                p{
-                    margin: 0 0 10px ;
-                    font-size: 16px;
-                    line-height: 25px;
-                    font-weight: 30px;
-                }
                 .info{
+                    margin:0 0 10px 0;
                     text-align: left;
                     max-height: 70px;
                     overflow: hidden;
-                    margin: 10px;
                 }
+                p{
+                    font-size: 16px;
+                    line-height: 25px;
+                    font-weight: 30px;
+                }                
                 .infomore{
                     height: auto;
                     max-height: 100%;

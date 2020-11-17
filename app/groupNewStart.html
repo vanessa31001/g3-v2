@@ -42,7 +42,7 @@
                         </div>
                         <div class="pic">
                             <label class="uploadImg">
-                                <input type="file" id="theFile" accept="image/png, image/jpeg"   multiple>
+                                <input type="file" id="theFile" name="upFile[]" accept="image/png, image/jpeg"   multiple>
                                 <img src="pic/equipment/photo-camera.svg" alt="">
                                 <span class="level0 gray2">(請上傳三張照片)</span>
                             </label>
@@ -74,12 +74,14 @@
                                         </select>
                                         <select class="inputstyle level1 gray1" id="camName">
                                         </select>
-                                        <a href="./camping.html"><input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考"></a>
+                                        <a href="./camping.html">
+                                            <input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">人數上限 :</div>
-                                    <div><input type="number" class="inputstyle" placeholder="1" min="1" id="peopleLimit">人(含主揪)</div>
+                                    <div class="level1 gray1"><input type="number" class="inputstyle" placeholder="1" min="1" id="peopleLimit">人(含主揪)</div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">出團日期 :</div>
@@ -98,7 +100,7 @@
                         </div>
                         <div class="btn" style="text-align: center;">
                             <!-- <input type="button" class="mainbtn2" value="暫存資料" id="save"> -->
-                            <input type="button" class="mainbtn1" value="發佈" id="create">
+                            <a href="./group.html"><input type="button" class="mainbtn1" value="發佈" id="create"></a>
                         </div>
                     </div>
 
@@ -114,6 +116,7 @@
             //上傳圖片
             $("#theFile").change(function(){
                 var imgPath = $(this)[0].value;
+                // alert(imgPath);
                 var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
                 if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
                     if (typeof (FileReader) != "undefined") {
@@ -160,8 +163,11 @@
                 peopleLimit.value = sessionStorage['peopleLimit'];
                 startdate.value = sessionStorage['startdate'];
                 enddate.value = sessionStorage['enddate'];
-                equs=sessionStorage['equSort'].split(','); 
-                for(let i=0; i<equ.length-1; i++){
+                camArea.value = sessionStorage['camArea'];
+                camName.value = sessionStorage['camName'];
+                equs=sessionStorage['equSort']; 
+                let equ = document.querySelectorAll(".equ");
+                for(let i=0; i<equ.length; i++){
                     for(let j=0; j<equs.length; j++){  
                         if(i==equs[j]){
                             equ[i].checked=true;
@@ -169,7 +175,7 @@
                     }
                 }
             }
-            //暫存存入顯示sessionStorage
+            //暫存存入sessionStorage
             toCamping.addEventListener("click", function(){
                     sessionStorage['groupName'] = groupName.value;
                     sessionStorage['groupIntro'] = groupIntro.value;
@@ -178,24 +184,72 @@
                     sessionStorage['enddate'] = enddate.value;
                     sessionStorage['camArea'] = camArea.value;
                     sessionStorage['camName'] = camName.value;
-                    let equs="";
+                    let equ = document.querySelectorAll(".equ");
+                    var equss=[];;
+                    let j=0;
                     for(let i=0; i<equ.length; i++ ){
                         if(equ[i].checked){
-                            equs+=`${i},`;
+                            equss[j]=`${i}`;
+                            j++;
                         }
                     }
-                    sessionStorage['equSort']=equs;
+                    sessionStorage['equSort']=equss;
             });
         }
+        function saveEQU(equs,groupId){
+            for(i=0;i<equs.length;i++){
+                let equxhr = new XMLHttpRequest();
+                equxhr.onload = function(){
+                    if(equxhr.status == 200){ //success 
+                        groupId = JSON.parse(equxhr.responseText);
+                        console.log(groupId);
+                        
+                    }else{
+                        alert(equxhr.responseText);
+                    }  
+                }
+                equxhr.open("Post", "./php/group/useEQU.php", true);
+                equxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                let data_info = `GROUP_NO=${groupId}&G_EQU_NO=${equs[i]}`;
+                equxhr.send(data_info);
+            }
+        }
+        var GROUP_PIC1,GROUP_PIC2,GROUP_PIC3;
+        $id("theFile").addEventListener('change', (e) => {
+            GROUP_PIC1 = e.target.files[0].name;
+            GROUP_PIC2 = e.target.files[1].name;
+            GROUP_PIC3 = e.target.files[2].name;
+        });
         $id("create").addEventListener("click", function(){
-            alert(groupName.value);
-            alert(groupIntro.value);
-            alert(peopleLimit.value);
-            alert(startdate.value);
-            alert(enddate.value);
-            alert(camArea.value);
-            alert(camName.value);
-
+            let equ = document.querySelectorAll(".equ");
+            var equs=[];
+            j=0;
+            for(let i=0; i < equ.length; i++){
+                if(equ[i].checked){
+                    equs[j]=equ[i].value;
+                    j++;
+                }
+            }
+            let date = formatDate(new Date());
+            let msgxhr = new XMLHttpRequest();
+            msgxhr.onload = function(){
+                if(msgxhr.status == 200){ //success 
+                    groupId = JSON.parse(msgxhr.responseText);
+                    alert(groupId);
+                    if(equs){
+                        saveEQU(equs,groupId);
+                    }
+                    
+                }else{
+                    alert(msgxhr.responseText);
+                }  
+            }
+            msgxhr.open("Post", "./php/group/createNewGroup.php", true);
+            msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            let data_info = `GROUP_NAME=${groupName.value}&GROUP_INTRO=${groupIntro.value}&GROUP_CAM_NO=${camName.value}&GROUP_PEOPLE_LIMIT=${peopleLimit.value}&GROUP_START_DATE=${date}&GROUP_DEADLINE=${enddate.value}&GROUP_DEPART_DATE=${startdate.value}&equs=${equs}&GROUP_PIC1=${GROUP_PIC1}&GROUP_PIC2=${GROUP_PIC2}&GROUP_PIC3=${GROUP_PIC3}`;
+            msgxhr.send(data_info);
+            
+            
         });
         $id("camArea").onchange = function(){
             listName();
@@ -203,12 +257,11 @@
         function listEQU(){
            var equSort = $id("equSort");
            for(let i= 0 ; i < city[2].length; i++){
-                if( city[1][i].CAM_AREA ==camArea.value){
-                    let option = document.createElement("option");
-                    option.innerText=city[1][i].CAM_NAME;
-                    option.value=city[1][i].CAM_NAME;
-                    $append(camName,option);
-                }
+            let label = document.createElement("label");
+            label.className ="level1";
+            label.innerHTML=`   <input type="checkbox" class="type equ" value="${city[2][i].EQUSORT_NO}">
+                                ${city[2][i].EQUSORT_EQUNAME}`;
+            $append(equSort,label);
             }
         }
         function listName(){
@@ -218,7 +271,7 @@
                 if( city[1][i].CAM_AREA ==camArea.value){
                     let option = document.createElement("option");
                     option.innerText=city[1][i].CAM_NAME;
-                    option.value=city[1][i].CAM_NAME;
+                    option.value=city[1][i].CAM_NO;
                     $append(camName,option);
                 }
             }
@@ -246,6 +299,7 @@
                             // window.location.href='./groupNewStart.html';
                         }
                     city = JSON.parse(areaxhr.responseText);
+                    console.log(city);
                     listArea();
                     listEQU();
                 }else{ //error
@@ -257,6 +311,7 @@
         }
         function doFirst(){
             getdata();
+            listName();
             setTimeout("getSession()",100);
         }   
 
