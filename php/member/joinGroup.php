@@ -5,7 +5,7 @@
             header("Access-Control-Allow-Origin: *");
             require_once("../connectBooks.php");
             $sql = 
-            "SELECT G_DEATIL_NO,GROUP_PIC1,GROUP_NAME,GROUP_DEPART_DATE,CAM_NAME,date_format(group_depart_date,'%Y-%m-%d') 'group_Date',GROUP_INTRO,GROUP_PEOPLE_SIGNUP,G_DATEIL_PARTNUM,G_DEATIL_GROUP_NO
+            "SELECT GROUP_NO,G_DEATIL_NO,GROUP_PIC1,GROUP_NAME,GROUP_DEPART_DATE,CAM_NAME,date_format(group_depart_date,'%Y-%m-%d') 'group_Date',GROUP_INTRO,GROUP_PEOPLE_SIGNUP,G_DATEIL_PARTNUM,G_DEATIL_GROUP_NO
             FROM group_detail d join campinggroups c on C.GROUP_NO = D.G_DEATIL_GROUP_NO
                                 JOIN camping cam ON c.GROUP_CAM_NO = cam.CAM_NO
             where G_DETAIL_MEMNO=:memId and GROUP_STATUS = '0'"; 
