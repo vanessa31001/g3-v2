@@ -8,6 +8,7 @@
     <script src="./vender/vue/vue.min.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -356,9 +357,11 @@
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
+                    console.log(groupsxhr.responseText);
                     let groupsdata = JSON.parse(groupsxhr.responseText);
+                    console.log(groupsdata);
                     showAllGroups(groupsdata);
-                    //檢舉揪團
+                    // 檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
                     for(let i =0; i<reportbtngGroup.length; i++){
                         // alert(groupsdata[i].檢舉揪團編號);
@@ -372,7 +375,7 @@
                             
                         });
                     }
-                    // console.log(groupsxhr.responseText);
+                    console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);
                 }

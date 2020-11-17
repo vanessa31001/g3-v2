@@ -6,6 +6,7 @@
     <title>設備交換</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -32,7 +33,7 @@
                     </ul>    
                 </div>
 
-                <form class="equpost_block">
+                <form class="equpost_block" action="php/equipment/equipment_post.php" method="post"  enctype="multipart/form-data">
                     <div class="equpost_pic">
                         <div class="post_bigimg">                            
                             <img id="upequimg0" src="pic/equipment/photo-camera.svg" alt="">
@@ -41,10 +42,16 @@
                             <p class="level1 gray1">(限PNG、JPG、JPEG檔，建議大小為400 × 400)</p>
                         </div>
                         <label class="post_minimg">
-                            <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg">
-                            <img id="upequimg1" src="pic/equipment/plus.svg" alt="">
-                            <img id="upequimg2" src="pic/equipment/plus.svg" alt="">
-                            <img id="upequimg3" src="pic/equipment/plus.svg" alt="">
+                            <input class="prev_btn" type="file" id="equFile1" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
+                            <img  id="upequimg01" src="pic/equipment/plus.svg" alt="">
+                        </label>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile2" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
+                            <img  id="upequimg02" src="pic/equipment/plus.svg" alt="">
+                        </label>
+                        <label class="post_minimg">
+                            <input class="prev_btn" type="file" id="equFile3" name="equpic[]" accept="image/png, image/jpeg ,image/jpg">
+                            <img id="upequimg03" src="pic/equipment/plus.svg" alt="">
                         </label>
                         <div class="preview_btn">
                             <!-- <input class="prev_btn" type="file" id="equFile" multiple="multiple" accept="image/png, image/jpeg"> -->
@@ -61,6 +68,8 @@
                                 <tr>
                                     <td><label for="equ_name" class="third_title  equ_info_name">設備名稱：</label></td>
                                     <td><input class="inputstyle" type="text" name="equname" id="equname01" placeholder="請填寫設備名稱..."></td>
+                                    <td><input class="inputstyle mempost1"  name="mempost" style="display: none;"></td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -70,92 +79,92 @@
                                         <select class="selectstyle" name="equ_info_sort_sel" id="sort_select">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
-                                                <option value="family">家庭帳</option>
-                                                <option value="small">小型帳</option>
-                                                <option value="livingroom">客廳帳</option>
-                                                <option value="cloth">更衣帳</option>
-                                                <option value="cook">炊事帳</option>
+                                                <option value="1">家庭帳</option>
+                                                <option value="2">小型帳</option>
+                                                <option value="3">客廳帳</option>
+                                                <option value="4">更衣帳</option>
+                                                <option value="5">炊事帳</option>
                                             </optgroup>
                                             <optgroup label="睡袋">
-                                                <option value="adult">成人睡袋</option>
-                                                <option value="kid">兒童睡袋</option>
-                                                <option value="couple">雙人睡袋</option>
+                                                <option value="6">成人睡袋</option>
+                                                <option value="7">兒童睡袋</option>
+                                                <option value="8">雙人睡袋</option>
                                             </optgroup>
                                             <optgroup label="其他">
-                                                <option value="tabchai">桌椅</option>
-                                                <option value="cooing">炊具</option>
-                                                <option value="material">小物</option>
+                                                <option value="9">桌椅</option>
+                                                <option value="10">炊具</option>
+                                                <option value="11">小物</option>
                                             </optgroup>
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                         <label for="equ_name" class="third_title equ_info_name">我想要的設備類別：</label>
                                     </td>
                                     <td>
-                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want01">
+                                        <select class="selectstyle" name="equ_info_sort_sel1" id="sort_select_want01">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
-                                                <option value="family">家庭帳</option>
-                                                <option value="small">小型帳</option>
-                                                <option value="livingroom">客廳帳</option>
-                                                <option value="cloth">更衣帳</option>
-                                                <option value="cook">炊事帳</option>
+                                                <option value="1">家庭帳</option>
+                                                <option value="2">小型帳</option>
+                                                <option value="3">客廳帳</option>
+                                                <option value="4">更衣帳</option>
+                                                <option value="5">炊事帳</option>
                                             </optgroup>
                                             <optgroup label="睡袋">
-                                                <option value="adult">成人睡袋</option>
-                                                <option value="kid">兒童睡袋</option>
-                                                <option value="couple">雙人睡袋</option>
+                                                <option value="6">成人睡袋</option>
+                                                <option value="7">兒童睡袋</option>
+                                                <option value="8">雙人睡袋</option>
                                             </optgroup>
                                             <optgroup label="其他">
-                                                <option value="tabchai">桌椅</option>
-                                                <option value="cooing">炊具</option>
-                                                <option value="material">小物</option>
+                                                <option value="9">桌椅</option>
+                                                <option value="10">炊具</option>
+                                                <option value="11">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select class="selectstyle" name="equ_info_sort_sel" id="sort_select_want02">
+                                        <select class="selectstyle" name="equ_info_sort_sel2" id="sort_select_want02">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
-                                                <option value="family">家庭帳</option>
-                                                <option value="small">小型帳</option>
-                                                <option value="livingroom">客廳帳</option>
-                                                <option value="cloth">更衣帳</option>
-                                                <option value="cook">炊事帳</option>
+                                                <option value="1">家庭帳</option>
+                                                <option value="2">小型帳</option>
+                                                <option value="3">客廳帳</option>
+                                                <option value="4">更衣帳</option>
+                                                <option value="5">炊事帳</option>
                                             </optgroup>
                                             <optgroup label="睡袋">
-                                                <option value="adult">成人睡袋</option>
-                                                <option value="kid">兒童睡袋</option>
-                                                <option value="couple">雙人睡袋</option>
+                                                <option value="6">成人睡袋</option>
+                                                <option value="7">兒童睡袋</option>
+                                                <option value="8">雙人睡袋</option>
                                             </optgroup>
                                             <optgroup label="其他">
-                                                <option value="tabchai">桌椅</option>
-                                                <option value="cooing">炊具</option>
-                                                <option value="material">小物</option>
+                                                <option value="9">桌椅</option>
+                                                <option value="10">炊具</option>
+                                                <option value="11">小物</option>
                                             </optgroup>
                                         </select>
-                                        <select  class="selectstyle" name="equ_info_sort_sel" id="sort_select_want03">
+                                        <select  class="selectstyle" name="equ_info_sort_sel3" id="sort_select_want03">
                                             <optgroup label="帳篷">
                                                 <option value="" disabled selected hidden>請選擇設備類別</option>
-                                                <option value="family">家庭帳</option>
-                                                <option value="small">小型帳</option>
-                                                <option value="livingroom">客廳帳</option>
-                                                <option value="cloth">更衣帳</option>
-                                                <option value="cook">炊事帳</option>
+                                                <option value="1">家庭帳</option>
+                                                <option value="2">小型帳</option>
+                                                <option value="3">客廳帳</option>
+                                                <option value="4">更衣帳</option>
+                                                <option value="5">炊事帳</option>
                                             </optgroup>
                                             <optgroup label="睡袋">
-                                                <option value="adult">成人睡袋</option>
-                                                <option value="kid">兒童睡袋</option>
-                                                <option value="couple">雙人睡袋</option>
+                                                <option value="6">成人睡袋</option>
+                                                <option value="7">兒童睡袋</option>
+                                                <option value="8">雙人睡袋</option>
                                             </optgroup>
                                             <optgroup label="其他">
-                                                <option value="tabchai">桌椅</option>
-                                                <option value="cooing">炊具</option>
-                                                <option value="material">小物</option>
+                                                <option value="9">桌椅</option>
+                                                <option value="10">炊具</option>
+                                                <option value="11">小物</option>
                                             </optgroup>
                                         </select>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>
                                         <label for="equ_name" class="third_title equ_info_name">商品說明：</label>
@@ -167,8 +176,8 @@
                             </table>
 
                             <div class="check_btn">
-                                <button class="mainbtn2 pre_check_btn">預覽設備</button>
-                                <button class="mainbtn1">確認刊登</button>
+                                <!-- <button class="mainbtn2 pre_check_btn">預覽設備</button> -->
+                                <button type="submit" name="submit" class="mainbtn1">確認刊登</button>
                             </div>
 
                         
@@ -178,7 +187,7 @@
                     </div>
 
                     
-                </form>                       
+                </form>                        
             </div>
         </section>
         
@@ -202,29 +211,78 @@
 
 
         //上傳圖片
+
         function doFirst(){    
-            document.getElementById('equFile').onchange = fileChange;
-        }
-        
-        function fileChange(){
-            let file = document.getElementById('equFile').files[0];
-            // let message = '';
-            let readFile = new FileReader();
-            readFile.readAsDataURL(file);
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg0');
-                image.src = readFile.result;
-                image.style.maxWidth = '400px';
-                image.style.maxHeight = '400px';
-            });
-            readFile.addEventListener('load',function(e){
-                let image = document.getElementById('upequimg1');
-                image.src = readFile.result;
-                image.style.maxWidth = '70px';
-                image.style.maxHeight = '70px';
-            });        
-        }
+            document.getElementById('equFile1').onchange = fileChange1;
+            document.getElementById('equFile2').onchange = fileChange2;
+            document.getElementById('equFile3').onchange = fileChange3;
+
+            let mempo = "";
+            
+                function fileChange1(){
+                let file = document.getElementById('equFile1').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg01');
+                    image.src = readFile.result;
+                });        
+            }
+            function fileChange2(){
+                let file = document.getElementById('equFile2').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg02');
+                    image.src = readFile.result;
+                });        
+            }
+            function fileChange3(){
+                let file = document.getElementById('equFile3').files[0];
+                let readFile = new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg0');
+                    image.src = readFile.result;
+                });
+                readFile.addEventListener('load',function(e){
+                    let image = document.getElementById('upequimg03');
+                    image.src = readFile.result;
+                });        
+            }
+
+            let xhr = new XMLHttpRequest();
+
+
+                xhr.addEventListener('load',function(){
+                    if( xhr.status == 200 ){
+                        let equpo = JSON.parse(xhr.responseText);
+                            if(Object.keys(equpo).length == 0){
+                                
+                                }else{
+                                    mempo = parseInt(equpo.MEMNO);
+                                    console.log(typeof(mempo));
+                                    document.getElementsByClassName('mempost1')[0].value = mempo;
+                                    console.log(document.getElementsByClassName('mempost1')[0].value);
+                                    
+                                }
+                            }else{
+                                alert( xhr.status );
+                            }                                
+                        });
+                            xhr.open("Get", "php/equipment/equipment2.php", true);
+                            xhr.send( null );
+        }        
         window.addEventListener('load',doFirst);
+
     </script>
     
     

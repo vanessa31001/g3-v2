@@ -6,6 +6,8 @@
     <title>設備交換</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -17,7 +19,7 @@
     <!-- 燈箱開始 -->
     @@include('./layout/login.html')
     <!-- 燈箱結束 -->
-        <div class="bgcColor bg_dis">
+    <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
             <div class="wrap">
                 <div class="title">
@@ -31,61 +33,15 @@
                     </ul>    
                 </div>
 
-                <div class="equ_select">
-                    <div class="select01">
-                        <label class="bold level5 gray1 select_text1" for="sel_text">我想交換的</label>
-                        <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort">
-                            <optgroup label="帳篷">
-                                <option value="" disabled selected hidden>請選擇類別</option>
-                                <option value="family">家庭帳</option>
-                                <option value="small">小型帳</option>
-                                <option value="livingroom">客廳帳</option>
-                                <option value="cloth">更衣帳</option>
-                                <option value="cook">炊事帳</option>
-                            </optgroup>
-                            <optgroup label="睡袋">
-                                <option value="adult">成人睡袋</option>
-                                <option value="kid">兒童睡袋</option>
-                                <option value="couple">雙人睡袋</option>
-                            </optgroup>
-                            <optgroup label="其他">
-                                <option value="tabchai">桌椅</option>
-                                <option value="cooing">炊具</option>
-                                <option value="material">小物</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="select02">
-                        <label class="bold level5 gray1 select_text2" for="sel_text">其他人想交換的</label>
-                        <select class="equ_select_bar selectstyle" name="equ_sort" id="equ_sort">
-                            <optgroup label="帳篷">
-                                <option value="" disabled selected hidden>請選擇類別</option>
-                                <option value="family">家庭帳</option>
-                                <option value="small">小型帳</option>
-                                <option value="livingroom">客廳帳</option>
-                                <option value="cloth">更衣帳</option>
-                                <option value="cook">炊事帳</option>
-                            </optgroup>
-                            <optgroup label="睡袋">
-                                <option value="adult">成人睡袋</option>
-                                <option value="kid">兒童睡袋</option>
-                                <option value="couple">雙人睡袋</option>
-                            </optgroup>
-                            <optgroup label="其他">
-                                <option value="tabchai">桌椅</option>
-                                <option value="cooing">炊具</option>
-                                <option value="material">小物</option>
-                            </optgroup>
-                        </select>
-                    </div>  
-                </div>
-
+                <!-- 篩選 -->
+                <!-- <equselect class="equ_select"></equselect> -->
+                
                 <div class="equ_container">
                     <div class="equbar">
                         <div class="nav">
                             <div class="title_btn_block">
                                 <div class="equipment_select_title">
-                                <h2 class="level7 green1">搜尋設備</h2>
+                                    <h2 class="level7 green1">搜尋設備</h2>
                                 </div>
                                 <div class="post_btn">
                                     <a href="./equipment_post.html">
@@ -94,158 +50,29 @@
                                 </div>
                             </div>
                             <!-- <hr> -->
-                            <div class="equlist_block">
-                                <div class="equlist">
-                                    <!-- <img src="pic/equipment/icon01.png" alt="">                    -->
-                                    <h3>
-                                    <a class="level2 green1" href="">所有商品</a></h3>
-                                </div>        
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a  class="level2 green1" href="">露營帳篷</a></h3>
-                                    <div v-for="tent in tents"><a class="level2 gray1 minsorts" href="">{{tent}}</a></div>    
-                                </div>
-                                <hr>        
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a class="level2 green1" href="">睡袋</a></h3>
-                                    <div v-for="sbag in sbags"><a class="level2 gray1 minsorts" href="">{{sbag}}</a></div>    
-                                </div>  
-                                <hr>      
-                                <div class="equlist">                   
-                                    <h3>
-                                    <a class="level2 green1" href="">其他</a></h3>
-                                    <div v-for="other in others"><a class="level2 gray1 minsorts" href="">{{other}}</a></div>    
-                                </div>
-                            </div>
+
+                            <!-- 左邊側邊攔 -->
+                            <equlista class="equlist_block" @update="equselect"></equlista>
                             
                         </div>    
                     </div>
-
-                    <div class="equmain_all">
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent01.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent02.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent03.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent04.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent05.png" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent06.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent07.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent08.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                        <div class="equ_card1">
-                            <a href="./equipment_product.html">
-                                <div class="equ_img1">
-                                    <img src="pic/equipment/f_tent09.jpg" alt="">
-                                </div>            
-                            </a>
-                            <div class="equ_text">
-                                <a href="./equipment_product.html">
-                                <div class="bold level5 green1 equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                </a>
-                                <a class="bold level1 gray1 poster_text" href="">刊登者：Yong Hwa</a>
-                            </div>       
-                        </div>
-                    </div>       
-                </div>                       
+                    
+                    <!-- 右邊全部設備 -->
+                    <div class="equmain_all" id="equallprod">
+                        <equamainall :item-number = "select"></equamainall>
+                        
+                    </div>
+                    
+                </div>
+                
+                <!-- 其他設備 -->
+                <!-- <otherequ></otherequ> -->
+                
+                
             </div>
         </section>
         
-        </div>  
+        </div> 
 
     <!-- footer 開始-->
     @@include('./layout/footer.html')
@@ -253,35 +80,704 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script>
-        let vm = new Vue({
-            el: '#equipment',
-            data: {  
-                tents: ['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],       // 變數存放的地方
-                sbags: ['成人睡袋','兒童睡袋','雙人睡袋'],       
-                others: ['桌椅','炊具','小物'],       
-                
+        
+    </script>
+    <script>
+        Vue.component('equlista',{
+            data(){
+                return{
+                    // all:['家庭帳','小型帳','客廳帳','更衣帳','炊事帳','成人睡袋','兒童睡袋' ,'雙人睡袋','桌椅','炊具','小物'],
+                    tents:['家庭帳','小型帳','客廳帳','更衣帳','炊事帳'],
+                    sbags: ['成人睡袋','兒童睡袋' ,'雙人睡袋' ],       
+                    others: ['桌椅','炊具','小物'],
+                    selnumber:0,
+                };
             },
+            
             methods: {
+                navselect(value){
+                    if(document.getElementsByClassName('equtemp2')[0].style.display == 'none' && document.getElementsByClassName('equsPage')[0].style.display == 'none'){
+
+                        document.getElementsByClassName('equtemp2')[0].style.display = 'flex';
+                        document.getElementsByClassName('equsPage')[0].style.display = 'block';
+                        document.getElementsByClassName('equmain')[0].style.display = 'none';
+                        document.getElementsByClassName('otherblock2')[0].style.display = 'none';
+                    }else{
+                        document.getElementsByClassName('equtemp2')[0].style.display = 'none';
+                        document.getElementsByClassName('equsPage')[0].style.display = 'none';
+                        document.getElementsByClassName('equmain')[0].style.display = 'block';
+                        document.getElementsByClassName('otherblock2')[0].style.display = 'block';
+                    }
+                    this.selnumber = value;
+                    
+                    this.$emit('update',this.selnumber);
+                    
+                    
+                }
+            },
+            template:`
+            <div>
+                <div class="equlist">
+                    <h3><a class="level2 green1" href="">所有商品</a></h3>
+                </div>        
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3 class="level2 green1">露營帳篷</h3>
+                    <div v-for="(tent,index) in tents"><p class="level2 gray1 minsorts" name="tent" :value = "index+1" @click="navselect(index+1)">{{tent}}</p></div>    
+                </form>
+                <hr>        
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3 class="level2 green1">睡袋</h3>
+                    <div v-for="(sbag,index) in sbags"><p class="level2 gray1 minsorts" :value = "index+6" @click="navselect(index+6)">{{sbag}}</p></div>    
+                </form>  
+                <hr>      
+                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                    <h3 class="level2 green1">其他</h3>
+                    <div v-for="(other,index) in others"><p class="level2 gray1 minsorts" :value = "index+9" @click="navselect(index+9)">{{other}}</p></div>    
+                </form>
+            </div>
+            `,
+        });
+
+        Vue.component('equamainall',{
+            props:{
+                itemNumber: Number,
 
             },
-            computed: {
+            data(){
+                return{
+                    allRows: [],
+                    allRows2: [],
+                    allRows3: [],
+                    indexpage:9,
+                    indexpagefirst:0,
+                    image:'pic/equipment/',
+                    // asd: this.itemNumber,
+                    page0:[],
+                    change:1,
+                    nochange:0,
+                    equ:{
+                    
+                    },
+                    equthisdescipt:'',
+                    poster:'',
+                    reports:['此設備與本網站不相關','此設備為危險物品','此設備為不雅物品'],
+                    reporton:0,
+                    repoNow:{
+
+                    },
+                    // equreportreason:,
+                    otherequss1:0,
+                    otherequss2:1,
+                    otherequss3:2,
+                    othernumber:0,
+                    clicknavbar:0,
+                    // clicknavbar1:0,
+                };
             },
-            watch: { 
+            watch:{
+                itemNumber:function(newValue){
+                    this.allRows2 = [];
+                    this.allRows3 = [];
+                    this.nochange = 0;
+                    this.change = 1;
+                        for(let i =0;i<this.allRows.length;i++){
+                            if(this.allRows[i].EQUSORT == this.itemNumber){
+                                this.allRows3.push(this.allRows[i]);
+                                this.nochange += 1;
+                            }
+                            
+                        }
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows3.length){
+                                this.allRows2.push(this.allRows3[i]);
+                            }
+                        }
+                    this.page0 = [];
+                            if(this.allRows2.length ==0){                                
+                                document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="none";
+                                document.getElementsByClassName("noitem")[0].style.display="block";
+                            }else{
+                                for(let i=1; i<=Math.ceil(this.allRows3.length/9); i++){
+                                    this.page0.push(i);
+                                }
+                                document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="block";
+                                document.getElementsByClassName("noitem")[0].style.display="none";
+                            }
+                            this.clicktime+=1;
+                },
+                othernumber:function(value){
+                    if(value>0){
+                        axios.post('php/equipment/equipmentother.php')
+                        .then(res => {
+                            let asfg = res.data;
+                            
+                            // for(let i = 0; i<3;i++){
+                                
+                            // }
+                            this.otherequss1 = asfg[0];
+                            this.otherequss2 = asfg[1];
+                            this.otherequss3 = asfg[2];
+                        })
+                        .catch(error => console.log(error)); 
+                    }
+                    
+                },
+
+                
+
+            },            
+            
+            created(){
+                // console.log(this.itemNumber)
+                // this.dfh=this.itemNumber;
+                axios.get('php/equipment/equipment.php')
+                        .then(res => {
+                            this.changepage(res.data)
+                            console.log(res.data);
+                        })
+                        .catch(error => console.log(error))
+            
+                        // .then(data => console.log(this.allRows));
+                        // console.log(location.href);
+                        
+            },
+            beforeDestroy(){
+                // axios.get('php/equipment/equipment2.php')
+                //         .then(res => {
+                //             this.reportfun(res.data)
+                //             console.log(res.data);
+                //         })
+                //         .catch(error => console.log(error))
+                
+                // axios.post('php/equipment/equipmentreport.php', { 
+                //     EQU_MEMNO:this.equ.EQU_MEMNO,
+                //     EQUSORT:this.equ.EQUSORT,
+                //     REPOUP_RESON:this.reporton,
+                //     REP_OUT_MEMNO:parseInt(this.repoNow.MEMNO),
+                // }).then(function (response) {
+                //         console.log(response);
+                //     }).catch(function (error) {
+                //         console.log(error);
+                //     }); 
+
+                
+                
+            },
+            template:`
+            <div  class="equtemp" >
+                <div class="equtemp2" >
+                    <div class="equ_card1" v-for="(card,index) in allRows2" :key="index" @click="thisequ(index);reportfun()">
+                        
+                            <div class="equ_img1">
+                                <img :src="image + allRows2[index].EQU_PIC1" alt="">
+                            </div>            
+                        
+                        <div class="equ_text">
+                            
+                                <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
+                            
+                            <span class="level1 gray1">刊登者：</span>
+                            <span class="bold level1 gray1 poster_text">{{card.MEM_NICKNAME}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="equsPage" >
+                    <ul class="level0 green3 page">
+                        <li @click="changeback">&lt;</li>
+                        <li v-for="pages in page0" class="level0 green3 equpage" name="eqpage" @click="page1(pages)">{{pages}}</li>
+                        <li><p @click="changefront" class="level0 green3" >&gt;</p></li>
+                    </ul>
+                </div>
+                <div class="noitem">
+                    <span class="level7 gray1">"此頁面目前無任何設備"</span>
+                </div>
+                
+                
+                <!--單一產品-->
+                <div class="equmain">
+                    <div class="equpic">
+                        <div class="bigimg">
+                            <img class="noweqimg" :src="image + equ.EQU_PIC1" alt="">
+                        </div>
+                        <div class="minimg">
+                            <img class="eqimg now" :src="image + equ.EQU_PIC1" alt="">
+                            <img class="eqimg" :src="image + equ.EQU_PIC2" alt="">
+                            <img class="eqimg" :src="image + equ.EQU_PIC3" alt="">
+                        </div>
+                    
+                                
+                                
+                        <div class="btn_block">
+                            <button class="thirdbtn2_green reportbtn" @click="equreport1">檢舉</button>
+                            <div class="collect_checkbox equ_collect_checkbox">
+                                <input type="checkbox" id="collect_checkbox">
+                                <label class="equ_collect_btn" for="collect_checkbox" id="the_label">收藏</label>
+                            </div>
+                        </div>
+
+                        <div class="poster_inform">
+                                    <h4 class="third_title poster">刊登會員資訊</h4>
+                                    <div class="inform_block01">
+                                        <div class="inform_block02">
+                                            <div class="inform_block02_pic">
+                                                <a href=""><img :src="image + equ.MEM_IMG" alt=""></a>
+                                            </div>
+                                            <div class="inform_block02_text">
+                                                <h4><a href="" class="third_title level2">{{equ.MEM_NICKNAME}}</a></h4>
+                                                
+                                            </div>                               
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="equdescribe">
+                                <div class="equdesblock">
+                                    <div class="sub_title green1 level7">{{equ.EQU_NAME}}</div>
+                                    <div class="third_title level2 equ_third">商品說明</div>
+                                    <p class="level1 gray1">✔{{equ.EQU_DESCR}}</p>
+                                    <div class="itemdescribe">
+                                        <div class="third_title level2 equ_third">注意事項</div>
+                                        <p class="level1 gray1">◆完美主義者、有潔癖者，務必先詢問過狀況可接受再來交換，以免不愉快與爭議。</p>
+                                        <p class="level1 gray1">◆刊登商品有全新與二手，有些閒置許久，難免有些瑕疵〈如包裝..等〉會建議者請務必提前詢問狀況</p>
+                                        <p class="level1 gray1">◆欲交換者請點選"提出交換申請"鈕，傳送私訊給刊登者，並留下您的聯絡方式，如:手機、LINE、電子郵件等。</p>
+                                        <p class="level1 gray1">◆欲與刊登者聯絡的事項請務必確認好再送出。</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="apply_change_btn_block">
+                                    <button class="mainbtn1 apply_change_btn" @click="sendmessage">提出交換申請</button>
+                                </div>
+                            </div>                        
+                        </div>
+
+                        <!-- 檢舉燈箱 -->
+                        <div class="report_overlay">
+                            <article>                                        
+                                <form class="report_form">
+                                    <div class="level7 bold green1 report_title">檢舉原因</div>
+                                    
+                                    <div class="report_reason1 level1 gray1" >
+                                        <input type="radio" name="reason0" id="report_equ1" >
+                                        <label for="report_equ1" v-for="(report,index) in reports" :value="index" @click="reportbtn11(index)">{{report}}</label>
+                                    </div>
+
+                                    <div class="report_close_btn">
+                                        <input class="thirdbtn1_green submit_btn" value="送出" @click='sendReport'>
+                                        <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
+                                    </div>                                        
+                                </form>                                        
+                            </article>
+                        </div>
+
+                        <!-- 私訊燈箱 -->                
+                        <div class="msgoverlay">
+                            <article>
+                                
+                                <form class="msg_form" action="php/equipment/equipmentmes.php" method="post"  enctype="multipart/form-data">
+                                    <span class="level7 bold green1 equmsg_title" >傳送訊息給</span>
+                                    <span class="level7 bold green1 equmsg_title" name="equmsg_member">{{this.equ.MEM_NICKNAME}}</span>
+                                            
+                                    <div class="msg_block level1 gray1">
+                                        <textarea  type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息..."></textarea>
+                                    </div>                       
+        
+                                    <div class="msg_close_btn">
+                                        <input class="thirdbtn1_green msg_submit_btn"  name="SB" value="送出" @click="sendMes">
+                                        <button type="button" class="thirdbtn2_green btn_msg_close">關閉</button>
+                                    </div>                                        
+                                </form>
+                            </article>
+                        </div>
+
+                    <div class="otherblock2">
+                        <div class="title">
+                            其他設備
+                        </div>
+                        
+                        <div class="other_equ">
+                            <div class="other_equ_block">
+                                <img :src="image + this.allRows[this.otherequss1].EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.allRows[this.otherequss1].EQU_NAME}}</span>
+                            </div>
+                            <div class="other_equ_block">
+                                <img :src="image + this.allRows[this.otherequss2].EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.allRows[this.otherequss2].EQU_NAME}}</span>
+                            </div>
+                            <div class="other_equ_block">
+                                <img :src="image + this.allRows[this.otherequss3].EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.allRows[this.otherequss3].EQU_NAME}}</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                
+            </div>
+            
+            `,
+            methods:{
+                changepage(data){
+                    this.allRows = data;
+                    for(let i=1; i<=Math.ceil(this.allRows.length/9); i++){
+                        this.page0.push(i);
+                    }
+                
+                    
+                    for(var i =this.indexpagefirst; i <= this.indexpage -1; i++){
+                        this.allRows2.push(this.allRows[i]);
+                    }
+
+                },
+
+                page1: function(page){
+                    
+                    this.allRows2 = [];
+                    this.change = page;
+                    if(this.allRows3.length==0){
+                        for(let i=(page-1)*9; i<= (page*9-1); i++){
+                            if(i<this.allRows.length){
+                                this.allRows2.push(this.allRows[i]);
+                            }
+                            
+                        }
+                    }else{
+                        for(let i=(page-1)*9; i<= (page*9-1); i++){
+                            if(i<this.allRows3.length){
+                                this.allRows2.push(this.allRows3[i]);
+                            }
+                            
+                        }
+
+                    }
+                    
+                },
+
+                changeback(){
+                this.allRows2 =[];
+                    if(this.allRows3.length!=0 && this.allRows3.length == this.nochange){
+                        
+                        if(this.change ==1){
+                            this.change =1;
+                        }else{
+                            this.change -=1;
+                        }
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows3.length){
+                                this.allRows2.push(this.allRows3[i]);
+                            }
+                                
+                        }
+                    }else{
+                        this.allRows2 = [];
+                        if(this.change <=1){
+                            this.change =1;
+                        }else{
+                            this.change -=1;
+                        }
+
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows.length){
+                                this.allRows2.push(this.allRows[i]);
+                            }
+                                
+                        }
+
+                    }
+                    
+                    
+                },
+
+                changefront(){
+                    this.allRows2 =[];  
+                    if(this.allRows3.length!=0 && this.allRows3.length == this.nochange){   //點擊左側後的上一頁按鈕事件
+                        if(this.change >= Math.ceil(this.allRows3.length/9)){
+                            this.change = Math.ceil(this.allRows3.length/9);
+                        }else{
+                            this.change +=1;
+                        }
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows3.length){
+                                this.allRows2.push(this.allRows3[i]);
+                            }
+                                
+                        }
+                    }else{
+                        this.allRows2 = [];
+                        if(this.change >= Math.ceil(this.allRows.length/9)){
+                            this.change = Math.ceil(this.allRows.length/9);
+                        }else{
+                            this.change +=1;
+                        }
+
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows.length){
+                                this.allRows2.push(this.allRows[i]);
+                            }
+                                
+                        }
+                    }
+                    
+                },
+
+                thisequ(equ){
+                    this.equ = this.allRows2[equ];
+                    console.log(this.equ);
+                    // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
+                    this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
+                    if(this.poster == this.equ.MEM_NICKNAME){
+                        document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
+                        document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
+
+                        document.getElementsByClassName('equ_collect_checkbox')[0].style.display='none';
+                    }else{
+                        document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
+                        document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
+                        document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
+                    }
+                    
+                    this.othernumber += 1;
+
+                    this.allRows2=[];
+                    
+                        document.getElementsByClassName('equmain')[0].style.display="block";
+                        document.getElementsByClassName('otherblock2')[0].style.display="block";
+                        document.getElementsByClassName('equtemp2')[0].style.display="none";
+                        document.getElementsByClassName('equsPage')[0].style.display="none";
+
+                        this.$emit('update',this.selnumber);
+                    
+                        // this.clicknavbar1 +=1;
+                },
+                equreport1(){
+                    this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
+                    if(this.poster.indexOf(' ') && this.poster.length == 1){
+                        
+                        document.getElementsByClassName('report_overlay')[0].style.display = 'none';
+                    }else{
+                        
+                        document.getElementsByClassName('report_overlay')[0].style.display = 'block';
+                        console.log(this.equ);
+                        // document.getElementById('report_equ1').substring(-1);
+                        let sdasd = '';
+                        sdasd =document.getElementById('report_equ1').id.slice(-1);
+                        console.log(sdasd);
+                    }
+
+                },
+
+                reportbtn11(index3){
+                    this.reporton = index3;
+                    console.log(this.reporton);
+                },
+                
+                reportfun(){
+
+                    axios.get('php/equipment/equipment2.php')
+                        .then(res => {
+                            this.repoNow = res.data
+                            console.log(this.repoNow);
+                        })
+                        .catch(error => console.log(error))
+                },
+                sendReport(){
+                    console.log(this.equ.EQU_MEMNO);
+                    console.log(this.equ.EQUSORT);
+                    console.log(this.reporton);
+                    console.log(this.repoNow.MEMNO);
+                    console.log(this.equ.EQU_NO);
+                    
+                    axios.post('php/equipment/equipmentreport.php',{ 
+                        // EQU_MEMNO:this.equ.EQU_MEMNO,
+                        EQU_NO:this.equ.EQU_NO,
+                        REPOUP_RESON:this.reporton,
+                        REP_OUT_MEMNO:this.repoNow.MEMNO,
+                }).then(function (response) {
+                        console.log(response);
+                    }).catch(function (error) {
+                        console.log(error);
+                        console.log(1);
+                    });
+                document.getElementsByClassName('report_overlay')[0].style.display='none';
+                },
+
+                sendmessage(){
+                    axios.get('php/equipment/equipment2.php')
+                        .then(res => {
+                            this.repoNow = res.data
+                            console.log(this.repoNow);
+                        })
+                        .catch(error => console.log(error))
+                        
+                        this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
+                    if(this.poster.indexOf(' ') && this.poster.length == 1){
+                        document.getElementById('outerDiv').style.display = 'flex';
+                        document.getElementsByClassName('msgoverlay')[0].style.display = 'none';
+                    }else{
+                        document.getElementById('outerDiv').style.display = 'none';
+                        document.getElementsByClassName('msgoverlay')[0].style.display = 'block';
+                        console.log(this.equ);
+                        // document.getElementById('report_equ1').substring(-1);
+                        let sdasd = '';
+                        sdasd =document.getElementById('report_equ1').id.slice(-1);
+                        console.log(sdasd);
+                    }
+                },
+
+                sendMes(){
+                let equmessage  = document.getElementById('equmsg01').value;
+                console.log(equmessage);
+                axios.post('php/equipment/equipmentmes.php',{ 
+                        // EQU_MEMNO:this.equ.EQU_MEMNO,
+                        MES_CONTENT:equmessage,
+                        MES_OBJECT_MEMNO:this.equ.EQU_MEMNO,
+                        MES_SENDER_MEMNO:this.repoNow.MEMNO,
+                }).then(function (response) {
+                        console.log(response);
+                    }).catch(function (error) {
+                        console.log(error);
+                        console.log(1);
+                    });
+                document.getElementsByClassName('msgoverlay')[0].style.display='none';
+
+                },
+                
+
+            }
+        });
+
+        let vm = new Vue({
+            el: '#equipment',
+            data: {
+                select:0,
+            },
+            methods: {
+                equselect(val){
+                    this.select = val;
+                }
+            },
+            computed: {
             },
         });
     </script>
     <script>
+        // hamburger icon 的切換
         $(function(){
             
-            // hamburger icon 的切換
             $("button.hamburger").on("click", function(){
                 $(this).toggleClass("is-active");
                 $('.nav_list').slideToggle();
-
                 });
+        });
+
+        //檢舉燈箱
+            $(function(){
+
+                $("button.reportbtn").on("click", function(){
+                $(".report_overlay").addClass("-on");
+                });
+
+                $("button.btn_modal_close").on("click", function(){
+                $(".report_overlay").addClass("-opacity-zero");
+                
+                $("input[name=reason0]").each(function(){
+                    $(this).prop("checked",false);
+                });
+
+                setTimeout(function(){
+                    $(".report_overlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+                });
+
+            });
+
+            //提出交換燈箱
+            $(function(){
+
+                $("button.apply_change_btn").on("click", function(){
+                $(".msgoverlay").addClass("-on");
+                });
+
+                $("button.btn_msg_close").on("click", function(){
+                $(".msgoverlay").addClass("-opacity-zero");
+
+                setTimeout(function(){
+                    $(".msgoverlay").removeClass("-on -opacity-zero");
+                    }, 1000);
+                });
+
+            });
+
+
+            //私訊燈箱
+            // $(function(){
+
+            //     $("button.mes_btn").on("click", function(){
+            //     $(".msgoverlay").addClass("-on");
+            //     });
+
+            //     $("button.btn_msg_close").on("click", function(){
+            //     $(".msgoverlay").addClass("-opacity-zero");
+
+            //     setTimeout(function(){
+            //         $(".msgoverlay").removeClass("-on -opacity-zero");
+            //         }, 1000);
+            //     });
+
+            // });
+
+
+            //更換圖片
+            $('.eqimg').click(function(){ 
+                let mig = $(this).attr("src");
+                $('.eqimg').removeClass("now");
+                $(this).addClass("now");
+                $(".noweqimg").attr("src", mig);      //要更換的圖片位置
             });
     </script>
+    <script>
+        function doFirst(){
+                    let equpo = '';
+                    let equsubmit = document.getElementsByClassName('msg_close_btn')[0].getElementsByTagName('input')[0];
+                    // equsubmit.addEventListener('click', messubmit);
 
+
+                    let postbtn = document.getElementsByClassName('post_btn')[0].getElementsByTagName('a')[0].getElementsByClassName('secondbtn1')[0];
+                    postbtn.addEventListener('click',poclick);
+                    function poclick(e){
+                        e.preventDefault();
+                        
+                        let xhr = new XMLHttpRequest();
+
+                        xhr.addEventListener('load',function(){
+                            if( xhr.status == 200 ){
+                                equpo = JSON.parse(xhr.responseText);
+                                
+                                // console.log(Object.keys(equpo).length);
+                                    if(Object.keys(equpo).length == 0){
+                                        document.getElementById('outerDiv').style.display = 'flex';
+                                    }else{
+                                        window.location.href="equipment_post.html";
+                                    }
+                                }else{
+                                alert( xhr.status );
+                                }                                
+                        });
+                            xhr.open("Get", "php/equipment/equipment2.php", true);
+                            xhr.send( null );
+                        
+                    }
+                    // function messubmit(e){
+                    //     e.preventDefault();
+                    //     let formData = new FormData();
+                        
+                    //     document.getElementsByClassName('msgoverlay')[0].style.display='none';
+
+                    // }
+                }
+        window.addEventListener('load',doFirst);
+    </script>
 
 </body>
 </html>

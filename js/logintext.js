@@ -60,7 +60,11 @@ function sendForm_Login(){
             $id('LoginMemPsw').value = '';  
             location.reload();          
 		}else{
-			window.alert("帳密錯誤");
+			// if(!member.errorMsg){
+			//   alert("系統錯誤",member.errorMsg);
+			// }拿來接收後端傳的
+			// window.alert("帳密錯誤");
+			swal("帳密錯誤");
 		}
     }
     xhr.open("post", "php/common/loginIn.php", true);
@@ -102,16 +106,18 @@ function sendForm_Regi(){
                 alert('請輸入正確的email')
             }
         }else{
-            alert('密碼需一致，請再確認');
+            // window.alert("此帳號已被使用");
+            swal("此帳號已被使用");
         }
     }else{
-        alert('欄位不可為空');
+        // alert('密碼需一致，請再確認');
+        swal('密碼需一致，請再確認');
     }
 }
 //忘記密碼
-function forgetPassword(){
-    // alert();
-}
+// function forgetPassword(){
+//     // alert();
+// }
 //抓是否已登入OK
 function getMemberInfo(){
     xhr.onload = function(){
@@ -148,7 +154,7 @@ function init(){
     $id('to_register_btn').onclick = toRegister;
     $id('to_login_btn').onclick = toLogin;
 
-    $id('forgetPsw').onclick = forgetPassword;
+    // $id('forgetPsw').onclick = forgetPassword;
 };
 
 window.addEventListener('load',init,false);

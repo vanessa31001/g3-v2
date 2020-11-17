@@ -8,6 +8,7 @@
     <script src="./vender/vue/vue.min.js"></script>
     <script src="./vender/jquery/jquery-3.5.1.min.js"></script>
     <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -499,6 +500,11 @@
                             input.value="檢舉";
                         }
                         $append(msgInfo,input);
+
+
+
+
+
                     }else{//若被檢舉
                         let msgInfo = $create("div");
                         msgInfo.className="msgInfo";
@@ -531,10 +537,13 @@
                         $append(massages,msgInfo);
                     }
                 }
+     
+                    
             }
             
         }
         function readPage(groupNo){
+            
             let groupxhr = new XMLHttpRequest();
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
@@ -552,13 +561,15 @@
                     //檢舉留言
                     var reportbtnMsg = document.querySelectorAll(".reportbtnMsg");
                     for(let i =0; i<reportbtnMsg.length; i++){
-                        reportbtnMsg[i].addEventListener("click", function() { 
+                      
+                        reportbtnMsg[i].addEventListener("click", function (e) {
                             report("reportbtnMsg",this.value,this.previousSibling.previousSibling.value);
                         });
                     }
                     //留言
                     let leaveMsg = $id("sendMsg");
-                    leaveMsg.addEventListener("click", function (){
+                    leaveMsg.addEventListener("click", function ttt(e){
+                        
                         if(member.MEM_ID){
                             var leaveMsg =document.querySelector("#leaveMsg").value;
                             if(leaveMsg.trim()!= ""){
@@ -566,12 +577,15 @@
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
-                                        location.reload(); 
-                                        // readPage(GROUP_NO[1]);
+                                         console.log(e.target)
+
+                                        // location.reload(); 
+                                        readPage(groupNo);
                                         // showMsg();
                                     }else{
-                                        alert(msgxhr.responseText);
+                                        console.log(msgxhr.responseText);
                                     }  
+                                    $id("sendMsg").removeEventListener('click',ttt);
                                 }
                                 msgxhr.open("Post", "./php/group/leaveMsg.php", true);
                                 msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
@@ -591,6 +605,7 @@
             }
             groupxhr.open("get", `./php/group/groupInfo.php?GROUP_NO=${groupNo}`, true);
             groupxhr.send(null);
+            
         }
         function doFirst(){
             var url = location.href;
