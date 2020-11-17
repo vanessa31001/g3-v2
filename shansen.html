@@ -601,22 +601,16 @@
 
 
         //最新刊登設備
-        function homeequ(){
-            let equpxhr = new XMLHttpRequest();
-            equpxhr.addEventListener('load' ,function(){
+        let equpxhr = new XMLHttpRequest();
+        equpxhr.addEventListener('load' ,function(){
             if(equpxhr.status == 200){ 
                 let showequs = JSON.parse(equpxhr.responseText);
-                
             }else{ 
                 alert(equpxhr.status);
             }
         });
         equpxhr.open("get", "./php/equipment/equipment.php", true);
         equpxhr.send(null);
-
-        }
-    
-        window.addEventListener('load', homeequ);
 
     </script>
 </body>

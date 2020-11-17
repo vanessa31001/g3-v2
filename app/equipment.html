@@ -96,22 +96,12 @@
             
             methods: {
                 navselect(value){
-                    if(document.getElementsByClassName('equtemp2')[0].style.display == 'none' && document.getElementsByClassName('equsPage')[0].style.display == 'none'){
-
-                        document.getElementsByClassName('equtemp2')[0].style.display = 'flex';
-                        document.getElementsByClassName('equsPage')[0].style.display = 'block';
-                        document.getElementsByClassName('equmain')[0].style.display = 'none';
-                        document.getElementsByClassName('otherblock2')[0].style.display = 'none';
-                    }else{
-                        document.getElementsByClassName('equtemp2')[0].style.display = 'none';
-                        document.getElementsByClassName('equsPage')[0].style.display = 'none';
-                        document.getElementsByClassName('equmain')[0].style.display = 'block';
-                        document.getElementsByClassName('otherblock2')[0].style.display = 'block';
-                    }
+                    document.getElementsByClassName('equmain')[0].style = 'none';
+                    document.getElementsByClassName('otherblock2')[0].style = 'none';
                     this.selnumber = value;
                     
                     this.$emit('update',this.selnumber);
-                    
+                
                     
                 }
             },
@@ -203,7 +193,6 @@
                                 document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="block";
                                 document.getElementsByClassName("noitem")[0].style.display="none";
                             }
-                            this.clicktime+=1;
                 },
                 othernumber:function(value){
                     if(value>0){
@@ -300,9 +289,9 @@
                             <img class="noweqimg" :src="image + equ.EQU_PIC1" alt="">
                         </div>
                         <div class="minimg">
-                            <img class="eqimg now" :src="image + equ.EQU_PIC1" alt="">
-                            <img class="eqimg" :src="image + equ.EQU_PIC2" alt="">
-                            <img class="eqimg" :src="image + equ.EQU_PIC3" alt="">
+                            <img class="eqimg" id='eqimg0' :src="image + equ.EQU_PIC1" value='0' alt="" @click='pickChange(equ.EQU_PIC1)'>
+                            <img class="eqimg" id='eqimg1' :src="image + equ.EQU_PIC2"  value='1' alt="" @click='pickChange(equ.EQU_PIC2)'>
+                            <img class="eqimg" id='eqimg2' :src="image + equ.EQU_PIC3" value='2' alt="" @click='pickChange(equ.EQU_PIC3)'>
                         </div>
                     
                                 
@@ -524,6 +513,7 @@
                 thisequ(equ){
                     this.equ = this.allRows2[equ];
                     console.log(this.equ);
+                    
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
                     if(this.poster == this.equ.MEM_NICKNAME){
@@ -538,16 +528,11 @@
                     }
                     
                     this.othernumber += 1;
-
+                    document.getElementsByClassName('page')[0].style.display ='none';
                     this.allRows2=[];
                     
-                        document.getElementsByClassName('equmain')[0].style.display="block";
-                        document.getElementsByClassName('otherblock2')[0].style.display="block";
-                        document.getElementsByClassName('equtemp2')[0].style.display="none";
-                        document.getElementsByClassName('equsPage')[0].style.display="none";
-
-                        this.$emit('update',this.selnumber);
-                    
+                    document.getElementsByClassName('equmain')[0].style.display = 'block';
+                    document.getElementsByClassName('otherblock2')[0].style.display = 'block';
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -555,6 +540,7 @@
                     if(this.poster.indexOf(' ') && this.poster.length == 1){
                         
                         document.getElementsByClassName('report_overlay')[0].style.display = 'none';
+                        document.getElementById('outerDiv').style.display = 'flex';
                     }else{
                         
                         document.getElementsByClassName('report_overlay')[0].style.display = 'block';
@@ -640,10 +626,11 @@
                         console.log(1);
                     });
                 document.getElementsByClassName('msgoverlay')[0].style.display='none';
-
                 },
                 
-
+                pickChange(attend){
+                    document.getElementsByClassName('noweqimg')[0].src = this.image + attend;
+                }
             }
         });
 
@@ -729,12 +716,12 @@
 
 
             //更換圖片
-            $('.eqimg').click(function(){ 
-                let mig = $(this).attr("src");
-                $('.eqimg').removeClass("now");
-                $(this).addClass("now");
-                $(".noweqimg").attr("src", mig);      //要更換的圖片位置
-            });
+            // $('.eqimg').click(function(){ 
+            //     let mig = $(this).attr("src");
+            //     $('.eqimg').removeClass("now");
+            //     $(this).addClass("now");
+            //     $(".noweqimg").attr("src", mig);      //要更換的圖片位置
+            // });
     </script>
     <script>
         function doFirst(){
@@ -775,6 +762,33 @@
                     //     document.getElementsByClassName('msgoverlay')[0].style.display='none';
 
                     // }
+                    
+                    let eqimg = document.getElementsByClassName('eqimg');
+                    document.getElementById(`eqimg0`).classList.add('now');
+                    for(let i=0;i<eqimg.length;i++){
+                        eqimg[i].addEventListener('click',function(){
+                            let nowId = eqimg[i].id;
+                            changeBorder(nowId);
+                        });
+                    }
+                    function changeBorder(nowId){
+                        for(let i=0;i<eqimg.length;i++){
+                            document.getElementById(`eqimg${i}`).classList.remove('now');
+                        }
+                        document.getElementById(nowId).classList.add('now');
+                    }
+                    let equmain =document.getElementsByClassName('equmain')[0];
+                    let otherblock2= document.getElementsByClassName('otherblock2')[0];
+                    let minsorts= document.getElementsByClassName('minsorts');
+                    for(let i=0;i<minsorts.length;i++){
+                        minsorts[i].addEventListener('click',function(){
+                            let nowValue = minsorts[i].value;
+                            cliclLiftnow(nowValue);
+                        })
+                    function cliclLiftnow(nowValue){
+                        console.log(nowValue);
+                    }
+                    }
                 }
         window.addEventListener('load',doFirst);
     </script>
