@@ -476,7 +476,7 @@
                                 let data_info = `GROUP_MES_GROUPNO=${groupsdata[0].GROUP_NO}&GROUP_MES_MEMNO=${member.MEMNO}&GROUP_MES_TIME=${date}&GROUP_MES_CONTENT=${leaveMsg}`;
                                 msgxhr.send(data_info);
                             }else{
-                                alert("請輸入文字再送出~");
+                                swal("請輸入文字再送出~");
                             }
                             
                         }else{

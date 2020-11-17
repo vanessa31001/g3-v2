@@ -368,7 +368,7 @@
                         reportbtngGroup[i].addEventListener("click", function(){
                             // alert();
                             if(groupsdata[i].會員編號 == member.MEMNO){
-                                alert("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
+                                swal("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
                             }else{
                                 report("reportbtngGroup",this.value,this.previousSibling.value);
                             }
