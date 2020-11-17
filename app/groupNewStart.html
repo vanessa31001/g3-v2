@@ -100,7 +100,7 @@
                         </div>
                         <div class="btn" style="text-align: center;">
                             <!-- <input type="button" class="mainbtn2" value="暫存資料" id="save"> -->
-                            <input type="submit" class="mainbtn1" value="發佈" id="create">
+                            <a href="./group.html"><input type="button" class="mainbtn1" value="發佈" id="create"></a>
                         </div>
                     </div>
 
@@ -235,7 +235,7 @@
             msgxhr.onload = function(){
                 if(msgxhr.status == 200){ //success 
                     groupId = JSON.parse(msgxhr.responseText);
-                    console.log(groupId);
+                    alert(groupId);
                     if(equs){
                         saveEQU(equs,groupId);
                     }
@@ -248,6 +248,7 @@
             msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
             let data_info = `GROUP_NAME=${groupName.value}&GROUP_INTRO=${groupIntro.value}&GROUP_CAM_NO=${camName.value}&GROUP_PEOPLE_LIMIT=${peopleLimit.value}&GROUP_START_DATE=${date}&GROUP_DEADLINE=${enddate.value}&GROUP_DEPART_DATE=${startdate.value}&equs=${equs}&GROUP_PIC1=${GROUP_PIC1}&GROUP_PIC2=${GROUP_PIC2}&GROUP_PIC3=${GROUP_PIC3}`;
             msgxhr.send(data_info);
+            
             
         });
         $id("camArea").onchange = function(){
