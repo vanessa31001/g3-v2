@@ -24,14 +24,14 @@ try {
 
         switch($error){  
             case UPLOAD_ERR_OK :
-                $dir = "../../pic/equipment/test";
+                $dir = "../../pic/equipment";
             
-
                 $from = $_FILES["equpic"]["tmp_name"][$i]; 
                 $fileName = $_FILES["equpic"]["name"][$i];;
                 $to = "{$dir}/{$fileName}";
                 if(copy($from, $to)){
                     echo "上傳成功<br>";
+                    header("location:../../equipment.html");
                 }else{
                     echo "上傳失敗<br>";
                 }
