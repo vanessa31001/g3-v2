@@ -1,54 +1,41 @@
 <?php
-$errMsg = "";
-try {
-	require_once("../connectBooks.php");
-	$pdo->beginTransaction();
-	//.......確定是否上傳成功
-	if( $_FILES["upFile"]["error"] == UPLOAD_ERR_OK){
-		
-		// $sql = "INSERT INTO `products` (`psn`, `pname`, `price`, `author`, `pages`, `image`) values(null, :pname, :price, :author, :pages, '' )";
-		// $products = $pdo->prepare( $sql );
-		// $products -> bindValue(":pname", $_POST["pname"]);
-		// $products -> bindValue(":price", $_POST["price"]);
-		// $products -> bindValue(":author", $_POST["author"]);
-		// $products -> bindValue(":pages", $_POST["pages"]);
-		// $products -> execute();
+session_start();
+try{   
+    require_once("../connectBooks.php");
+    $member = $_SESSION["MEMNO"];
+    $sql = "INSERT INTO `campinggroups`(`GROUP_PEOPLE_SIGNUP`,`GROUP_MEMNO`, `GROUP_NAME`, `GROUP_INTRO`, `GROUP_CAM_NO`, `GROUP_PEOPLE_LIMIT`, `GROUP_START_DATE`, `GROUP_DEADLINE`, `GROUP_DEPART_DATE`, `GROUP_PIC1`, `GROUP_PIC2`, `GROUP_PIC3`) 
+    VALUES (1,:GROUP_MEMNO, :GROUP_NAME,:GROUP_INTRO, :GROUP_CAM_NO, :GROUP_PEOPLE_LIMIT, :GROUP_START_DATE, :GROUP_DEADLINE, :GROUP_DEPART_DATE, :GROUP_PIC1, :GROUP_PIC2, :GROUP_PIC1)";
+    $msg = $pdo->prepare($sql);
+    $msg ->bindValue(":GROUP_MEMNO", $member);
+    $msg ->bindValue(":GROUP_NAME", $_POST["GROUP_NAME"]);
+    $msg ->bindValue(":GROUP_INTRO", $_POST["GROUP_INTRO"]);
+    $msg ->bindValue(":GROUP_CAM_NO", $_POST["GROUP_CAM_NO"]);
+    $msg ->bindValue(":GROUP_PEOPLE_LIMIT", $_POST["GROUP_PEOPLE_LIMIT"]);
+    $msg ->bindValue(":GROUP_START_DATE", $_POST["GROUP_START_DATE"]);
+    $msg ->bindValue(":GROUP_DEADLINE", $_POST["GROUP_DEADLINE"]);
+    $msg ->bindValue(":GROUP_DEPART_DATE", $_POST["GROUP_DEPART_DATE"]);
+    $msg ->bindValue(":GROUP_PIC1", $_POST["GROUP_PIC1"]);
+    $msg ->bindValue(":GROUP_PIC2", $_POST["GROUP_PIC2"]);
+    $msg ->bindValue(":GROUP_PIC3", $_POST["GROUP_PIC3"]);
+    $msg->execute();
 
-		// //取得自動創號的key值
-		// $psn = $pdo->lastInsertId();
 
-		// //先檢查images資料夾存不存在
-		// if( file_exists("images") === false){
-		// 	mkdir("images");
-		// }
-		// //將檔案copy到要放的路徑
-		// $fileInfoArr = pathinfo($_FILES["upFile"]["name"]); //先取得原始檔案名稱的副檔名
-		// $fileName = "{$psn}.{$fileInfoArr["extension"]}";  //8.gif
+    $sql = "select GROUP_NO FROM campinggroups WHERE GROUP_MEMNO=:GROUP_MEMNO && GROUP_NAME=:GROUP_NAME && GROUP_INTRO=:GROUP_INTRO";
+    $row = $pdo->prepare($sql);
+    $row ->bindValue(":GROUP_MEMNO", $_SESSION["MEMNO"]);
+    $row ->bindValue(":GROUP_NAME", $_POST["GROUP_NAME"]);
+    $row ->bindValue(":GROUP_INTRO", $_POST["GROUP_INTRO"]);
+    $row->execute();
+    $group = $row->fetch(PDO::FETCH_ASSOC);
+    $result = $group["GROUP_NO"];
 
-		// $from = $_FILES["upFile"]["tmp_name"];
-		// $to = "images/$fileName";
-		// if(copy( $from, $to)===true){
-		// 	//將檔案名稱寫回資料庫
-		// 	$sql = "update products set image = :image where psn = $psn";
-		// 	$products = $pdo->prepare($sql);
-		// 	$products -> bindValue(":image", $fileName);
-		// 	$products -> execute();
-		// 	echo "新增成功~";
-		// 	$pdo->commit();			
-		// }else{
-		// 	$pdo->rollBack();
-		// }
+    $sql ="INSERT INTO `group_detail`(`G_DEATIL_GROUP_NO`, `G_DETAIL_MEMNO`) VALUES ($result,$member)";
+    $row = $pdo->query($sql);
 
-	}else{
-		echo "錯誤代碼 : {$_FILES["upFile"]["error"]} <br>";
-		echo "新增失敗<br>";
-
-	}
-} catch (PDOException $e) {
-	$pdo->rollBack();
-	$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-	$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
+  	echo json_encode($result);
+    
+}catch(PDOException $e){
+	$error = array("errorMsg"=>$e->getMessage());
+  	echo json_encode($error);//{"errorMsg":"......."}
 }
-echo $errMsg;
-
-?>    
+?>
