@@ -103,7 +103,7 @@ function sendForm_Regi(){
                 let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
                 xhr.send(data_info); 
             }else{
-                alert('請輸入正確的email')
+                swal('請輸入正確的email')
             }
         }else{
             // window.alert("此帳號已被使用");
