@@ -4,52 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../../vender/jquery/jquery-3.5.1.min.js"></script>
+    <style>
+        img{
+            width: 60px;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <textarea name="" class="inputstyle" id="leaveMsg" cols="60" rows="3" placeholder="任何想說或是想問的嗎?" ></textarea>
-        <input type="submit" value="送出" class="thirdbtn1_green" id="sendMsg">
-    </div>
+    <input type="file" name="upFile[]" id="theFile" accept="image/png, image/jpeg"  multiple>
     <script>
-        function formatDate(date) {  
-            var y = date.getFullYear();  
-            var m = date.getMonth() + 1;  
-            m = m < 10 ? ('0' + m) : m;  
-            var d = date.getDate();  
-            d = d < 10 ? ('0' + d) : d;  
-            var h = date.getHours();  
-            var minute = date.getMinutes();  
-            minute = minute < 10 ? ('0' + minute) : minute;
-            var s =  date.getSeconds();
-            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
-        };
-        function $id(id){
-            return document.getElementById(id);
-        }
-        let groupNo =1;
-        let member = 2;
-        let date = formatDate(new Date());
-        let leaveMsg = $id("sendMsg");
-        leaveMsg.addEventListener("click", function (){
-            let leaveMsg =document.querySelector("#leaveMsg").value;
-            if(leaveMsg.trim()!= ""){
-                let date = formatDate(new Date());
-                let msgxhr = new XMLHttpRequest();
-                msgxhr.onload = function(){
-                    if(msgxhr.status == 200){ //success 
-                        alert(msgxhr.responseText);
-                    }else{
-                        alert(msgxhr.responseText);
-                    }  
-                }
-                msgxhr.open("Post", "./leaveMsg.php", true);
-                msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-                let data_info = `GROUP_MES_GROUPNO=${groupNo}&GROUP_MES_MEMNO=${member}&GROUP_MES_TIME=${date}&GROUP_MES_CONTENT=${leaveMsg}`;
-                msgxhr.send(data_info);
-            }else{
-                alert("請輸入文字再送出~");
+        const theFile = document.querySelector('#theFile');
+
+        theFile.addEventListener('change', (e) => {
+            console.log(e.target.files); // get file object
+            let form = new FormData();
+            // form.append("upFile[]", e.target.files)
+
+            for(i=0;i<3;i++){
+                form.append("upFile[]", e.target.files[i])
             }
+            let groupsxhr = new XMLHttpRequest();
+            groupsxhr.onload = function(){
+                if(groupsxhr.status == 200){ //success
+                    console.log(groupsxhr.responseText);
+                }else{ //error
+                    alert(groupsxhr.responseText);
+                }
+            }
+            groupsxhr.open("Post", "./upload.php", true);
+            groupsxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            groupsxhr.send(form);
+
         });
+        // $(document).ready(function(){
+            // "application/x-www-form-urlencoded"
+        //     $.ajax({
+        //     url: "./createNewGroup.php",
+        //     type: "POST",
+        //     data: new FormData(this),
+        //     contentType: false,
+        //     cache: false,
+        //     processData:false,
+        //     })
+        //     .done(function(data, textStatus, jqXHR) {//新增商品回傳到HTML成功的訊息
+        //         console.log(data.name);
+        //     });
+        // });
     </script>
 </body>
 </html>
