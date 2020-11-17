@@ -34,24 +34,24 @@
 
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/avatar.png">
-                                <button class="thirdbtn1_green" @click="content='memberInformation'">會員資訊</button>
+                                <button :class="p1" @click="content='memberInformation'">會員資訊</button>
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/message.png">
-                                <button class="thirdbtn2_green" @click="content='memberMessage'">悄悄話</button>    
+                                <button :class="p2" @click="content='memberMessage'">悄悄話</button>    
                             </div>
                             <div class="level5 grayColor1 aside_subtitle">會員足跡</div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/group.png">
-                                <button class="thirdbtn2_green" @click="content='memberGroup'">揪團露營</button>
+                                <button :class="p3" @click="content='memberGroup'">揪團露營</button>
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize"src="./pic/member/change.png">
-                                <button class="thirdbtn2_green" @click="content='memberEquipment'">設備交換</button>
+                                <button :class="p4" @click="content='memberEquipment'">設備交換</button>
                             </div>
                             <div class="buttonClassification">
                                 <img class="imgSize" src="./pic/member/campsite.png">
-                                <button class="thirdbtn2_green" @click="content='memberCamp'">營區攻略</button>
+                                <button :class="p5" @click="content='memberCamp'">營區攻略</button>
                             </div>
                         </div>
                         <div class="app_left_aside_selector" @change="onChange">
@@ -375,7 +375,7 @@
                                     <li class="group_everyRow" v-for="group in setup_groups" v-if="group.status==='0'">
                                         <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">1.團名：<a v-bind:href="'groupInfo.html?GROUP_NO=' + group.GROUP_NO" target="_blank">{{group.GROUP_NAME}}</a></li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
                                             <li class="level0">3.地點：{{group.CAM_NAME}}</li>
                                             <li class="level0">4.參加人數：{{group.GROUP_PEOPLE_SIGNUP}}</li>
@@ -386,7 +386,7 @@
                                     <li class="group_everyRow unlockRow" v-for="group in setup_groups" v-if="group.status==='1'">
                                         <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
+                                            <li class="level0">1.團名：<a v-bind:href="'groupInfo.html?GROUP_NO=' + group.GROUP_NO" target="_blank">{{group.GROUP_NAME}}</a></li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
                                             <li class="level0">3.地點：{{group.CAM_NAME}}</li>
                                             <li class="level0">4.參加人數：{{group.GROUP_PEOPLE_SIGNUP}}</li>
@@ -400,7 +400,7 @@
                                     <li class="group_everyRow" v-for="group in join_groups" v-if="group.status==='0'">
                                         <img :src="group_path + group.GROUP_PIC1">
                                         <ul>
-                                            <li id="noShow_group">1.團名：{{group.GROUP_NO}}</li>
+                                            <li id="noShow_group">1.團名：<a v-bind:href="'groupInfo.html?GROUP_NO=' + group.GROUP_NO" target="_blank">{{group.GROUP_NO}}</a></li>
                                             <li class="level0">1.團名：{{group.GROUP_NAME}}</li>
                                             <li class="level0">2.日期：{{group.group_Date}}</li>
                                             <li class="level0">3.地點：{{group.CAM_NAME}}</li>
@@ -662,8 +662,10 @@
                             <ul class="camptotal_page">
                                 <li class="campItem" v-for="camp in likeCamp">
                                     <span><img @click="dislike(camp)" src="./pic/member/cancel.png"></span>
-                                    <img :src="GroupImg_path + camp.CAM_PIC1 + '.jpg'">
-                                    <div class="level1">{{camp.CAM_NAME}}</div>
+                                    <a v-bind:href="'camping2.html?' + camp.CAM_NO" target="_blank">
+                                        <img :src="GroupImg_path + camp.CAM_PIC1 + '.jpg'">
+                                        <div class="level1">{{camp.CAM_NAME}}</div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -676,14 +678,30 @@
             el: '#app',
             data: {
                 content: 'memberInformation',
-                activeClass: 'thirdbtn1_green',
-                errorClass: 'thirdbtn2_green'
+                
             },
             methods:{
                 onChange(event){
                     this.content = event.target.value;
                 }
             },
+            computed:{
+                p1(){
+                    return (this.content =='memberInformation' ? 'thirdbtn1_green' : 'thirdbtn2_green');
+                },
+                p2(){
+                    return (this.content =='memberMessage' ? 'thirdbtn1_green' : 'thirdbtn2_green');
+                },
+                p3(){
+                    return (this.content =='memberGroup' ? 'thirdbtn1_green' : 'thirdbtn2_green');
+                },
+                p4(){
+                    return (this.content =='memberEquipment' ? 'thirdbtn1_green' : 'thirdbtn2_green');
+                },
+                p5(){
+                    return (this.content =='memberCamp' ? 'thirdbtn1_green' : 'thirdbtn2_green');
+                },
+            }
         });
 
     </script>

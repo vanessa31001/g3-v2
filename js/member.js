@@ -33,14 +33,12 @@ function getMemberInfo(){
     xhr.open("get", "php/common/getMemberInfo.php", true);
     xhr.send(null);
 }
-function changePageColor(event){
-    alert();
-}
+
 function init(){
     //檢查是否已登入
     getMemberInfo();
     //登出事件
     $id('spanLogin').onclick = loginOut;
-    var btnPage = document.querySelectorAll(".pageBtn").onclick = changePageColor;
+
 };
 window.addEventListener('load',init,false);
