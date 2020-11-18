@@ -387,6 +387,7 @@
                         input.className = "reportbtngGroup";
                         input.type="submit";
                         input.disabled = true;
+                        input.style.cursor="default";
                         input.style.color='#C4C4C4';
                         input.style["border-color"]="#C4C4C4";
                         input.value="已檢舉";
@@ -481,9 +482,7 @@
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
-                    console.log(groupsxhr.responseText);
                     let groupsdata = JSON.parse(groupsxhr.responseText);
-                    console.log(groupsdata);
                     showAllGroups(groupsdata);
                     // 檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
@@ -492,14 +491,13 @@
                         reportbtngGroup[i].addEventListener("click", function(){
                             // alert();
                             if(groupsdata[i].會員編號 == member.MEMNO){
-                                swal("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
+                                swal("您為主揪，無法檢舉自己的團呦\n若想關閉揪團請進入查看詳情");
                             }else{
                                 report("reportbtngGroup",this.value,this.previousSibling.value);
                             }
                             
                         });
                     }
-                    console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);
                 }

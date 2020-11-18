@@ -1,9 +1,19 @@
 <?php
+session_start();
 try{
   require_once("../connectBooks.php");
   //揪團
   $GROUP_NO = $_GET["GROUP_NO"];
-  // $GROUP_NO = 7;
+  if(isset($_SESSION["MEMNO"])){
+    $member = $_SESSION["MEMNO"];
+    // $GROUP_NO = 7;
+    $sql = "SELECT IFNULL(REGROUP_MEMNO,0) `REGROUP_MEMNO` FROM campinggroups a LEFT JOIN (SELECT * FROM REPORTGROUP WHERE REGROUP_MEMNO = $member) b ON b.REGROUP_GROUP_NO = a.GROUP_NO WHERE a.GROUP_NO = $GROUP_NO;";
+    $groupRows = $pdo->query($sql);
+    $groupRow[5] = $groupRows->fetch(PDO::FETCH_ASSOC);
+  }
+  
+  
+
 
   $sql = "select GROUP_NO,GROUP_NAME,GROUP_PIC1,GROUP_PIC2,GROUP_PIC3,CAM_AREA, CAM_COUNTY,CAM_NAME, GROUP_START_DATE ,GROUP_MEMNO,MEM_IMG,MEM_NICKNAME,GROUP_INTRO,date(GROUP_DEPART_DATE) `GROUP_DEPART_DATE`,date(GROUP_DEADLINE) `GROUP_DEADLINE`,GROUP_PEOPLE_LIMIT,(GROUP_PEOPLE_LIMIT-GROUP_PEOPLE_SIGNUP) `REMAIN_PEOPLE` FROM campinggroups a JOIN member b ON a.GROUP_MEMNO = b.MEMNO JOIN CAMPING c on c.CAM_NO = a.GROUP_CAM_NO where GROUP_NO = $GROUP_NO;";
   $groupRows = $pdo->query($sql);

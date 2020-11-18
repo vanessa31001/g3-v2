@@ -185,7 +185,6 @@
                             </div>
                             <fieldset class="poster_inform">
                                 <legend class="level1 green3 poster">主揪</legend>
-                                <!-- <h4 class="third_title poster">主揪</h4> -->
                                 <div class="inform_block">
                                     <div class="inform_pic">
                                            <img id="MEMIMG" alt="">
@@ -432,19 +431,32 @@
                 forBtn.style["text-align"] = "right";
                 report.style["display"] = "none";  
             }else{
-                //若是參團者:我要退團，關閉檢舉
+                //一般會員
                 joinGroupBtn.className = "mainbtn1";
                 forBtn.style["text-align"] = "center";
+                if(member.MEMNO){
+                    if(member.MEMNO == groupsdata[5].REGROUP_MEMNO){
+                        report.style.color='#C4C4C4';
+                        report.style["border-color"]="#C4C4C4";
+                        report.value="已檢舉";
+                        report.disabled = true;
+                        report.style.cursor="default";
+                    }
+                }
+  
+                //若是參團者:我要退團，關閉檢舉
                 for(let i=0; i< groupsdata[2].length; i++){
                     if(member.MEMNO == groupsdata[2][i].G_DETAIL_MEMNO){
                         joinGroupBtn.value = "我要退團";
                         joinGroupBtn.className = "secondbtn2";
                         forBtn.style["text-align"] = "right";
-                        report.style["display"] = "none";
+                        $id("report").style["display"] = "none";
                         break;
                     }
                 }
+                
             }
+            
 
         }
         //已留言
@@ -548,6 +560,7 @@
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
                     groupsdata = JSON.parse(groupxhr.responseText);
+                    console.log(groupsdata);
                     showgroupinfo(groupNo);
                     getEQU();
                     peopleIn();
