@@ -98,13 +98,42 @@
     <script src="./js/normalFunc.js"></script>
     <!-- 載入資料 -->
     <script>
+        //參團
+        setTimeout(function(){
+            var joinGroup = document.querySelectorAll(".joinGroup");
+            for(let i =0; i<joinGroup.length; i++){
+                joinGroup[i].addEventListener("click", function(){
+                    if(member.MEMNO){
+                        var groupNO = $id(`groupNO${i}`).value;
+                        var joinxhr = new XMLHttpRequest();
+                        joinxhr.onload=function (){
+                            if( joinxhr.status == 200 ){
+                               reason= JSON.parse(joinxhr.responseText);
+                            //    swal(reason);
+                               if(reason==="報名成功"){
+                                    show=groupsdata[i].團名;
+                                    swal(show);
+                                    
+                               }else{
+                                   swal("已報名");
+                               }
+                            }else{
+                                alert(joinxhr.responseText);
+                            }
+                        }
+                        var url = `./php/group/joinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                        joinxhr.open("Get", url, true);
+                        joinxhr.send( null );
+
+                    }else{
+                        showLoginForm();
+                    }
+                    
+                });
+            }
+        },500);
+        
         getgroupinfo();
-        function $create(tag){
-            return  document.createElement(tag);
-        }
-        function $append(father,child){
-            return  father.appendChild(child);
-        }
         function getEQU(i){
             let equthing = document.getElementById(`equthing${i}`);
             if(equdata == "沒資料"){
@@ -229,16 +258,6 @@
                     a.href=`http://localhost/g3-v2/camping2.html?${groupsdata[i].營區編號}`;
                     a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].營地}">`;
                     $append(maphashtag,a);
-                    // input =  $create("input");
-                    // input.className = "tagbtn_green";
-                    // input.type="submit";
-                    // input.value=groupsdata[i].縣市;
-                    // $append(maphashtag,input);
-                    // input =  $create("input");
-                    // input.className = "tagbtn_green";
-                    // input.type="submit";
-                    // input.value=groupsdata[i].營地;
-                    // $append(maphashtag,input);
                     gRight =  $create("div");
                     gRight.className = "gRight";
                     $append(group,gRight);
@@ -258,6 +277,7 @@
                     $append(smallInfo,h6);
                     input =  $create("input");
                     input.type = "hidden";
+                    input.id = "groupNO"+i;
                     input.value=groupsdata[i].團編號;
                     $append(smallInfo,input);
                     if(groupsdata[i].檢舉揪團編號 == null){
@@ -277,8 +297,6 @@
                         input.value="已檢舉";
                         $append(smallInfo,input);
                     }
-                    
-
                     fieldset =  $create("fieldset");
                     fieldset.className = "poster_inform";
                     $append(gRight,fieldset);
@@ -330,7 +348,7 @@
                     findEQU(i,groupsdata[i].團編號);
                     more =  $create("div");
                     more.className = "more";
-                    more.innerHTML = "<input type='submit' class='mainbtn1' value='我要參加'>";              
+                    more.innerHTML = "<input type='submit' class='mainbtn1 joinGroup' value='我要參加'>";              
                     more.innerHTML +=`<a href='./groupInfo.html?GROUP_NO=${groupsdata[i].團編號}'><input type='submit' class='secondbtn1' value='查看詳情'></a>`;
                     $append(group,more);
                     //留言部分
@@ -341,8 +359,8 @@
                     findMsg(i,groupsdata[i].團編號);
                 }
             }
-    
         }
+        
         function getgroupinfo(){
             let loca=document.getElementById("loca").value;
             let people = document.getElementsByName("people");
