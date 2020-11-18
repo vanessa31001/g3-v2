@@ -212,19 +212,30 @@
 
     <section class="section_hot" id="section_hot">
         <div class="wrap">
-            <div class="title">熱門營區</div>
-            <a id="hot_camp_link0" href="">
-                <div class="popular_area camping_block">
-                    <div class="hot">
-                        <p class="white">熱門景點</p>
-                    </div>
+            <div class="title">熱門營區</div>           
+            <div class="camping_block camp_hot">
+                <div class="hot">
+                    <p class="white">熱門景點</p>
+                </div>         
+                <div class="popular_area">
                     <div class="area_pic">
                         <img id="hot_camp_img0">
                     </div>
                     <div class="area_info">
-                        <div class="sub_title" id="hot_camp_name0">
-                            <div class="third_title coll_num">收藏數：888</div>
+                        <div class="sub_title">
+                            <a id="hot_camp_link0">
+                            <span id="hot_camp_name0"></span>
+                            </a>
+                            <span class="third_title coll_num">
+                                <input type="hidden" id="hot_camp_no0">
+                                <!-- <img id="camplike0" class="camplike" src="./pic/icon/like.png"> -->
+                                <img id="campunlike0" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
+                                <img id="camplike0" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                                
+                                <span id="coll_num"></span>
+                            </span>
                         </div>
+
                         <div class="level1" id="hot_camp_inner0"></div>
 
                         <div class="third_title lineheight">聯絡資訊</div>
@@ -233,45 +244,69 @@
                         <div class="third_title lineheight">相關設備</div>
                         <div class="level1" id="hot_camp_facility"></div>
                     </div>
-                </div>
-            </a>
-
+                </div>         
+            </div>
+        </div>
         <div class="wrap">
             <div class="other_popular_area">
                 <div class="card camping_block">
                     <div class="content">
-                        <a id="hot_camp_link1" href="https://www.google.com">
-                            <img id="hot_camp_img1">
-                            <div class="sub_title" id="hot_camp_name1"></div>
-                            <div class="level1 ellipsis" id="hot_camp_inner1"></div>
+                        <img id="hot_camp_img1">
+                        <a id="hot_camp_link1">
+                            <span class="camp_sub_title" id="hot_camp_name1"></span>
                         </a>
+                        <span>
+                            <input type="hidden" id="hot_camp_no1">
+                            <!-- <img id="camplike1" class="camplike" src="./pic/icon/like.png" alt=""> -->
+                            <img id="campunlike1" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
+                            <img id="camplike1" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                        </span>
+                        <div class="level1 ellipsis" id="hot_camp_inner1"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <a id="hot_camp_link2" href="">
-                            <img id="hot_camp_img2">
-                            <div class="sub_title" id="hot_camp_name2"></div>
-                            <div class="level1 ellipsis" id="hot_camp_inner2"></div>
+                        <img id="hot_camp_img2">
+                        <a id="hot_camp_link2">
+                            <span class="camp_sub_title" id="hot_camp_name2"></span>
                         </a>
+                        <span>
+                            <input type="hidden" id="hot_camp_no2">
+                            <!-- <img id="camplike2" class="camplike" src="./pic/icon/like.png" alt=""> -->
+                            <img id="campunlike2" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
+                            <img id="camplike2" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                        </span>
+                        <div class="level1 ellipsis" id="hot_camp_inner2"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
-                        <a id="hot_camp_link3" href="">
-                            <img id="hot_camp_img3">
-                            <div class="sub_title" id="hot_camp_name3"></div>
-                            <div class="level1 ellipsis" id="hot_camp_inner3"></div>
+                        <img id="hot_camp_img3">
+                        <a id="hot_camp_link3">
+                            <span class="camp_sub_title" id="hot_camp_name3"></span>
                         </a>
+                        <span>
+                            <input type="hidden" id="hot_camp_no3">
+                            <!-- <img id="camplike3" class="camplike" src="./pic/icon/like.png" alt=""> -->
+                            <img id="campunlike3" onclick="addLike()"  class="camplike"  src="./pic/icon/like.png">
+                            <img id="camplike3" onclick="deleteLike()" class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                        </span>
+                        <div class="level1 ellipsis" id="hot_camp_inner3"></div>
                     </div>
                 </div>
                 <div class="card camping_block">
                     <div class="content">
+                        <img id="hot_camp_img4">
                         <a id="hot_camp_link4" href="">
-                            <img id="hot_camp_img4">
-                            <div class="sub_title" id="hot_camp_name4"></div>
-                            <div class="level1 ellipsis" id="hot_camp_inner4"></div>
+                            <span class="camp_sub_title" id="hot_camp_name4"></span>
                         </a>
+                        <span>
+                            <input type="hidden" id="hot_camp_no4">
+                            <!-- <img id="camplike4" class="camplike" src="./pic/icon/like.png" alt=""> -->
+                            <img id="campunlike4" onclick="addLike()"  class="camplike"  src="./pic/icon/like.png">
+                            <img id="camplike4" onclick="deleteLike()" class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                        </span>
+                        <div class="level1 ellipsis" id="hot_camp_inner4"></div>
                     </div>
                 </div>
 
@@ -330,16 +365,18 @@
 function $id(id){
     return document.getElementById(id);
 }
-var hotspotxhr = new XMLHttpRequest();
-    hotspotxhr.onload = function(){
-        if( hotspotxhr.status == 200 ){
-            showhotspot(hotspotxhr.responseText);
-        }else{
-        console.log( hotspotxhr.status );
+function likeRank(){
+    var hotspotxhr = new XMLHttpRequest();
+        hotspotxhr.onload = function(){
+            if( hotspotxhr.status == 200 ){
+                showhotspot(hotspotxhr.responseText);
+            }else{
+            console.log( hotspotxhr.status );
+            }
         }
-    }
-hotspotxhr.open("Get", "php/camping/camping1.php", true);
-hotspotxhr.send( null );
+    hotspotxhr.open("Get", "php/camping/camping1.php", true);
+    hotspotxhr.send( null );
+}
 
 function showhotspot(json){
     hotspotDatas = JSON.parse(json);
@@ -349,17 +386,123 @@ function showhotspot(json){
         let likeInner = "hot_camp_inner"+i;
         let likeImg = "hot_camp_img"+i;
         let likeLink = "hot_camp_link"+i;
+        let likeNo = "hot_camp_no"+i;
+        let campLike = "camplike"+i;
+        let campunLike = "campunlike"+i;
         $id(likeID).innerText = hotspotDatas[i].CAM_NAME;
         $id(likeInner).innerText = hotspotDatas[i].CAM_INTRODUCTION;
         $id(likeImg).src = `./pic/camping/camping_spot_img/${hotspotDatas[i].CAM_PIC1}.jpg`;
         $id(likeLink).href=`camping2.html?${hotspotDatas[i].CAM_NO}`;
+        $id(likeNo).value = hotspotDatas[i].CAM_NO;
+        var CAM_NUM = $id(likeNo).value;
+        checkheart(CAM_NUM,i);
     }
     $id('hot_camp_address').innerText = hotspotDatas[0].CAM_ADDRESS;
     $id('hot_camp_facility').innerText = hotspotDatas[0].CAM_FACILITY;
-
-   console.log(hotspotDatas[0].CAM_FACILITY)
-    
+    $id('coll_num').innerText = hotspotDatas[0].收藏數;
 }
+
+function checkheart(CAM_NUM,i){  
+    var xhr1 = new XMLHttpRequest();
+    xhr1.onload = function(){
+        if (xhr1.status == 200) { //連線成功
+            let campLike = "camplike"+i;
+            let campunLike = "campunlike"+i;
+            let confirmlike = xhr1.responseText;
+            console.log(confirmlike);
+            if(confirmlike==='有收藏'){
+                $id(campunLike).style.display='none';
+                $id(campLike).style.display='block';
+            }else{
+                $id(campunLike).style.display='block';
+                $id(campLike).style.display='none';
+            }
+        } else {
+            alert(xhr1.status);
+            // alert('還沒登入無法判斷愛心');
+        }
+    }
+    xhr1.open("post","php/camping/ifliked1.php", true);
+    xhr1.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+    let data = `CAM_NO=${CAM_NUM}`;
+    xhr1.send(data);
+}
+function addLike(){
+    if (member.MEM_ID) {
+        var addlikexhr = new XMLHttpRequest();
+        addlikexhr.onload = function(e) {
+            if (addlikexhr.status == 200) { //連線成功
+                let likeNo = "hot_camp_no"+i;
+                let campLike = "camplike"+i;
+                let campunLike = "campunlike"+i;
+                console.log(addlikexhr.responseText);
+                $id(campunLike).style.display='none';
+                $id(campLike).style.display='block';
+            } else {
+                alert(addlikexhr.status);
+            }
+        }
+        var url = "php/camping/addlike.php";
+        addlikexhr.open("post", url, true);
+        addlikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+        let data = `CAM_NO=${CAM_NUM}`;
+        addlikexhr.send(data);
+    } else {
+        //沒有登入，請先登入
+        swal("請先登入");
+    }
+}
+
+function deleteLike(){
+    if (member.MEM_ID) {
+        var dellikexhr = new XMLHttpRequest();
+        dellikexhr.onload = function(e) {
+            if (dellikexhr.status == 200) { //連線成功
+                let likeNo = "hot_camp_no"+i;
+                let campLike = "camplike"+i;
+                let campunLike = "campunlike"+i;
+                console.log(dellikexhr.responseText);
+                $id(campunLike).style.display='block';
+                $id(campLike).style.display='none';
+            } else {
+                alert(dellikexhr.status);
+            }
+        }
+        var url = "php/camping/deletelike.php";
+        dellikexhr.open("post", url, true);
+        dellikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+        let data = `CAM_NO=${CAM_NUM}`;
+        dellikexhr.send(data);
+    } else {
+        //沒有登入，請先登入
+        alert('請先登入');
+    }
+}
+
+
+function getMemberInfo_forcamp(callback){
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        callback();
+        if(xhr.status == 200){ //success
+            member = JSON.parse(xhr.responseText);
+            if(member.MEM_ID){
+                $id("header_memName").innerText = member.MEM_NICKNAME
+                $id('spanLogin').innerHTML = '登出';
+                console.log(member);         
+            }
+        }else{ //error
+            alert(xhr.status);
+        }
+    }
+    xhr.open("get", "php/common/getMemberInfo.php", true);
+    xhr.send(null);
+}
+
+function init(){
+    getMemberInfo_forcamp(likeRank);
+};
+window.addEventListener('load',init,false);
 </script>
 
 
