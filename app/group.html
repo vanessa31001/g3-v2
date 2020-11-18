@@ -195,7 +195,7 @@
             }else{
                 for(let i=0; i < groupsdata.length; i++){
                     let groupBlock, group, hot, p, gLeft,img, maphashtag, inputg,Right,headLine,h6,fieldset,
-                    inform_block,inform_pi,inform_text, h4,span, aboutPepole,right, equthing;
+                    inform_block,inform_pi,inform_text, h4,span, aboutPepole ,right, equthing, a;
                     //團部分
                     groupBlock =  $create("div");
                     groupBlock.className = "groupBlock";
@@ -203,7 +203,7 @@
                     group =  $create("div");
                     group.className = "group gray1";
                     $append(groupBlock,group);
-                    if(groupsdata[i].收藏數>=2){
+                    if(groupsdata[i].收藏數>=5){
                         hot =  $create("div");
                         hot.className = "hot";
                         hot.innerHTML = "<p class='white'>熱門景點</p>"
@@ -221,16 +221,24 @@
                     maphashtag =  $create("div");
                     maphashtag.className = "maphashtag";
                     $append(gLeft,maphashtag);
-                    input =  $create("input");
-                    input.className = "tagbtn_green";
-                    input.type="submit";
-                    input.value=groupsdata[i].縣市;
-                    $append(maphashtag,input);
-                    input =  $create("input");
-                    input.className = "tagbtn_green";
-                    input.type="submit";
-                    input.value=groupsdata[i].營地;
-                    $append(maphashtag,input);
+                    a= $create("a");
+                    a.href="http://localhost/g3-v2/camping.html";
+                    a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].縣市}">`;
+                    $append(maphashtag,a);
+                    a= $create("a");
+                    a.href=`http://localhost/g3-v2/camping2.html?${groupsdata[i].營區編號}`;
+                    a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].營地}">`;
+                    $append(maphashtag,a);
+                    // input =  $create("input");
+                    // input.className = "tagbtn_green";
+                    // input.type="submit";
+                    // input.value=groupsdata[i].縣市;
+                    // $append(maphashtag,input);
+                    // input =  $create("input");
+                    // input.className = "tagbtn_green";
+                    // input.type="submit";
+                    // input.value=groupsdata[i].營地;
+                    // $append(maphashtag,input);
                     gRight =  $create("div");
                     gRight.className = "gRight";
                     $append(group,gRight);
