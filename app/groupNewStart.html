@@ -32,7 +32,7 @@
                         <li class="level0 gray1">建立新露營團</li>
                     </ul>
                 </div>
-                <form action="" class="groupNewStart group">
+                <form action="" class="groupNewStart group"  method="post" enctype="multipart/form-data">
                     <div class="top level7 green1">
                         填寫建團資訊
                     </div>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="pic">
                             <label class="uploadImg">
-                                <input type="file" id="theFile" name="upFile[]" accept="image/png, image/jpeg"   multiple>
+                                <input type="file" id="theFile" name="upFile[]" accept="image/png, image/jpeg" multiple>
                                 <img src="pic/equipment/photo-camera.svg" alt="">
                                 <span class="level0 gray2">(請上傳三張照片)</span>
                             </label>
@@ -61,18 +61,18 @@
                             <div class="level1 gray1">
                                 <div class="block">
                                     <div class="green1 level1">露營團名 :</div>
-                                    <div><input type="text" class="text inputstyle" placeholder="請為您的團隊取名" id="groupName" ></div>
+                                    <div><input type="text" class="text inputstyle" placeholder="請為您的團隊取名" id="groupName" name="groupName" ></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 textinfo level1">相關介紹 :</div>
-                                    <div><textarea id="groupIntro" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯" ></textarea></div>
+                                    <div><textarea id="groupIntro" name="groupIntro" class="inputstyle" cols="40" rows="4" placeholder="可分享營地資訊或心得⋯⋯" ></textarea></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1" >選擇地區 :</div>
                                     <div>
-                                        <select class="inputstyle level1 gray1" id="camArea">
+                                        <select class="inputstyle level1 gray1" id="camArea" name="camArea[]">
                                         </select>
-                                        <select class="inputstyle level1 gray1" id="camName">
+                                        <select class="inputstyle level1 gray1" id="camName" name="camName[]">
                                         </select>
                                         <a href="./camping.html">
                                             <input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考">
@@ -81,15 +81,15 @@
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">人數上限 :</div>
-                                    <div class="level1 gray1"><input type="number" class="inputstyle" placeholder="1" min="1" id="peopleLimit">人(含主揪)</div>
+                                    <div class="level1 gray1"><input type="number" class="inputstyle" placeholder="1" min="1" id="peopleLimit" name="peopleLimit">人(含主揪)</div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">出團日期 :</div>
-                                    <div><input type="date" class="inputstyle level1 gray1" id="startdate"></div>
+                                    <div><input type="date" class="inputstyle level1 gray1" id="startdate" name="startdate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">結束日期 :</div>
-                                    <div><input type="date" class="inputstyle level1 gray1" id="enddate"></div>
+                                    <div><input type="date" class="inputstyle level1 gray1" id="enddate" name="enddate"></div>
                                 </div>
                                 <div class="block">
                                     <div class="green1 level1">須具備設備 :</div>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="btn" style="text-align: center;">
                             <!-- <input type="button" class="mainbtn2" value="暫存資料" id="save"> -->
-                            <input type="button" class="mainbtn1" value="發佈" id="create">
+                            <input type="submit" class="mainbtn1" value="發佈" id="create">
                         </div>
                     </div>
 
@@ -150,6 +150,11 @@
         let toCamping = $id("toCamping");
         let equSort = $id('equSort');
         let equ = document.querySelectorAll(".equ");
+        groupName.addEventListener('blur', function(){
+            if(groupName.value.trim() == null){
+                groupName.value();
+            }
+        });
         function getSession(){
             //顯示sessionStorage
             if(sessionStorage['groupName'] != null || sessionStorage['groupIntro'] != null || sessionStorage['peopleLimit']!= null || sessionStorage['startdate']!= null || sessionStorage['enddate']!= null){
@@ -220,38 +225,38 @@
             }
             
         });
-        $id("create").addEventListener("click", function(){
-            let equ = document.querySelectorAll(".equ");
-            var equs=[];
-            j=0;
-            for(let i=0; i < equ.length; i++){
-                if(equ[i].checked){
-                    equs[j]=equ[i].value;
-                    j++;
-                }
-            }
-            let date = formatDate(new Date());
-            let msgxhr = new XMLHttpRequest();
-            msgxhr.onload = function(){
-                if(msgxhr.status == 200){ //success 
-                    groupId = JSON.parse(msgxhr.responseText);
-                    alert(groupId);
-                    if(equs){
-                        alert("有設備");
-                        saveEQU(equs,groupId);
-                    }
+        // $id("create").addEventListener("click", function(){
+        //     let equ = document.querySelectorAll(".equ");
+        //     var equs=[];
+        //     j=0;
+        //     for(let i=0; i < equ.length; i++){
+        //         if(equ[i].checked){
+        //             equs[j]=equ[i].value;
+        //             j++;
+        //         }
+        //     }
+        //     let date = formatDate(new Date());
+        //     let msgxhr = new XMLHttpRequest();
+        //     msgxhr.onload = function(){
+        //         if(msgxhr.status == 200){ //success 
+        //             groupId = JSON.parse(msgxhr.responseText);
+        //             alert(groupId);
+        //             if(equs){
+        //                 alert("有設備");
+        //                 saveEQU(equs,groupId);
+        //             }
                     
-                }else{
-                    alert(msgxhr.responseText);
-                }  
-            }
-            msgxhr.open("Post", "./php/group/createNewGroup.php", true);
-            msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-            let data_info = `GROUP_NAME=${groupName.value}&GROUP_INTRO=${groupIntro.value}&GROUP_CAM_NO=${camName.value}&GROUP_PEOPLE_LIMIT=${peopleLimit.value}&GROUP_START_DATE=${date}&GROUP_DEADLINE=${enddate.value}&GROUP_DEPART_DATE=${startdate.value}&equs=${equs}&GROUP_PIC1=${GROUP_PIC1}&GROUP_PIC2=${GROUP_PIC2}&GROUP_PIC3=${GROUP_PIC3}`;
-            // msgxhr.send(data_info);
+        //         }else{
+        //             alert(msgxhr.responseText);
+        //         }  
+        //     }
+        //     msgxhr.open("Post", "./php/group/createNewGroup.php", true);
+        //     msgxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        //     let data_info = `GROUP_NAME=${groupName.value}&GROUP_INTRO=${groupIntro.value}&GROUP_CAM_NO=${camName.value}&GROUP_PEOPLE_LIMIT=${peopleLimit.value}&GROUP_START_DATE=${date}&GROUP_DEADLINE=${enddate.value}&GROUP_DEPART_DATE=${startdate.value}&equs=${equs}&GROUP_PIC1=${GROUP_PIC1}&GROUP_PIC2=${GROUP_PIC2}&GROUP_PIC3=${GROUP_PIC3}`;
+        //     // msgxhr.send(data_info);
             
             
-        });
+        // });
         $id("camArea").onchange = function(){
             listName();
         }
@@ -260,7 +265,7 @@
            for(let i= 0 ; i < city[2].length; i++){
             let label = document.createElement("label");
             label.className ="level1";
-            label.innerHTML=`   <input type="checkbox" class="type equ" value="${city[2][i].EQUSORT_NO}">
+            label.innerHTML=`   <input type="checkbox" class="type equ" name="equSort[]" value="${city[2][i].EQUSORT_NO}">
                                 ${city[2][i].EQUSORT_EQUNAME}`;
             $append(equSort,label);
             }
@@ -287,7 +292,7 @@
             }
             listName();
         }
-        function getdata(){
+        function getdata(){//判斷會員
             let areaxhr = new XMLHttpRequest();
             areaxhr.onload = function(){
                 if(areaxhr.status == 200){ //success
