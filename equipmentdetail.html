@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>設備交換</title>
+    <title>設備交換細節</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
@@ -15,9 +15,94 @@
 <body>
     <div id="equipment">
     <!-- header開始-->
-    @@include('./layout/header.html', { "underline_02": "orange2" })
+    <header >
+    <div class="forphone">
+    <button class="hamburger hamburger--spring" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    </div>
+    <nav class="wrap_nav">
+        <div class="nav_logo">
+            <a class="logo_link -bottom">
+                <img class="desk sun" src="./pic/commom/sun.svg" alt="">
+            </a>
+            <a class="changelogo" href="./shansen.html">
+            <img class="phone" src="./pic/commom/phone_header.svg">
+            </a>
+            <div class="middle_bg"></div>
+            <a href="./shansen.html" class="logo_link -up">
+                <img class="desk" src="./pic/commom/pc_header.svg">
+            </a>
+        </div>
+        <div class="nav_list">
+            <ul >
+                <li><a class="nav_title @@underline_01" href="./group.html">揪團露營</a></li>
+                <li><a class="nav_title orange2" href="./equipment.html">設備交換</a></li>
+                <li><a class="nav_title @@underline_03" href="./camping.html">營區攻略</a></li>
+                <li><a class="nav_title @@underline_04" href="./letter.html">來去寫信</a></li>
+                <li><a class="nav_title @@underline_05" href="./aboutus.html">關於我們</a></li>
+                <li><a href="./member.html" id="header_memName">&nbsp;</a>
+                    <a class="nav_title @@underline_06" id="spanLogin">登入|註冊</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
     <!-- 燈箱開始 -->
-    @@include('./layout/login.html')
+    <div id="outerDiv">
+    <div id="lightBox">
+        <input type="checkbox" id="login_img_control" name="login">
+        <div class="login_container">
+            <div id="logiMember">
+                <table border="1" align="center" cellspacing="0" id="tableLogin" class="login_block_left">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html"  class="logo_link_logo">
+                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                    </a></td></tr>
+                    <tr><td colspan="2" align="center" class="sub_title">會員登入</td></tr>
+                    <tr><td>帳號：</td><td><input class="inputstyle" type="text" name="memId" id="LoginMemId" placeholder="請輸入您的Email"></td></tr>
+                    <tr><td>密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="LoginMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                    <tr><td colspan="2" align="center">
+                        <input type="button" id="btnLogin" value="登入" class="thirdbtn1_green">  
+                        <input type="button" id="btnLoginCancel" value="取消" class="thirdbtn2_green">  
+                    </td></tr>
+                    <tr><td colspan="2" align="center" class="level1">
+                        <p id="forgetPsw">忘記密碼?</p>
+                        <label for="login_img_control">
+                            <span id="to_register_btn">還沒申請帳號?</span>
+                        </label>
+                    </td></tr>
+                </table>
+            </div>
+            <form id="reiMember">
+                <table align="center" cellspacing="0" id="register" class="login_block_right">
+                    <tr><td colspan="2" align="center"><a href="./shansen.html" class="logo_link_logo">
+                        <img class="login_logo"  style="width: 75px;padding: 20px 5px 10px 0px;" src="./pic/commom/1017_logo.png" alt="">
+                    </a></td></tr>
+                    <tr><td colspan="2" align="center" class="sub_title">註冊會員</td></tr>
+                    <tr><td>會員帳號：</td><td><input class="inputstyle" type="text" name="memId" id="RegiMemId" placeholder="請輸入您的Email"></td></tr>
+                    <tr><td>會員密碼：</td><td><input class="inputstyle" type="password" name="memPsw" id="RegiMemPsw" placeholder="請輸入密碼(6-20英數字)"></td></tr>
+                    <tr><td>確認密碼：</td><td><input class="inputstyle" type="password" name="memPsw_check" id="RegiDCMemPsw" placeholder="請再次輸入密碼"></td></tr>
+                    <tr><td>會員姓名：</td><td><input class="inputstyle" type="text" name="memName" id="RegiMemName" placeholder="請輸入您的姓名"></td></tr>
+                    <tr><td>會員暱稱：</td><td><input class="inputstyle" type="text" name="memNice" id="RegiMemNickname" placeholder="請輸入您的暱稱"></td></tr>
+                    <tr><td colspan="2" align="center">
+                        <input type="button" id="btnRegi" value="註冊" class="thirdbtn1_green">  
+                        <input type="button" id="btnRegiCancel" value="取消" class="thirdbtn2_green">  
+                    </td></tr>
+                    <tr><td colspan="2" align="center" class="level1">
+                        <label for="login_img_control">
+                            <span id="to_login_btn">已有會員帳號?</span>
+                        </label>
+                    </td></tr>
+                </table>
+            </form>
+            <div class="login_block_mid">
+                <img src="./pic/commom/mid_pic.svg" alt="登入頁照片">
+            </div>
+        </div>
+    </div>
+</div>
     <!-- 燈箱結束 -->
     <div class="bgcColor bg_dis">
         <section class="section1 bgcColor">
@@ -75,7 +160,38 @@
         </div> 
 
     <!-- footer 開始-->
-    @@include('./layout/footer.html')
+    <footer>
+    <div class="footer_bgc">
+        <div class="wrap">
+            <div class="footerarrange">
+                <div class="footright">
+                    <div class="level2 green1">聯絡資訊 |</div>
+                    <div class="level0 green1">
+                        電子信箱|ShanSen@gmail.com<br>
+                        營業時間|週二至週日 10:00~20:00(國定假日休假)
+                    </div>
+                </div>
+                <div class="footercenter">
+                    <a href="./shansen.html">
+                        <img src="./pic/commom/pc_header.svg">
+                    </a>
+                </div>
+                <div class="footerright">
+                    <div class="link">
+                        <div class="level2 green1">相關連結 |</div>
+                        <div class="footer_icon">
+                            <img src="./pic/commom/foot_line.svg" alt="">
+                            <img src="./pic/commom/foot_ig.svg" alt="">
+                            <img src="./pic/commom/foot_fb.svg" alt="">
+                            <img src="./pic/commom/foot_email.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">Copyright &copy; 2020ShanSen</div>
+</footer>
     <!-- footer 結束-->
     </div>
     <script src="./js/logintext.js"></script>
@@ -131,7 +247,6 @@
             props:{
                 itemNumber: Number,
                 parentClick: Number,
-
             },
             data(){
                 return{
@@ -163,8 +278,13 @@
                     othernumber:0,
                     clicknavbar:0,
                     // clicknavbar1:0,
-                    noneNow:true,
-                    isShow:false,
+                    classTest:false,
+                    styleObject: {
+                        display: "none",
+                    },
+                    searchMatrix:{
+                        
+                    },
                 };
             },
             watch:{
@@ -203,7 +323,6 @@
                 console.log(this.allRows3.length);
                 },
                 othernumber:function(value){
-                    if(value>0){
                         axios.post('php/equipment/equipmentother.php')
                         .then(res => {
                             let asfg = res.data;
@@ -216,7 +335,6 @@
                             this.otherequss3 = asfg[2];
                         })
                         .catch(error => console.log(error)); 
-                    }
                     
                 },
                 
@@ -235,9 +353,17 @@
             
                         // .then(data => console.log(this.allRows));
                         // console.log(location.href);
-                        if(window.location.href =="http://localhost/shansen/equipment.html"){
-                            this.isShow=true;
-                        }
+                let EquimentNo = window.location.href.split('#')[1];
+                    axios.post('php/equipment/equipmentdetail.php',{ 
+                                EQU_NO:EquimentNo
+                    }).then(res => {
+                            this.moveinto(res.data)
+                            console.log(res.data);    
+                        }).catch(function (error) {
+                                console.log(error);
+                                console.log(1);
+                            });
+            this.othernumber += 1;
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -263,41 +389,16 @@
             },
             template:`
             <div  class="equtemp" >
-                <div class="equtemp2"v-if="isShow">
-                    <div class="equ_card1" v-for="(card,index) in allRows2" :key="index" @click="thisequ(index);reportfun()">
-                        
-                            <div class="equ_img1">
-                                <img :src="image + allRows2[index].EQU_PIC1" alt="">
-                            </div>            
-                        
-                        <div class="equ_text">
-                            
-                                <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
-                            
-                            <span class="level1 gray1">刊登者：</span>
-                            <span class="bold level1 gray1 poster_text">{{card.MEM_NICKNAME}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="equsPage">
-                    <ul class="level0 green3 page">
-                        <li @click="changeback">&lt;</li>
-                        <li v-for="pages in page0" class="level0 green3 equpage" name="eqpage" @click="page1(pages)">{{pages}}</li>
-                        <li><p @click="changefront" class="level0 green3" >&gt;</p></li>
-                    </ul>
-                </div>
-                
-                
-                <!--單一產品-- >
-                <div class="equmain" v-else>
+                <!--單一產品-->
+                <div class="equmain">
                     <div class="equpic">
                         <div class="bigimg">
-                            <img class="noweqimg" :src="image + equ.EQU_PIC1" alt="">
+                            <img class="noweqimg" :src="image + searchMatrix.EQU_PIC1" alt="">
                         </div>
                         <div class="minimg">
-                            <img class="eqimg" id='eqimg0' :src="image + equ.EQU_PIC1" value='0' alt="" @click='pickChange(equ.EQU_PIC1)'>
-                            <img class="eqimg" id='eqimg1' :src="image + equ.EQU_PIC2"  value='1' alt="" @click='pickChange(equ.EQU_PIC2)'>
-                            <img class="eqimg" id='eqimg2' :src="image + equ.EQU_PIC3" value='2' alt="" @click='pickChange(equ.EQU_PIC3)'>
+                            <img class="eqimg" id='eqimg0' :src="image + searchMatrix.EQU_PIC1" value='0' alt="" @click='pickChange(searchMatrix.EQU_PIC1)'>
+                            <img class="eqimg" id='eqimg1' :src="image + searchMatrix.EQU_PIC2"  value='1' alt="" @click='pickChange(searchMatrix.EQU_PIC2)'>
+                            <img class="eqimg" id='eqimg2' :src="image + searchMatrix.EQU_PIC3" value='2' alt="" @click='pickChange(searchMatrix.EQU_PIC3)'>
                         </div>
                     
                                 
@@ -315,10 +416,10 @@
                                     <div class="inform_block01">
                                         <div class="inform_block02">
                                             <div class="inform_block02_pic">
-                                                <a href=""><img :src="image3 + equ.MEM_IMG" alt=""></a>
+                                                <a href=""><img :src="image3 + searchMatrix.MEM_IMG" alt=""></a>
                                             </div>
                                             <div class="inform_block02_text">
-                                                <h4><a href="" class="third_title level2">{{equ.MEM_NICKNAME}}</a></h4>
+                                                <h4><a href="" class="third_title level2">{{searchMatrix.MEM_NICKNAME}}</a></h4>
                                                 
                                             </div>                               
                                         </div>
@@ -330,9 +431,9 @@
 
                             <div class="equdescribe">
                                 <div class="equdesblock">
-                                    <div class="sub_title green1 level7">{{equ.EQU_NAME}}</div>
+                                    <div class="sub_title green1 level7">{{searchMatrix.EQU_NAME}}</div>
                                     <div class="third_title level2 equ_third">商品說明</div>
-                                    <p class="level1 gray1">✔{{equ.EQU_DESCR}}</p>
+                                    <p class="level1 gray1">✔{{searchMatrix.EQU_DESCR}}</p>
                                     <div class="itemdescribe">
                                         <div class="third_title level2 equ_third">注意事項</div>
                                         <p class="level1 gray1">◆完美主義者、有潔癖者，務必先詢問過狀況可接受再來交換，以免不愉快與爭議。</p>
@@ -387,21 +488,21 @@
                             </article>
                         </div>
 
-                    <div class="otherblock2" :class="{displayTest: noneNow}">
+                    <div class="otherblock2" >
                         <div class="title">
                             其他設備
                         </div>
                         
                         <div class="other_equ">
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss1)">
                                 <img :src="image + this.allRows[this.otherequss1].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss1].EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss2)">
                                 <img :src="image + this.allRows[this.otherequss2].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss2].EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss3)">
                                 <img :src="image + this.allRows[this.otherequss3].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss3].EQU_NAME}}</span>
                             </div>
@@ -517,10 +618,9 @@
                 },
 
                 thisequ(equ){
-                    
                     this.equ = this.allRows2[equ];
                     console.log(this.equ);
-                    window.location.href = `./equipmentdetail.html#${this.equ.EQU_NO}`;
+                    
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
                     if(this.poster == this.equ.MEM_NICKNAME){
@@ -533,8 +633,11 @@
                         document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
                         document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
                     }
-                    this.othernumber += 1;
+                    
+
                     document.getElementsByClassName('page')[0].style.display ='none';
+                    
+                    this.$emit('update',this.classTest);
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -632,6 +735,13 @@
                 
                 pickChange(attend){
                     document.getElementsByClassName('noweqimg')[0].src = this.image + attend;
+                },
+                moveinto(data){
+                    this.searchMatrix = data;
+
+                },
+                searchEQU(value){
+                    console.log(this.otherequss3);
                 }
             }
         });
@@ -640,16 +750,21 @@
             el: '#equipment',
             data: {
                 select:0,
-                parentClick:0,
+            },
+            created(){
+                
+                        // .then(data => console.log(this.allRows));
+                        // console.log(location.href);
             },
             methods: {
                 equselect(val,times){
                     this.select = val;
-                    this.parentClick = times+1;
-                }
+                },
+                
             },
             computed: {
             },
+            
         });
     </script>
     <script>
