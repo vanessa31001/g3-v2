@@ -323,7 +323,6 @@
                 console.log(this.allRows3.length);
                 },
                 othernumber:function(value){
-                    if(value>0){
                         axios.post('php/equipment/equipmentother.php')
                         .then(res => {
                             let asfg = res.data;
@@ -336,7 +335,6 @@
                             this.otherequss3 = asfg[2];
                         })
                         .catch(error => console.log(error)); 
-                    }
                     
                 },
                 
@@ -365,6 +363,7 @@
                                 console.log(error);
                                 console.log(1);
                             });
+            this.othernumber += 1;
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -495,15 +494,15 @@
                         </div>
                         
                         <div class="other_equ">
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss1)">
                                 <img :src="image + this.allRows[this.otherequss1].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss1].EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss2)">
                                 <img :src="image + this.allRows[this.otherequss2].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss2].EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block">
+                            <div class="other_equ_block" @click="searchEQU(otherequss3)">
                                 <img :src="image + this.allRows[this.otherequss3].EQU_PIC1" alt="">
                                 <span class="level2 gray1">{{this.allRows[this.otherequss3].EQU_NAME}}</span>
                             </div>
@@ -635,7 +634,7 @@
                         document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
                     }
                     
-                    this.othernumber += 1;
+
                     document.getElementsByClassName('page')[0].style.display ='none';
                     
                     this.$emit('update',this.classTest);
@@ -740,6 +739,9 @@
                 moveinto(data){
                     this.searchMatrix = data;
 
+                },
+                searchEQU(value){
+                    console.log(this.otherequss3);
                 }
             }
         });
