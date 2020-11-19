@@ -338,12 +338,6 @@
                         });
                         }
                     });
-                    // let question = confirm('是否確認刪除？');
-                    // if(question){
-                    //     axios.post('php/member/delete_setupGroup.php', g).then(res => {
-                    //          this.getGroup();
-                    //     })
-                    // }
                 },
                 getGroup(){
                     axios.get('php/member/setupGroup.php').then(res => {
@@ -478,21 +472,13 @@
                 page1(){
                     this.link = 'publication'
                     this.page1style= "mem_page1",
-                    this.page2style= "mem_page2",
-                    this.page3style= "mem_page2"
+                    this.page2style= "mem_page2"
 
                 },
                 page2(){
                     this.link = 'exchange'
                     this.page1style= "mem_page2",
-                    this.page2style= "mem_page1",
-                    this.page3style= "mem_page2"
-                },
-                page3(){
-                    this.link = 'favorites'
-                    this.page1style= "mem_page2",
-                    this.page2style= "mem_page2"
-                    this.page3style= "mem_page1"
+                    this.page2style= "mem_page1"
                 },
                 //刪除設備
                 deleteEquipment(e){
@@ -509,43 +495,10 @@
                             this.getEquipment()});
                         }
                     });
-                    // let question = confirm('是否確認下架？');
-                    // if(question){
-                    //     axios.post('php/member/change_equipment.php', e).then(res => {
-                    //          this.getEquipment();
-                    //     })
-                    // }
                 },
                 getEquipment(){
                     axios.get('php/member/publishing_equipment.php').then(res => {
                         this.publishing_equipment = res.data;
-                    })
-                },
-                //取消收藏
-                deleteLike(e){
-                    let question = swal({
-                            title: "確認刪除?",
-                            text: "您將刪除一筆收藏資料!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                            })
-                            .then((willDelete) => {
-                            if (willDelete) {
-                                axios.post('php/member/delete_like.php', e).then(res => {
-                             this.getLike()});
-                            }
-                            });
-                    // let question = confirm('是否確認刪除？');
-                    // if(question){
-                    //     axios.post('php/member/delete_like.php', e).then(res => {
-                    //          this.getLike();
-                    //     })
-                    // }
-                },
-                getLike(){
-                    axios.get('php/member/like_equipment.php').then(res => {
-                        this.like_equipment = res.data;
                     })
                 },
             },
@@ -555,9 +508,6 @@
                 })
                 axios.get('php/member/get_change_info.php').then(res => {
                     this.change_equipment = res.data;;
-                })
-                axios.get('php/member/like_equipment.php').then(res => {
-                    this.like_equipment = res.data;
                 })
             },
             template: `
@@ -573,9 +523,7 @@
                         <div class="group_button">
                             <button :class="page1style" @click="page1">刊登紀錄</button>
                             <button :class="page2style" @click="page2">交換紀錄</button>
-                            <button :class="page3style" @click="page3">收藏</button>
                         </div>
-                        <!-- 交換設備主要切換面 -->
                         <div>
                             <div class="Equipment_record_page" v-if="link == 'publication'">
                                 <ul class="Equipment_record">
@@ -614,28 +562,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="favorites_recode_page" v-if="link == 'favorites'">
-                                <ul class="favorites_record">
-                                    <li>
-                                        <div class="level1">設備編號</div>
-                                        <div class="level1">設備名稱</div>
-                                        <div class="level1">目前狀態</div>
-                                        <div class="level1">取消收藏</div>
-                                    </li>
-                                    <li v-for="equipment in like_equipment" v-if="equipment.status==='尚可交換'">
-                                        <div class="level1">{{equipment.EQU_NO}}</div>
-                                        <div class="level1">{{equipment.equ_name}}</div>
-                                        <span class="level2">可交換</span>
-                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">刪除</button>
-                                    </li>
-                                    <li class="lookfavorites" v-for="equipment in like_equipment" v-if="equipment.status!=='尚可交換'">
-                                        <div class="level1">{{equipment.EQU_NO}}</div>
-                                        <div class="level1">{{equipment.equ_name}}</div>
-                                        <span class="level2">已結束</span>
-                                        <button class="thirdbtn2_orange" @click="deleteLike(equipment)">刪除</button>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -664,12 +590,6 @@
                         this.getCamp()});
                         }
                     });
-                    // let question = confirm('是否確認刪除？');
-                    // if(question){
-                    //     axios.post('php/member/delete_camping.php', c).then(res => {
-                    //         this.getCamp();
-                    //     })
-                    // }
                 },
                 getCamp(){
                     axios.get('php/member/Get_favorites.php').then(res => {
