@@ -228,9 +228,7 @@
                             </a>
                             <span class="third_title coll_num">
                                 <input type="hidden" id="hot_camp_no0">
-                                <!-- <img id="camplike0" class="camplike" src="./pic/icon/like.png"> -->
-                                <img id="campunlike0" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
-                                <img id="camplike0" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                                <img id="campLike0" class="camplike"  src="./pic/icon/like.png">
                                 
                                 <span id="coll_num"></span>
                             </span>
@@ -257,9 +255,7 @@
                         </a>
                         <span>
                             <input type="hidden" id="hot_camp_no1">
-                            <!-- <img id="camplike1" class="camplike" src="./pic/icon/like.png" alt=""> -->
-                            <img id="campunlike1" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
-                            <img id="camplike1" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                            <img id="campLike1" class="camplike"  src="./pic/icon/like.png">
                         </span>
                         <div class="level1 ellipsis" id="hot_camp_inner1"></div>
                     </div>
@@ -272,9 +268,7 @@
                         </a>
                         <span>
                             <input type="hidden" id="hot_camp_no2">
-                            <!-- <img id="camplike2" class="camplike" src="./pic/icon/like.png" alt=""> -->
-                            <img id="campunlike2" onclick="addLike()";  class="camplike"  src="./pic/icon/like.png">
-                            <img id="camplike2" onclick="deleteLike()"; class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                            <img id="campLike2" class="camplike"  src="./pic/icon/like.png">
                         </span>
                         <div class="level1 ellipsis" id="hot_camp_inner2"></div>
                     </div>
@@ -287,9 +281,7 @@
                         </a>
                         <span>
                             <input type="hidden" id="hot_camp_no3">
-                            <!-- <img id="camplike3" class="camplike" src="./pic/icon/like.png" alt=""> -->
-                            <img id="campunlike3" onclick="addLike()"  class="camplike"  src="./pic/icon/like.png">
-                            <img id="camplike3" onclick="deleteLike()" class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                            <img id="campLike3"  class="camplike"  src="./pic/icon/like.png">
                         </span>
                         <div class="level1 ellipsis" id="hot_camp_inner3"></div>
                     </div>
@@ -302,9 +294,8 @@
                         </a>
                         <span>
                             <input type="hidden" id="hot_camp_no4">
-                            <!-- <img id="camplike4" class="camplike" src="./pic/icon/like.png" alt=""> -->
-                            <img id="campunlike4" onclick="addLike()"  class="camplike"  src="./pic/icon/like.png">
-                            <img id="camplike4" onclick="deleteLike()" class="camplike"  src="./pic/icon/like_check.png" style="display:none;">
+                            <img id="campLike4"  class="camplike"  src="./pic/icon/like.png">
+
                         </span>
                         <div class="level1 ellipsis" id="hot_camp_inner4"></div>
                     </div>
@@ -324,7 +315,6 @@
             </div>
         </div>
     </section>
-
     </div>
 
 <!-- footer 開始-->
@@ -365,6 +355,7 @@
 function $id(id){
     return document.getElementById(id);
 }
+
 function likeRank(){
     var hotspotxhr = new XMLHttpRequest();
         hotspotxhr.onload = function(){
@@ -387,8 +378,7 @@ function showhotspot(json){
         let likeImg = "hot_camp_img"+i;
         let likeLink = "hot_camp_link"+i;
         let likeNo = "hot_camp_no"+i;
-        let campLike = "camplike"+i;
-        let campunLike = "campunlike"+i;
+        // let campLike = "camplike"+i;
         $id(likeID).innerText = hotspotDatas[i].CAM_NAME;
         $id(likeInner).innerText = hotspotDatas[i].CAM_INTRODUCTION;
         $id(likeImg).src = `./pic/camping/camping_spot_img/${hotspotDatas[i].CAM_PIC1}.jpg`;
@@ -396,6 +386,7 @@ function showhotspot(json){
         $id(likeNo).value = hotspotDatas[i].CAM_NO;
         var CAM_NUM = $id(likeNo).value;
         checkheart(CAM_NUM,i);
+        
     }
     $id('hot_camp_address').innerText = hotspotDatas[0].CAM_ADDRESS;
     $id('hot_camp_facility').innerText = hotspotDatas[0].CAM_FACILITY;
@@ -407,19 +398,17 @@ function checkheart(CAM_NUM,i){
     xhr1.onload = function(){
         if (xhr1.status == 200) { //連線成功
             let campLike = "camplike"+i;
-            let campunLike = "campunlike"+i;
             let confirmlike = xhr1.responseText;
             console.log(confirmlike);
+            console.log(campLike);
             if(confirmlike==='有收藏'){
-                $id(campunLike).style.display='none';
-                $id(campLike).style.display='block';
+                $id(campLike).src="./pic/icon/like_check.png";
             }else{
-                $id(campunLike).style.display='block';
-                $id(campLike).style.display='none';
+                $id(campLike).src="./pic/icon/like.png";
             }
         } else {
-            alert(xhr1.status);
-            // alert('還沒登入無法判斷愛心');
+            // alert(xhr1.status);
+            alert('還沒登入無法判斷愛心');
         }
     }
     xhr1.open("post","php/camping/ifliked1.php", true);
@@ -427,58 +416,44 @@ function checkheart(CAM_NUM,i){
     let data = `CAM_NO=${CAM_NUM}`;
     xhr1.send(data);
 }
-function addLike(){
-    if (member.MEM_ID) {
-        var addlikexhr = new XMLHttpRequest();
-        addlikexhr.onload = function(e) {
-            if (addlikexhr.status == 200) { //連線成功
-                let likeNo = "hot_camp_no"+i;
-                let campLike = "camplike"+i;
-                let campunLike = "campunlike"+i;
-                console.log(addlikexhr.responseText);
-                $id(campunLike).style.display='none';
-                $id(campLike).style.display='block';
+let like = document.querySelectorAll('.camplike');
+// alert(like.length);
+for(let i=0;i<like.length;i++){
+    like[i].addEventListener('click',function(){
+        let likeNo = $id(`hot_camp_no${i}`).value;
+        // alert(likeNo);
+        if (member.MEM_ID) {
+        var changexhr = new XMLHttpRequest();
+        changexhr.onload = function(e) {
+            if (changexhr.status == 200) { //連線成功
+                console.log(changexhr.responseText);
+                let confirmlike = changexhr.responseText;
+                let campLike = "campLike"+i;
+                console.log(campLike);
+                if(confirmlike==='有收藏'){
+                    $id(campLike).src="./pic/icon/like_check.png";
+                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) + 1;
+                }else{
+                    $id(campLike).src="./pic/icon/like.png";
+                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) - 1;
+                }
             } else {
-                alert(addlikexhr.status);
+                alert(changexhr.status);
             }
+            
         }
-        var url = "php/camping/addlike.php";
-        addlikexhr.open("post", url, true);
-        addlikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
-        let data = `CAM_NO=${CAM_NUM}`;
-        addlikexhr.send(data);
-    } else {
-        //沒有登入，請先登入
-        swal("請先登入");
-    }
-}
-
-function deleteLike(){
-    if (member.MEM_ID) {
-        var dellikexhr = new XMLHttpRequest();
-        dellikexhr.onload = function(e) {
-            if (dellikexhr.status == 200) { //連線成功
-                let likeNo = "hot_camp_no"+i;
-                let campLike = "camplike"+i;
-                let campunLike = "campunlike"+i;
-                console.log(dellikexhr.responseText);
-                $id(campunLike).style.display='block';
-                $id(campLike).style.display='none';
-            } else {
-                alert(dellikexhr.status);
-            }
+            var url = "php/camping/changelike.php";
+            changexhr.open("post", url, true);
+            changexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+            let data = `CAM_NO=${likeNo}`;
+            changexhr.send(data);
+        } else {
+            //沒有登入，請先登入
+            alert('請先登入');
         }
-        var url = "php/camping/deletelike.php";
-        dellikexhr.open("post", url, true);
-        dellikexhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
-        let data = `CAM_NO=${CAM_NUM}`;
-        dellikexhr.send(data);
-    } else {
-        //沒有登入，請先登入
-        alert('請先登入');
-    }
-}
 
+    })
+}
 
 function getMemberInfo_forcamp(callback){
     let xhr = new XMLHttpRequest();
