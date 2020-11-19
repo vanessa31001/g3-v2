@@ -207,16 +207,15 @@
                     sbags: ['成人睡袋','兒童睡袋' ,'雙人睡袋' ],       
                     others: ['桌椅','炊具','小物'],
                     selnumber:0,
+                    clickMore:0,
                 };
             },
             
             methods: {
                 navselect(value){
-                    document.getElementsByClassName('equmain')[0].style = 'none';
-                    document.getElementsByClassName('otherblock2')[0].style = 'none';
                     this.selnumber = value;
-                    
-                    this.$emit('update',this.selnumber);
+                    this.clickMore+=1;
+                    this.$emit('update',this.selnumber,this.clickMore);
                     // alert('1');
                     
                 }
@@ -226,20 +225,20 @@
                 <div class="equlist">
                     <h3><a class="level2 green1" href="">所有商品</a></h3>
                 </div>        
-                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                <div class="equlist" action="./php/equipment/equipment.php" method="GET">                   
                     <h3 class="level2 green1">露營帳篷</h3>
                     <div v-for="(tent,index) in tents"><p class="level2 gray1 minsorts" name="tent" :value = "index+1" @click="navselect(index+1)">{{tent}}</p></div>    
-                </form>
+                </div>
                 <hr>        
-                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                <div class="equlist" action="./php/equipment/equipment.php" method="GET">                   
                     <h3 class="level2 green1">睡袋</h3>
                     <div v-for="(sbag,index) in sbags"><p class="level2 gray1 minsorts" :value = "index+6" @click="navselect(index+6)">{{sbag}}</p></div>    
-                </form>  
+                </div>  
                 <hr>      
-                <form class="equlist" action="./php/equipment/equipment.php" method="GET">                   
+                <div class="equlist" action="./php/equipment/equipment.php" method="GET">                   
                     <h3 class="level2 green1">其他</h3>
                     <div v-for="(other,index) in others"><p class="level2 gray1 minsorts" :value = "index+9" @click="navselect(index+9)">{{other}}</p></div>    
-                </form>
+                </div>
             </div>
             `,
         });
@@ -247,6 +246,7 @@
         Vue.component('equamainall',{
             props:{
                 itemNumber: Number,
+                parentClick: Number,
 
             },
             data(){
@@ -279,18 +279,25 @@
                     othernumber:0,
                     clicknavbar:0,
                     // clicknavbar1:0,
+                    noneNow:true,
+                    isShow:false,
                 };
             },
             watch:{
                 itemNumber:function(newValue){
+                    // this.styleObject.display ="block";
+                    console.log(newValue);
+                    console.log(this.itemNumber);
                     this.allRows2 = [];
                     this.allRows3 = [];
                     this.nochange = 0;
                     this.change = 1;
                         for(let i =0;i<this.allRows.length;i++){
-                            if(this.allRows[i].EQUSORT == this.itemNumber){
+                            if(this.allRows[i].EQUSORT == newValue){
                                 this.allRows3.push(this.allRows[i]);
                                 this.nochange += 1;
+                            }else{
+
                             }
                             
                         }
@@ -302,14 +309,14 @@
                     this.page0 = [];
                             if(this.allRows2.length ==0){                                
                                 document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="none";
-                                document.getElementsByClassName("noitem")[0].style.display="block";
                             }else{
                                 for(let i=1; i<=Math.ceil(this.allRows3.length/9); i++){
                                     this.page0.push(i);
                                 }
                                 document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="block";
-                                document.getElementsByClassName("noitem")[0].style.display="none";
                             }
+                console.log(this.allRows2.length);
+                console.log(this.allRows3.length);
                 },
                 othernumber:function(value){
                     if(value>0){
@@ -328,7 +335,6 @@
                     }
                     
                 },
-
                 
 
             },            
@@ -345,7 +351,9 @@
             
                         // .then(data => console.log(this.allRows));
                         // console.log(location.href);
-                        
+                        if(window.location.href =="http://localhost/shansen/equipment.html"){
+                            this.isShow=true;
+                        }
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -371,7 +379,7 @@
             },
             template:`
             <div  class="equtemp" >
-                <div class="equtemp2" >
+                <div class="equtemp2"v-if="isShow">
                     <div class="equ_card1" v-for="(card,index) in allRows2" :key="index" @click="thisequ(index);reportfun()">
                         
                             <div class="equ_img1">
@@ -387,20 +395,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="equsPage" >
+                <div class="equsPage">
                     <ul class="level0 green3 page">
                         <li @click="changeback">&lt;</li>
                         <li v-for="pages in page0" class="level0 green3 equpage" name="eqpage" @click="page1(pages)">{{pages}}</li>
                         <li><p @click="changefront" class="level0 green3" >&gt;</p></li>
                     </ul>
                 </div>
-                <div class="noitem">
-                    <span class="level7 gray1">"此頁面目前無任何設備"</span>
-                </div>
                 
                 
-                <!--單一產品-->
-                <div class="equmain">
+                <!--單一產品-- >
+                <div class="equmain" v-else>
                     <div class="equpic">
                         <div class="bigimg">
                             <img class="noweqimg" :src="image + equ.EQU_PIC1" alt="">
@@ -462,7 +467,7 @@
                         <!-- 檢舉燈箱 -->
                         <div class="report_overlay">
                             <article>                                        
-                                <form class="report_form">
+                                <div class="report_form">
                                     <div class="level7 bold green1 report_title">檢舉原因</div>
                                     
                                     <div class="report_reason1 level1 gray1" >
@@ -474,7 +479,7 @@
                                         <input class="thirdbtn1_green submit_btn" value="送出" @click='sendReport'>
                                         <button type="button" class="thirdbtn2_green btn_modal_close">取消</button>
                                     </div>                                        
-                                </form>                                        
+                                </div>                                        
                             </article>
                         </div>
 
@@ -482,7 +487,7 @@
                         <div class="msgoverlay">
                             <article>
                                 
-                                <form class="msg_form" action="php/equipment/equipmentmes.php" method="post"  enctype="multipart/form-data">
+                                <div class="msg_form" action="php/equipment/equipmentmes.php" method="post"  enctype="multipart/form-data">
                                     <span class="level7 bold green1 equmsg_title" >傳送訊息給</span>
                                     <span class="level7 bold green1 equmsg_title" name="equmsg_member">{{this.equ.MEM_NICKNAME}}</span>
                                             
@@ -494,11 +499,11 @@
                                         <input class="thirdbtn1_green msg_submit_btn"  name="SB" value="送出" @click="sendMes">
                                         <button type="button" class="thirdbtn2_green btn_msg_close">關閉</button>
                                     </div>                                        
-                                </form>
+                                </div>
                             </article>
                         </div>
 
-                    <div class="otherblock2">
+                    <div class="otherblock2" :class="{displayTest: noneNow}">
                         <div class="title">
                             其他設備
                         </div>
@@ -628,11 +633,10 @@
                 },
 
                 thisequ(equ){
-                    document.getElementsByClassName('equmain')[0].style.display = 'block';
-                    document.getElementsByClassName('otherblock2')[0].style.display = 'block';
+                    
                     this.equ = this.allRows2[equ];
                     console.log(this.equ);
-                    
+                    window.location.href = `./equipmentdetail.html#${this.equ.EQU_NO}`;
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
                     if(this.poster == this.equ.MEM_NICKNAME){
@@ -645,12 +649,8 @@
                         document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
                         document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
                     }
-                    
                     this.othernumber += 1;
                     document.getElementsByClassName('page')[0].style.display ='none';
-                    this.allRows2=[];
-                    
-                    
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -756,10 +756,12 @@
             el: '#equipment',
             data: {
                 select:0,
+                parentClick:0,
             },
             methods: {
-                equselect(val){
+                equselect(val,times){
                     this.select = val;
+                    this.parentClick = times+1;
                 }
             },
             computed: {
@@ -895,8 +897,7 @@
                         }
                         document.getElementById(nowId).classList.add('now');
                     }
-                    let equmain =document.getElementsByClassName('equmain')[0];
-                    let otherblock2= document.getElementsByClassName('otherblock2')[0];
+        
                     let minsorts= document.getElementsByClassName('minsorts');
                 }
         window.addEventListener('load',doFirst);

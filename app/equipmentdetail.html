@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>設備交換</title>
+    <title>設備交換細節</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
@@ -131,7 +131,6 @@
             props:{
                 itemNumber: Number,
                 parentClick: Number,
-
             },
             data(){
                 return{
@@ -163,8 +162,13 @@
                     othernumber:0,
                     clicknavbar:0,
                     // clicknavbar1:0,
-                    noneNow:true,
-                    isShow:false,
+                    classTest:false,
+                    styleObject: {
+                        display: "none",
+                    },
+                    searchMatrix:{
+                        
+                    },
                 };
             },
             watch:{
@@ -235,9 +239,16 @@
             
                         // .then(data => console.log(this.allRows));
                         // console.log(location.href);
-                        if(window.location.href =="http://localhost/shansen/equipment.html"){
-                            this.isShow=true;
-                        }
+                let EquimentNo = window.location.href.split('#')[1];
+                    axios.post('php/equipment/equipmentdetail.php',{ 
+                                EQU_NO:EquimentNo
+                    }).then(res => {
+                            this.moveinto(res.data)
+                            console.log(res.data);    
+                        }).catch(function (error) {
+                                console.log(error);
+                                console.log(1);
+                            });
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -263,41 +274,16 @@
             },
             template:`
             <div  class="equtemp" >
-                <div class="equtemp2"v-if="isShow">
-                    <div class="equ_card1" v-for="(card,index) in allRows2" :key="index" @click="thisequ(index);reportfun()">
-                        
-                            <div class="equ_img1">
-                                <img :src="image + allRows2[index].EQU_PIC1" alt="">
-                            </div>            
-                        
-                        <div class="equ_text">
-                            
-                                <div class="bold level5 green1 equ_all_title">{{card.EQU_NAME}}</div>
-                            
-                            <span class="level1 gray1">刊登者：</span>
-                            <span class="bold level1 gray1 poster_text">{{card.MEM_NICKNAME}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="equsPage">
-                    <ul class="level0 green3 page">
-                        <li @click="changeback">&lt;</li>
-                        <li v-for="pages in page0" class="level0 green3 equpage" name="eqpage" @click="page1(pages)">{{pages}}</li>
-                        <li><p @click="changefront" class="level0 green3" >&gt;</p></li>
-                    </ul>
-                </div>
-                
-                
-                <!--單一產品-- >
-                <div class="equmain" v-else>
+                <!--單一產品-->
+                <div class="equmain">
                     <div class="equpic">
                         <div class="bigimg">
-                            <img class="noweqimg" :src="image + equ.EQU_PIC1" alt="">
+                            <img class="noweqimg" :src="image + searchMatrix.EQU_PIC1" alt="">
                         </div>
                         <div class="minimg">
-                            <img class="eqimg" id='eqimg0' :src="image + equ.EQU_PIC1" value='0' alt="" @click='pickChange(equ.EQU_PIC1)'>
-                            <img class="eqimg" id='eqimg1' :src="image + equ.EQU_PIC2"  value='1' alt="" @click='pickChange(equ.EQU_PIC2)'>
-                            <img class="eqimg" id='eqimg2' :src="image + equ.EQU_PIC3" value='2' alt="" @click='pickChange(equ.EQU_PIC3)'>
+                            <img class="eqimg" id='eqimg0' :src="image + searchMatrix.EQU_PIC1" value='0' alt="" @click='pickChange(searchMatrix.EQU_PIC1)'>
+                            <img class="eqimg" id='eqimg1' :src="image + searchMatrix.EQU_PIC2"  value='1' alt="" @click='pickChange(searchMatrix.EQU_PIC2)'>
+                            <img class="eqimg" id='eqimg2' :src="image + searchMatrix.EQU_PIC3" value='2' alt="" @click='pickChange(searchMatrix.EQU_PIC3)'>
                         </div>
                     
                                 
@@ -315,10 +301,10 @@
                                     <div class="inform_block01">
                                         <div class="inform_block02">
                                             <div class="inform_block02_pic">
-                                                <a href=""><img :src="image3 + equ.MEM_IMG" alt=""></a>
+                                                <a href=""><img :src="image3 + searchMatrix.MEM_IMG" alt=""></a>
                                             </div>
                                             <div class="inform_block02_text">
-                                                <h4><a href="" class="third_title level2">{{equ.MEM_NICKNAME}}</a></h4>
+                                                <h4><a href="" class="third_title level2">{{searchMatrix.MEM_NICKNAME}}</a></h4>
                                                 
                                             </div>                               
                                         </div>
@@ -330,9 +316,9 @@
 
                             <div class="equdescribe">
                                 <div class="equdesblock">
-                                    <div class="sub_title green1 level7">{{equ.EQU_NAME}}</div>
+                                    <div class="sub_title green1 level7">{{searchMatrix.EQU_NAME}}</div>
                                     <div class="third_title level2 equ_third">商品說明</div>
-                                    <p class="level1 gray1">✔{{equ.EQU_DESCR}}</p>
+                                    <p class="level1 gray1">✔{{searchMatrix.EQU_DESCR}}</p>
                                     <div class="itemdescribe">
                                         <div class="third_title level2 equ_third">注意事項</div>
                                         <p class="level1 gray1">◆完美主義者、有潔癖者，務必先詢問過狀況可接受再來交換，以免不愉快與爭議。</p>
@@ -387,7 +373,7 @@
                             </article>
                         </div>
 
-                    <div class="otherblock2" :class="{displayTest: noneNow}">
+                    <div class="otherblock2" >
                         <div class="title">
                             其他設備
                         </div>
@@ -517,10 +503,9 @@
                 },
 
                 thisequ(equ){
-                    
                     this.equ = this.allRows2[equ];
                     console.log(this.equ);
-                    window.location.href = `./equipmentdetail.html#${this.equ.EQU_NO}`;
+                    
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
                     if(this.poster == this.equ.MEM_NICKNAME){
@@ -533,8 +518,11 @@
                         document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
                         document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
                     }
+                    
                     this.othernumber += 1;
                     document.getElementsByClassName('page')[0].style.display ='none';
+                    
+                    this.$emit('update',this.classTest);
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -632,6 +620,10 @@
                 
                 pickChange(attend){
                     document.getElementsByClassName('noweqimg')[0].src = this.image + attend;
+                },
+                moveinto(data){
+                    this.searchMatrix = data;
+
                 }
             }
         });
@@ -640,16 +632,21 @@
             el: '#equipment',
             data: {
                 select:0,
-                parentClick:0,
+            },
+            created(){
+                
+                        // .then(data => console.log(this.allRows));
+                        // console.log(location.href);
             },
             methods: {
                 equselect(val,times){
                     this.select = val;
-                    this.parentClick = times+1;
-                }
+                },
+                
             },
             computed: {
             },
+            
         });
     </script>
     <script>
