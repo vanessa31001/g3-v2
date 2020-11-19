@@ -259,42 +259,11 @@
             msg_data: [],
           }
         },
-        methods:{ 
-          mems(e){
-            //以上jq
-            //留言
-    
-                if($(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val()!= ""){
-                    let msg = $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val();
-                  // alert(msg);
-                  // let date = new Date();
-                  $(e.target).closest(".member_mes_bigblock").find('.mes_append').append(`
-
-                    <div class="message_Re" action="message_return_inadmin.php" method="get">
-                        <span class="third_title">已回覆訊息:</span>
-                        <pre class="gray1 level2" name"mesginback">${msg}</pre>
-                    </div> 
-
-                `);
-                }
-                $(e.target).closest(".member_mes_bigblock").find('.leaveMsg').val("");
-          
-          },
-          phon(){
-          
-          }
-        },
-        mounted() {  //串接後台API
-            let mymember;
-            var that = this;
-            axios.get('php/common/getMemberInfo.php').then(res => {
-                    return  res.data.MEM_ID;
-                }).then(mymember => fetch("http://localhost/ed103g3/php/member/message_formadmin.php?memail="+ mymember))
-                .then(function(response) {
-                    return response.json();
-                }).then(function(data){
-                    that.msg_data = data;
-                })
+        created(){
+            axios.get('php/member/message_formadmin.php').then(res => {
+                this.msg_data = res.data;
+                console.log(res.data);
+            })
         },
         template: `
             <div class="member_message">
