@@ -10,7 +10,7 @@ try{
         $sql2 = "insert member set MEM_ID=:MEM_ID,MEM_PSW=:MEM_PSW,MEM_NAME=:MEM_NAME,MEM_NICKNAME=:MEM_NICKNAME";
         $member2 = $pdo->prepare($sql2); //先編譯好
         $member2->bindValue(":MEM_ID", $_POST["MEM_ID"]);
-        $member2->bindValue(":MEM_PSW", $_POST["MEM_PSW"]);
+        $member2->bindValue(":MEM_PSW", password_hash($_POST["MEM_PSW"],PASSWORD_DEFAULT));
         $member2->bindValue(":MEM_NAME", $_POST["MEM_NAME"]);
         $member2->bindValue(":MEM_NICKNAME", $_POST["MEM_NICKNAME"]);
         $member2->execute();//執行之

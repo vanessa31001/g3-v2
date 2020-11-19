@@ -25,11 +25,9 @@
         <section class="section1 bgcColor member_section">
             <div class="wrap wrap_block" >
                 <div class="title">
-
                     <div id="app" class="app_anyway"> <!--HTML DOM template-->
 
                         <div class="app_left_aside">
-                            
                             <div class="level5 grayColor1 aside_subtitle">會員小屋</div>
 
                             <div class="buttonClassification">
@@ -87,7 +85,6 @@
     @@include('./layout/footer.html')
     <!-- footer 結束-->
 <!--內容結束-->
-    
     <script>
         Vue.component("memberInformation", {
             data(){
@@ -139,12 +136,11 @@
                     </div>
                 </div>
                 `,
-
+            
             methods: {
                 hhh() {
                     if(this.sss == "確定"){
-                        if(document.getElementById('memPsw').firstChild.value !== '' &&
-                           document.getElementById('memName').firstChild.value !== '' &&
+                        if(document.getElementById('memName').firstChild.value !== '' &&
                            document.getElementById('memNick').firstChild.value !== ''){
                                 let info = {MEM_PSW: document.getElementById('memPsw').firstChild.value,
                                             MEM_NAME: document.getElementById('memName').firstChild.value,
@@ -277,7 +273,7 @@
                 getGroup(){
                     axios.get('php/member/setupGroup.php').then(res => {
                     this.setup_groups = res.data;
-                })
+                    })
                 },
                 // 刪除參團
                 exitGroup(j){
@@ -296,13 +292,6 @@
                         });
                         }
                     });
-                    // let question = confirm('是否確認退出？');
-                    // if(question){
-                    //     axios.post('php/member/delete_joinGroup.php', j)
-                    //     .then(res => {
-                    //          this.getjoinGroup();
-                    //     })
-                    // }
                 },
                 getjoinGroup(){
                     let url = 'php/member/joinGroup.php';

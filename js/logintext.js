@@ -48,25 +48,30 @@ function showLoginForm(){
 function sendForm_Login(){
 	//=====使用Ajax 回server端,取回登入者姓名, 放到頁面上
 	let memId = $id("LoginMemId").value.trim();
-	let memPsw = $id("LoginMemPsw").value.trim();
-	xhr.onload = function(){
-        member = JSON.parse(xhr.responseText);
-		if(member.MEM_ID){
-            $id('header_memName').innerHTML = member.MEM_NICKNAME;
-			$id("spanLogin").innerHTML = '登出';
-			//將登入表單上的資料清空，並隱藏起來
-			$id('outerDiv').style.display = 'none';
-			$id('LoginMemId').value = '';
-            $id('LoginMemPsw').value = '';  
-            location.reload();          
-		}else{
-			swal(member.err);
-		}
+    let memPsw = $id("LoginMemPsw").value.trim();
+    if(memId === '' && memPsw === ''){
+        swal('請輸入帳號密碼');
+    }else{
+        xhr.onload = function(){
+            member = JSON.parse(xhr.responseText);
+            if(member.MEM_ID){
+                $id('header_memName').innerHTML = member.MEM_NICKNAME;
+                $id("spanLogin").innerHTML = '登出';
+                //將登入表單上的資料清空，並隱藏起來
+                $id('outerDiv').style.display = 'none';
+                $id('LoginMemId').value = '';
+                $id('LoginMemPsw').value = '';  
+                location.reload();          
+            }else{
+                swal(member.err);
+            }
+        }
+        xhr.open("post", "php/common/loginIn.php", true);
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        let data_info = `MEM_ID=${memId}&MEM_PSW=${memPsw}`;
+        xhr.send(data_info);
     }
-    xhr.open("post", "php/common/loginIn.php", true);
-    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    let data_info = `MEM_ID=${memId}&MEM_PSW=${memPsw}`;
-    xhr.send(data_info);
+
 }
 //送出註冊
 function sendForm_Regi(){
@@ -78,7 +83,6 @@ function sendForm_Regi(){
     if(mempsw !== '' && memname !== '' && memnick !== '' && memid !== '' && memDCpsw !== ''){
         if(memid.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/)!= -1){
             if(mempsw.length > 5 || memDCpsw.length > 5){
-                alert(mempsw.length);
                 if(mempsw === memDCpsw){
                     xhr.onload = function(){
                         member = JSON.parse(xhr.responseText);
@@ -115,10 +119,6 @@ function sendForm_Regi(){
         swal('欄位不可為空');
     }
 }
-//忘記密碼
-// function forgetPassword(){
-//     // alert();
-// }
 //抓是否已登入OK
 function getMemberInfo(){
     xhr.onload = function(){
@@ -155,7 +155,6 @@ function init(){
     $id('to_register_btn').onclick = toRegister;
     $id('to_login_btn').onclick = toLogin;
 
-    // $id('forgetPsw').onclick = forgetPassword;
 };
 
 window.addEventListener('load',init,false);
