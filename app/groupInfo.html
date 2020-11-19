@@ -21,7 +21,7 @@
     @@include('./layout/login.html')
     <!-- 燈箱結束 -->
     <section class="section1 bgcColor">
-        <div class="wrap">
+        <div class="wrap lightbox">
             <div class="grouninfostyle">
                 <div class="level11 green1">
                     揪團露營
@@ -48,7 +48,7 @@
                             <input type="radio" name="reason0" id="report_equ1">
                             <label for="report_equ1">1</label>
                         </div>
-                        <div class="report_reason2 level1 gray1">
+                        <div class="report_reason2 level1 gray1"> 
                             <input type="radio" name="reason0" id="report_equ2">
                             <label for="report_equ2">2</label>
                         </div>
@@ -200,7 +200,76 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script src="./js/normalFunc.js"></script>
-    <script>     
+    <script> 
+        // setTimeout(function(){
+        var joinGroup = $id("joinGroup");
+            joinGroup.addEventListener("click", function(){
+            var url = location.href;
+            var groupNo = url.split('?')[1].split('=');
+            if(member.MEMNO){
+                // if(joinGroup.value==="我要參加"){//會員
+                var groupNO = $id("groupID").value;
+                var joinxhr = new XMLHttpRequest();
+                joinxhr.onload=function (){
+                    if( joinxhr.status == 200 ){
+                        reason= JSON.parse(joinxhr.responseText);
+                        swal(reason);
+
+                    }else{
+                        alert(joinxhr.responseText);
+                    }
+                    // readPage(groupNo);
+                    doFirst();
+                }
+                var url = `./php/group/joinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                joinxhr.open("Get", url, true);
+                joinxhr.send( null ); 
+                // }      
+                // }else if(joinGroup.value==="我要退團"){//參團者退團
+                //     var groupNO = $id("groupID").value;
+                //     var joinxhr = new XMLHttpRequest();
+                //     joinxhr.onload=function (){
+                //         if( joinxhr.status == 200 ){
+                //             reason= JSON.parse(joinxhr.responseText);
+                //             swal(reason);
+                //             joinGroup.value="我要參加";
+
+                //         }else{
+                //             alert(joinxhr.responseText);
+                //         }
+                //         doFirst();
+                //     }
+                //     var url = `./php/group/unjoinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                //     joinxhr.open("Get", url, true);
+                //     joinxhr.send( null ); 
+
+                // }else{//主揪關閉
+
+                //     // var groupNO = $id("groupID").value;
+                //     // var joinxhr = new XMLHttpRequest();
+                //     // joinxhr.onload=function (){
+                //     //     if( joinxhr.status == 200 ){
+                //     //         reason= JSON.parse(joinxhr.responseText);
+                //     //         swal(reason);
+                //     //         joinGroup.value="";
+
+                //     //     }else{
+                //     //         alert(joinxhr.responseText);
+                //     //     }
+                //     //     doFirst();
+                //     // }
+                //     // var url = `./php/group/unjoinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                //     // joinxhr.open("Get", url, true);
+                //     // joinxhr.send( null );
+
+                // }
+            }else{
+                showLoginForm();
+            }
+            
+        });
+        // },500);
+    
         //參加團員
         function peopleIn(){
             let memberIn=$id("memberIn");
@@ -310,9 +379,7 @@
             let report = $id("report");
             if(member.MEMNO == groupsdata[0].GROUP_MEMNO){
                 //若是主揪:關閉此團，關閉檢舉
-                joinGroupBtn.value = "關閉此團";
-                joinGroupBtn.className = "secondbtn2";
-                forBtn.style["text-align"] = "right";
+                joinGroupBtn.style["display"] = "none";
                 report.style["display"] = "none";  
             }else{
                 //一般會員
@@ -331,10 +398,8 @@
                 //若是參團者:我要退團，關閉檢舉
                 for(let i=0; i< groupsdata[2].length; i++){
                     if(member.MEMNO == groupsdata[2][i].G_DETAIL_MEMNO){
-                        joinGroupBtn.value = "我要退團";
-                        joinGroupBtn.className = "secondbtn2";
-                        forBtn.style["text-align"] = "right";
-                        $id("report").style["display"] = "none";
+                        joinGroupBtn.style["display"] = "none";
+                        // $id("report").style["display"] = "none";
                         break;
                     }
                 }
@@ -396,11 +461,6 @@
                             input.value="檢舉";
                         }
                         $append(msgInfo,input);
-
-
-
-
-
                     }else{//若被檢舉
                         let msgInfo = $create("div");
                         msgInfo.className="msgInfo";

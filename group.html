@@ -107,7 +107,7 @@
 </div>
     <!-- 燈箱結束 -->
         <section class="section1 bgcColor">
-            <div class="wrap">
+            <div class="wrap lightbox">
                 <div class="level11 green1">
                     揪團露營
                 </div>
@@ -225,14 +225,11 @@
                         joinxhr.onload=function (){
                             if( joinxhr.status == 200 ){
                                reason= JSON.parse(joinxhr.responseText);
-                            //    swal(reason);
-                               if(reason==="報名成功"){
-                                    show=groupsdata[i].團名;
-                                    swal(show);
-                                    
-                               }else{
-                                   swal("已報名");
-                               }
+                                swal(reason)
+                                .then(() => {
+                                    location.reload();
+                                });
+
                             }else{
                                 alert(joinxhr.responseText);
                             }

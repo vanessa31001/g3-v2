@@ -67,7 +67,9 @@ input[type="submit"], button{
             li{
                 display: inline-block;
             }
-        }
+        }    
+    }
+    .lightbox{
         .report_overlay{
             position: fixed;
             top: 0;
@@ -201,7 +203,6 @@ input[type="submit"], button{
         .report_overlay.-opacity-zero{
             opacity: 0;
         }
-        
     }
     //建立揪團按鈕
     .startNewGroup{
