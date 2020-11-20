@@ -249,7 +249,7 @@
                         }
                     
                 }else {
-                    alert("This browser does not support FileReader.");
+                    console.log("This browser does not support FileReader.");
                 }
             });           
         });
@@ -438,7 +438,7 @@
                 GROUP_PIC3 = e.target.files[2].name;
                 checkall()
             }else{
-                alert("請上傳三張照片");
+                swal("請上傳三張照片");
 
             }
             
@@ -527,7 +527,7 @@
                     listName();
                     getSession();
                 }else{ //error
-                    alert(areaxhr.status);
+                    console.log(areaxhr.status);
                 }
             }
             areaxhr.open("get", `./php/group/area.php`, true);

@@ -336,7 +336,7 @@
                         swal(reason);
 
                     }else{
-                        alert(joinxhr.responseText);
+                        console.log(joinxhr.responseText);
                     }
                     // readPage(groupNo);
                     doFirst();
@@ -627,7 +627,7 @@
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
                     groupsdata = JSON.parse(groupxhr.responseText);
-                    console.log(groupsdata);
+                    // console.log(groupsdata);
                     showgroupinfo(groupNo);
                     getEQU();
                     peopleIn();
@@ -657,7 +657,7 @@
                                 let msgxhr = new XMLHttpRequest();
                                 msgxhr.onload = function(){
                                     if(msgxhr.status == 200){ //success 
-                                         console.log(e.target)
+                                        //  console.log(e.target)
 
                                         // location.reload(); 
                                         readPage(groupNo);
@@ -680,7 +680,7 @@
                         }
                     });
                 }else{ //error
-                    alert(groupxhr.responseText);
+                    console.log(groupxhr.responseText);
                 }
             }
             groupxhr.open("get", `./php/group/groupInfo.php?GROUP_NO=${groupNo}`, true);
@@ -694,7 +694,7 @@
                 readPage(GROUP_NO[1]);
     
             }else{
-                alert("連結錯誤，請選別頁");
+                swal("連結錯誤，請選別頁");
             }
 
         }
