@@ -159,9 +159,9 @@
                                         </select>
                                         <select class="inputstyle level1 gray1" id="camName" name="camName">
                                         </select>
-                                        <!-- <a href="./camping.html"> -->
+                                        <a href="./camping.html">
                                             <input type="button" id="toCamping" class="thirdbtn2_orange" value="營區參考">
-                                        <!-- </a> -->
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="block">
@@ -250,7 +250,7 @@
                         }
                     
                 }else {
-                    alert("This browser does not support FileReader.");
+                    console.log("This browser does not support FileReader.");
                 }
             });           
         });
@@ -439,7 +439,7 @@
                 GROUP_PIC3 = e.target.files[2].name;
                 checkall()
             }else{
-                alert("請上傳三張照片");
+                swal("請上傳三張照片");
 
             }
             
@@ -528,7 +528,7 @@
                     listName();
                     getSession();
                 }else{ //error
-                    alert(areaxhr.status);
+                    console.log(areaxhr.status);
                 }
             }
             areaxhr.open("get", `./php/group/area.php`, true);
