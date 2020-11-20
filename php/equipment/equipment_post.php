@@ -3,7 +3,6 @@ $errMsg = "";
 try {
 	require_once("../connectBooks.php");
 	$pdo->beginTransaction();
-	
 	// if( $_FILES["equpic"]["error"] == UPLOAD_ERR_OK){
 		
 		$sql = "INSERT INTO `equipment` (`EQU_NO`,`EQU_NAME`, `EQUSORT`,  `EQU_DESCR` , `EQU_PIC1` , `EQU_PIC2` , `EQU_PIC3`,`EQU_MEMNO` ,`EQU_POSTDATE`)  
@@ -27,7 +26,7 @@ try {
                 $dir = "../../pic/equipment";
             
                 $from = $_FILES["equpic"]["tmp_name"][$i]; 
-                $fileName = $_FILES["equpic"]["name"][$i];;
+                $fileName = $_FILES["equpic"]["name"][$i];
                 $to = "{$dir}/{$fileName}";
                 if(copy($from, $to)){
                     echo "上傳成功<br>";
@@ -63,6 +62,7 @@ try {
 
     
 echo $errMsg;
+
 
 
 
