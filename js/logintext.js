@@ -48,76 +48,77 @@ function showLoginForm(){
 function sendForm_Login(){
 	//=====使用Ajax 回server端,取回登入者姓名, 放到頁面上
 	let memId = $id("LoginMemId").value.trim();
-	let memPsw = $id("LoginMemPsw").value.trim();
-	xhr.onload = function(){
-        member = JSON.parse(xhr.responseText);
-		if(member.MEM_ID){
-            $id('header_memName').innerHTML = member.MEM_NICKNAME;
-			$id("spanLogin").innerHTML = '登出';
-			//將登入表單上的資料清空，並隱藏起來
-			$id('outerDiv').style.display = 'none';
-			$id('LoginMemId').value = '';
-            $id('LoginMemPsw').value = '';  
-            location.reload();          
-		}else{
-			// if(!member.errorMsg){
-			//   alert("系統錯誤",member.errorMsg);
-			// }拿來接收後端傳的
-			// window.alert("帳密錯誤");
-			swal("帳密錯誤");
-		}
+    let memPsw = $id("LoginMemPsw").value.trim();
+    if(memId === '' && memPsw === ''){
+        swal('請輸入帳號密碼');
+    }else{
+        xhr.onload = function(){
+            member = JSON.parse(xhr.responseText);
+            if(member.MEM_ID){
+                $id('header_memName').innerHTML = member.MEM_NICKNAME;
+                $id("spanLogin").innerHTML = '登出';
+                //將登入表單上的資料清空，並隱藏起來
+                $id('outerDiv').style.display = 'none';
+                $id('LoginMemId').value = '';
+                $id('LoginMemPsw').value = '';  
+                location.reload();          
+            }else{
+                swal(member.err);
+            }
+        }
+        xhr.open("post", "php/common/loginIn.php", true);
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        let data_info = `MEM_ID=${memId}&MEM_PSW=${memPsw}`;
+        xhr.send(data_info);
     }
-    xhr.open("post", "php/common/loginIn.php", true);
-    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    let data_info = `MEM_ID=${memId}&MEM_PSW=${memPsw}`;
-    xhr.send(data_info);
+
 }
 //送出註冊
 function sendForm_Regi(){
     let mempsw = $id('RegiMemPsw').value.trim();
+    let memDCpsw = $id('RegiDCMemPsw').value.trim();
     let memname = $id('RegiMemName').value.trim();
     let memnick = $id('RegiMemNickname').value.trim();
     let memid = $id('RegiMemId').value;
-    if(mempsw !== '' && memname !== '' && memnick !== '' && memid !== ''){
-        if($id('RegiMemPsw').value === $id('RegiDCMemPsw').value){
-            if(memid.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/)!= -1){
-                xhr.onload = function(){
-                    member = JSON.parse(xhr.responseText);
-                    if(member.MEM_ID){
-                        $id("header_memName").innerText = member.MEM_NICKNAME;
-                        $id('spanLogin').innerHTML = '登出';
-                        //將登入表單上的資料清空，並隱藏起來
-                        $id('outerDiv').style.display = 'none';
-                        $id('RegiMemId').value = '';
-                        $id('RegiMemPsw').value = '';
-                        $id('RegiDCMemPsw').value = '';
-                        $id('RegiMemName').value = '';
-                        $id('RegiMemNickname').value = '';
-                    }else{
-                        window.alert("此帳號已被使用");
+    if(mempsw !== '' && memname !== '' && memnick !== '' && memid !== '' && memDCpsw !== ''){
+        if(memid.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/)!= -1){
+            if(mempsw.length > 5 || memDCpsw.length > 5){
+                if(mempsw === memDCpsw){
+                    xhr.onload = function(){
+                        member = JSON.parse(xhr.responseText);
+                        if(member.MEM_ID){
+                            swal('註冊成功');
+                            $id("header_memName").innerText = member.MEM_NICKNAME;
+                            $id('spanLogin').innerHTML = '登出';
+                            //將登入表單上的資料清空，並隱藏起來
+                            $id('outerDiv').style.display = 'none';
+                            $id('RegiMemId').value = '';
+                            $id('RegiMemPsw').value = '';
+                            $id('RegiDCMemPsw').value = '';
+                            $id('RegiMemName').value = '';
+                            $id('RegiMemNickname').value = '';
+                        }else{
+                            swal("此帳號已被使用");
+                        }
                     }
-                }
 
-                xhr.open("Post", "php/common/registered.php", true);
-                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
-                let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
-                xhr.send(data_info); 
+                    xhr.open("Post", "php/common/registered.php", true);
+                    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                    let data_info = `MEM_ID=${memid}&MEM_PSW=${mempsw}&MEM_NAME=${memname}&MEM_NICKNAME=${memnick}`;
+                    xhr.send(data_info); 
+                }else{
+                    swal('密碼需一致');
+                }
             }else{
-                swal('請輸入正確的email')
+                swal('密碼需超過六位數');
             }
         }else{
-            // window.alert("此帳號已被使用");
-            swal("此帳號已被使用");
+            swal("請輸入正確的email");
         }
     }else{
-        // alert('密碼需一致，請再確認');
-        swal('密碼需一致，請再確認');
+        swal('欄位不可為空');
     }
 }
-//忘記密碼
-// function forgetPassword(){
-//     // alert();
-// }
 //抓是否已登入OK
 function getMemberInfo(){
     xhr.onload = function(){
@@ -154,7 +155,6 @@ function init(){
     $id('to_register_btn').onclick = toRegister;
     $id('to_login_btn').onclick = toLogin;
 
-    // $id('forgetPsw').onclick = forgetPassword;
 };
 
 window.addEventListener('load',init,false);

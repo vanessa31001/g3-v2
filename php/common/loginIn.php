@@ -1,30 +1,40 @@
 <?php
 try{
-  require_once("../connectBooks.php");
-  $sql = "select * from `member` where MEM_ID=:memId and MEM_PSW=:memPsw"; 
-  $member = $pdo->prepare($sql); //先編譯好
-  
-  $member->bindValue(":memId", $_POST["MEM_ID"]); //代入資料
-	$member->bindValue(":memPsw", $_POST["MEM_PSW"]);
-	$member->execute();//執行之
-  if( $member->rowCount()==0){ //查無此人
-	  echo "{}";
-  }else{ //登入成功
-    //自資料庫中取回資料
-  	$memRow = $member->fetch(PDO::FETCH_ASSOC);
-    //--------------將登入者的資料寫入session
-    session_start();
-    $_SESSION["MEMNO"] = $memRow["MEMNO"];
-    $_SESSION["MEM_ID"] = $memRow["MEM_ID"];
-    $_SESSION["MEM_NAME"] = $memRow["MEM_NAME"];
-    $_SESSION["MEM_NICKNAME"] = $memRow["MEM_NICKNAME"];
+	session_start();
+	require_once("../connectBooks.php");
+	// $sql = "";
 
-  	$result = array("MEMNO"=>$memRow["MEMNO"],"MEM_ID"=>$memRow["MEM_ID"], "MEM_NAME"=>$memRow["MEM_NAME"], "MEM_NICKNAME"=>$memRow["MEM_NICKNAME"]);
-  	$json = json_encode($result);
 
-    //送出登入者的相關資料
-    echo $json;
-  }
+
+
+    $sql1 = "select * from `member` where MEM_ID=:memId"; 
+    $member1 = $pdo->prepare($sql1);
+    $member1->bindValue(":memId", $_POST["MEM_ID"]);
+	$member1->execute();
+	$memRow1 = $member1->fetch(PDO::FETCH_ASSOC);
+	if($member1->rowCount()==0){
+		echo '{ "err" : "帳號未被使用" }';
+	}else{
+		if(password_verify($_POST["MEM_PSW"], $memRow1["MEM_PSW"])){
+			if(is_null($memRow1['MEM_BAN_DATE'])){
+				$_SESSION["MEMNO"] = $memRow1["MEMNO"];
+				$_SESSION["MEM_ID"] = $memRow1["MEM_ID"];
+				$_SESSION["MEM_NAME"] = $memRow1["MEM_NAME"];
+				$_SESSION["MEM_NICKNAME"] = $memRow1["MEM_NICKNAME"];
+				$result = array("MEMNO"=>$memRow1["MEMNO"],"MEM_ID"=>$memRow1["MEM_ID"], "MEM_NAME"=>$memRow1["MEM_NAME"], "MEM_NICKNAME"=>$memRow1["MEM_NICKNAME"]);
+				$json = json_encode($result);
+				//送出登入者的相關資料
+				echo $json;
+			}else{
+				$errMsg = '{ "err" : "您已被停權至 '.$memRow['MEM_BAN_DATE'].'"  }';
+				echo $errMsg;
+			}
+		}else{
+			echo '{ "err" : "密碼錯誤" }';
+			var_dump($memRow1["MEM_PSW"]);
+			die;
+		}
+	}
 }catch(PDOException $e){
   $error = array("errorMsg"=>$e->getMessage());
   echo json_encode($error);//{"errorMsg":"......"}傳回錯誤訊息

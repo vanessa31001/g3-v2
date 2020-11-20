@@ -61,14 +61,17 @@
     .member_image{
         text-align: center;
         margin: 36px 0;
-        img{
+        .memputPhoto{
             display: inline-block;
             border-radius: 50%;
-            max-width: 200px;
-            max-height: 200px;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
         }
         .member_imageButton{
-            display: inline-block;
             button{
                 cursor: pointer; 
             }
@@ -111,31 +114,25 @@
         .member_message_detail{
             display: flex;
             align-items: center;
-            justify-content: center;
             .message_bigpic_01{
                 width: 100px;
+                height: 100px;
                 margin-right: 16px;
+                border-radius: 50%;
+                overflow: hidden;
                 img{
                     width: 100%;
                 }
             }
             .Q_parent{
-                width: 100%;
+                // width: 100%;
+                width: calc(100% - 120px);
                 .mes_append{
-                    width: 95%;
+                    width: 100%;
                 }
             }
         }
-        .message_edit_block{
-            margin-bottom: 10px;
-            button{
-                cursor: pointer;
-            }
-        }
     }
-}
-
-.member_mes_bigblock{
 }
 
 
@@ -638,28 +635,15 @@
                 }
             }//悄悄話
             .member_message_alldetail{
-                border: 3px solid $greenColor1;
-                .member_message_detail{
-                    width: 100%;
-                    display: inline-block;
-                    .message_bigpic_01{
-                        width: 150px;
-                        border-radius: 50%;
-                        padding: 10px;
-                        margin: 0 auto;
-                    }
-                    .Q_parent{
-                        .mes_append{
+                .member_mes_bigblock{
+                    .member_message_detail{
+                        display: block;
+                        .message_bigpic_01{
+                            margin: 0 auto;
+                        }
+                        .Q_parent{
                             width: 100%;
                         }
-                    }
-                }
-                .message_edit_block{
-                    margin-bottom: 10px;
-                    display: flex;
-                    justify-content: space-around;
-                    button{
-                        cursor: pointer;
                     }
                 }
             }
@@ -755,15 +739,6 @@
                 .member_message_detail{
                     display: inline-block;
                     text-align: center;
-                }
-                .message_edit_block{
-                    margin-bottom: 10px;
-                    display: flex;
-                    justify-content: space-around;
-                    button{
-                        cursor: pointer;
-                        min-width: 66px;
-                    }
                 }
             }
                     //開團露營
