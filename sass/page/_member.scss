@@ -246,10 +246,9 @@
                     margin: 0;
                     text-align: left;
                     overflow : hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    -webkit-box-orient: vertical;
+                    width: 100%;
+                }:last-child{
+                    height: 20px;
                 }
             }
             button{

@@ -2,10 +2,8 @@
 try{
 	session_start();
 	require_once("../connectBooks.php");
-	// $sql = "";
-
-
-
+	$sql = "UPDATE `member` SET `MEM_STATUS` = 0, `MEM_BAN_DATE` = null WHERE MEMNO IN (select m1.memno from (select m2.memno,m2.mem_name from member m2 where MEM_BAN_DATE < now()) m1)";
+	$chack_mem = $pdo->exec($sql);
 
     $sql1 = "select * from `member` where MEM_ID=:memId"; 
     $member1 = $pdo->prepare($sql1);
@@ -31,8 +29,6 @@ try{
 			}
 		}else{
 			echo '{ "err" : "密碼錯誤" }';
-			var_dump($memRow1["MEM_PSW"]);
-			die;
 		}
 	}
 }catch(PDOException $e){
