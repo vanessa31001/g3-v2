@@ -26,6 +26,8 @@ try{
 			}
 		}else{
 			echo '{ "err" : "密碼錯誤" }';
+			var_dump($memRow1["MEM_PSW"]);
+			die;
 		}
 	}
 }catch(PDOException $e){

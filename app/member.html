@@ -238,7 +238,6 @@
                     setup_groups:'[]',
                     join_groups:'[]',
                     group_path:'./pic/group/',
-                    page_qua: 2,
                 }
             },
             methods:{
@@ -459,7 +458,7 @@
                                     </li>
                                     <li v-for="equipment in publishing_equipment" v-if="equipment.EQU_SWAPATATNO==='進行中'">
                                         <div class="level1">{{equipment.EQU_NO}}</div>
-                                        <div class="level1">{{equipment.EQU_NAME}}</div>
+                                        <div class="level1"><a v-bind:href="'equipmentdetail.html#' + equipment.EQU_NO" target="_blank">{{equipment.EQU_NAME}}</a></div>
                                         <span class="level2">{{equipment.EQU_SWAPATATNO}}</span>
                                         <button class="thirdbtn2_orange" @click="deleteEquipment(equipment)">下架</button>
                                     </li>
