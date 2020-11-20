@@ -106,13 +106,14 @@
 </div>
     <!-- 燈箱結束 -->
     <section class="section1 bgcColor">
-        <div class="wrap">
+        <div class="wrap lightbox">
             <div class="grouninfostyle">
                 <div class="level11 green1">
                     揪團露營
                 </div>
                 <div>
                     <a href="#" class="startNewGroup" onclick="startNewGroup()"><button class="mainbtn1">我要開團</button><img src="./pic/group/newgroup-01.svg" alt=""></a>
+
                 </div>
             </div>
             
@@ -133,7 +134,7 @@
                             <input type="radio" name="reason0" id="report_equ1">
                             <label for="report_equ1">1</label>
                         </div>
-                        <div class="report_reason2 level1 gray1">
+                        <div class="report_reason2 level1 gray1"> 
                             <input type="radio" name="reason0" id="report_equ2">
                             <label for="report_equ2">2</label>
                         </div>
@@ -168,8 +169,12 @@
                                 </div>
                             </div>
                             <div class="maphashtagI maphashtag ">
-                                <input type="submit" class="tagbtn_green" id="county">
-                                <input type="submit" class="tagbtn_green" id="camName">
+                                <a href="" id="countyA">
+                                    <input type="submit" class="tagbtn_green" id="county">
+                                </a>
+                                <a href="" id="camNameA">
+                                    <input type="submit" class="tagbtn_green" id="camName">
+                                </a>
                             </div>
                             
                         </div>
@@ -185,7 +190,6 @@
                             </div>
                             <fieldset class="poster_inform">
                                 <legend class="level1 green3 poster">主揪</legend>
-                                <!-- <h4 class="third_title poster">主揪</h4> -->
                                 <div class="inform_block">
                                     <div class="inform_pic">
                                            <img id="MEMIMG" alt="">
@@ -317,7 +321,76 @@
     </div>
     <script src="./js/logintext.js"></script>
     <script src="./js/normalFunc.js"></script>
-    <script>     
+    <script> 
+        // setTimeout(function(){
+        var joinGroup = $id("joinGroup");
+            joinGroup.addEventListener("click", function(){
+            var url = location.href;
+            var groupNo = url.split('?')[1].split('=');
+            if(member.MEMNO){
+                // if(joinGroup.value==="我要參加"){//會員
+                var groupNO = $id("groupID").value;
+                var joinxhr = new XMLHttpRequest();
+                joinxhr.onload=function (){
+                    if( joinxhr.status == 200 ){
+                        reason= JSON.parse(joinxhr.responseText);
+                        swal(reason);
+
+                    }else{
+                        alert(joinxhr.responseText);
+                    }
+                    // readPage(groupNo);
+                    doFirst();
+                }
+                var url = `./php/group/joinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                joinxhr.open("Get", url, true);
+                joinxhr.send( null ); 
+                // }      
+                // }else if(joinGroup.value==="我要退團"){//參團者退團
+                //     var groupNO = $id("groupID").value;
+                //     var joinxhr = new XMLHttpRequest();
+                //     joinxhr.onload=function (){
+                //         if( joinxhr.status == 200 ){
+                //             reason= JSON.parse(joinxhr.responseText);
+                //             swal(reason);
+                //             joinGroup.value="我要參加";
+
+                //         }else{
+                //             alert(joinxhr.responseText);
+                //         }
+                //         doFirst();
+                //     }
+                //     var url = `./php/group/unjoinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                //     joinxhr.open("Get", url, true);
+                //     joinxhr.send( null ); 
+
+                // }else{//主揪關閉
+
+                //     // var groupNO = $id("groupID").value;
+                //     // var joinxhr = new XMLHttpRequest();
+                //     // joinxhr.onload=function (){
+                //     //     if( joinxhr.status == 200 ){
+                //     //         reason= JSON.parse(joinxhr.responseText);
+                //     //         swal(reason);
+                //     //         joinGroup.value="";
+
+                //     //     }else{
+                //     //         alert(joinxhr.responseText);
+                //     //     }
+                //     //     doFirst();
+                //     // }
+                //     // var url = `./php/group/unjoinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                //     // joinxhr.open("Get", url, true);
+                //     // joinxhr.send( null );
+
+                // }
+            }else{
+                showLoginForm();
+            }
+            
+        });
+        // },500);
+    
         //參加團員
         function peopleIn(){
             let memberIn=$id("memberIn");
@@ -363,6 +436,7 @@
                 for(let j=0; j<groupsdata[3].length ; j++){
                     a=$create("a");
                     a.className="equ";
+                    a.href=`./equipment.html#${groupsdata[3][j].G_EQU_NO}`;
                     a.innerHTML = ` <button class="tagbtn_yellow">${groupsdata[3][j].EQUSORT_EQUNAME}</button>`;
                     $append(equthing,a);
                 }
@@ -411,7 +485,9 @@
             $id("pic2").src ="./pic/group/"+groupsdata[0].GROUP_PIC1;
             $id("pic3").src ="./pic/group/"+groupsdata[0].GROUP_PIC2;
             $id("pic4").src ="./pic/group/"+groupsdata[0].GROUP_PIC3;
+            $id("countyA").href="./camping.html";
             $id("county").value=groupsdata[0].CAM_COUNTY;
+            $id("camName").href=`./camping.html/${groupsdata[0].CAM_NO}`;
             $id("camName").value=groupsdata[0].CAM_NAME;
             $id("GROUPNAME").innerText = groupsdata[0].GROUP_NAME;
             $id("GROUP_START_DATE").innerText = "開團時間 :" + groupsdata[0].GROUP_START_DATE;
@@ -427,24 +503,33 @@
             let report = $id("report");
             if(member.MEMNO == groupsdata[0].GROUP_MEMNO){
                 //若是主揪:關閉此團，關閉檢舉
-                joinGroupBtn.value = "關閉此團";
-                joinGroupBtn.className = "secondbtn2";
-                forBtn.style["text-align"] = "right";
+                joinGroupBtn.style["display"] = "none";
                 report.style["display"] = "none";  
             }else{
-                //若是參團者:我要退團，關閉檢舉
+                //一般會員
                 joinGroupBtn.className = "mainbtn1";
                 forBtn.style["text-align"] = "center";
+                if(member.MEMNO){
+                    if(member.MEMNO == groupsdata[5].REGROUP_MEMNO){
+                        report.style.color='#C4C4C4';
+                        report.style["border-color"]="#C4C4C4";
+                        report.value="已檢舉";
+                        report.disabled = true;
+                        report.style.cursor="default";
+                    }
+                }
+  
+                //若是參團者:我要退團，關閉檢舉
                 for(let i=0; i< groupsdata[2].length; i++){
                     if(member.MEMNO == groupsdata[2][i].G_DETAIL_MEMNO){
-                        joinGroupBtn.value = "我要退團";
-                        joinGroupBtn.className = "secondbtn2";
-                        forBtn.style["text-align"] = "right";
-                        report.style["display"] = "none";
+                        joinGroupBtn.style["display"] = "none";
+                        // $id("report").style["display"] = "none";
                         break;
                     }
                 }
+                
             }
+            
 
         }
         //已留言
@@ -500,11 +585,6 @@
                             input.value="檢舉";
                         }
                         $append(msgInfo,input);
-
-
-
-
-
                     }else{//若被檢舉
                         let msgInfo = $create("div");
                         msgInfo.className="msgInfo";
@@ -548,6 +628,7 @@
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
                     groupsdata = JSON.parse(groupxhr.responseText);
+                    console.log(groupsdata);
                     showgroupinfo(groupNo);
                     getEQU();
                     peopleIn();

@@ -65,11 +65,10 @@ try{
       $cond3 = 1;
   }
 
-  
-  if(isset($_SESSION["MEMNO"])){
+   if(isset($_SESSION["MEMNO"])){
     $member = $_SESSION["MEMNO"];
-    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
-    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
+    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_NO  `營區編號`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
+    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, a.GROUP_START_DATE  `開團日`,
     date(a.GROUP_DEPART_DATE)  `出發日`, date(a.GROUP_DEADLINE)  `回程日`, a.GROUP_STATUS  `團目前狀態`, a.GROUP_REASON , IFNULL(收藏數,0) `收藏數`, REGROUP_NO `檢舉揪團編號`
     FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
     JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO
@@ -78,8 +77,8 @@ try{
     WHERE a.GROUP_STATUS = 0 AND $cond1 AND $cond2 AND $cond3
     order by GROUP_START_DATE desc;";
   }else{
-    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_AREA  `地區`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
-    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, date(a.GROUP_START_DATE)  `開團日`,
+    $sql = "SELECT a.GROUP_NO `團編號`, a.GROUP_MEMNO `會員編號`, b.MEM_NICKNAME `會員名`,b.MEM_IMG `會員照片`, a.GROUP_PIC1 `圖片1`, a.GROUP_NAME `團名`, a.GROUP_INTRO `揪團介紹`, c.CAM_NO  `營區編號`, c.CAM_COUNTY `縣市` , c.CAM_NAME  `營地`,
+    a.GROUP_PEOPLE_LIMIT  `人數上限`, a.GROUP_PEOPLE_SIGNUP  `參團人數`, (a.GROUP_PEOPLE_LIMIT - a.GROUP_PEOPLE_SIGNUP)  `剩餘名額`, a.GROUP_START_DATE  `開團日`,
     date(a.GROUP_DEPART_DATE)  `出發日`, date(a.GROUP_DEADLINE)  `回程日`, a.GROUP_STATUS  `團目前狀態`, a.GROUP_REASON , IFNULL(收藏數,0) `收藏數`
     FROM campinggroups a JOIN member b  on a.GROUP_MEMNO = b.MEMNO
     JOIN camping c  on a.GROUP_CAM_NO = c.CAM_NO

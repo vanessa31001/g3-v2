@@ -67,6 +67,141 @@ input[type="submit"], button{
             li{
                 display: inline-block;
             }
+        }    
+    }
+    .lightbox{
+        .report_overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: hsla(0, 0%, 0%, .5);
+            opacity: 0;
+            z-index: -99;
+            transition: opacity 1s;
+            article{
+                background-color: #fff;
+                width: 90%;
+                max-width: 480px;
+                border-radius: $radius;
+                
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-image: url('../pic/equipment/1029_燈箱_檢舉.svg');
+                background-position: bottom;
+                background-repeat: no-repeat;
+                .report_form{
+                    padding: 45px 0 45px 0;
+                        .report_title{
+                            text-align: center;
+                        }            
+                        .report_reason1{
+                            text-align: center;
+                            padding-top: 30px;
+                            input[type="radio"]{
+                                display: none;
+                            }
+                            label{
+                                border-radius: 50px;
+                                border: 1px solid $orangeColor1;
+                                cursor: $cursor;
+                                padding: 10px;
+                                max-width: 200px;
+                                width: 100%;
+                                display: block;
+                                margin: auto;
+                                background-color: $white;
+                                &:hover{
+                                    background-color: $orangeColor1;
+                                    color: $white;
+                                }
+                            }
+                            input[type="radio"]:checked + label{
+                                background-color: $orangeColor1;
+                                color: $white;
+                            }
+                            
+                        }
+                        .report_reason2{
+                            text-align: center;
+                            padding-top: 20px;
+                            input[type="radio"]{
+                                display: none;
+                            }
+                            label{
+                                border-radius: 50px;
+                                border: 1px solid $orangeColor1;
+                                cursor: $cursor;
+                                padding: 10px;
+                                max-width: 200px;
+                                width: 100%;
+                                display: block;
+                                margin: auto;
+                                background-color: $white;
+                                &:hover{
+                                    background-color: $orangeColor1;
+                                    color: $white;
+                                }
+                            }
+                            input[type="radio"]:checked + label{
+                                background-color: $orangeColor1;
+                                color: $white;
+                            }
+                        }
+                        .report_reason3{
+                            text-align: center;
+                            padding-top: 20px;
+                            input[type="radio"]{
+                                display: none;
+                            }
+                            label{
+                                border-radius: 50px;
+                                border: 1px solid $orangeColor1;
+                                cursor: $cursor;
+                                padding: 10px;
+                                max-width: 200px;
+                                width: 100%;
+                                display: block;
+                                margin: auto;
+                                background-color: $white;
+                                &:hover{
+                                    background-color: $orangeColor1;
+                                    color: $white;
+                                }
+                            }
+                            input[type="radio"]:checked + label{
+                                background-color: $orangeColor1;
+                                color: $white;
+                            }
+                        }
+                        .report_close_btn{
+                            text-align: center;
+                            padding-top: 30px;
+                            .submit_btn{
+                                margin-right: 20px;
+                            }
+                            .btn_modal_close{
+                                cursor: pointer;
+                                
+                                &:focus{
+                                    outline: none;
+                                } 
+                            }
+                        }
+        
+                }
+            }
+        }
+        .report_overlay.-on{
+            opacity: 1;
+            z-index: 99;
+        }
+        
+        .report_overlay.-opacity-zero{
+            opacity: 0;
         }
     }
     //建立揪團按鈕
