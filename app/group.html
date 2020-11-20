@@ -145,6 +145,7 @@
                 for(let j=0; j<equdata.length ; j++){
                     a=$create("a");
                     a.className="equ";
+                    a.href=`./equipment.html#${equdata[j].揪團設備類別編號}`;
                     a.innerHTML = ` <button class="tagbtn_yellow">${equdata[j].設備類別名稱}</button>`;
                     $append(div,a);
                 }
@@ -159,7 +160,8 @@
             let EQUsxhr = new XMLHttpRequest();
             EQUsxhr.onload = function(){
                 if(EQUsxhr.status == 200){ //success
-                    equdata = JSON.parse(EQUsxhr.responseText);  
+                    equdata = JSON.parse(EQUsxhr.responseText);
+                    console.log(equdata);  
                     getEQU(i);
                 }else{ //error
                     alert(EQUsxhr.status);
@@ -248,11 +250,11 @@
                     maphashtag.className = "maphashtag";
                     $append(gLeft,maphashtag);
                     a= $create("a");
-                    a.href="http://localhost/g3-v2/camping.html";
+                    a.href="./camping.html";
                     a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].縣市}">`;
                     $append(maphashtag,a);
                     a= $create("a");
-                    a.href=`http://localhost/g3-v2/camping2.html?${groupsdata[i].營區編號}`;
+                    a.href=`./camping2.html?${groupsdata[i].營區編號}`;
                     a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].營地}">`;
                     $append(maphashtag,a);
                     gRight =  $create("div");
