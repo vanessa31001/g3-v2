@@ -277,7 +277,7 @@
             EQUsxhr.onload = function(){
                 if(EQUsxhr.status == 200){ //success
                     equdata = JSON.parse(EQUsxhr.responseText);
-                    console.log(equdata);  
+                    // console.log(equdata);  
                     getEQU(i);
                 }else{ //error
                     alert(EQUsxhr.status);
@@ -333,7 +333,7 @@
         function showAllGroups(groupsdata){
             let groups= document.getElementById("groups");
             groups.innerHTML="";
-            console.log(groupsdata);
+            // console.log(groupsdata);
             if(groupsdata.length == 0){
                 groups.innerHTML="<p class='green1 level5' style='text-align: center;'>目前尚無相關露營揪團</p>";
             }else{
