@@ -225,14 +225,14 @@
             
             created(){
                 let equSearchNum = 0;
-                if(window.location.href =="http://localhost/shansen/equipment.html"){
+                if(window.location.href =="./equipment.html"){
                             this.isShow=true;
                         }else{
                             this.isShow=true;
                             equSearchNum = window.location.href.split('#')[1];
                             
                         }
-                axios.get('php/equipment/equipment.php')
+                axios.get('./php/equipment/equipment.php')
                         .then(res => {
                             this.changepage(res.data,equSearchNum)
                             console.log(res.data);
