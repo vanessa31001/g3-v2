@@ -436,10 +436,10 @@ for(let i=0;i<like.length;i++){
                 console.log(campLike);
                 if(confirmlike==='有收藏'){
                     $id(campLike).src="./pic/icon/like_check.png";
-                    $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) + 1;
+                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) + 1;
                 }else{
                     $id(campLike).src="./pic/icon/like.png";
-                    $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) - 1;
+                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) - 1;
                 }
             } else {
                 alert(changexhr.status);
