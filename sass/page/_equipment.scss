@@ -180,6 +180,9 @@ button.reportbtn , .equ_collect_checkbox{
                             background-color: $orangeColor1;
                             color: $white;
                         }
+                        .beenClickColor{
+                            background-color: $orangeColor1;
+                        }
                     }
                     input[type="radio"]:checked + label{
                         background-color: none;
@@ -187,6 +190,7 @@ button.reportbtn , .equ_collect_checkbox{
                     }
                     
                 }
+                
                 .report_reason2{
                     text-align: center;
                     padding-top: 20px;
