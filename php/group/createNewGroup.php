@@ -34,11 +34,11 @@ foreach($_FILES["upFile"]["error"] as $i => $error){
 			$from = $_FILES["upFile"]["tmp_name"][$i]; //暫存區中的路徑和檔名
       $fileName = $_FILES["upFile"]["name"][$i];//原始檔案名稱
 			$to = "{$dir}/{$fileName}";
-      // if(copy($from, $to)){
-      //   echo "上傳成功<br>";
-      // }else{
-      //   echo "上傳失敗<br>";
-      // }
+      if(copy($from, $to)){
+        echo "上傳成功<br>";
+      }else{
+        echo "上傳失敗<br>";
+      }
       $img[$i]= $fileName;
 			break;
 		case UPLOAD_ERR_INI_SIZE :
