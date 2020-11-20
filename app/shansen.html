@@ -493,13 +493,22 @@
         equpxhr.addEventListener('load' ,function(){
             if(equpxhr.status == 200){ 
                 let showequs = JSON.parse(equpxhr.responseText);
+                getTopFiveEQU(showequs)
             }else{ 
                 alert(equpxhr.status);
             }
         });
         equpxhr.open("get", "./php/equipment/equipment.php", true);
         equpxhr.send(null);
-
+        function getTopFiveEQU(value){
+            console.log(value);
+            for (let i = 0; i <=4; i++) {
+                document.getElementsByClassName('poster_text')[i].innerText= value[i].MEM_NICKNAME;
+                document.getElementsByClassName('home_equ_text')[i].getElementsByTagName('a')[0].href = `equipmentdetail.html#${value[i].EQU_NO}`;
+                document.getElementsByClassName('euq_min_list')[i].getElementsByClassName('home_equ_img')[0].getElementsByTagName('img')[0].src ="pic/equipment/" + value[i].EQU_PIC1;
+            }
+            
+        }
     </script>
 </body>
 </html>

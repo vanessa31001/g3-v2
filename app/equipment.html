@@ -224,20 +224,24 @@
             },            
             
             created(){
-                // console.log(this.itemNumber)
-                // this.dfh=this.itemNumber;
+                let equSearchNum = 0;
+                if(window.location.href =="http://localhost/shansen/equipment.html"){
+                            this.isShow=true;
+                        }else{
+                            this.isShow=true;
+                            equSearchNum = window.location.href.split('#')[1];
+                            
+                        }
                 axios.get('php/equipment/equipment.php')
                         .then(res => {
-                            this.changepage(res.data)
+                            this.changepage(res.data,equSearchNum)
                             console.log(res.data);
                         })
                         .catch(error => console.log(error))
             
                         // .then(data => console.log(this.allRows));
                         // console.log(location.href);
-                        if(window.location.href =="http://localhost/shansen/equipment.html"){
-                            this.isShow=true;
-                        }
+                        
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -263,7 +267,7 @@
             },
             template:`
             <div  class="equtemp" >
-                <div class="equtemp2" >
+                <div class="equtemp2">
                     <div class="equ_card1" v-for="(card,index) in allRows2" :key="index" @click="thisequ(index);reportfun()">
                         
                             <div class="equ_img1">
@@ -413,17 +417,38 @@
             
             `,
             methods:{
-                changepage(data){
+                changepage(data,seaNum){
+                    
                     this.allRows = data;
                     for(let i=1; i<=Math.ceil(this.allRows.length/9); i++){
-                        this.page0.push(i);
+                            this.page0.push(i);
+                        }
+                        if(seaNum!=0){
+                            for(let i =0;i<this.allRows.length;i++){
+                            if(this.allRows[i].EQUSORT == seaNum){
+                                this.allRows3.push(this.allRows[i]);
+                                this.nochange += 1;
+                            }
+                        }
+                        for(let i=(this.change-1)*9; i<= (this.change*9-1); i++){
+                            if(i<this.allRows3.length){
+                                this.allRows2.push(this.allRows3[i]);
+                            }
+                        }
+                    this.page0 = [];
+                            if(this.allRows2.length ==0){                                
+                                document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="none";
+                            }else{
+                                for(let i=1; i<=Math.ceil(this.allRows3.length/9); i++){
+                                    this.page0.push(i);
+                                }
+                                document.getElementsByClassName("equsPage")[0].getElementsByClassName("page")[0].style.display="block";
+                            }
+                    }else{
+                        for(var i =this.indexpagefirst; i <= this.indexpage -1; i++){
+                            this.allRows2.push(this.allRows[i]);
+                        }
                     }
-                
-                    
-                    for(var i =this.indexpagefirst; i <= this.indexpage -1; i++){
-                        this.allRows2.push(this.allRows[i]);
-                    }
-
                 },
 
                 page1: function(page){
