@@ -144,9 +144,6 @@
                     width: 550px;
                     margin: 10px 90px 10px 40px;
                 }
-                .home_search{
-                    margin: 10px 0;
-                }
             }
         }
         .content1{
@@ -189,18 +186,11 @@
             }
         }
     }
-    .decoration2{
-        .indexicon1{
-            width: 100px;
-            position: absolute;
-            right: 0;
-        }
-    }
+
     
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
     .home_group{
-
         .wrap{
             .homepage_title{
                 .homepage_sub_title{
@@ -221,6 +211,7 @@
                     .sub_text{
                         width: 330px;
                         margin: 10px auto;
+                        margin-left: 10px;
                     }
                 }
             }
@@ -250,10 +241,6 @@
                     .sub_text{
                         width: 470px;
                         padding: 0 5px;
-                    }
-                    .home_search{
-                        width: 470px;
-                        margin: 10px auto;
                     }
                 }
             }
@@ -285,9 +272,6 @@
                         width: 100%;
                         margin: 10px auto;
                         padding: 0 5px;
-                    }
-                    .home_search{
-                        width: calc(100% - 10px);
                     }
                 }
             }
@@ -326,9 +310,6 @@
                     align-self: center;
                     width: 550px;
                     margin: 10px 90px 10px 40px;
-                }
-                .home_search{
-                    margin: 10px 0;
                 }
             }
         }
@@ -396,6 +377,9 @@
                             border-radius: 8px;
                             overflow: hidden;
                             .home_equ_img {
+                                width: 190px;
+                                height: 190px;
+                                overflow: hidden;
                                 img{
                                     width: 100%;
                                 }
@@ -465,6 +449,7 @@
                     .sub_text{
                         width: 330px;
                         margin: 10px auto;
+                        margin-left: 10px;
                     }
                 }
             }
@@ -546,9 +531,6 @@
                         margin: 10px auto;
                         padding: 0 5px;
                     }
-                    .home_search{
-                        width: calc(100% - 10px);
-                    }
                 }
             }
             .content2{
@@ -605,12 +587,12 @@
                 }
             }
             .homepage_sub_title{
+                display: flex;
+                justify-content: flex-start;
                 .sub_text{
+                    align-self: center;
                     width: 550px;
                     margin: 10px 90px 10px 40px;
-                }
-                .home_search{
-                    margin: 10px 0;
                 }
             }
         }
@@ -1002,7 +984,6 @@
     }
 }
 
-//小遊戲
 //小遊戲
 .home_game{
     width: 100%;

@@ -28,6 +28,9 @@
                 <div class="back_list_title">管理員管理
                     <button class="back_list" @click="content='back-manager'">管理員管理</button>
                 </div>
+                <div class="back_list_title">會員管理
+                    <button class="back_list" @click="content='back-member'">會員管理</button>
+                </div>
 
                 <div class="back_list_title">檢舉管理
                     <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
@@ -57,7 +60,7 @@
 
 
 
-        <script>
+    <script>
         //管理員管理
         Vue.component('back-manager', { 
             data(){
@@ -168,12 +171,73 @@
             </div>
             `,
         });
+        //會員管理
+        Vue.component('back-member', { 
+            data(){
+                return{
+                    members:[],
+                }
+            },
+            methods:{
+                updatememstatus(s){
+                    let question = swal({
+                            title: "確認停權?",
+                            text: "您將停權此會員五天!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            })
+                            .then((willUpdate) => {
+                            if (willUpdate) {
+                                axios.post('php/backstage/backstage_updateMem.php', s).then(res => {this.getMemList()}).then(res=>this.buttonBan(this.members.indexOf(s)));
+                            }
+                            });
+                },
+                buttonBan(i){
+                    document.querySelectorAll('.backclicked')[i].disabled=true;
+                    document.querySelectorAll('.backclicked')[i].style.background='gray';
+                },
+                getMemList(){
+                    axios.get('php/backstage/backstage_member.php').then(res => {
+                this.members = res.data; 
+                })
+                },
+            },
+            created() {
+                axios.get('php/backstage/backstage_member.php').then(res => {
+                this.members = res.data; 
+                })
+            },
+            template: `
+            <div>
+                <div class="back_member_area back_area">
+                <div class="back_title">會員管理</div>
+                    <table class="back_manager_table1 back_table">
+                        <tr>
+                            <th>會員帳號</th>
+                            <th>會員姓名</th>
+                            <th>會員小名</th>
+                            <th>會員狀態</th>
+                            <th>停權</th>
+                        </tr>
+                        <tr v-for="member in members">
+                            <input type="hidden" v-model="member.MEMNO" >
+                            <td>{{member.MEM_ID}}</td>
+                            <td>{{member.MEM_NAME}}</td>
+                            <td>{{member.MEM_NICKNAME}}</td>
+                            <td>{{member.MEM_STATUS}}</td>
+                            <td><button @click="updatememstatus(member)" class="back_loginbtn  backclicked" v-if="member.MEM_STATUS == '正常'">停權</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
         //揪團檢舉管理
         Vue.component('back-rep-group', { 
             data(){
                 return{
                     reportgroups:[],
-                    managers:[],
                 }
             },
         
@@ -185,7 +249,7 @@
                 },
                 buttonBan(i) {
                 document.querySelectorAll('.backclicked')[i].disabled=true;
-                document.querySelectorAll('.backclicked')[i].style.color='gray';
+                document.querySelectorAll('.backclicked')[i].style.background='gray';
                 },
                 // updateRegro(m){
                 //         console.log(m)
@@ -238,7 +302,7 @@
                                 </p>
                             </td>
                             <td>{{reportgroup.GROUP_STATUS}}</td>
-                            <td><button @click="updateRegro(reportgroup)" class="back_loginbtn backclicked">送出</button></td>
+                            <td><button @click="updateRegro(reportgroup)" class="back_loginbtn backclicked" v-if="reportgroup.REGROUP_STATUS == '未處理'">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -300,7 +364,7 @@
                                 </p>    
                             </td>
                             <td>{{reportmsg.GROUP_MES_STATUS}}</td>
-                            <td><button @click="updateRemsg(reportmsg)" class="back_loginbtn backclicked">送出</button></td>
+                            <td><button @click="updateRemsg(reportmsg)" class="back_loginbtn backclicked" v-if="reportmsg.REGROUP_MES_STATUS == '未處理'">送出</button></td>
                         </tr>
                     </table>
                 </div>
@@ -353,11 +417,11 @@
                         <tr v-for="reportequ in reportequs">
                             <input type="hidden" v-model="reportequ.REP_OUT_NO">
                             <td>{{reportequ.REP_OUT_NO}}</td>
-                            <td>{{reportequ.EQU_NAME}}</td>
+                            <td><a v-bind:href="'equipmentdetail.html#' + reportequ.EQU_NO" target="_blank">{{reportequ.EQU_NAME}}</a></td>
                             <td>{{reportequ.MEM_NAME}}</td>
                             <td>{{reportequ.REPOUP_RESON}}</td>
                             <td>{{reportequ.REP_OUT_STATUS}}
-                                <p>{{reportequ.REGROUP_MES_status}}
+                                <p>
                                 <input type="radio" v-model="reportequ.REEQU_DEAL" value="unpass">未通過
                                 </p>
                                 <p>
@@ -365,13 +429,13 @@
                                 </p>     
                             </td>
                             <td>{{reportequ.EQU_SWAPATATNO}}</td>
-                            <td><button @click="updateReequ(reportequ)" class="back_loginbtn backclicked">送出</button></td>
+                            <td><button @click="updateReequ(reportequ)" class="back_loginbtn backclicked" v-if="reportequ.REP_OUT_STATUS == '未處理'">送出</button></td>
                         </tr>
                     </table>
                 </div>
             </div>
             `,
-        });//小知識管理
+        });
 
         //小遊戲
         Vue.component('back-game-manage', { 

@@ -99,6 +99,7 @@
 }
 .bigimg{
     height: 390px;
+    overflow: hidden;
     padding: 0 15px 0 0;
 }
 
@@ -108,6 +109,7 @@
 
 .minimg > img{
     width: 60px;
+    height: 60px;
     cursor: $cursor;
 
 }
@@ -180,6 +182,9 @@ button.reportbtn , .equ_collect_checkbox{
                             background-color: $orangeColor1;
                             color: $white;
                         }
+                        .beenClickColor{
+                            background-color: $orangeColor1;
+                        }
                     }
                     input[type="radio"]:checked + label{
                         background-color: none;
@@ -187,6 +192,7 @@ button.reportbtn , .equ_collect_checkbox{
                     }
                     
                 }
+                
                 .report_reason2{
                     text-align: center;
                     padding-top: 20px;
@@ -740,6 +746,7 @@ button.reportbtn , .equ_collect_checkbox{
 
 .equ_img1{
     height: 280px;
+    overflow: hidden;
 }
 
 .equ_img1 > img {

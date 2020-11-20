@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
 </head>
 <body>
     <div id="equipment">
@@ -214,6 +215,7 @@
                 navselect(value){
                     this.selnumber = value;
                     this.clickMore+=1;
+                    window.location.href =`equipment.html#${value}`;
                     this.$emit('update',this.selnumber,this.clickMore);
                     // alert('1');
                     
@@ -222,7 +224,7 @@
             template:`
             <div>
                 <div class="equlist">
-                    <h3><a class="level2 green1" href="">所有商品</a></h3>
+                    <h3><a class="level2 green1" href="equipment.html">所有商品</a></h3>
                 </div>        
                 <div class="equlist" action="./php/equipment/equipment.php" method="GET">                   
                     <h3 class="level2 green1">露營帳篷</h3>
@@ -271,9 +273,15 @@
 
                     },
                     // equreportreason:,
-                    otherequss1:0,
-                    otherequss2:1,
-                    otherequss3:2,
+                    otherequss1:{
+
+                    },
+                    otherequss2:{
+
+                    },
+                    otherequss3:{
+
+                    },
                     othernumber:0,
                     clicknavbar:0,
                     // clicknavbar1:0,
@@ -284,6 +292,7 @@
                     searchMatrix:{
                         
                     },
+                    checkindex:-1,
                 };
             },
             watch:{
@@ -321,25 +330,9 @@
                 console.log(this.allRows2.length);
                 console.log(this.allRows3.length);
                 },
-                othernumber:function(value){
-                        axios.post('php/equipment/equipmentother.php')
-                        .then(res => {
-                            let asfg = res.data;
-                            
-                            // for(let i = 0; i<3;i++){
-                                
-                            // }
-                            this.otherequss1 = asfg[0];
-                            this.otherequss2 = asfg[1];
-                            this.otherequss3 = asfg[2];
-                        })
-                        .catch(error => console.log(error)); 
-                    
-                },
                 
 
-            },            
-            
+            },              
             created(){
                 // console.log(this.itemNumber)
                 // this.dfh=this.itemNumber;
@@ -360,9 +353,20 @@
                             console.log(res.data);    
                         }).catch(function (error) {
                                 console.log(error);
-                                console.log(1);
                             });
-            this.othernumber += 1;
+                        axios.post('php/equipment/equipmentother.php')
+                        .then(res => {
+                            let asfg = res.data;
+                            
+                            // for(let i = 0; i<3;i++){
+                                
+                            // }
+                            
+                            this.otherequss1 = asfg[0]; 
+                            this.otherequss2 = asfg[1];
+                            this.otherequss3 = asfg[2];
+                        })
+                        .catch(error => console.log(error)); 
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -404,10 +408,6 @@
                                 
                         <div class="btn_block">
                             <button class="thirdbtn2_green reportbtn" @click="equreport1">檢舉</button>
-                            <div class="collect_checkbox equ_collect_checkbox">
-                                <input type="checkbox" id="collect_checkbox">
-                                <label class="equ_collect_btn" for="collect_checkbox" id="the_label">收藏</label>
-                            </div>
                         </div>
 
                         <div class="poster_inform">
@@ -456,7 +456,7 @@
                                     
                                     <div class="report_reason1 level1 gray1" >
                                         <input type="radio" name="reason0" id="report_equ1" >
-                                        <label for="report_equ1" v-for="(report,index) in reports" :value="index" @click="reportbtn11(index)">{{report}}</label>
+                                        <label :class="{'beenClickColor':index==checkindex}" for="report_equ1" v-for="(report,index) in reports" :value="index" @click="reportbtn11(index)">{{report}}</label>
                                     </div>
 
                                     <div class="report_close_btn">
@@ -493,17 +493,17 @@
                         </div>
                         
                         <div class="other_equ">
-                            <div class="other_equ_block" @click="searchEQU(otherequss1)">
-                                <img :src="image + this.allRows[this.otherequss1].EQU_PIC1" alt="">
-                                <span class="level2 gray1">{{this.allRows[this.otherequss1].EQU_NAME}}</span>
+                            <div class="other_equ_block" @click="searchEQU(otherequss1.EQU_NO)">
+                                <img :src="image + this.otherequss1.EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.otherequss1.EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block" @click="searchEQU(otherequss2)">
-                                <img :src="image + this.allRows[this.otherequss2].EQU_PIC1" alt="">
-                                <span class="level2 gray1">{{this.allRows[this.otherequss2].EQU_NAME}}</span>
+                            <div class="other_equ_block" @click="searchEQU(otherequss2.EQU_NO)">
+                                <img :src="image + this.otherequss2.EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.otherequss2.EQU_NAME}}</span>
                             </div>
-                            <div class="other_equ_block" @click="searchEQU(otherequss3)">
-                                <img :src="image + this.allRows[this.otherequss3].EQU_PIC1" alt="">
-                                <span class="level2 gray1">{{this.allRows[this.otherequss3].EQU_NAME}}</span>
+                            <div class="other_equ_block" @click="searchEQU(otherequss3.EQU_NO)">
+                                <img :src="image + this.otherequss3.EQU_PIC1" alt="">
+                                <span class="level2 gray1">{{this.otherequss3.EQU_NAME}}</span>
                             </div>
                             
                         </div>
@@ -636,7 +636,6 @@
 
                     document.getElementsByClassName('page')[0].style.display ='none';
                     
-                    this.$emit('update',this.classTest);
                         // this.clicknavbar1 +=1;
                 },
                 equreport1(){
@@ -659,7 +658,9 @@
 
                 reportbtn11(index3){
                     this.reporton = index3;
+                    this.checkindex = index3;
                     console.log(this.reporton);
+                    
                 },
                 
                 reportfun(){
@@ -740,7 +741,8 @@
 
                 },
                 searchEQU(value){
-                    console.log(this.otherequss3);
+                    window.location.hash=value;
+                    window.location.reload();
                 }
             }
         });

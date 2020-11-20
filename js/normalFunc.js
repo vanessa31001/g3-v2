@@ -16,7 +16,7 @@ function formatDate(date) {
     var s =  date.getSeconds();
     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+s;  
 }; 
-//開團
+//開團按鈕
 function startNewGroup(){
     if(member.MEM_ID){
         window.location.href='./groupNewStart.html';
@@ -45,19 +45,19 @@ function report(reportbtn,btnName,numID){
                     }
                 }
                 if(REGROUP_RESON!==""){
-                    // alert(REGROUP_RESON);
                     // 送出檢舉
                     let repxhr = new XMLHttpRequest();
                     repxhr.onload = function(){
                         if(repxhr.status == 200){ //success
                             let submit_btn=document.querySelector(".report_overlay");
-                            // submit_btn.className = " -opacity-zero";
-                            setTimeout(function(){
-                                submit_btn.className = "report_overlay";
-                            }, 1000);
+                            submit_btn.className = "report_overlay";
                             for(let i=1; i<reason+1; i++){
                                 $id(`report_equ${i}`).checked = false;
                             }
+                            // var url = location.href;
+                            // var GROUP_NO = url.split('?')[1].split('=');
+                            // readPage(GROUP_NO[1]);
+                            location.reload();
                         }else{
                             alert(repxhr.responseText);
                         }  
@@ -65,12 +65,12 @@ function report(reportbtn,btnName,numID){
                     repxhr.open("Post", "./php/group/reportGroup.php", true);
                     repxhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
                     let data_info = `REGROUP_GROUP_NO=${numID}&REGROUP_MEMNO=${member.MEMNO}&REGROUP_RESON=${REGROUP_RESON}&REGROUP_DATE=${date}`;
-                    repxhr.send(data_info);
+                    repxhr.send(data_info);    
                 }else{
-                    // alert("請勾選檢舉原因");
                     swal("請勾選檢舉原因");
                 }
-                location.reload(); 
+                getgroupinfo();
+                // location.reload(); 
             });
         }else{
             var GROUP_NO = url.split('?')[1].split('=');
@@ -113,7 +113,7 @@ function report(reportbtn,btnName,numID){
                         
                                 }
                                 
-                                $id("reportSend").removeEventListener("click",rrr)
+                                $id("reportSend").removeEventListener("click",rrr);
                             }else{
                                 alert(repMsgxhr.responseText);
                             }  
@@ -131,7 +131,6 @@ function report(reportbtn,btnName,numID){
                 let delMsgxhr = new XMLHttpRequest();
                 delMsgxhr.onload = function(){
                     if(delMsgxhr.status == 200){ //success 
-                        // readPage(GROUP_NO[1]);
                         location.reload(); 
                     }else{
                         alert(delMsgxhr.responseText);

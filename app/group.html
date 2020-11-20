@@ -22,7 +22,7 @@
     @@include('./layout/login.html')
     <!-- 燈箱結束 -->
         <section class="section1 bgcColor">
-            <div class="wrap">
+            <div class="wrap lightbox">
                 <div class="level11 green1">
                     揪團露營
                 </div>
@@ -98,13 +98,39 @@
     <script src="./js/normalFunc.js"></script>
     <!-- 載入資料 -->
     <script>
+        //參團
+        setTimeout(function(){
+            var joinGroup = document.querySelectorAll(".joinGroup");
+            for(let i =0; i<joinGroup.length; i++){
+                joinGroup[i].addEventListener("click", function(){
+                    if(member.MEMNO){
+                        var groupNO = $id(`groupNO${i}`).value;
+                        var joinxhr = new XMLHttpRequest();
+                        joinxhr.onload=function (){
+                            if( joinxhr.status == 200 ){
+                               reason= JSON.parse(joinxhr.responseText);
+                                swal(reason)
+                                .then(() => {
+                                    location.reload();
+                                });
+
+                            }else{
+                                alert(joinxhr.responseText);
+                            }
+                        }
+                        var url = `./php/group/joinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
+                        joinxhr.open("Get", url, true);
+                        joinxhr.send( null );
+
+                    }else{
+                        showLoginForm();
+                    }
+                    
+                });
+            }
+        },500);
+        
         getgroupinfo();
-        function $create(tag){
-            return  document.createElement(tag);
-        }
-        function $append(father,child){
-            return  father.appendChild(child);
-        }
         function getEQU(i){
             let equthing = document.getElementById(`equthing${i}`);
             if(equdata == "沒資料"){
@@ -119,6 +145,7 @@
                 for(let j=0; j<equdata.length ; j++){
                     a=$create("a");
                     a.className="equ";
+                    a.href=`./equipment.html#${equdata[j].揪團設備類別編號}`;
                     a.innerHTML = ` <button class="tagbtn_yellow">${equdata[j].設備類別名稱}</button>`;
                     $append(div,a);
                 }
@@ -133,7 +160,8 @@
             let EQUsxhr = new XMLHttpRequest();
             EQUsxhr.onload = function(){
                 if(EQUsxhr.status == 200){ //success
-                    equdata = JSON.parse(EQUsxhr.responseText);  
+                    equdata = JSON.parse(EQUsxhr.responseText);
+                    console.log(equdata);  
                     getEQU(i);
                 }else{ //error
                     alert(EQUsxhr.status);
@@ -195,7 +223,7 @@
             }else{
                 for(let i=0; i < groupsdata.length; i++){
                     let groupBlock, group, hot, p, gLeft,img, maphashtag, inputg,Right,headLine,h6,fieldset,
-                    inform_block,inform_pi,inform_text, h4,span, aboutPepole,right, equthing;
+                    inform_block,inform_pi,inform_text, h4,span, aboutPepole ,right, equthing, a;
                     //團部分
                     groupBlock =  $create("div");
                     groupBlock.className = "groupBlock";
@@ -203,7 +231,7 @@
                     group =  $create("div");
                     group.className = "group gray1";
                     $append(groupBlock,group);
-                    if(groupsdata[i].收藏數>=2){
+                    if(groupsdata[i].收藏數>=5){
                         hot =  $create("div");
                         hot.className = "hot";
                         hot.innerHTML = "<p class='white'>熱門景點</p>"
@@ -221,16 +249,14 @@
                     maphashtag =  $create("div");
                     maphashtag.className = "maphashtag";
                     $append(gLeft,maphashtag);
-                    input =  $create("input");
-                    input.className = "tagbtn_green";
-                    input.type="submit";
-                    input.value=groupsdata[i].縣市;
-                    $append(maphashtag,input);
-                    input =  $create("input");
-                    input.className = "tagbtn_green";
-                    input.type="submit";
-                    input.value=groupsdata[i].營地;
-                    $append(maphashtag,input);
+                    a= $create("a");
+                    a.href="./camping.html";
+                    a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].縣市}">`;
+                    $append(maphashtag,a);
+                    a= $create("a");
+                    a.href=`./camping2.html?${groupsdata[i].營區編號}`;
+                    a.innerHTML =`<input class="tagbtn_green" type="submit" value="${groupsdata[i].營地}">`;
+                    $append(maphashtag,a);
                     gRight =  $create("div");
                     gRight.className = "gRight";
                     $append(group,gRight);
@@ -250,6 +276,7 @@
                     $append(smallInfo,h6);
                     input =  $create("input");
                     input.type = "hidden";
+                    input.id = "groupNO"+i;
                     input.value=groupsdata[i].團編號;
                     $append(smallInfo,input);
                     if(groupsdata[i].檢舉揪團編號 == null){
@@ -263,13 +290,12 @@
                         input.className = "reportbtngGroup";
                         input.type="submit";
                         input.disabled = true;
+                        input.style.cursor="default";
                         input.style.color='#C4C4C4';
                         input.style["border-color"]="#C4C4C4";
                         input.value="已檢舉";
                         $append(smallInfo,input);
                     }
-                    
-
                     fieldset =  $create("fieldset");
                     fieldset.className = "poster_inform";
                     $append(gRight,fieldset);
@@ -321,7 +347,7 @@
                     findEQU(i,groupsdata[i].團編號);
                     more =  $create("div");
                     more.className = "more";
-                    more.innerHTML = "<input type='submit' class='mainbtn1' value='我要參加'>";              
+                    more.innerHTML = "<input type='submit' class='mainbtn1 joinGroup' value='我要參加'>";              
                     more.innerHTML +=`<a href='./groupInfo.html?GROUP_NO=${groupsdata[i].團編號}'><input type='submit' class='secondbtn1' value='查看詳情'></a>`;
                     $append(group,more);
                     //留言部分
@@ -332,8 +358,8 @@
                     findMsg(i,groupsdata[i].團編號);
                 }
             }
-    
         }
+        
         function getgroupinfo(){
             let loca=document.getElementById("loca").value;
             let people = document.getElementsByName("people");
@@ -357,9 +383,7 @@
             let groupsxhr = new XMLHttpRequest();
             groupsxhr.onload = function(){
                 if(groupsxhr.status == 200){ //success
-                    console.log(groupsxhr.responseText);
                     let groupsdata = JSON.parse(groupsxhr.responseText);
-                    console.log(groupsdata);
                     showAllGroups(groupsdata);
                     // 檢舉揪團
                     var reportbtngGroup = document.querySelectorAll(".reportbtngGroup");
@@ -368,14 +392,13 @@
                         reportbtngGroup[i].addEventListener("click", function(){
                             // alert();
                             if(groupsdata[i].會員編號 == member.MEMNO){
-                                swal("您為主揪，無法檢舉自己的團呦。若想關閉揪團請進入查看詳情。");
+                                swal("您為主揪，無法檢舉自己的團呦\n若想關閉揪團請進入查看詳情");
                             }else{
                                 report("reportbtngGroup",this.value,this.previousSibling.value);
                             }
                             
                         });
                     }
-                    console.log(groupsxhr.responseText);
                 }else{ //error
                     alert(groupsxhr.responseText);
                 }

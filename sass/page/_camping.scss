@@ -10,6 +10,14 @@
 .camppart{
     margin-bottom: 60px;
 }
+.camp_sub_title {
+    color: #007E85;
+    width: 100%;
+    height: auto;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 36px;
+}
 //麵包穴
 .section1{
     .breadcrumbs{
@@ -171,17 +179,39 @@
 //熱門營區
 .section_hot{
 margin-bottom: 60px;
-a{
-    text-decoration: none;
-    color: black;
-}
+    .camp_hot{
+        position: relative;
+        overflow: hidden;
+        .hot{
+            background-color:  $orangeColor2; 
+            width: 170px;
+            height: 170px;
+            position: absolute;
+            left: -85px;
+            top: -85px;
+            transform: rotate(45deg);
+            z-index:1;
+            p{
+                font-size: 16px;
+                position: absolute;
+                right: 5px;
+                bottom: 50%;
+                transform: rotate(-45deg);
+            }
+        }
+        a{
+            text-decoration: none;
+            color: $greenColor1;
+        }
+    }
 }
 .popular_area{
     display: flex;
-    position: relative;
-    overflow: hidden;
+    
     .coll_num{
         float: right;
+        line-height: 40px;
+        font-size: 30px;
     }
     .area_pic{
         padding-right: 20px;
@@ -195,23 +225,7 @@ a{
             margin-top: 15px;
         }
     }
-    .hot{
-        background-color:  $orangeColor2; 
-        width: 170px;
-        height: 170px;
-        position: absolute;
-        left: -85px;
-        top: -85px;
-        transform: rotate(45deg);
-        z-index:1;
-        p{
-            font-size: 16px;
-            position: absolute;
-            right: 5px;
-            bottom: 50%;
-            transform: rotate(-45deg);
-        }
-    }
+
 }
 
 //其他熱門營區
@@ -233,6 +247,14 @@ a{
                 max-width: 250px;
                 width: 100%;
                 border-radius: $radius;
+            }
+            span{
+                .camplike{
+                    display: inline-block;
+                    width: 25px;
+                    position: relative;
+                    top: 3px;
+                }
             }
             .ellipsis{
                 width: 100%;

@@ -130,10 +130,6 @@
             </div>
             <div class="wrap">
             </div>
-            <div class="decoration1">
-                <img src="./pic/index/index_icon6.svg" class="indexicon6">
-            <img src="./pic/index/index_icon7.svg" class="indexicon7">
-            </div>
         </section>
 
         <!-- 揪團 -->
@@ -150,10 +146,6 @@
                         <div class="sub_text green3 level1 blod">
                             與其自己手忙腳亂自己搭帳篷，不如跟隨專業露營團隊出遊。好隊友自己挑，給你完美揪團體驗。
                         </div>
-                        <div class="search_input home_search">
-                            <input type="text" id="serchText"placeholder="尋找地點、主揪、團名...">
-                            <label id="serch">搜尋</label>
-                        </div>
                             
                     </div>
                 </div>
@@ -166,9 +158,6 @@
                         <a href="./group.html"><button class="secondbtn1">查看更多</button></a>
                     </div>
                 </div>
-            </div>
-            <div class="decoration2">
-                <img src="./pic/index/index_icon1.svg" class="indexicon1">
             </div>
         </section>
 
@@ -186,11 +175,6 @@
                         <div class="sub_text green3 level1 blod">
                             露營設備放到生灰塵了嗎?想要換其他的設備看看嗎?山森有幸-前所未有的露營裝備交換空間。
                         </div>
-                        <div class="search_input home_search">
-                            <input type="text" placeholder="尋找地點、主揪、團名...">
-                            <label>搜尋</label>
-                        </div>
-                            
                     </div>
                 </div>
                 <div class="content2">
@@ -309,62 +293,6 @@
                                         </div>                         
                                     </div>                            
                                 </li>
-                                <!-- <li class="euq_min_list">
-                                    <div class="home_equ_img">
-                                        <img src="pic/main/f_tent04.png" alt="">
-                                    </div>
-                                    <div class="home_equ_info">
-                                        <div class="home_equ_text">
-                                            <a href="./equipment.html">
-                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                            </a>
-                                            <span class="level1 gray1">刊登者：</span>
-                                            <span class="bold level1 gray1 poster_text">Yong Hwa</span>
-                                        </div>                         
-                                    </div>                            
-                                </li>
-                                <li class="euq_min_list">
-                                    <div class="home_equ_img">
-                                        <img src="pic/main/f_tent02.jpg" alt="">
-                                    </div>
-                                    <div class="home_equ_info">
-                                        <div class="home_equ_text">
-                                            <a href="./equipment.html">
-                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                            </a>
-                                            <span class="level1 gray1">刊登者：</span>
-                                            <span class="bold level1 gray1 poster_text">Yong Hwa</span>
-                                        </div>                         
-                                    </div>                            
-                                </li>
-                                <li class="euq_min_list">
-                                    <div class="home_equ_img">
-                                        <img src="pic/main/f_tent02.jpg" alt="">
-                                    </div>
-                                    <div class="home_equ_info">
-                                        <div class="home_equ_text">
-                                            <a href="./equipment.html">
-                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                            </a>
-                                            <span class="level1 gray1">刊登者：</span>
-                                            <span class="bold level1 gray1 poster_text">Yong Hwa</span>
-                                        </div>                         
-                                    </div>                            
-                                </li>
-                                <li class="euq_min_list">
-                                    <div class="home_equ_img">
-                                        <img src="pic/main/f_tent03.png" alt="">
-                                    </div>
-                                    <div class="home_equ_info">
-                                        <div class="home_equ_text">
-                                            <a href="./equipment.html">
-                                            <div class="bold third_title green1 home_equ_all_title">NUIT 家庭帳六人帳蓬 </div>
-                                            </a>
-                                            <span class="level1 gray1">刊登者：</span>
-                                            <span class="bold level1 gray1 poster_text">Yong Hwa</span>
-                                        </div>                         
-                                    </div>                            
-                                </li> -->
                             </ul>
                         </div>
                         <!-- <button class="tagbtn_yellow" id="equ_rightBtn">&gt;</button> -->
@@ -373,10 +301,6 @@
                         <a href="./equipment.html"><button class="secondbtn1 ">查看更多</button></a>
                     </div>
                 </div>
-            </div>
-            <div class="decoration3">
-                <img src="./pic/index/index_icon2.svg" class="indexicon2">
-                <img src="./pic/index/index_icon3.svg" class="indexicon3">
             </div>
         </section>
 
@@ -456,10 +380,6 @@
                         <button class="secondbtn1 posHomeBtn">馬上寫信</button>
                         </a>
                 </div>
-            </div>
-            <div class="decoration4">
-                <img src="./pic/index/index_icon4.svg" class="indexicon4">
-                <img src="./pic/index/index_icon5.svg" class="indexicon5">
             </div>
         </section>
 
@@ -548,6 +468,8 @@
     <script src="./js/logintext.js"></script>
     <script>
         //團
+        function group(){
+
         let groupxhr = new XMLHttpRequest();
         groupxhr.onload = function(){
             if(groupxhr.status == 200){ //success
@@ -597,29 +519,39 @@
 
             } 
         }
-        //搜尋揪團
-        document.getElementById("serch").onclick= function(){
-            let text = document.getElementById("serchText").value.trim();
-            if(text!= ""){    
-                // console.log(text);
-                window.location.href=`./group.html?serch=${text}`;
-            }
         }
-
-
-
         //最新刊登設備
+
+        function equiment(){
         let equpxhr = new XMLHttpRequest();
-        equpxhr.addEventListener('load' ,function(){
+        equpxhr.onload= function(){
             if(equpxhr.status == 200){ 
-                let showequs = JSON.parse(equpxhr.responseText);
+                // let showequs = JSON.parse(equpxhr.responseText);
+                getTopFiveEQU(equpxhr.responseText)
             }else{ 
                 alert(equpxhr.status);
             }
-        });
+        };
         equpxhr.open("get", "./php/equipment/equipment.php", true);
         equpxhr.send(null);
 
+        function getTopFiveEQU(value){
+            console.log(value);
+            for (let i = 0; i <=4; i++) {
+                document.getElementsByClassName('poster_text')[i].innerText= value[i].MEM_NICKNAME;
+                document.getElementsByClassName('home_equ_all_title')[i].innerText= value[i].EQU_NAME;
+                document.getElementsByClassName('home_equ_text')[i].getElementsByTagName('a')[0].href = `equipmentdetail.html#${value[i].EQU_NO}`;
+                document.getElementsByClassName('euq_min_list')[i].getElementsByClassName('home_equ_img')[0].getElementsByTagName('img')[0].src ="pic/equipment/" + value[i].EQU_PIC1;
+            }
+            
+        }
+        }
+
+        window.addEventListener('load',function (){
+            equiment();
+            group();
+        ;
+        },false);
     </script>
 </body>
 </html>

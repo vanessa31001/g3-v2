@@ -1,7 +1,7 @@
 *{
     .stylePostcard::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 	background-color: white;
 }
@@ -16,7 +16,7 @@
 .stylePostcard::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: $yellowColor2;
 }
 
@@ -54,9 +54,6 @@
             .cardStepTitle{
                 color: $grayColor1;
                 position: relative;
-            }
-            .cardStepTitle::after{
-                
             }
             .chooseCardStep{
                 width: 90px;
@@ -720,11 +717,6 @@
                 }
                 #rightStep3{
                     white-space: nowrap;
-                }
-                #rightStep4{
-                    #postcardInsideText{
-                        
-                    }
                 }
                 #rightStep5{
                     white-space: nowrap;
