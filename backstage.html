@@ -28,6 +28,9 @@
                 <div class="back_list_title">管理員管理
                     <button class="back_list" @click="content='back-manager'">管理員管理</button>
                 </div>
+                <div class="back_list_title">會員管理
+                    <button class="back_list" @click="content='back-member'">會員管理</button>
+                </div>
 
                 <div class="back_list_title">檢舉管理
                     <button class="back_list" @click="content='back-rep-group'">揪團檢舉管理</button>
@@ -57,7 +60,7 @@
 
 
 
-        <script>
+    <script>
         //管理員管理
         Vue.component('back-manager', { 
             data(){
@@ -168,12 +171,48 @@
             </div>
             `,
         });
+        //會員管理
+        Vue.component('back-member', { 
+            data(){
+                return{
+                    members:[],
+                }
+            },
+            created() {
+                axios.get('php/backstage/backstage_member.php').then(res => {
+                this.members = res.data; 
+                })
+            },
+            template: `
+            <div>
+                <div class="back_member_area back_area">
+                <div class="back_title">會員管理</div>
+                    <table class="back_manager_table1 back_table">
+                        <tr>
+                            <th>會員帳號</th>
+                            <th>會員姓名</th>
+                            <th>會員小名</th>
+                            <th>會員狀態</th>
+                            <th>修改</th>
+                        </tr>
+                        <tr v-for="member in members">
+                            <input type="hidden" v-model="member.MEM_ID" >
+                            <td>{{member.MEM_ID}}</td>
+                            <td>{{member.MEM_NAME}}</td>
+                            <td>{{member.MEM_NICKNAME}}</td>
+                            <td>{{member.MEM_STATUS}}</td>
+                            <td><button @click="updatememstatus(member)" class="back_loginbtn backclicked">修改</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            `,
+        });
         //揪團檢舉管理
         Vue.component('back-rep-group', { 
             data(){
                 return{
                     reportgroups:[],
-                    managers:[],
                 }
             },
         

@@ -28,6 +28,7 @@ try{
         }else{
             $val['GROUP_MES_STATUS']='已下架';
         }
+        
         if($val['REGROUP_MES_STATUS']==0){
             $val['REGROUP_MES_STATUS']='未處理';
         }else{
