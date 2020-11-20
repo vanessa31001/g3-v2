@@ -1,7 +1,12 @@
 <?php
 try{
 	session_start();
-    require_once("../connectBooks.php");
+	require_once("../connectBooks.php");
+	// $sql = "";
+
+
+
+
     $sql1 = "select * from `member` where MEM_ID=:memId"; 
     $member1 = $pdo->prepare($sql1);
     $member1->bindValue(":memId", $_POST["MEM_ID"]);
