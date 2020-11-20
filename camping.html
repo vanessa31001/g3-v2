@@ -378,7 +378,7 @@ function showhotspot(json){
         let likeImg = "hot_camp_img"+i;
         let likeLink = "hot_camp_link"+i;
         let likeNo = "hot_camp_no"+i;
-        // let campLike = "camplike"+i;
+        let campLike = "camplike"+i;
         $id(likeID).innerText = hotspotDatas[i].CAM_NAME;
         $id(likeInner).innerText = hotspotDatas[i].CAM_INTRODUCTION;
         $id(likeImg).src = `./pic/camping/camping_spot_img/${hotspotDatas[i].CAM_PIC1}.jpg`;
@@ -399,16 +399,19 @@ function checkheart(CAM_NUM,i){
         if (xhr1.status == 200) { //連線成功
             let campLike = "camplike"+i;
             let confirmlike = xhr1.responseText;
-            console.log(confirmlike);
-            console.log(campLike);
+            // console.log(confirmlike);
+            let objs = document.getElementsByClassName("camplike");
+            // console.log("length : ", objs.length)
             if(confirmlike==='有收藏'){
-                $id(campLike).src="./pic/icon/like_check.png";
+                // $id(campLike).src="./pic/icon/like_check.png";
+                objs[i].setAttribute('src','./pic/icon/like_check.png');
             }else{
-                $id(campLike).src="./pic/icon/like.png";
+                // $id(campLike).src="./pic/icon/like.png";
+                objs[i].src="./pic/icon/like.png";
             }
         } else {
             // alert(xhr1.status);
-            alert('還沒登入無法判斷愛心');
+            // alert('還沒登入無法判斷愛心');
         }
     }
     xhr1.open("post","php/camping/ifliked1.php", true);
@@ -416,6 +419,7 @@ function checkheart(CAM_NUM,i){
     let data = `CAM_NO=${CAM_NUM}`;
     xhr1.send(data);
 }
+
 let like = document.querySelectorAll('.camplike');
 // alert(like.length);
 for(let i=0;i<like.length;i++){
@@ -432,10 +436,10 @@ for(let i=0;i<like.length;i++){
                 console.log(campLike);
                 if(confirmlike==='有收藏'){
                     $id(campLike).src="./pic/icon/like_check.png";
-                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) + 1;
+                    $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) + 1;
                 }else{
                     $id(campLike).src="./pic/icon/like.png";
-                    // $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) - 1;
+                    $id('coll_num').innerText = parseInt(hotspotDatas[0].收藏數) - 1;
                 }
             } else {
                 alert(changexhr.status);
@@ -449,7 +453,7 @@ for(let i=0;i<like.length;i++){
             changexhr.send(data);
         } else {
             //沒有登入，請先登入
-            alert('請先登入');
+            swal('請先登入');
         }
 
     })
@@ -474,10 +478,10 @@ function getMemberInfo_forcamp(callback){
     xhr.send(null);
 }
 
-function init(){
+
+window.addEventListener('load',function (){
     getMemberInfo_forcamp(likeRank);
-};
-window.addEventListener('load',init,false);
+},false);
 </script>
 
 

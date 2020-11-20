@@ -2,9 +2,10 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT re.REP_OUT_NO, eq.EQU_NAME, m.MEM_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS ,eq.EQU_SWAPATATNO,re.REEQU_DEAL
-    FROM reportoutfit re JOIN member m ON (re.REP_OUT_MEMNO = m.MEMNO) 
-    JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_NO)"; 
+    $sql = "SELECT re.REP_OUT_NO, eq.EQU_NAME, m.MEM_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS ,eq.EQU_SWAPATATNO,re.REEQU_DEAL,eq.EQU_NO
+    FROM reportoutfit re 
+    JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_NO)
+    JOIN member m ON (eq.EQU_MEMNO = m.MEMNO)"; 
     $reportequ = $pdo->prepare($sql);
     $reportequ->execute();
 
@@ -13,13 +14,14 @@ try{
     $arr=[];
 
     foreach($reportequs as $key => $val){
-        if($val['REPOUP_RESON']==1){
-            $val['REPOUP_RESON']='此揪團與露營不相關';
+        if($val['REPOUP_RESON']==0){
+            $val['REPOUP_RESON']='此設備與本網站不相關';
+        }elseif($val['REPOUP_RESON']==1){
+            $val['REPOUP_RESON']='此設備為危險物品';
         }elseif($val['REPOUP_RESON']==2){
-            $val['REPOUP_RESON']='此揪團含有色情內容';
-        }elseif($val['REPOUP_RESON']==3){
-            $val['REPOUP_RESON']='此揪團含違法內容';
+            $val['REPOUP_RESON']='此設備為不雅物品';
         }
+
         if($val['EQU_SWAPATATNO']==0){
             $val['EQU_SWAPATATNO']='上架中';
         }else{

@@ -353,7 +353,7 @@
                         <tr v-for="reportequ in reportequs">
                             <input type="hidden" v-model="reportequ.REP_OUT_NO">
                             <td>{{reportequ.REP_OUT_NO}}</td>
-                            <td>{{reportequ.EQU_NAME}}</td>
+                            <td><a v-bind:href="'equipmentdetail.html#' + reportequ.EQU_NO" target="_blank">{{reportequ.EQU_NAME}}</a></td>
                             <td>{{reportequ.MEM_NAME}}</td>
                             <td>{{reportequ.REPOUP_RESON}}</td>
                             <td>{{reportequ.REP_OUT_STATUS}}

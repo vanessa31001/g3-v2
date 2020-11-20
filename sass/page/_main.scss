@@ -137,10 +137,7 @@
                 }
             }
             .homepage_sub_title{
-                display: flex;
-                justify-content: flex-start;
                 .sub_text{
-                    align-self: center;
                     width: 550px;
                     margin: 10px 90px 10px 40px;
                 }
@@ -200,7 +197,6 @@
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
     .home_group{
-
         .wrap{
             .homepage_title{
                 .homepage_sub_title{
@@ -221,6 +217,7 @@
                     .sub_text{
                         width: 330px;
                         margin: 10px auto;
+                        margin-left: 10px;
                     }
                 }
             }
@@ -250,10 +247,6 @@
                     .sub_text{
                         width: 470px;
                         padding: 0 5px;
-                    }
-                    .home_search{
-                        width: 470px;
-                        margin: 10px auto;
                     }
                 }
             }

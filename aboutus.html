@@ -303,7 +303,7 @@
                                     <!-- <label></label>
                                     <label></label> -->
                                     <!-- 這個是製造一個空格去跟上面的ＬＡＢＥＬ對齊 -->
-                                    <button type="submit" class="secondbtn2">重新填寫</button>
+                                    <button class="secondbtn2">重新填寫</button>
                                 </div>
                             </div>
     
@@ -311,7 +311,7 @@
                                 <div class="item_block">
                                     <!-- <label></label> -->
                                     <!-- 這個是製造一個空格去跟上面的ＬＡＢＥＬ對齊 -->
-                                    <button type="submit" class="secondbtn1">確認送出</button>
+                                    <button class="secondbtn1" id="customer" >確認送出</button>
                                 </div>
                             </div>
                         </div>
@@ -363,6 +363,12 @@
     <div class="copyright">Copyright &copy; 2020ShanSen</div>
 </footer>
 <!-- footer 結束-->
+<script>
+    document.querySelector("#customer").addEventListener("click", function(event){
+        swal('謝謝您的寶貴意見~')
+            event.preventDefault();
+        }, false);
+</script>
 <script src="./js/logintext.js"></script>
 </body>
 </html>
