@@ -9,7 +9,7 @@ try{
   (select CAMPCO_CAMNO , count(*) 收藏數 from campcolloection group by CAMPCO_CAMNO)
    c on b.cam_no=c.campco_camno
   where GROUP_STATUS = 0
-  order by 收藏數 desc";
+  order by `開團日期` desc";
   $products = $pdo->query($sql);
   $result=[];
   while( $groupRow = $products->fetch(PDO::FETCH_ASSOC)){
