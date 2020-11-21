@@ -11,13 +11,14 @@ try{
     $sql1 = "UPDATE member  
         SET MEM_BAN_DATE=:MEM_BAN_DATE,MEM_STATUS='1'
         WHERE MEMNO=:MEMNO";
-        $bantime = time()+(24*60*60*5);
+        $ban = time()+(24*60*60*5);
+        $bantime =date('Y-m-d',$ban);
         $members = $pdo->prepare($sql1);
         $members->bindValue(":MEMNO", $data->MEMNO);
         $members->bindValue(":MEM_BAN_DATE", $bantime);
         $members->execute();
 
-        echo date('Y-m-d',$bantime);
+        // echo date('Y-m-d',$bantime);
     
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";
