@@ -340,7 +340,7 @@
             
             created(){
                 let equSearchNum = 0;
-                if(window.location.href =="./equipment.html"){
+                if(window.location.href =="http://140.115.236.71/demo-projects/ED103/ED103G3/equipment.html"){
                             this.isShow=true;
                         }else{
                             this.isShow=true;
@@ -567,7 +567,12 @@
                 },
 
                 page1: function(page){
-                    
+                    // for(let i=0;i<document.getElementsByClassName('equpage').length;i++){
+                    //     document.getElementsByClassName('equpage')[i].style.backgroundColor = "transparent";
+                    //     document.getElementsByClassName('equpage')[i].style.color = "#00A5A3";
+                    // }
+                    // document.getElementsByClassName('equpage')[page-1].style.backgroundColor = "#00A5A3";
+                    // document.getElementsByClassName('equpage')[page-1].style.color = "white";
                     this.allRows2 = [];
                     this.change = page;
                     if(this.allRows3.length==0){
