@@ -11,15 +11,23 @@
     margin-left: 20%;
     max-width: 200px;
 }
-
-
-.game_table{
-    min-height:70vh;
+.game_bgc_img{
+    // min-height:100vh;
     background-color: #f6f3ed;
     background-image: url(../pic/game/game.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    position:relative;
+}
+
+.game_table{
+    // min-height:70vh;
+    // background-color: #f6f3ed;
+    // background-image: url(../pic/game/game.svg);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
     position:relative;
 }
 

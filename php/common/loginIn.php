@@ -24,7 +24,7 @@ try{
 				//送出登入者的相關資料
 				echo $json;
 			}else{
-				$errMsg = '{ "err" : "您已被停權至 '.$memRow['MEM_BAN_DATE'].'"  }';
+				$errMsg = '{ "err" : "您已被停權至 '.$memRow1['MEM_BAN_DATE'].'"  }';
 				echo $errMsg;
 			}
 		}else{

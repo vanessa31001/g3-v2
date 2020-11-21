@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             <div  id="forBtn">
-                                <input type="submit" value="我要參加" id="joinGroup">
+                                <input type="submit" class="mainbtn1" value="我要參加" id="joinGroup">
                             </div>
                         </div>
                     </div>     
@@ -162,7 +162,7 @@
     <!-- 留言 -->
     <section class="section2 bgcColor gray1">
         <div class="wrap">
-            <div class="level11 green1">
+            <div class="level11 green1" id="msgBlock">
                 留言
                 <div class="gPepole groupBlock gMessage" id="massages">
       
@@ -372,7 +372,7 @@
             $id("pic4").src ="./pic/group/"+groupsdata[0].GROUP_PIC3;
             $id("countyA").href="./camping.html";
             $id("county").value=groupsdata[0].CAM_COUNTY;
-            $id("camName").href=`./camping.html/${groupsdata[0].CAM_NO}`;
+            $id("camNameA").href=`./camping.html?${groupsdata[0].CAM_NO}`;
             $id("camName").value=groupsdata[0].CAM_NAME;
             $id("GROUPNAME").innerText = groupsdata[0].GROUP_NAME;
             $id("GROUP_START_DATE").innerText = "開團時間 :" + groupsdata[0].GROUP_START_DATE;
@@ -386,30 +386,42 @@
             let forBtn = $id("forBtn");
             let joinGroupBtn = $id("joinGroup");
             let report = $id("report");
-            if(member.MEMNO == groupsdata[0].GROUP_MEMNO){
-                //若是主揪:關閉此團，關閉檢舉
-                joinGroupBtn.style["display"] = "none";
-                report.style["display"] = "none";  
+            if(groupsdata[0].GROUP_STATUS != 0){
+                joinGroupBtn.value="此團無法報名";
+                joinGroupBtn.disabled = true;
+                joinGroupBtn.style.cursor="default";
+                joinGroupBtn.style["background-color"]='#C4C4C4';
+                joinGroupBtn.style["border-color"]="#C4C4C4";
+                joinGroupBtn.style["color"]="#FFFFFF";
+                report.style["display"] = "none";
+                $id("msgBlock").style["display"] = "none";
             }else{
-                //一般會員
-                joinGroupBtn.className = "mainbtn1";
-                forBtn.style["text-align"] = "center";
-                if(member.MEMNO){
-                    if(member.MEMNO == groupsdata[5].REGROUP_MEMNO){
-                        report.style.color='#C4C4C4';
-                        report.style["border-color"]="#C4C4C4";
-                        report.value="已檢舉";
-                        report.disabled = true;
-                        report.style.cursor="default";
+
+                if(member.MEMNO == groupsdata[0].GROUP_MEMNO){
+                    //若是主揪:關閉此團，關閉檢舉
+                    joinGroupBtn.style["display"] = "none";
+                    report.style["display"] = "none";  
+                }else{
+                    //一般會員
+                    joinGroupBtn.className = "mainbtn1";
+                    forBtn.style["text-align"] = "center";
+                    if(member.MEMNO){
+                        if(member.MEMNO == groupsdata[5].REGROUP_MEMNO){
+                            report.style.color='#C4C4C4';
+                            report.style["border-color"]="#C4C4C4";
+                            report.value="已檢舉";
+                            report.disabled = true;
+                            report.style.cursor="default";
+                        }
                     }
-                }
-  
-                //若是參團者:我要退團，關閉檢舉
-                for(let i=0; i< groupsdata[2].length; i++){
-                    if(member.MEMNO == groupsdata[2][i].G_DETAIL_MEMNO){
-                        joinGroupBtn.style["display"] = "none";
-                        // $id("report").style["display"] = "none";
-                        break;
+      
+                    //若是參團者:我要退團，關閉檢舉
+                    for(let i=0; i< groupsdata[2].length; i++){
+                        if(member.MEMNO == groupsdata[2][i].G_DETAIL_MEMNO){
+                            joinGroupBtn.style["display"] = "none";
+                            // $id("report").style["display"] = "none";
+                            break;
+                        }
                     }
                 }
                 
@@ -513,7 +525,7 @@
             groupxhr.onload = function(){
                 if(groupxhr.status == 200){ //success
                     groupsdata = JSON.parse(groupxhr.responseText);
-                    // console.log(groupsdata);
+                    console.log(groupsdata);
                     showgroupinfo(groupNo);
                     getEQU();
                     peopleIn();
