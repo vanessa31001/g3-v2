@@ -193,7 +193,7 @@
         created(){
             axios.get('php/member/message_formadmin.php').then(res => {
                 this.msg_data = res.data;
-                console.log(res.data);
+                // console.log(res.data);
             })
         },
         template: `
@@ -205,7 +205,7 @@
                 </div>
 
                 <div class="member_message_alldetail">
-                <div class="member_mes_bigblock" v-if="msg_data.length > 0" v-for="item in msg_data" :key="item.MES_NO">
+                <div class="member_mes_bigblock" v-for="item in msg_data" :key="item.MES_NO">
                     <!--大頭像及訊息-->
                     <div class="member_message_detail">
                         <div class="message_bigpic_01">
@@ -221,9 +221,11 @@
                                 </div>             
                             </div>
                         </div>
-                </div> <!--  <div class="member_message_detail">結束-->
-
+                    </div> <!--  <div class="member_message_detail">結束-->
                 </div><!--<div class="member_mes_bigblock">結束-->
+                <div class="nothingData" v-if="msg_data.length === 0">
+                    您尚未有悄悄話。
+                </div>
 
             </div>
             </div>
@@ -344,6 +346,9 @@
                                             <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
                                     </li>
+                                    <li class="nothingData" v-if="setup_groups.length===0">
+                                        您尚未有開團紀錄。
+                                    </li>
                                 </ul>
                             </div>
                             <div class="joinGroupManage_page"  v-else-if="link == 'joingroup'">
@@ -369,6 +374,9 @@
                                             <li class="level0">4.參加人數：{{group.G_DATEIL_PARTNUM}}</li>
                                             <li class="level0">5.活動內容：{{group.GROUP_INTRO}}</li>
                                         </ul>
+                                    </li>
+                                    <li class="nothingData" v-if="join_groups.length===0">
+                                        您尚未有參團紀錄。
                                     </li>
                                 </ul>
                             </div>
@@ -466,6 +474,9 @@
                                         <div class="level1">{{equipment.EQU_NAME}}</div>
                                         <span class="level2">{{equipment.EQU_SWAPATATNO}}</span>
                                     </li>
+                                    <li class="nothingData" v-if="publishing_equipment.length===0">
+                                        您尚未有刊登紀錄。
+                                    </li>
                                 </ul>
                             </div>
                             <div class="exchange_record_page" v-if="link == 'exchange'">
@@ -481,6 +492,9 @@
                                         <img :src="img_path + equipment.EQU_PIC1" alt="">
                                         <div class="level1">{{equipment.EQU_NAME}}</div>
                                         <span class="level2">已成功</span>
+                                    </li>
+                                    <li class="nothingData" v-if="change_equipment.length===0">
+                                        您尚未有交換成功紀錄。
                                     </li>
                                 </ul>
                             </div>
@@ -542,6 +556,9 @@
                                         <img :src="GroupImg_path + camp.CAM_PIC1 + '.jpg'">
                                         <div class="level1">{{camp.CAM_NAME}}</div>
                                     </a>
+                                </li>
+                                <li class="nothingData" v-if="likeCamp.length===0">
+                                    您尚未有收藏紀錄。
                                 </li>
                             </ul>
                         </div>
