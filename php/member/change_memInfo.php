@@ -19,7 +19,7 @@
                 $sql = 
                 "UPDATE member SET MEM_PSW= :memPsw,MEM_NAME=:memName,MEM_NICKNAME=:memNick WHERE memno=:memNo";
                 $equipment = $pdo->prepare($sql);
-                $equipment->bindValue(':memPsw', $data->MEM_PSW);
+                $equipment->bindValue(':memPsw', password_hash($data->MEM_PSW,PASSWORD_DEFAULT));
                 $equipment->bindValue(':memName', $data->MEM_NAME);
                 $equipment->bindValue(':memNick', $data->MEM_NICKNAME);
                 $equipment->bindValue(':memNo', $_SESSION["MEMNO"]);
