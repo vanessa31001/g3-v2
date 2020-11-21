@@ -224,7 +224,8 @@
                         console.log(joinxhr.responseText);
                     }
                     // readPage(groupNo);
-                    doFirst();
+                   setTimeout(function(){location.reload();},1000);
+                   
                 }
                 var url = `./php/group/joinGroup.php?GROUP_NO=${groupNO}&MEMNO=${member.MEMNO}`;
                 joinxhr.open("Get", url, true);
