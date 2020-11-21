@@ -421,12 +421,15 @@ input[type="submit"], button{
                         .inform_pic{
                             vertical-align: middle;
                             width:46px;
+                            height: 46px;
                             border-radius: 50%;
                             overflow: hidden;
                             margin-right: 15px;
                             display: inline-block;
                             img{
-                                width:100%;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;    
                             }
                         }
                         .inform_text{
@@ -497,12 +500,15 @@ input[type="submit"], button{
                     .inform_pic{
                         vertical-align: middle;
                         width:46px;
+                        height: 46px;
                         border-radius: 50%;
                         overflow: hidden;
                         margin-right: 15px;
                         display: inline-block;
                         img{
-                            width:100%;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;    
                         }
                     }
                     .inform_text{
@@ -551,12 +557,15 @@ input[type="submit"], button{
             .inform_pic{
                 vertical-align: middle;
                 width:46px;
+                height: 46px;
                 border-radius: 50%;
                 overflow: hidden;
                 margin-right: 15px;
                 display: inline-block;
                 img{
-                    width:100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;    
                 }
             }
             .inform_text{
@@ -590,7 +599,9 @@ input[type="submit"], button{
                 margin-right: 15px;
                 display: inline-block;
                 img{
-                    width:100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;    
                 }
             }
             .inform_text{
@@ -839,12 +850,15 @@ input[type="submit"], button{
                         .inform_pic{
                             vertical-align: middle;
                             width:46px;
+                            height: 46px;
                             border-radius: 50%;
                             overflow: hidden;
                             margin-right: 15px;
                             display: inline-block;
                             img{
-                                width:100%;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;    
                             }
                         }
                         .inform_text{
