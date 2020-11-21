@@ -69,8 +69,8 @@ function report(reportbtn,btnName,numID){
                 }else{
                     swal("請勾選檢舉原因");
                 }
-                getgroupinfo();
-                // location.reload(); 
+                // getgroupinfo();
+                location.reload(); 
             });
         }else{
             var GROUP_NO = url.split('?')[1].split('=');
@@ -115,7 +115,7 @@ function report(reportbtn,btnName,numID){
                                 
                                 $id("reportSend").removeEventListener("click",rrr);
                             }else{
-                                alert(repMsgxhr.responseText);
+                                console.log(repMsgxhr.responseText);
                             }  
                         }
                         repMsgxhr.open("Post", "./php/group/reportGroupMsg.php", true);
@@ -133,7 +133,7 @@ function report(reportbtn,btnName,numID){
                     if(delMsgxhr.status == 200){ //success 
                         location.reload(); 
                     }else{
-                        alert(delMsgxhr.responseText);
+                        console.log(delMsgxhr.responseText);
                     }  
                 }
                 delMsgxhr.open("Post", "./php/group/delectMsg.php", true);
