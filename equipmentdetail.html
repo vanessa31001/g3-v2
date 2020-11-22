@@ -474,7 +474,7 @@
                                 
                                 <div class="msg_form" action="php/equipment/equipmentmes.php" method="post"  enctype="multipart/form-data">
                                     <span class="level7 bold green1 equmsg_title" >傳送訊息給</span>
-                                    <span class="level7 bold green1 equmsg_title" name="equmsg_member">{{this.equ.MEM_NICKNAME}}</span>
+                                    <span class="level7 bold green1 equmsg_title" name="equmsg_member">{{this.searchMatrix.MEM_NICKNAME}}</span>
                                             
                                     <div class="msg_block level1 gray1">
                                         <textarea  type="text" name="equmsg" id="equmsg01" placeholder="請輸入訊息..."></textarea>
@@ -623,7 +623,7 @@
                     
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
-                    if(this.poster == this.equ.MEM_NICKNAME){
+                    if(this.poster == this.searchMatrix.MEM_NICKNAME){
                         document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
                         document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
 
@@ -674,15 +674,21 @@
                         .catch(error => console.log(error))
                 },
                 sendReport(){
-                    console.log(this.equ.EQU_MEMNO);
-                    console.log(this.equ.EQUSORT);
+                    axios.get('php/equipment/equipment2.php')
+                        .then(res => {
+                            this.repoNow = res.data
+                            console.log(this.repoNow);
+                        })
+                        .catch(error => console.log(error))
+                    console.log(this.searchMatrix.EQU_MEMNO);
+                    console.log(this.searchMatrix.EQUSORT);
                     console.log(this.reporton);
                     console.log(this.repoNow.MEMNO);
-                    console.log(this.equ.EQU_NO);
+                    console.log(this.searchMatrix.EQU_NO);
                     
                     axios.post('php/equipment/equipmentreport.php',{ 
                         // EQU_MEMNO:this.equ.EQU_MEMNO,
-                        EQU_NO:this.equ.EQU_NO,
+                        EQU_NO:this.searchMatrix.EQU_NO,
                         REPOUP_RESON:this.reporton,
                         REP_OUT_MEMNO:this.repoNow.MEMNO,
                 }).then(function (response) {
@@ -718,12 +724,17 @@
                 },
 
                 sendMes(){
+                axios.get('php/equipment/equipment2.php')
+                        .then(res => {
+                            this.repoNow = res.data
+                            console.log(this.repoNow);
+                    })
                 let equmessage  = document.getElementById('equmsg01').value;
                 console.log(equmessage);
                 axios.post('php/equipment/equipmentmes.php',{ 
                         // EQU_MEMNO:this.equ.EQU_MEMNO,
                         MES_CONTENT:equmessage,
-                        MES_OBJECT_MEMNO:this.equ.EQU_MEMNO,
+                        MES_OBJECT_MEMNO:this.searchMatrix.EQU_MEMNO,
                         MES_SENDER_MEMNO:this.repoNow.MEMNO,
                 }).then(function (response) {
                         console.log(response);

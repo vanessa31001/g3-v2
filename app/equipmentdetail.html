@@ -619,7 +619,7 @@
                 axios.post('php/equipment/equipmentmes.php',{ 
                         // EQU_MEMNO:this.equ.EQU_MEMNO,
                         MES_CONTENT:equmessage,
-                        MES_OBJECT_MEMNO:this.equ.EQU_MEMNO,
+                        MES_OBJECT_MEMNO:this.searchMatrix.EQU_MEMNO,
                         MES_SENDER_MEMNO:this.repoNow.MEMNO,
                 }).then(function (response) {
                         console.log(response);
