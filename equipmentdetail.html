@@ -335,6 +335,12 @@
 
             },              
             created(){
+                axios.get('php/equipment/equipment2.php')
+                        .then(res => {
+                            this.repoNow = res.data
+                            console.log(this.repoNow);
+                        })
+                        .catch(error => console.log(error))
                 // console.log(this.itemNumber)
                 // this.dfh=this.itemNumber;
                 axios.get('php/equipment/equipment.php')
@@ -367,7 +373,8 @@
                             this.otherequss2 = asfg[1];
                             this.otherequss3 = asfg[2];
                         })
-                        .catch(error => console.log(error)); 
+                        .catch(error => console.log(error));
+                         
             },
             beforeDestroy(){
                 // axios.get('php/equipment/equipment2.php')
@@ -623,7 +630,7 @@
                     
                     // this.equthisdescipt = this.allRows2[equ].EQU_DESCR;
                     this.poster = document.getElementsByClassName('nav_list')[0].getElementsByTagName('ul')[0].getElementsByTagName('li')[5].getElementsByTagName('a')[0].innerText;
-                    if(this.poster == this.searchMatrix.MEM_NICKNAME){
+                    if(this.repoNow.MEM_NICKNAME == this.searchMatrix.MEM_NICKNAME){
                         document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
                         document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
 
@@ -750,6 +757,16 @@
                 },
                 moveinto(data){
                     this.searchMatrix = data;
+                    if(this.repoNow.MEM_NICKNAME == this.searchMatrix.MEM_NICKNAME){
+                        document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
+                        document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'none';
+
+                        document.getElementsByClassName('equ_collect_checkbox')[0].style.display='none';
+                    }else{
+                        document.getElementsByClassName('apply_change_btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
+                        document.getElementsByClassName('btn_block')[0].getElementsByTagName('button')[0].style.display = 'block';
+                        document.getElementsByClassName('equ_collect_checkbox')[0].style.display='block';
+                    }
 
                 },
                 searchEQU(value){
