@@ -663,26 +663,23 @@
                     console.log(this.reporton);
                     
                 },
-                
-                reportfun(){
-
+                sendReport(){
                     axios.get('php/equipment/equipment2.php')
                         .then(res => {
                             this.repoNow = res.data
                             console.log(this.repoNow);
                         })
                         .catch(error => console.log(error))
-                },
-                sendReport(){
-                    console.log(this.equ.EQU_MEMNO);
-                    console.log(this.equ.EQUSORT);
+                    console.log(this.searchMatrix.EQU_MEMNO);
+                    console.log(this.searchMatrix.EQUSORT);
                     console.log(this.reporton);
                     console.log(this.repoNow.MEMNO);
-                    console.log(this.equ.EQU_NO);
+                    console.log(this.searchMatrix.EQU_NO);
+                    alert(1);
                     
                     axios.post('php/equipment/equipmentreport.php',{ 
                         // EQU_MEMNO:this.equ.EQU_MEMNO,
-                        EQU_NO:this.equ.EQU_NO,
+                        EQU_NO:this.searchMatrix.EQU_NO,
                         REPOUP_RESON:this.reporton,
                         REP_OUT_MEMNO:this.repoNow.MEMNO,
                 }).then(function (response) {
@@ -723,7 +720,7 @@
                 axios.post('php/equipment/equipmentmes.php',{ 
                         // EQU_MEMNO:this.equ.EQU_MEMNO,
                         MES_CONTENT:equmessage,
-                        MES_OBJECT_MEMNO:this.equ.EQU_MEMNO,
+                        MES_OBJECT_MEMNO:this.searchMatrix.EQU_MEMNO,
                         MES_SENDER_MEMNO:this.repoNow.MEMNO,
                 }).then(function (response) {
                         console.log(response);
