@@ -4,8 +4,8 @@
         require_once("../connectBooks.php");
 
         $sql = "SELECT mes.MES_CONTENT, m.MEM_NAME, m.MEMNO, m.MEM_IMG, mes.MES_NO
-        FROM message mes JOIN member m ON (mes.MES_OBJECT_MEMNO = m.MEMNO)
-        WHERE mes.MES_SENDER_MEMNO = :memId order by mes.MES_TIME";
+        FROM message mes JOIN member m ON (mes.MES_SENDER_MEMNO = m.MEMNO)
+        WHERE mes.MES_OBJECT_MEMNO = :memId order by mes.MES_TIME";
         $message = $pdo->prepare($sql);
         $message->bindValue(':memId', $_SESSION["MEMNO"]);
         $message->execute();
