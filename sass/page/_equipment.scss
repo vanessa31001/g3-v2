@@ -544,7 +544,7 @@ button.reportbtn , .equ_collect_checkbox{
     margin-right: 20px;
 }
 
-.inform_block02_pic > a > img{
+.inform_block02_pic > img{
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -1154,9 +1154,6 @@ textarea{
             .equpic{
                 width: 100%;
                 border: none;
-                .bigimg{
-                    height: 100%;
-                }
             }
             .equdescribe{                
                 width: 100%;

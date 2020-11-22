@@ -8,6 +8,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./pic/commom/browser.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -340,7 +341,7 @@
             
             created(){
                 let equSearchNum = 0;
-                if(window.location.href =="./equipment.html"){
+                if(window.location.href =="http://140.115.236.71/demo-projects/ED103/ED103G3/equipment.html"){
                             this.isShow=true;
                         }else{
                             this.isShow=true;
@@ -567,7 +568,12 @@
                 },
 
                 page1: function(page){
-                    
+                    // for(let i=0;i<document.getElementsByClassName('equpage').length;i++){
+                    //     document.getElementsByClassName('equpage')[i].style.backgroundColor = "transparent";
+                    //     document.getElementsByClassName('equpage')[i].style.color = "#00A5A3";
+                    // }
+                    // document.getElementsByClassName('equpage')[page-1].style.backgroundColor = "#00A5A3";
+                    // document.getElementsByClassName('equpage')[page-1].style.color = "white";
                     this.allRows2 = [];
                     this.change = page;
                     if(this.allRows3.length==0){
@@ -793,14 +799,7 @@
         });
     </script>
     <script>
-        // hamburger icon 的切換
-        $(function(){
-            
-            $("button.hamburger").on("click", function(){
-                $(this).toggleClass("is-active");
-                $('.nav_list').slideToggle();
-                });
-        });
+
 
         //檢舉燈箱
             $(function(){
