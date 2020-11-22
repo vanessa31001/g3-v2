@@ -560,7 +560,7 @@
             }else{
                 for(let i=0; i<groupsdata[1].length ;i++){
                     // 判斷是否被檢舉
-                    if(groupsdata[1][i].REGROUP_MES_NO == null){
+                    if(groupsdata[1][i].REGROUP_MES_NO == null || groupsdata[1][i].REGROUP_DEAL == "unpass"){
                         //若沒有被檢舉
                         let msgInfo = $create("div");
                         msgInfo.className="msgInfo";

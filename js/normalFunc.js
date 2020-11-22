@@ -104,16 +104,9 @@ function report(reportbtn,btnName,numID){
                                 for(let i=1; i<reason+1; i++){
                                     $id(`report_equ${i}`).checked = false;
                                 }
-                                // location.reload(); 
-                                // readPage(GROUP_NO[1]);
-                                var url = location.href;
-                                if(url.indexOf('?')!=-1){
-                                    var GROUP_NO = url.split('?')[1].split('=');
-                                    readPage(GROUP_NO[1]);
-                        
-                                }
+                                location.reload(); 
                                 
-                                $id("reportSend").removeEventListener("click",rrr);
+                                // $id("reportSend").removeEventListener("click",rrr);
                             }else{
                                 console.log(repMsgxhr.responseText);
                             }  
