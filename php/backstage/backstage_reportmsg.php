@@ -2,9 +2,9 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
-    $sql = "SELECT re.REGROUP_MES_NO, gm.GROUP_MES_CONTENT, m.MEM_NAME, re.REGROUP_RESON, gm.GROUP_MES_STATUS, re.REGROUP_MES_STATUS ,re.REGROUP_DEAL,gm.GROUP_MES_GROUPNO
+    $sql = "SELECT re.REGROUP_MES_NO, gm.GROUP_MES_CONTENT, m.MEM_NAME, re.REGROUP_RESON, gm.GROUP_MES_STATUS, re.REGROUP_MES_STATUS ,re.REGROUP_DEAL,gm.GROUP_MES_GROUPNO,re.	REGROUP_MES_GROUP_NO  
     FROM reportgroup_mes re 
-    JOIN group_mes gm ON (gm.GROUP_MES_NO = re.REGROUP_MES_NO)
+    JOIN group_mes gm ON (gm.GROUP_MES_NO = re.	REGROUP_MES_GROUP_NO)
     JOIN member m ON (gm.GROUP_MES_MEMNO  = m.MEMNO) "; 
     $reportmsg = $pdo->prepare($sql);
     $reportmsg->execute();
