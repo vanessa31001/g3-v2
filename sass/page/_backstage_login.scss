@@ -168,36 +168,7 @@
     padding: 3px 7px;
     cursor: pointer;
 }
-//公用-switch
-input[type="checkbox"].switch{
-    appearance: none;
-    width: 3.5em;
-    height: 1.5em;
-    background: #ddd;
-    border-radius: 3em;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    transition: all .2s ease-in-out;
-        &:checked{
-            background: $yellowColor1;
-            &:after{
-                left: calc(100% - 1.5em);
-            }
-        }
-        &:after{
-            position: absolute;
-            content: "";
-            width: 1.5em;
-            height: 1.5em;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 0 .25em rgba(0,0,0,.3);
-            transform: scale(.7);
-            left: 0;
-            transition: all .2s ease-in-out;
-        }
-}
+
 
 
 //管理員管理
@@ -249,6 +220,16 @@ input[type="checkbox"].switch{
         .back_send{
             display: block;
             margin: 40px auto 20px;
+        }
+    }
+}
+.back_rep_message_area{
+    .back_rep_message_table{
+        tr{
+            .back_mes_style{
+                text-align: left;
+                width: 250px;
+            }
         }
     }
 }

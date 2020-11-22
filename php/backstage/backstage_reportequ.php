@@ -4,7 +4,7 @@ try{
     require_once("../connectBooks.php");
     $sql = "SELECT re.REP_OUT_NO, eq.EQU_NAME, m.MEM_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS ,eq.EQU_SWAPATATNO,re.REEQU_DEAL,eq.EQU_NO
     FROM reportoutfit re 
-    JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_NO)
+    JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_EQUNO)
     JOIN member m ON (eq.EQU_MEMNO = m.MEMNO)"; 
     $reportequ = $pdo->prepare($sql);
     $reportequ->execute();
