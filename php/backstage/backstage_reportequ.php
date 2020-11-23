@@ -2,6 +2,7 @@
 try{
     header("Access-Control-Allow-Origin: *");
     require_once("../connectBooks.php");
+    
     $sql = "SELECT re.REP_OUT_NO, eq.EQU_NAME, m.MEM_NAME, re.REPOUP_RESON, re.REP_OUT_STATUS ,eq.EQU_SWAPATATNO,re.REEQU_DEAL,eq.EQU_NO
     FROM reportoutfit re 
     JOIN equipment eq ON (eq.EQU_NO = re.REP_OUT_EQUNO)
@@ -37,7 +38,6 @@ try{
     }
     echo json_encode($arr);
     
-    // echo json_encode($reportequs);
 
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";
