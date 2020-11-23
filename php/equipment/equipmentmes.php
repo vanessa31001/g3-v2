@@ -10,8 +10,8 @@ try {
 	
 	// if( $_FILES["equpic"]["error"] == UPLOAD_ERR_OK){
 		
-		$sql = "INSERT INTO `message` (`MES_CONTENT`, `MES_OBJECT_MEMNO`, `MES_SENDER_MEMNO` ,`MES_READ` ,`MES_TIME`)  
-        values(:MES_CONTENT, :MES_OBJECT_MEMNO, :MES_SENDER_MEMNO, '0', now())";
+		$sql = "INSERT INTO `message` (`MES_CONTENT`, `MES_OBJECT_MEMNO`, `MES_SENDER_MEMNO`  ,`MES_TIME`)  
+        values(:MES_CONTENT, :MES_OBJECT_MEMNO, :MES_SENDER_MEMNO, now())";
 		$message = $pdo->prepare( $sql );
 		$message -> bindValue(":MES_CONTENT", $data->MES_CONTENT);
 		$message -> bindValue(":MES_OBJECT_MEMNO", $data->MES_OBJECT_MEMNO);
