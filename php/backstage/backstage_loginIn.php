@@ -5,11 +5,9 @@ try{
     
     $sql = "SELECT * 
     FROM `manager` 
-    WHERE MGR_ID=:adminId 
-    and MGR_PSW=:adminPsw"; 
+    WHERE MGR_ID=:adminId"; 
     $manager = $pdo->prepare($sql);
     $manager->bindValue(":adminId", $_POST["MGR_ID"]); 
-	$manager->bindValue(":adminPsw", $_POST["MGR_PSW"]);
     $manager->execute(); 
     $managerRow = $manager->fetch(PDO::FETCH_ASSOC);
 
@@ -17,14 +15,21 @@ try{
     if($manager->rowCount()==0){
         echo "{}";
     }else{
-        $_SESSION["MGR_ID"] = $managerRow["MGR_ID"];
-        $_SESSION["MGR_USER"] = $managerRow["MGR_USER"];
-        $result=array("MGR_ID"=>$managerRow["MGR_ID"],
-                    "MGR_USER"=>$managerRow["MGR_USER"]
-        );
-        $json = json_encode($result,true);
+        if(password_verify($_POST["MGR_PSW"], $managerRow["MGR_PSW"])){
+            $_SESSION["MGR_ID"] = $managerRow["MGR_ID"];
+            $_SESSION["MGR_USER"] = $managerRow["MGR_USER"];
+            $result=array("MGR_ID"=>$managerRow["MGR_ID"],
+                        "MGR_USER"=>$managerRow["MGR_USER"]
+            );
+            $json = json_encode($result,true);
+            echo $json;
+        }else{
+            $json = json_encode($managerRow["MGR_PSW"]);
+            $json1 = json_encode($_POST["MGR_PSW"]);
+            echo $json;
+            echo $json1;
+        }
 
-        echo $json;
     }
 
 }catch(PDOException $e){
