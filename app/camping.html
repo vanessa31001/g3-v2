@@ -29,95 +29,90 @@
                 </ul>
             </div>
             <div class="waethermap camping_block">
-                <div id="weatherbox">
+                <div class="left_side">
                     <div class="sub_title">尋找營區</div>
                     <div class="weather">
-                        <div class="weathernow">
-                            <!-- 地區搜尋 -->
-                            <div class="search_area">
-                                <div class="weatherselect">
-                                    <p>
-                                        <label class="third_title" for="">選擇地區:</label>
-                                        <select class="selectstyle" name="area" id="area" 
-                                            onChange="doNewMaster( document.getElementById( 'area' ), 
-                                            document.getElementById( 'campSpot' ) );">
-                                        </select>
-                                    </p>
-                                    <p>
-                                        <label class="third_title" for="">選擇營地:</label>
-                                        <select class="selectstyle" name="campSpot" id="campSpot" >
-                                        </select>
-                                    </p>
-                                </div>
-                            </div>
-                                
-                            <!-- 溫度、降雨、濕度 -->
-                            <div class="infos">
-                                <div class="NowT infosbox">
-                                    <p class="title" id="NowT"></p>
-                                    <div class="TtoT">
-                                        <span id=MinT></span>~
-                                        <span id=MaxT></span>
-                                    </div>
-                                </div>
-                                <div class="PoP infosbox">
-                                    降雨機率
-                                    
-                                    <p id="PoP"></p>
-                                </div>
-                                <div class="RH infosbox">
-                                    相對溼度
-                                    <p id="RH"></p>
-                                </div>
-                            </div>
-                            <!-- 未來一周 -->
-                            <div class="weatherweek">
-                                <div class="day1 week">
-                                    <p class="day" id="date1"></p>
-                                    <p class="temp" id="Ttop1"></p>
-                                    <p class="temp" id="Tlow1"></p>
-                                </div>
-                                <div class="day2 week">
-                                    <p class="day" id="date2"></p>
-                                    <p class="temp" id="Ttop2"></p>
-                                    <p class="temp" id="Tlow2"></p>
-                                </div>
-                                <div class="day3 week">
-                                    <p class="day" id="date3"></p>
-                                    <p class="temp" id="Ttop3"></p>
-                                    <p class="temp" id="Tlow3"></p>
-                                </div>
-                                <div class="day4 week">
-                                    <p class="day" id="date4"></p>
-                                    <p class="temp" id="Ttop4"></p>
-                                    <p class="temp" id="Tlow4"></p>
-                                </div>
-                                <div class="day5 week">
-                                    <p class="day" id="date5"></p>
-                                    <p class="temp" id="Ttop5"></p>
-                                    <p class="temp" id="Tlow5"></p>
-                                </div>
-                                <div class="day6 week">
-                                    <p class="day" id="date6"></p>
-                                    <p class="temp" id="Ttop6"></p>
-                                    <p class="temp" id="Tlow6"></p>
-                                </div>
-                                <div class="day7 week">
-                                    <p class="day" id="date7"></p>
-                                    <p class="temp" id="Ttop7"></p>
-                                    <p class="temp" id="Tlow7"></p>
-                                </div>
-                            </div>
-        
-                            </div>
-        
-                            <!-- 氣象描述 -->
-                            <div class="weatherdesc">
-                                <p id="weatherp" class="level1"></p><br>
-                                <div class="level1">更新時間：<span class="nowTime" id="nowTime"></span>
-                                </div>
+                        <!-- 地區搜尋 -->
+                        <div class="search_area">
+                            <div class="areaselect">
+                                <p>
+                                    <label class="third_title" for="">選擇地區:</label>
+                                    <select class="selectstyle" name="area" id="area" 
+                                        onChange="doNewMaster( document.getElementById( 'area' ), 
+                                        document.getElementById( 'campSpot' ) );">
+                                    </select>
+                                </p>
+                                <p>
+                                    <label class="third_title" for="">選擇營地:</label>
+                                    <select class="selectstyle" name="campSpot" id="campSpot" >
+                                    </select>
+                                </p>
                             </div>
                         </div>
+                            
+                        <!-- 溫度、降雨、濕度 -->
+                        <div class="waetherdetails">
+                            <div class="tempnow waether_area">
+                                現在氣溫
+                                <p id="temperature"></p>
+                            </div>
+                            <div class="rain waether_area">
+                                降雨機率
+                                <p id="rain"></p>
+                            </div>
+                            <div class="humidity waether_area">
+                                相對溼度
+                                <p id="humidity"></p>
+                            </div>
+                        </div>
+                        <!-- 未來一周預報 -->
+                        <div class="forweek">
+                            <div class="day1 prediction">
+                                <p class="day" id="day1"></p>
+                                <p class="temp_pre" id="htday1"></p>
+                                <p class="temp_pre" id="ltday1"></p>
+                            </div>
+                            <div class="day2 prediction">
+                                <p class="day" id="day2"></p>
+                                <p class="temp_pre" id="htday2"></p>
+                                <p class="temp_pre" id="ltday2"></p>
+                            </div>
+                            <div class="day3 prediction">
+                                <p class="day" id="day3"></p>
+                                <p class="temp_pre" id="htday3"></p>
+                                <p class="temp_pre" id="ltday3"></p>
+                            </div>
+                            <div class="day4 prediction">
+                                <p class="day" id="day4"></p>
+                                <p class="temp_pre" id="htday4"></p>
+                                <p class="temp_pre" id="ltday4"></p>
+                            </div>
+                            <div class="day5 prediction">
+                                <p class="day" id="day5"></p>
+                                <p class="temp_pre" id="htday5"></p>
+                                <p class="temp_pre" id="ltday5"></p>
+                            </div>
+                            <div class="day6 prediction">
+                                <p class="day" id="day6"></p>
+                                <p class="temp_pre" id="htday6"></p>
+                                <p class="temp_pre" id="ltday6"></p>
+                            </div>
+                            <div class="day7 prediction">
+                                <p class="day" id="day7"></p>
+                                <p class="temp_pre" id="htday7"></p>
+                                <p class="temp_pre" id="ltday7"></p>
+                            </div>
+                        </div>
+    
+                        
+    
+                        <!-- 氣象描述 -->
+                        <div class="weather_explanation">
+                            <p id="explanation" class="level1"></p><br>
+                            <div class="level1">更新時間：<span class="nowTime" id="nowTime"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div id="map" class="map"></div>

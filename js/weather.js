@@ -54,7 +54,7 @@
     //新竹縣尖石鄉
     let N5data;
     $(function(){
-        $.ajax({
+        $.ajax({  
             url: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-011?Authorization=CWB-FA772AA0-8D0C-4FEF-B569-7DE1EEF2453D&locationName=%E5%B0%96%E7%9F%B3%E9%84%89&elementName=MinT,MaxT,Wind,Td,PoP12h,T,RH,Wx,WeatherDescription',
             type: 'GET',
             dataType: 'json',
@@ -293,39 +293,39 @@
         $('#nowTime').text(currentdate);
 
         //天氣敘述
-        $('#NowT').text(AreaData.records.locations[0].location[0].weatherElement[1].time[0].elementValue[0].value+ '°C');
-        $('#MinT').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
-        $('#MaxT').text(AreaData.records.locations[0].location[0].weatherElement[6].time[0].elementValue[0].value+ '°C');
-        $('#PoP').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].elementValue[0].value+ '%');
-        $('#RH').text(AreaData.records.locations[0].location[0].weatherElement[2].time[0].elementValue[0].value+ '%');
-        $('#weatherp').text(AreaData.records.locations[0].location[0].weatherElement[5].time[0].elementValue[0].value);
+        $('#temperature').text(AreaData.records.locations[0].location[0].weatherElement[1].time[0].elementValue[0].value+ '°C');
+        $('#lowtemp').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
+        $('#hightemp').text(AreaData.records.locations[0].location[0].weatherElement[6].time[0].elementValue[0].value+ '°C');
+        $('#rain').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].elementValue[0].value+ '%');
+        $('#humidity').text(AreaData.records.locations[0].location[0].weatherElement[2].time[0].elementValue[0].value+ '%');
+        $('#explanation').text(AreaData.records.locations[0].location[0].weatherElement[5].time[0].elementValue[0].value);
 
         //日期
-        $('#date1').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].startTime.slice(8,10));
-        $('#date2').text(AreaData.records.locations[0].location[0].weatherElement[0].time[2].startTime.slice(8,10));
-        $('#date3').text(AreaData.records.locations[0].location[0].weatherElement[0].time[4].startTime.slice(8,10));
-        $('#date4').text(AreaData.records.locations[0].location[0].weatherElement[0].time[6].startTime.slice(8,10));
-        $('#date5').text(AreaData.records.locations[0].location[0].weatherElement[0].time[8].startTime.slice(8,10));
-        $('#date6').text(AreaData.records.locations[0].location[0].weatherElement[0].time[10].startTime.slice(8,10));
-        $('#date7').text(AreaData.records.locations[0].location[0].weatherElement[0].time[12].startTime.slice(8,10));
+        $('#day1').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].startTime.slice(8,10));
+        $('#day2').text(AreaData.records.locations[0].location[0].weatherElement[0].time[2].startTime.slice(8,10));
+        $('#day3').text(AreaData.records.locations[0].location[0].weatherElement[0].time[4].startTime.slice(8,10));
+        $('#day4').text(AreaData.records.locations[0].location[0].weatherElement[0].time[6].startTime.slice(8,10));
+        $('#day5').text(AreaData.records.locations[0].location[0].weatherElement[0].time[8].startTime.slice(8,10));
+        $('#day6').text(AreaData.records.locations[0].location[0].weatherElement[0].time[10].startTime.slice(8,10));
+        $('#day7').text(AreaData.records.locations[0].location[0].weatherElement[0].time[12].startTime.slice(8,10));
 
         //最高溫
-        $('#Ttop1').text(AreaData.records.locations[0].location[0].weatherElement[6].time[1].elementValue[0].value+ '°C');
-        $('#Ttop2').text(AreaData.records.locations[0].location[0].weatherElement[6].time[3].elementValue[0].value+ '°C');
-        $('#Ttop3').text(AreaData.records.locations[0].location[0].weatherElement[6].time[5].elementValue[0].value+ '°C');
-        $('#Ttop4').text(AreaData.records.locations[0].location[0].weatherElement[6].time[7].elementValue[0].value+ '°C');
-        $('#Ttop5').text(AreaData.records.locations[0].location[0].weatherElement[6].time[9].elementValue[0].value+ '°C');
-        $('#Ttop6').text(AreaData.records.locations[0].location[0].weatherElement[6].time[11].elementValue[0].value+ '°C');
-        $('#Ttop7').text(AreaData.records.locations[0].location[0].weatherElement[6].time[13].elementValue[0].value+ '°C');
+        $('#htday1').text(AreaData.records.locations[0].location[0].weatherElement[6].time[1].elementValue[0].value+ '°C');
+        $('#htday2').text(AreaData.records.locations[0].location[0].weatherElement[6].time[3].elementValue[0].value+ '°C');
+        $('#htday3').text(AreaData.records.locations[0].location[0].weatherElement[6].time[5].elementValue[0].value+ '°C');
+        $('#htday4').text(AreaData.records.locations[0].location[0].weatherElement[6].time[7].elementValue[0].value+ '°C');
+        $('#htday5').text(AreaData.records.locations[0].location[0].weatherElement[6].time[9].elementValue[0].value+ '°C');
+        $('#htday6').text(AreaData.records.locations[0].location[0].weatherElement[6].time[11].elementValue[0].value+ '°C');
+        $('#htday7').text(AreaData.records.locations[0].location[0].weatherElement[6].time[13].elementValue[0].value+ '°C');
 
         //最低溫
-        $('#Tlow1').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
-        $('#Tlow2').text(AreaData.records.locations[0].location[0].weatherElement[4].time[2].elementValue[0].value+ '°C');
-        $('#Tlow3').text(AreaData.records.locations[0].location[0].weatherElement[4].time[4].elementValue[0].value+ '°C');
-        $('#Tlow4').text(AreaData.records.locations[0].location[0].weatherElement[4].time[6].elementValue[0].value+ '°C');
-        $('#Tlow5').text(AreaData.records.locations[0].location[0].weatherElement[4].time[8].elementValue[0].value+ '°C');
-        $('#Tlow6').text(AreaData.records.locations[0].location[0].weatherElement[4].time[10].elementValue[0].value+ '°C');
-        $('#Tlow7').text(AreaData.records.locations[0].location[0].weatherElement[4].time[12].elementValue[0].value+ '°C');
+        $('#ltday1').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
+        $('#ltday2').text(AreaData.records.locations[0].location[0].weatherElement[4].time[2].elementValue[0].value+ '°C');
+        $('#ltday3').text(AreaData.records.locations[0].location[0].weatherElement[4].time[4].elementValue[0].value+ '°C');
+        $('#ltday4').text(AreaData.records.locations[0].location[0].weatherElement[4].time[6].elementValue[0].value+ '°C');
+        $('#ltday5').text(AreaData.records.locations[0].location[0].weatherElement[4].time[8].elementValue[0].value+ '°C');
+        $('#ltday6').text(AreaData.records.locations[0].location[0].weatherElement[4].time[10].elementValue[0].value+ '°C');
+        $('#ltday7').text(AreaData.records.locations[0].location[0].weatherElement[4].time[12].elementValue[0].value+ '°C');
 
     }
 
