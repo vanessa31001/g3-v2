@@ -398,6 +398,7 @@
             created(){
                 axios.get('php/backstage/backstage_reportequ.php').then(res=>{
                     this.reportequs = res.data;
+                    console.log(this.reportequs);
                 })
             },
             template: `
@@ -585,6 +586,9 @@
                     manager = JSON.parse(xhr.responseText);
                     if(manager.MGR_ID){
                         document.getElementById('mgrName').innerText = manager.MGR_USER;      
+                    }else{
+                        alert(manager.err);
+                        location.replace("index.html");
                     }
                 }else{ //error
                     alert(xhr.status);
