@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1:3306
--- 產生時間： 2020 年 11 月 22 日 07:38
+-- 產生時間： 2020 年 11 月 25 日 04:55
 -- 伺服器版本: 5.7.23
 -- PHP 版本： 7.2.10
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `campcolloection` (
   PRIMARY KEY (`CAMPCO_NO`),
   KEY `CAMPCO_CAMNO` (`CAMPCO_CAMNO`),
   KEY `CAMPCO_MEMNO` (`CAMPCO_MEMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `campcolloection`
@@ -191,7 +191,10 @@ INSERT INTO `campcolloection` (`CAMPCO_NO`, `CAMPCO_MEMNO`, `CAMPCO_CAMNO`) VALU
 (153, 31, 12),
 (154, 31, 1),
 (155, 31, 13),
-(156, 15, 3);
+(156, 15, 3),
+(157, 27, 14),
+(159, 45, 3),
+(160, 47, 2);
 
 -- --------------------------------------------------------
 
@@ -269,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `campinggroups` (
   PRIMARY KEY (`GROUP_NO`),
   KEY `GROUP_MEMNO` (`GROUP_MEMNO`),
   KEY `GROUP_CAM_NO` (`GROUP_CAM_NO`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `campinggroups`
@@ -278,20 +281,21 @@ CREATE TABLE IF NOT EXISTS `campinggroups` (
 INSERT INTO `campinggroups` (`GROUP_NO`, `GROUP_MEMNO`, `GROUP_NAME`, `GROUP_INTRO`, `GROUP_CAM_NO`, `GROUP_PEOPLE_LIMIT`, `GROUP_PEOPLE_SIGNUP`, `GROUP_START_DATE`, `GROUP_DEADLINE`, `GROUP_DEPART_DATE`, `GROUP_STATUS`, `GROUP_PIC1`, `GROUP_PIC2`, `GROUP_PIC3`, `GROUP_REASON`) VALUES
 (1, 2, '宇宙第一露營團', '「因為喜歡露營而經營露營」，這是營主Grace的夢想\r\n\r\n營主兩兄妹從小就非常喜歡露營，想要將自己最喜愛的露營活動分享給更多的露友，而誕生了希望之丘。營主融入英倫風格，創造出獨一無二的營地，處處都能看見營主的用心。\r\n\r\n便利的交通是希望之丘露營區的優勢，從國道五號的羅東交流道下，僅要三十分鐘左右的車程，而且不必跋山涉水，全段道路的品質都相當平坦且良好，即便一般的二驅房車，都可以輕鬆加掛露營拖車前來。\r\n\r\n營區被山包圍著，寧靜而清幽，設施簡約並維持著小而美的極簡質感。\r\n\r\n營區位於平地靠近梅花湖，Grace 認為露營無需冒生命危險，追求著高山狹路而步步驚心。\r\n\r\n也因交通便捷，海拔不高的關係，附近有許多好去處，搭好營帳後可以到附近的景點去逛逛呢!', 1, 10, 1, '2020-10-30 00:00:00', '2020-11-30 00:00:00', '2020-12-31 00:00:00', 0, 'G1.jpg', 'G2.jpg', 'G2.jpg', ''),
 (2, 27, '世界第一露營團', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 1, 20, 2, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 3, 'G1.jpg', 'G2.jpg', 'G3.jpg', ''),
-(3, 27, '來去新竹露營', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 5, 50, 2, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 0, 'G3.jpg', 'G1.jpg', 'G3.jpg', ''),
+(3, 27, '來去新竹露營', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 5, 50, 2, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 3, 'G3.jpg', 'G1.jpg', 'G3.jpg', ''),
 (4, 3, '來去嘉義露營', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 10, 15, 2, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 0, 'G1.jpg', 'G1.jpg', 'G2.jpg', ''),
 (5, 2, '宇宙第一露營團', '「因為喜歡露營而經營露營」，這是營主Grace的夢想\r\n\r\n營主兩兄妹從小就非常喜歡露營，想要將自己最喜愛的露營活動分享給更多的露友，而誕生了希望之丘。營主融入英倫風格，創造出獨一無二的營地，處處都能看見營主的用心。\r\n\r\n便利的交通是希望之丘露營區的優勢，從國道五號的羅東交流道下，僅要三十分鐘左右的車程，而且不必跋山涉水，全段道路的品質都相當平坦且良好，即便一般的二驅房車，都可以輕鬆加掛露營拖車前來。\r\n\r\n營區被山包圍著，寧靜而清幽，設施簡約並維持著小而美的極簡質感。\r\n\r\n營區位於平地靠近梅花湖，Grace 認為露營無需冒生命危險，追求著高山狹路而步步驚心。\r\n\r\n也因交通便捷，海拔不高的關係，附近有許多好去處，搭好營帳後可以到附近的景點去逛逛呢!', 5, 10, 3, '2020-10-30 00:00:00', '2020-11-30 00:00:00', '2020-12-31 00:00:00', 0, 'G2.jpg', 'G1.jpg', 'G3.jpg', ''),
-(6, 3, '第一揪團', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 10, 8, 2, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 0, 'G1.jpg', 'G1.jpg', 'G3.jpg', ''),
+(6, 3, '第一揪團', '登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。登上玉山，稍有難度的露營程度，歡迎有登百岳經驗的親朋有一同前來，不僅回味日出的美麗，也讓我們一同分享登山露營的趣事。', 10, 8, 3, '2020-10-22 00:00:00', '2020-11-19 00:00:00', '2020-11-26 00:00:00', 0, 'G1.jpg', 'G1.jpg', 'G3.jpg', ''),
 (8, 6, '哈洽馬露營囉', '跟著我一起去露營吧，ㄧ定很好玩，和我一起享受大自然吧。', 12, 10, 4, '2020-11-17 11:56:40', '2020-11-29 00:00:00', '2020-11-27 00:00:00', 0, 'G1', 'G2.jpg', 'G3.jpg', ''),
 (9, 5, '第一次揪團露營', '以前都是和家人去，覺得揪團很有趣，有誰想一起去玩，順便交個朋友。松蘿以前去過。春天綠意盎然，很適合露營。記得要帶防蚊液。', 14, 15, 7, '2020-11-17 12:23:27', '2021-01-21 00:00:00', '2021-01-17 00:00:00', 0, 'G1.jpg', 'G2.jpg', 'G1.jpg', ''),
 (10, 2, '來結婚', '徵友啟示', 7, 2, 0, '2020-11-17 14:40:20', '2027-10-17 00:00:00', '2020-11-18 00:00:00', 1, 'G1.jpg', 'G2.jpg', 'G1.jpg', ''),
-(19, 18, '一起去露營吧', '梅林欽水岸露營區，特色：提供餐點代辦與設備出租服務，規劃有木板營位區、狩獵木屋區、汽車營位區、游泳池(全票60元、半票30元)、販賣部、餐廳、營火場等多項設施園，另外區內有美麗的景觀吊橋，河濱景觀公園。附近景點： 福隆海水浴場、草嶺古道行 、龍洞、鹽寮濱公園、大溪漁港。', 7, 30, 4, '2020-11-21 21:47:54', '2020-12-07 00:00:00', '2020-12-05 00:00:00', 0, 'C14.jpg', 'G1.jpg', 'G2.jpg', NULL),
-(20, 17, '一起揪團跨年', '位於桃園復興鄉1400公尺的高海拔山上，印象中桃園高山上的露營區給的位置空間都不大，也鮮少有草地營位，而雲霧農場在露營場的規劃上雖然簡單，卻特別挪出草地空間供孩子奔跑玩耍，難怪在北部頗受好評。', 4, 15, 7, '2020-11-21 21:50:20', '2021-01-01 00:00:00', '2020-12-31 00:00:00', 0, 'G3.jpg', 'G4.jpg', 'G5.jpg', NULL),
+(19, 18, '一起去露營吧', '梅林欽水岸露營區，特色：提供餐點代辦與設備出租服務，規劃有木板營位區、狩獵木屋區、汽車營位區、游泳池(全票60元、半票30元)、販賣部、餐廳、營火場等多項設施園，另外區內有美麗的景觀吊橋，河濱景觀公園。附近景點： 福隆海水浴場、草嶺古道行 、龍洞、鹽寮濱公園、大溪漁港。', 7, 30, 5, '2020-11-21 21:47:54', '2020-12-07 00:00:00', '2020-12-05 00:00:00', 0, 'C14.jpg', 'G1.jpg', 'G2.jpg', NULL),
+(20, 17, '一起揪團跨年', '位於桃園復興鄉1400公尺的高海拔山上，印象中桃園高山上的露營區給的位置空間都不大，也鮮少有草地營位，而雲霧農場在露營場的規劃上雖然簡單，卻特別挪出草地空間供孩子奔跑玩耍，難怪在北部頗受好評。', 4, 15, 9, '2020-11-21 21:50:20', '2021-01-01 00:00:00', '2020-12-31 00:00:00', 0, 'G3.jpg', 'G4.jpg', 'G5.jpg', NULL),
 (21, 16, '踏青出遊揪團趣', '除了提供草地營位、雨棚區，更打造彩色小木屋，讓沒有露營裝備的露友也能體驗戶外露營生活！從進入營地開始，就可以感受出營主夫妻對營地打造的用心，雖然是戶外生活，卻讓人有賓至如歸的感動。高海拔的營地隨季節的變化，可以欣賞到雲海、銀河、日出等的大自然美景。然而，此趟到訪，正逢營地內的李子樹結實累累，也讓我們品嚐現摘鮮果的美味。', 9, 10, 4, '2020-11-21 21:52:23', '2020-12-11 00:00:00', '2020-12-08 00:00:00', 0, 'G6jpg.jpg', 'G7.jpg', 'G8.jpg', NULL),
 (22, 15, '周末快速露營', 'Glamping一字源於glamorous camping，意為豪華露營，兩大發源地為澳洲及非洲，將以往較日常生活不便的原野體驗昇華至如同度假一般的享受，包含帳篷、客艙、樹屋、蒙古包、木屋、露營車等住宿類型，以舒適乾淨又方便的體驗，一改對於戶外活動的定義與印象。', 13, 20, 6, '2020-11-12 21:54:03', '2020-12-06 00:00:00', '2020-12-05 00:00:00', 0, 'G9.jpg', 'G10.jpg', 'G11.jpg', NULL),
-(23, 19, '聖誕節揪一波', '對這山頭，總是情有獨鍾，拜訪多次，山林中風光迷人、環山攬翠，高聳入雲端的山陵線，總讓人深深著迷、不忍離去，我相信，只要腳持續地走著，心不變動，就能看到心窩裡最美的風景，望著身旁的參天大樹，放下匆忙的脚步，鎖住自然中一霎挪的感动，能發現，生命原來如此的美好。', 14, 30, 10, '2020-11-21 21:57:21', '2021-02-26 00:00:00', '2020-12-24 00:00:00', 0, 'G11.jpg', 'G12.jpg', 'G13.jpg', NULL),
-(24, 15, '逃離繁華', '營地:確幸莊園。收費標準：700元/帳，交通位置：經台68縣→尖石往宇老鐵馬驛站→竹60約22.3公里處左轉(往玉峰)方向接竹60-1至玉峰國小前即達。(導航搜詢：尖石鄉玉峰國小)。紮營時間：事先約時間，離場時間為下午15:00。海拔：700-800之間，營位費用：700元(營主一家十分樸實可愛，門口還有一間小販賣部)。', 1, 20, 7, '2020-11-18 22:00:05', '2020-12-17 00:00:00', '2020-12-15 00:00:00', 0, 'G11.jpg', 'G14.jpg', 'G15.jpeg', NULL),
-(25, 28, '聯誼連起來~', '在台北火車站咖啡廳喔~\r\n男女要各半喔，自己看一下~\r\n', 3, 20, 1, '2020-11-19 22:08:15', '2020-12-06 00:00:00', '2020-12-05 00:00:00', 0, 'C1.jpg', 'C2.jpg', 'C3.jpg', NULL);
+(23, 19, '聖誕節揪一波', '對這山頭，總是情有獨鍾，拜訪多次，山林中風光迷人、環山攬翠，高聳入雲端的山陵線，總讓人深深著迷、不忍離去，我相信，只要腳持續地走著，心不變動，就能看到心窩裡最美的風景，望著身旁的參天大樹，放下匆忙的脚步，鎖住自然中一霎挪的感动，能發現，生命原來如此的美好。', 14, 30, 11, '2020-11-21 21:57:21', '2021-02-26 00:00:00', '2020-12-24 00:00:00', 0, 'G11.jpg', 'G12.jpg', 'G13.jpg', NULL),
+(24, 15, '逃離繁華', '營地:確幸莊園。收費標準：700元/帳，交通位置：經台68縣→尖石往宇老鐵馬驛站→竹60約22.3公里處左轉(往玉峰)方向接竹60-1至玉峰國小前即達。(導航搜詢：尖石鄉玉峰國小)。紮營時間：事先約時間，離場時間為下午15:00。海拔：700-800之間，營位費用：700元(營主一家十分樸實可愛，門口還有一間小販賣部)。', 1, 20, 6, '2020-11-18 22:00:05', '2020-12-17 00:00:00', '2020-12-15 00:00:00', 0, 'G11.jpg', 'G14.jpg', 'G15.jpeg', NULL),
+(25, 28, '聯誼連起來~', '在台北火車站咖啡廳喔~\r\n男女要各半喔，自己看一下~\r\n', 3, 20, 1, '2020-11-19 22:08:15', '2020-12-06 00:00:00', '2020-12-05 00:00:00', 1, 'C1.jpg', 'C2.jpg', 'C3.jpg', NULL),
+(28, 27, '台北快閃露營', '四周山巒環繞，且擁有兩層階梯式露營區，既可分散帳篷，又能一齊享受第一排的山嵐景致！園區內分為紮營區、販賣部及小木屋，紮營區屬於自由搭帳的區域，而園區另外一側的「比漱伊露營小屋」木屋，則屬於免搭帳棚的露營方式。小屋於訂位網站上已更名為「E區一帳一屋」，凡預定即可入住溫馨木屋，並同時享有可搭帳的高架露台營位，是個適合兩家庭共遊的方案。\r\n', 2, 30, 3, '2020-11-23 11:00:20', '2020-12-13 00:00:00', '2020-12-12 00:00:00', 0, 'GN1.jpg', 'GN2.jpg', 'GN3.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -342,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   KEY `EQU_MEMNO` (`EQU_MEMNO`),
   KEY `EQU_SWAP_ANO` (`EQU_SWAP_ANO`),
   KEY `EQUSORT` (`EQUSORT`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `equipment`
@@ -362,7 +366,7 @@ INSERT INTO `equipment` (`EQU_NO`, `EQU_MEMNO`, `EQUSORT`, `EQU_NAME`, `EQU_DESC
 (17, 29, 4, '輕便款登山更衣帳 ', '270標準大內帳，搭配L號充氣床，小資族也能享受舒適露營。\r\n頂級遮光黑膠材質，遮光率達99.7%。', '2020-10-21 00:00:00', 0, 'c1-1.jpg', 'c1-2.jpg', 'c1-3.jpg', NULL),
 (18, 30, 4, '加大透氣更衣帳', '270標準大內帳，搭配L號充氣床，小資族也能享受舒適露營。\r\n頂級遮光黑膠材質，遮光率達99.7%。', '2020-10-14 00:00:00', 0, 'c2-1.jpg', 'c2-2.jpg', 'c2-3.jpg', NULL),
 (19, 40, 4, '透氣涼感更衣帳', '內裡銀膠塗層，能有效阻隔紫外線。\r\n高密度尼龍纖維，可防潑水抗撕裂。\r\n輕鬆組裝更換容易，便於操作使用。\r\n可依照需求搭配炊事帳、布網使用。\r\n適用戶外露營、野餐烤肉、園遊會。', '2020-10-14 00:00:00', 0, 'c3-1.jpg', 'c3-2.jpg', 'c3-3.jpg', NULL),
-(20, 27, 4, '新式通風更衣帳', '內裡銀膠塗層，能有效阻隔紫外線。\r\n高密度尼龍纖維，可防潑水抗撕裂。\r\n輕鬆組裝更換容易，便於操作使用。\r\n可依照需求搭配炊事帳、布網使用。\r\n適用戶外露營、野餐烤肉、園遊會。', '2020-10-14 00:00:00', 0, 'c4-1.jpg', 'c4-2.jpg', 'c4-3.jpg', NULL),
+(20, 27, 4, '新式通風更衣帳', '內裡銀膠塗層，能有效阻隔紫外線。\r\n高密度尼龍纖維，可防潑水抗撕裂。\r\n輕鬆組裝更換容易，便於操作使用。\r\n可依照需求搭配炊事帳、布網使用。\r\n適用戶外露營、野餐烤肉、園遊會。', '2020-10-14 00:00:00', 2, 'c4-1.jpg', 'c4-2.jpg', 'c4-3.jpg', NULL),
 (24, 19, 4, 'VAR 雙峰更衣帳 Pro', '內裡銀膠塗層，能有效阻隔紫外線。\r\n高密度尼龍纖維，可防潑水抗撕裂。\r\n輕鬆組裝更換容易，便於操作使用。\r\n可依照需求搭配炊事帳、布網使用。\r\n適用戶外露營、野餐烤肉、園遊會。', '2020-10-18 00:00:00', 0, 'c9-1.jpeg', 'c9-2.jpeg', 'c9-3.jpeg', NULL),
 (26, 23, 5, '遮陽天幕炊事帳篷', '噴塑平光新式樣。\r\nSmart也能輕鬆搭載的羽量級體積。\r\n三段可調椅背。\r\n雙層鋪棉。\r\n舒適安全的背面安全卡榫設計。\r\n腿邊小物籃，手機飲料都好用。\r\n可拆式頭靠枕，完整的放鬆紓壓。\r\n各強壯骨架 耐重達100公斤。\r\n一秒即刻完成架設展開。', '2020-10-30 00:00:00', 0, 'k2-1.jpg', 'k2-2.jpg', 'k2-3.jpg', NULL),
 (27, 10, 5, '快速炊事帳', '噴塑平光新式樣。\r\nSmart也能輕鬆搭載的羽量級體積。\r\n三段可調椅背。\r\n雙層鋪棉。\r\n舒適安全的背面安全卡榫設計。\r\n腿邊小物籃，手機飲料都好用。\r\n可拆式頭靠枕，完整的放鬆紓壓。\r\n各強壯骨架 耐重達100公斤。\r\n一秒即刻完成架設展開。', '2020-10-28 00:00:00', 0, 'k3-1.jpeg', 'k3-2.jpeg', 'k3-3.jpg', NULL),
@@ -407,7 +411,9 @@ INSERT INTO `equipment` (`EQU_NO`, `EQU_MEMNO`, `EQUSORT`, `EQU_NAME`, `EQU_DESC
 (83, 27, 11, '露營木炭暖爐', '★戶外露營取暖利器\r\n★爐頂可放置茶壺/咖啡壺，保溫加熱更便利\r\n★寒冷的冬天也能開心露營去', '2020-11-18 21:16:33', 0, '000001_1566898747.jpg', 'i010003_1462959810.jpg', 'defaul_photo.svg', NULL),
 (84, 19, 11, '滅火之王', '520克超大容量、強力噴射不卡粉\r\n分次噴射更靈活、保固期間免換新\r\n\r\n美觀時尚/重量輕巧、分次噴射/效果更好\r\n輕鬆上手/強力滅火、耐熱防爆/車用居家\r\n攜帶方便/不占空間、高額投保/品質保障\r\n\r\n適用ABC類火災\r\n通過SGS檢驗耐高溫80度C\r\n最高富邦產物保障5000萬', '2020-11-18 21:19:05', 0, '000001_1604287770.jpg', 'defaul_photo.svg', 'defaul_photo.svg', NULL),
 (86, 29, 1, 'Apple iphone12', '5G (sub-6 GHz)4。\r\nGigabit LTE，具 4x4 MIMO 與 LAA 技術4。\r\nWi-Fi 6 (802.11ax)，具 2x2 MIMO 技術。\r\n藍牙 5.0 無線技術。\r\n超寬頻晶片用於空間感知5。\r\nNFC 具備讀取模式。\r\n可使用備用電量的快速卡。', '2020-11-22 00:19:38', 0, 'Apple iphone12.jpg', 'Apple iphone12-2.jpg', 'Apple iphone12-3.jpg', NULL),
-(87, 28, 11, '潛水設備', '我有不要的蛙鏡，只用過一次，後來溺水就不想去了。歡迎有意者。', '2020-11-22 10:20:54', 0, '21301100958112_490.jpg', 'cressi-f1-frameless.jpg', 'unnamed.jpg', NULL);
+(87, 28, 11, '潛水設備', '我有不要的蛙鏡，只用過一次，後來溺水就不想去了。歡迎有意者。', '2020-11-22 10:20:54', 0, '21301100958112_490.jpg', 'cressi-f1-frameless.jpg', 'unnamed.jpg', NULL),
+(90, 42, 11, '速度+99', '換防禦力大於100的頭盔', '2020-11-23 10:48:55', 2, 'image.jpg', '', '', NULL),
+(91, 27, 1, '鋁合金八人帳篷', '150D抗撕裂格紋布比照一房一廳用料。 \r\n7001航太鋁合金骨架骨架，輕量經久耐用。\r\n全新概念，前方遮陽擴展系統。\r\n側邊網紗蓋布。', '2020-11-23 10:56:27', 0, 'tent01-1.jpg', 'tent01-2.jpg', 'tent01-3.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -454,7 +460,7 @@ CREATE TABLE IF NOT EXISTS `group_detail` (
   PRIMARY KEY (`G_DEATIL_NO`),
   KEY `G_DEATIL_GROUP_NO` (`G_DEATIL_GROUP_NO`),
   KEY `G_DETAIL_MEMNO` (`G_DETAIL_MEMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `group_detail`
@@ -503,7 +509,6 @@ INSERT INTO `group_detail` (`G_DEATIL_NO`, `G_DEATIL_GROUP_NO`, `G_DETAIL_MEMNO`
 (54, 22, 39, 1),
 (56, 26, 27, 1),
 (57, 21, 27, 1),
-(58, 24, 27, 1),
 (61, 23, 18, 1),
 (62, 9, 19, 1),
 (63, 8, 19, 1),
@@ -517,7 +522,15 @@ INSERT INTO `group_detail` (`G_DEATIL_NO`, `G_DEATIL_GROUP_NO`, `G_DETAIL_MEMNO`
 (71, 22, 31, 1),
 (72, 3, 31, 1),
 (73, 6, 31, 1),
-(74, 20, 15, 1);
+(74, 20, 15, 1),
+(75, 20, 27, 1),
+(76, 20, 30, 1),
+(77, 28, 27, 1),
+(78, 23, 45, 1),
+(79, 28, 45, 1),
+(80, 19, 47, 1),
+(81, 6, 47, 1),
+(82, 28, 47, 1);
 
 -- --------------------------------------------------------
 
@@ -536,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `group_mes` (
   PRIMARY KEY (`GROUP_MES_NO`),
   KEY `GROUP_MES_GROUPNO` (`GROUP_MES_GROUPNO`),
   KEY `GROUP_MES_MEMNO` (`GROUP_MES_MEMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `group_mes`
@@ -550,7 +563,7 @@ INSERT INTO `group_mes` (`GROUP_MES_NO`, `GROUP_MES_GROUPNO`, `GROUP_MES_MEMNO`,
 (5, 9, 5, '2020-11-17 12:24:23', '快來跟我一起揪團喔', 0),
 (6, 9, 6, '2020-11-17 16:03:28', 'hihi~', 0),
 (8, 9, 11, '2020-11-18 15:04:19', '有美女去嗎', 0),
-(9, 8, 12, '2020-11-18 15:08:19', '哈洽馬跟哈魯馬有什麼關係嗎', 0),
+(9, 8, 12, '2020-11-18 15:08:19', '哈洽馬跟哈魯馬有什麼關係嗎', 1),
 (14, 5, 7, '2020-11-21 21:22:57', '期待~還有好多名額!!大家一起來露營:)', 0),
 (15, 8, 24, '2020-11-21 21:24:52', '哈洽馬洽馬~我也要去露營', 0),
 (16, 9, 18, '2020-11-21 21:28:51', '以前有去過這個營地，風景優美!推推!', 0),
@@ -569,7 +582,9 @@ INSERT INTO `group_mes` (`GROUP_MES_NO`, `GROUP_MES_GROUPNO`, `GROUP_MES_MEMNO`,
 (31, 23, 28, '2020-11-22 12:24:32', '我愛黎明!我愛黎明!', 0),
 (41, 23, 40, '2020-11-22 16:11:17', '同學們~我也要去聖誕節露營', 0),
 (42, 6, 31, '2020-11-22 16:18:27', '就是這禮拜了~希望是好天氣', 0),
-(43, 25, 15, '2020-11-22 16:21:13', '這個團跟露營無關吧!!', 0);
+(43, 25, 15, '2020-11-22 16:21:13', '這個團跟露營無關吧!!', 0),
+(44, 23, 27, '2020-11-23 10:53:26', '要叫喚禮物嗎', 1),
+(45, 23, 27, '2020-11-23 10:53:37', '要交換禮物嗎', 0);
 
 -- --------------------------------------------------------
 
@@ -585,7 +600,7 @@ CREATE TABLE IF NOT EXISTS `g_use_equ` (
   PRIMARY KEY (`G_USE_EQU_NO`),
   KEY `GROUP_NO` (`GROUP_NO`),
   KEY `G_EQU_NO` (`G_EQU_NO`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `g_use_equ`
@@ -608,7 +623,9 @@ INSERT INTO `g_use_equ` (`G_USE_EQU_NO`, `GROUP_NO`, `G_EQU_NO`) VALUES
 (29, 23, 9),
 (30, 23, 10),
 (31, 23, 11),
-(32, 24, 2);
+(32, 24, 2),
+(37, 28, 1),
+(38, 28, 11);
 
 -- --------------------------------------------------------
 
@@ -621,20 +638,16 @@ CREATE TABLE IF NOT EXISTS `manager` (
   `MGR_NO` int(11) NOT NULL AUTO_INCREMENT,
   `MGR_ID` varchar(50) NOT NULL,
   `MGR_USER` varchar(20) NOT NULL,
-  `MGR_PSW` varchar(50) NOT NULL,
+  `MGR_PSW` varchar(100) NOT NULL,
   PRIMARY KEY (`MGR_NO`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `manager`
 --
 
 INSERT INTO `manager` (`MGR_NO`, `MGR_ID`, `MGR_USER`, `MGR_PSW`) VALUES
-(1, 'imDongDong', '董董', 'DongNo1'),
-(2, 'imSara', '語語', 'SaraNo1'),
-(5, 'vanessa', '小燕兒', 'vanessa'),
-(7, 'sss', '斯斯感冒膠囊', 'sss'),
-(10, 'hk3345678', '我是愛蹺班的小編', 'hk3345678');
+(14, 'aaa123', '我是小編', '$2y$10$YoTSaiXWaKcqs5Svc6e6g.lCkwE4AmqeHBd8aemVWbLKzhnzd0GOu');
 
 -- --------------------------------------------------------
 
@@ -654,7 +667,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `MEM_BAN_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`MEMNO`),
   UNIQUE KEY `MEM_ID` (`MEM_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `member`
@@ -683,11 +696,11 @@ INSERT INTO `member` (`MEMNO`, `MEM_ID`, `MEM_PSW`, `MEM_NAME`, `MEM_NICKNAME`, 
 (21, '11@outlook.com', '$2y$10$vMIi/IWQgSiNvoSdxRpUZeSuD4jwJ8H26UAo32sCO.wye41J4J4bW', '依依', '依依', 'defaul_header.svg', 0, NULL),
 (22, 'zz@hmail.com', '$2y$10$iItUtHauX0M/od6cW3iSgO93Q1sjTLJP4A7PdrcTZmT.Eqg/ObV6e', 'zz', 'zz', '22.jpg', 0, NULL),
 (23, 'abc@gmail.com', '$2y$10$DT025A8nFYqLt3h9W.oc0OOKMRAtGOQMNywMKQ5vhP2RAQsOhFh3a', 'Claire', 'C', 'defaul_header.svg', 0, NULL),
-(24, 'jay9527@gmail.com', '$2y$10$OqdhaQ3dR/qe5W.E0HbBPevFHefS0MkvTrnZlZhN0LLj2Lff5Smcm', '班代', '我是班代', '24.jpg', 0, NULL),
+(24, 'jay9527@gmail.com', '$2y$10$OqdhaQ3dR/qe5W.E0HbBPevFHefS0MkvTrnZlZhN0LLj2Lff5Smcm', '我是班代', '亮', '24.jpg', 0, NULL),
 (25, 'bbbbbb@gmail.com', '$2y$10$qxQjgOws2hg7Hzm3jIZHV.Bahzqz.y9unggVxwBlDOYsHHLFR170e', 'claire', 'bbb', 'defaul_header.svg', 0, NULL),
 (26, 'dullcat420@gmail.com', '123456789', '絲絲感冒膠囊', '絲絲', '26.JPG', 0, NULL),
-(27, 'ccc@gmail.com', '$2y$10$QC1h27J3MVO95.h1tGhHI.Jl8.Q.Uw0pxRLcu9DWR4VI.ozfApCKm', '陳雨鑫', '鑫鑫腸', '27.jpg', 0, NULL),
-(28, 'ddd@gmail.com', '$2y$10$.ZEU3Z1VUbuC9lFG2ZGyWOqh3xjjyYMMbW0X.LJIyxAfJdGwP.vE6', '張貴華', '阿鬼', '28.jpg', 0, NULL),
+(27, 'ccc@gmail.com', '$2y$10$Gpo5ziJFRLcqsvMsuDoDUe56tBs4c2Zq8JiEk3Lq2AQ8wqgYDtPTm', '陳雨鑫', '橘子', '27.jpg', 0, NULL),
+(28, 'ddd@gmail.com', '$2y$10$.ZEU3Z1VUbuC9lFG2ZGyWOqh3xjjyYMMbW0X.LJIyxAfJdGwP.vE6', '張貴華', '阿鬼', '28.jpg', 1, '2020-11-28 00:00:00'),
 (29, 'eee@gmail.com', '$2y$10$HoOSO2QFGf.YPBff5XqWpuu6r/4c4vX4KM0JoEnRJTt3JiMFjwuJ.', '林羽熙', '熙熙', '29.jpg', 0, NULL),
 (30, 'fff@gmail.com', '$2y$10$nuFElLk/.H03JAMEMNvwc.ynzeDGbB/G2ED2FcZUkeG6mGtfeTtnq', '鄭容和', '小玉', '30.jpg', 0, NULL),
 (31, 'GGG@gmail.com', '$2y$10$Qt5nOUoyCHiVIYcGUbqsmO.fnNTwNbjOCU.0QAokbPnx6bokQN3nO', '野原新之助', '新之助', 'defaul_header.svg', 0, NULL),
@@ -700,7 +713,13 @@ INSERT INTO `member` (`MEMNO`, `MEM_ID`, `MEM_PSW`, `MEM_NAME`, `MEM_NICKNAME`, 
 (38, 'EgeD80@gmail.com', '$2y$10$MCxUFtSPDOGfUWY7xDpdWedMGhaN4LJwc9FrXQSzhHsENW1sxBd8K', '陳佳餚', '佳餚', 'defaul_header.svg', 0, NULL),
 (39, 'feWF34@gmail.com', '$2y$10$qu0XJBd695gRK1HcUC2zFe3X6RjjpdjVhKao9FSDMxEPGA5GEY8AO', '林一竹', '一竹', 'defaul_header.svg', 0, NULL),
 (40, 'Don520@gmail.com', '$2y$10$oTSgT2Nmip10Lwupg9AilObY36xAYWtECsdUgTiZNfu1TyLumpoAe', '董董', '董董', '40.jpg', 0, NULL),
-(41, 'nnn@gmai.com', '$2y$10$wsHtGaQYG83DjKMCsOMGueYfWqlsDpWYapPKoWtWgXzfx3RMkZNtS', 'ggg', 'ggg', 'defaul_header.svg', 0, NULL);
+(41, 'nnn@gmai.com', '$2y$10$wsHtGaQYG83DjKMCsOMGueYfWqlsDpWYapPKoWtWgXzfx3RMkZNtS', 'ggg', 'ggg', 'defaul_header.svg', 0, NULL),
+(42, 'bakbigdevil@gmail.com', '$2y$10$S8A/lvf7wJg1VtZTtEEzeumUIxnXdtQOxHkFsYdHZRdc.cftj6zOC', '小小明', '小品', 'defaul_header.svg', 0, NULL),
+(43, 'gokurasaki@gmail.com', '$2y$10$Xl4iPuR/O3ALsNqH0YOG2uJZmyW0DzOpbFz/Uvd.wLnEGFB6os8XG', 'Saki', 'Saki', 'defaul_header.svg', 0, NULL),
+(44, 'NEWMAN@gmail.com', '$2y$10$3xFFzPRKPNJreQwa9CbuOea/K2VXMJFPkmyFXflyxwXZ54DOpyj7S', '李白', '居士', 'defaul_header.svg', 0, NULL),
+(45, 'Qwe@gmail.com', '$2y$10$/NMvCD.7DPgKJ7qToG5d6uIg3lzjM3WL1N0OP5u.p/.6PK2AvgFAW', 'Qweqwe', 'Qweqwe', 'defaul_header.svg', 0, NULL),
+(46, 'mama@gmail.com', '$2y$10$j8IHtM1z0WJehLmarItHseS5cZg7y6y5rKdOzRgu3hkIOAHTyxWou', 'mama', 'mama', '46.JPG', 0, NULL),
+(47, '5555@gmail.com', '$2y$10$2kSOywa8i/vakIAw0/0JO.JpYSibzP20VFUR5fUaaGckisq72CCea', 'abc', 'abc', 'defaul_header.svg', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -718,7 +737,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`MES_NO`),
   KEY `MES_OBJECT_MEMNO` (`MES_OBJECT_MEMNO`),
   KEY `MES_SENDER_MEMNO` (`MES_SENDER_MEMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `message`
@@ -734,7 +753,8 @@ INSERT INTO `message` (`MES_NO`, `MES_TIME`, `MES_CONTENT`, `MES_OBJECT_MEMNO`, 
 (10, '2020-11-22 15:30:12', '您好，我想用睡袋跟您交換，聯絡方式是0922222111，期待您的聯絡', 27, 11),
 (11, '2020-11-22 15:34:57', '您好，請問有其他顏色嗎', 27, 11),
 (12, '2020-11-22 16:04:23', '您好~可以用卡式爐跟您交換嗎?聯絡方式，Email:anna820@gmail.com', 27, 36),
-(13, '2020-11-22 16:07:32', '請問可以約看帳篷外觀狀況嗎?電話:0922-880-886', 27, 19);
+(13, '2020-11-22 16:07:32', '請問可以約看帳篷外觀狀況嗎?電話:0922-880-886', 27, 19),
+(14, '2020-11-23 10:54:44', '您好!我想跟您交換這項設備，請問這項物品的狀況如何呢?\n以下是我的聯絡方式，手機0911223344，期待您的回覆。', 30, 27);
 
 -- --------------------------------------------------------
 
@@ -752,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `QUE_ANS` tinyint(4) DEFAULT NULL,
   `QUE_STATUS` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`QUE_NO`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `question`
@@ -786,15 +806,17 @@ CREATE TABLE IF NOT EXISTS `reportgroup` (
   PRIMARY KEY (`REGROUP_NO`),
   KEY `REGROUP_GROUP_NO` (`REGROUP_GROUP_NO`),
   KEY `REGROUP_MEMNO` (`REGROUP_MEMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `reportgroup`
 --
 
 INSERT INTO `reportgroup` (`REGROUP_NO`, `REGROUP_GROUP_NO`, `REGROUP_MEMNO`, `REGROUP_STATUS`, `REGROUP_RESON`, `REGROUP_DATE`, `REGROUP_DEAL`) VALUES
-(1, 1, 6, 0, 1, '2020-11-17 11:52:41', '0'),
-(2, 8, 5, 0, 2, '2020-11-17 12:27:36', '0');
+(1, 1, 6, 1, 1, '2020-11-17 11:52:41', 'unpass'),
+(2, 8, 5, 0, 2, '2020-11-17 12:27:36', '0'),
+(19, 25, 27, 1, 0, '2020-11-23 10:52:36', 'pass'),
+(20, 25, 30, 0, 0, '2020-11-23 10:52:37', '0');
 
 -- --------------------------------------------------------
 
@@ -814,7 +836,7 @@ CREATE TABLE IF NOT EXISTS `reportgroup_mes` (
   PRIMARY KEY (`REGROUP_MES_NO`),
   KEY `REGROUP_MES_MEMNO` (`REGROUP_MES_MEMNO`),
   KEY `reportgroup_mes_ibfk_1` (`REGROUP_MES_GROUP_NO`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `reportgroup_mes`
@@ -823,7 +845,8 @@ CREATE TABLE IF NOT EXISTS `reportgroup_mes` (
 INSERT INTO `reportgroup_mes` (`REGROUP_MES_NO`, `REGROUP_MES_GROUP_NO`, `REGROUP_MES_MEMNO`, `REGROUP_MES_STATUS`, `REGROUP_RESON`, `REGROUP_DATE`, `REGROUP_DEAL`) VALUES
 (1, 5, 6, 1, 1, '2020-11-17 16:03:42', 'unpass'),
 (2, 27, 27, 0, 0, '2020-11-22 11:30:29', '0'),
-(7, 3, 11, 0, 0, '2020-11-22 14:52:00', '0');
+(7, 3, 11, 0, 0, '2020-11-22 14:52:00', '0'),
+(9, 31, 27, 1, 1, '2020-11-23 10:53:49', 'pass');
 
 -- --------------------------------------------------------
 
@@ -843,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `reportoutfit` (
   PRIMARY KEY (`REP_OUT_NO`),
   KEY `REP_OUT_MEMNO` (`REP_OUT_MEMNO`),
   KEY `REP_OUT_EQUNO` (`REP_OUT_EQUNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `reportoutfit`
@@ -851,9 +874,13 @@ CREATE TABLE IF NOT EXISTS `reportoutfit` (
 
 INSERT INTO `reportoutfit` (`REP_OUT_NO`, `REP_OUT_EQUNO`, `REP_OUT_MEMNO`, `REP_OUT_STATUS`, `REPOUP_RESON`, `REPOUT_DATE`, `REEQU_DEAL`) VALUES
 (1, 1, 3, 1, 1, '2020-10-31 12:00:19', 'unpass'),
-(2, 2, 2, 0, 2, '2020-10-31 05:39:00', ''),
+(2, 2, 2, 1, 2, '2020-10-31 05:39:00', 'unpass'),
 (3, 84, 20, 0, 1, '2020-11-19 18:11:14', ' '),
-(5, 86, 7, 0, 0, '2020-11-22 15:16:08', ' ');
+(5, 86, 7, 1, 0, '2020-11-22 15:16:08', 'pass'),
+(7, 86, 27, 0, 0, '2020-11-23 10:55:37', ' '),
+(8, 86, 30, 0, 0, '2020-11-23 10:55:41', ' '),
+(9, 86, 45, 0, 0, '2020-11-23 11:29:18', ' '),
+(10, 86, 45, 0, 0, '2020-11-23 11:29:27', ' ');
 
 --
 -- 已匯出資料表的限制(Constraint)
