@@ -54,7 +54,7 @@
 .waethermap{
     display: flex;
 }
-#weatherbox{
+.left_side{
     border-right: 2px solid $grayColor2;
 }
 .map{
@@ -106,19 +106,22 @@
 }
 
 //溫度、降雨、濕度
-.infos{
+.waetherdetails{
     display: flex;
     justify-content: space-evenly;
     text-align: center;
     padding: 10px 0 20px 0;
     border-bottom: 2px solid $grayColor2;
-    .NowT{
-        padding:5px 12px 0;
-        .TtoT{
-            color: $greenColor3;
+    .tempnow{
+        vertical-align: center;
+        padding: 20px 8px;
+        color: $greenColor3;
+        p{
+            padding-top: 10px;
+            color: $greenColor1;;
         }
     }
-    .PoP{
+    .rain{
         vertical-align: center;
         padding: 20px 8px;
         color: $greenColor3;
@@ -128,7 +131,7 @@
             color: $greenColor1;;
         }
     }
-    .RH{
+    .humidity{
         vertical-align: center;
         padding: 20px 8px ;
         color: $greenColor3;
@@ -138,21 +141,21 @@
         }
     }
 }
-.infosbox{
+.waether_area{
     border: 3px solid $greenColor1;
     border-radius: 5px;
     background-color: $greenColor4;
     font-weight: bold;
 }
 
-.weatherweek{ 
+.forweek{ 
     display: flex;
     text-align: center;
     justify-content:center;
     margin: 20px auto;
     max-width: 350px;
     width: 100%;    
-    .week{
+    .prediction{
         max-width: 50px;
         width: 100%;
         border-right:1px solid white ;
@@ -163,7 +166,7 @@
         color: white;
         padding: 6px 8px;
     }
-    .temp{
+    .temp_pre{
         border-bottom:1px solid white ;
         background-color: $greenColor2;
         color: white;
@@ -171,7 +174,7 @@
     }
 }
 
-.weatherdesc{
+.weather_explanation{
     margin: 0 auto;
     width: 360px;
 }
@@ -711,20 +714,20 @@ text-align: center;
             }
         }
     }
-    .infos{
+    .waetherdetails{
         display: flex;
         justify-content: space-around;
         text-align: center;
     }
-    .weatherweek{     
+    .forweek{     
         .day{
             padding: 6px 4px;
         }
-        .temp{
+        .temp_pre{
             padding: 9px 4px;
         }
     }
-    .weatherdesc{
+    .weather_explanation{
         max-width: 300px;
         width: 100%;
     }
@@ -813,7 +816,7 @@ text-align: center;
     .waethermap{
         display: block;
     }
-    #weatherbox{
+    .left_side{
         border-right: none;
     }
     .map{
@@ -824,20 +827,20 @@ text-align: center;
     .weather{
         padding: 0 0 10px 0;
     }
-    .infos{
+    .waetherdetails{
         max-width: 350px;
         width: 100%;
         margin: 0 auto;
     }
-    .weatherweek{     
+    .forweek{     
         .day{
             padding: 6px 4px;
         }
-        .temp{
+        .temp_pre{
             padding: 9px 4px;
         }
     }
-    .weatherdesc{
+    .weather_explanation{
         max-width: 350px;
         width: 100%;
     }
@@ -1006,17 +1009,20 @@ text-align: center;
     }
 }
     //溫度、降雨、濕度
-.infos{
-    .NowT{
-        padding:0px 10px 0;
-    }
-    .PoP{
+.waetherdetails{
+    .tempnow{
         padding: 15px 4px;
         p{
             padding-top: 6px;
         }
     }
-    .RH{
+    .rain{
+        padding: 15px 4px;
+        p{
+            padding-top: 6px;
+        }
+    }
+    .humidity{
         padding: 15px 4px ;
         p{
             padding-top: 6px;
