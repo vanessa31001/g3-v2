@@ -4,13 +4,13 @@ try{
     require_once("../connectBooks.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
-    // var_dump($data);
-    // die;
+    var_dump($data);
+    die;
     if(isset($data->REEQU_DEAL)){
         if($data->REEQU_DEAL =='unpass'){
-            $groupStatus = '0';
+            $Status = '0';
         }else{
-            $groupStatus = '1';
+            $Status = '1';
         }
         $sql1 = "UPDATE equipment e JOIN reportoutfit r 
         ON (e.EQU_NO = r.REP_OUT_NO ) 
@@ -19,7 +19,7 @@ try{
         $reportequs = $pdo->prepare($sql1);
         $reportequs->bindValue(":REP_OUT_NO", $data->REP_OUT_NO);
         $reportequs->bindValue(":REEQU_DEAL", $data->REEQU_DEAL);
-        $reportequs->bindValue(":EQU_SWAPATATNO", $groupStatus);
+        $reportequs->bindValue(":EQU_SWAPATATNO", $data->REEQU_DEAL);
         $reportequs->execute();
     }else{
         echo '{}';

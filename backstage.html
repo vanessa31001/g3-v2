@@ -251,15 +251,6 @@
                 document.querySelectorAll('.backclicked')[i].disabled=true;
                 document.querySelectorAll('.backclicked')[i].style.background='gray';
                 },
-                // updateRegro(m){
-                //         console.log(m)
-                //         axios.post('php/backstage/backstage_updateRegro.php', m).then(res => {this.getRGList()}).then(res=>this.buttonBan())
-    
-                // },
-                // buttonBan(){
-                //         for(i=0 ; i<this.reportgroups.length ; i++){
-                //             document.querySelectorAll('.backclicked')[i].disabled=true;
-                // },
                 getRGList() {
                 let url = 'php/backstage/backstage_reportgroup.php';
                 axios.get(url)
@@ -380,12 +371,12 @@
             },
             methods: {                
                 updateReequ(e){
-                    console.log(e)
-                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{this.getREList()}).then(res=>this.buttonBan(this.reportequs.indexOf(e)))
+                    // console.log(e)
+                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{this.getREList()})
                     },
 
                 buttonBan(i){
-                    document.querySelectorAll('.backclick')[i].disabled=true;
+                    document.querySelectorAll('.backclicked')[i].disabled=true;
                 },
 
                 getREList(){
@@ -398,7 +389,7 @@
             created(){
                 axios.get('php/backstage/backstage_reportequ.php').then(res=>{
                     this.reportequs = res.data;
-                    console.log(this.reportequs);
+                    // console.log(this.reportequs);
                 })
             },
             template: `
