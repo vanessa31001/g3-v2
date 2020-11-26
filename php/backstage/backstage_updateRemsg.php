@@ -4,8 +4,8 @@ try{
     require_once("../connectBooks.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
-    var_dump($data);
-    die;
+    // var_dump($data);
+    // die;
     if(isset($data->REGROUP_DEAL)){
         if($data->REGROUP_DEAL =='unpass'){
             $Status = '0';
@@ -23,11 +23,10 @@ try{
             $RESON = '2';
         }
         $pdo->beginTransaction();
-        $sql = "UPDATE group_mes SET GROUP_MES_STATUS=:GROUP_MES_STATUS
-        WHERE GROUP_MES_NO=:GROUP_MES_NO";
+        $sql = "UPDATE group_mes set group_mes_status = '2' where group_mes_no = '3'";
         $Gmsg = $pdo->prepare($sql);
-        $Gmsg->bindValue(":GROUP_MES_STATUS",$Status);
-        $Gmsg->bindValue(":GROUP_MES_NO",$data->REGROUP_MES_NO);
+        $Gmsg->bindValue(":mes_status",(int)$Status);
+        $Gmsg->bindValue(":GROUP_MES_NO",(int)$data->REGROUP_MES_NO);
         $Gmsg->execute();
 
         $sql1 ="UPDATE reportgroup_mes
