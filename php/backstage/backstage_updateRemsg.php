@@ -7,19 +7,21 @@ try{
     // var_dump($data);
     // die;
     if(isset($data->REGROUP_DEAL)){
-        if($data->REGROUP_DEAL =='unpass'){
-            $groupStatus = '0';
-        }else{
-            $groupStatus = '1';
-        }
-        $sql1 = "UPDATE group_mes gm JOIN reportgroup_mes re
-        ON (gm.GROUP_MES_NO = re.REGROUP_MES_NO)
-        SET gm.GROUP_MES_STATUS=:GROUP_MES_STATUS,re.REGROUP_MES_STATUS='1',re.REGROUP_DEAL=:REGROUP_DEAL
+        $sql = "UPDATE group_mes
+        SET GROUP_MES_STATUS=:GROUP_MES_STATUS
+        WHERE REGROUP_MES_NO=:REGROUP_MES_NO";
+        $group_mes = $pdo->prepare($sql);
+        $group_mes->bindValue(":GROUP_MES_STATUS", $data->REGROUP_DEAL);
+        $group_mes->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
+        $group_mes->execute();
+
+        $sql1 = "UPDATE reportgroup_mes
+        SET REGROUP_MES_STATUS='1',REGROUP_DEAL=:REGROUP_DEAL
         WHERE REGROUP_MES_NO=:REGROUP_MES_NO";
         $group_mes = $pdo->prepare($sql1);
         $group_mes->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
         $group_mes->bindValue(":REGROUP_DEAL", $data->REGROUP_DEAL);
-        $group_mes->bindValue(":GROUP_MES_STATUS", $groupStatus);
+        $group_mes->bindValue(":GROUP_MES_STATUS", $data->REGROUP_DEAL);
         $group_mes->execute();
     }else{
         echo '{}';

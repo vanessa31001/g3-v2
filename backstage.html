@@ -310,10 +310,10 @@
             methods: {
                 updateRemsg(m){
                     console.log(m)
-                        axios.post('php/backstage/backstage_updateRemsg.php', m).then(res => {this.getRGMList()}).then(res=>this.buttonBan(this.reportmsgs.indexOf(m)))
+                    axios.post('php/backstage/backstage_updateRemsg.php', m).then(res => {this.getRGMList()}).then(res=>this.buttonBan(this.reportmsgs.indexOf(m)))
                 },
                 buttonBan(i) {
-                document.querySelectorAll('.backclicked')[i].disabled=true;
+                    document.querySelectorAll('.backclicked')[i].disabled=true;
                 },
                 getRGMList(){
                     axios.get('php/backstage/backstage_reportmsg.php').then(res=>{
@@ -371,8 +371,10 @@
             },
             methods: {                
                 updateReequ(e){
-                    // console.log(e)
-                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{this.getREList()})
+                    console.log(e)
+                    axios.post('php/backstage/backstage_updateReequ.php', e).then(res=>{
+                        this.getREList();
+                    })
                     },
 
                 buttonBan(i){
