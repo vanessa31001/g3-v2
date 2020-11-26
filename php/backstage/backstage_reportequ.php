@@ -28,7 +28,7 @@ try{
         }else{
             $val['EQU_SWAPATATNO']='已下架';
         }
-        if($val['REP_OUT_STATUS']==0){
+        if($val['REP_OUT_STATUS']==0){       //0是未處理,2是已處理
             $val['REP_OUT_STATUS']='未處理';
         }else{
             $val['REP_OUT_STATUS']='已處理';

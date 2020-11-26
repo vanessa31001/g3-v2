@@ -4,25 +4,47 @@ try{
     require_once("../connectBooks.php");
     $json = file_get_contents('php://input');
     $data = json_decode($json);
-    // var_dump($data);
-    // die;
+    var_dump($data);
+    die;
     if(isset($data->REGROUP_DEAL)){
-        $sql = "UPDATE group_mes
-        SET GROUP_MES_STATUS=:GROUP_MES_STATUS
-        WHERE REGROUP_MES_NO=:REGROUP_MES_NO";
-        $group_mes = $pdo->prepare($sql);
-        $group_mes->bindValue(":GROUP_MES_STATUS", $data->REGROUP_DEAL);
-        $group_mes->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
-        $group_mes->execute();
+        if($data->REGROUP_DEAL =='unpass'){
+            $Status = '0';
+            $repStatus = '2';
+        }else{
+            $Status = '1';
+            $repStatus = '1';
+        }
+        
+        if($data->REGROUP_RESON =='此留言與露營不相關'){//判斷原因
+            $RESON = '0';
+        }else if($data->REGROUP_RESON =='此留言為不當發言'){
+            $RESON = '1';
+        }else{
+            $RESON = '2';
+        }
+        $pdo->beginTransaction();
+        $sql = "UPDATE group_mes SET GROUP_MES_STATUS=:GROUP_MES_STATUS
+        WHERE GROUP_MES_NO=:GROUP_MES_NO";
+        $Gmsg = $pdo->prepare($sql);
+        $Gmsg->bindValue(":GROUP_MES_STATUS",$Status);
+        $Gmsg->bindValue(":GROUP_MES_NO",$data->REGROUP_MES_NO);
+        $Gmsg->execute();
 
-        $sql1 = "UPDATE reportgroup_mes
-        SET REGROUP_MES_STATUS='1',REGROUP_DEAL=:REGROUP_DEAL
+        $sql1 ="UPDATE reportgroup_mes
+        SET REGROUP_MES_STATUS=:REGROUP_MES_STATUS,REGROUP_DEAL=:REGROUP_DEAL,REGROUP_RESON=:REGROUP_RESON
         WHERE REGROUP_MES_NO=:REGROUP_MES_NO";
-        $group_mes = $pdo->prepare($sql1);
-        $group_mes->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
-        $group_mes->bindValue(":REGROUP_DEAL", $data->REGROUP_DEAL);
-        $group_mes->bindValue(":GROUP_MES_STATUS", $data->REGROUP_DEAL);
-        $group_mes->execute();
+
+        $reportmsg = $pdo->prepare($sql1);
+        $reportmsg->bindValue(":REGROUP_MES_STATUS", $repStatus);
+        $reportmsg->bindValue(":REGROUP_DEAL", $data->REGROUP_DEAL);
+        $reportmsg->bindValue(":REGROUP_RESON", $RESON);
+        $reportmsg->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
+        $reportmsg->execute();
+        if($Gmsg->execute() && $reportmsg->execute()){
+            $pdo->commit();
+        }else{
+            $pdo->rollBack();
+        }
     }else{
         echo '{}';
     }
