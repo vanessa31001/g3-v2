@@ -15,7 +15,7 @@ try{
             $repStatus = '1';
         }
         
-        if($data->REGROUP_RESON =='此留言與露營不相關'){//判斷原因
+        if($data->REGROUP_RESON =='此留言與露營不相關'){//判斷原因 
             $RESON = '0';
         }else if($data->REGROUP_RESON =='此留言為不當發言'){
             $RESON = '1';
@@ -23,7 +23,7 @@ try{
             $RESON = '2';
         }
         $pdo->beginTransaction();
-        $sql = "UPDATE group_mes set group_mes_status =:mes_status where group_mes_no =:GROUP_MES_NO";
+        $sql = "UPDATE group_mes set group_mes_status = :mes_status where group_mes_no = :GROUP_MES_NO";
         $Gmsg = $pdo->prepare($sql);
         $Gmsg->bindValue(":mes_status",(int)$Status);
         $Gmsg->bindValue(":GROUP_MES_NO",(int)$data->REGROUP_MES_NO);
