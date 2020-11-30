@@ -23,7 +23,7 @@ try{
             $RESON = '2';
         }
         $pdo->beginTransaction();
-        $sql = "UPDATE group_mes set group_mes_status = '2' where group_mes_no = '3'";
+        $sql = "UPDATE group_mes set group_mes_status =:mes_status where group_mes_no =:GROUP_MES_NO";
         $Gmsg = $pdo->prepare($sql);
         $Gmsg->bindValue(":mes_status",(int)$Status);
         $Gmsg->bindValue(":GROUP_MES_NO",(int)$data->REGROUP_MES_NO);
