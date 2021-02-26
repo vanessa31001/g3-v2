@@ -26,7 +26,7 @@ try {
 			$products -> bindValue(":MEMNO", $_SESSION['MEMNO']);
 			$products -> execute();
 			echo $fileName;
-			$pdo->commit();			
+			$pdo->commit();
 		}else{
 			$pdo->rollBack();
 		}

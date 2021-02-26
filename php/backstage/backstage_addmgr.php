@@ -10,7 +10,7 @@ try{
     $data = json_decode($json);
     $manager->bindValue(":MGR_ID", $data->MGR_ID);
     $manager->bindValue(":MGR_USER", $data->MGR_USER);
-    $manager->bindValue(":MGR_PSW", $data->MGR_PSW);
+    $manager->bindValue(":MGR_PSW", password_hash($data->MGR_PSW,PASSWORD_DEFAULT));
     $manager->execute();
 }catch(PDOException $e){
     echo "錯誤訊息:", $e->getLine(),"<br>";

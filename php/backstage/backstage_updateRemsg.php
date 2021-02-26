@@ -8,19 +8,42 @@ try{
     // die;
     if(isset($data->REGROUP_DEAL)){
         if($data->REGROUP_DEAL =='unpass'){
-            $groupStatus = '0';
+            $Status = '0';
+            $repStatus = '2';
         }else{
-            $groupStatus = '1';
+            $Status = '1';
+            $repStatus = '1';
         }
-        $sql1 = "UPDATE group_mes gm JOIN reportgroup_mes re
-        ON (gm.GROUP_MES_NO = re.REGROUP_MES_NO)
-        SET gm.GROUP_MES_STATUS=:GROUP_MES_STATUS,re.REGROUP_MES_STATUS='1',re.REGROUP_DEAL=:REGROUP_DEAL
+        
+        if($data->REGROUP_RESON =='此留言與露營不相關'){//判斷原因 
+            $RESON = '0';
+        }else if($data->REGROUP_RESON =='此留言為不當發言'){
+            $RESON = '1';
+        }else{
+            $RESON = '2';
+        }
+        $pdo->beginTransaction();
+        $sql = "UPDATE group_mes set group_mes_status = :mes_status where group_mes_no = :GROUP_MES_NO";
+        $Gmsg = $pdo->prepare($sql);
+        $Gmsg->bindValue(":mes_status",(int)$Status);
+        $Gmsg->bindValue(":GROUP_MES_NO",(int)$data->REGROUP_MES_NO);
+        $Gmsg->execute();
+
+        $sql1 ="UPDATE reportgroup_mes
+        SET REGROUP_MES_STATUS=:REGROUP_MES_STATUS,REGROUP_DEAL=:REGROUP_DEAL,REGROUP_RESON=:REGROUP_RESON
         WHERE REGROUP_MES_NO=:REGROUP_MES_NO";
-        $group_mes = $pdo->prepare($sql1);
-        $group_mes->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
-        $group_mes->bindValue(":REGROUP_DEAL", $data->REGROUP_DEAL);
-        $group_mes->bindValue(":GROUP_MES_STATUS", $groupStatus);
-        $group_mes->execute();
+
+        $reportmsg = $pdo->prepare($sql1);
+        $reportmsg->bindValue(":REGROUP_MES_STATUS", $repStatus);
+        $reportmsg->bindValue(":REGROUP_DEAL", $data->REGROUP_DEAL);
+        $reportmsg->bindValue(":REGROUP_RESON", $RESON);
+        $reportmsg->bindValue(":REGROUP_MES_NO", $data->REGROUP_MES_NO);
+        $reportmsg->execute();
+        if($Gmsg->execute() && $reportmsg->execute()){
+            $pdo->commit();
+        }else{
+            $pdo->rollBack();
+        }
     }else{
         echo '{}';
     }

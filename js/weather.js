@@ -8,7 +8,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (N1){
-                    RenderWeather(N1);
+                    weather(N1);
                     N1data = N1
                 },
                 error: function (){
@@ -25,7 +25,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (N2N4){
-                    RenderWeather(N2N4);
+                    weather(N2N4);
                     N2N4data = N2N4
                 },
                 error: function (){
@@ -42,7 +42,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (N3){
-                    RenderWeather(N3);
+                    weather(N3);
                     N3data = N3
                 },
                 error: function (){
@@ -59,7 +59,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (N5){
-                    RenderWeather(N5);
+                    weather(N5);
                     N5data = N5
                 },
                 error: function (){
@@ -76,7 +76,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (N6){
-                    RenderWeather(N6);
+                    weather(N6);
                     N6data = N6
                 },
                 error: function (){
@@ -93,7 +93,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (C1){
-                    RenderWeather(C1);
+                    weather(C1);
                     C1data = C1
                 },
                 error: function (){
@@ -110,7 +110,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (C2){
-                    RenderWeather(C2);
+                    weather(C2);
                     C2data = C2
                 },
                 error: function (){
@@ -127,7 +127,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (C3){
-                    RenderWeather(C3);
+                    weather(C3);
                     C3data = C3
                 },
                 error: function (){
@@ -144,7 +144,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (C4){
-                    RenderWeather(C4);
+                    weather(C4);
                     C4data = C4
                 },
                 error: function (){
@@ -161,7 +161,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (S1){
-                    RenderWeather(S1);
+                    weather(S1);
                     S1data = S1
                 },
                 error: function (){
@@ -178,7 +178,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (S2){
-                    RenderWeather(S2);
+                    weather(S2);
                     S2data = S2
                 },
                 error: function (){
@@ -195,7 +195,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (S3){
-                    RenderWeather(S3);
+                    weather(S3);
                     S3data = S3
                 },
                 error: function (){
@@ -212,7 +212,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (E1){
-                    RenderWeather(E1);
+                    weather(E1);
                     E1data = E1
                 },
                 error: function (){
@@ -229,7 +229,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (E2){
-                    RenderWeather(E2);
+                    weather(E2);
                     E2data = E2
                 },
                 error: function (){
@@ -246,7 +246,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (E3){
-                    RenderWeather(E3);
+                    weather(E3);
                     E3data = E3
                 },
                 error: function (){
@@ -256,9 +256,9 @@
     });
 
     
-    let AreaDataArray = ["N1data", "N2N4data", "N3data", "N5data", "N6data", "C1data", "C2data", "C3data", "C4data", "S1data", "S2data", "S3data", "E1data", "E2data", "E3data"];
-    function RenderWeather(AreaData){
-        // console.log(AreaData)
+    let campareaArray = ["N1data", "N2N4data", "N3data", "N5data", "N6data", "C1data", "C2data", "C3data", "C4data", "S1data", "S2data", "S3data", "E1data", "E2data", "E3data"];
+    function weather(camparea){
+        // console.log(camparea)
 
 
         //現在時間
@@ -293,39 +293,39 @@
         $('#nowTime').text(currentdate);
 
         //天氣敘述
-        $('#temperature').text(AreaData.records.locations[0].location[0].weatherElement[1].time[0].elementValue[0].value+ '°C');
-        $('#lowtemp').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
-        $('#hightemp').text(AreaData.records.locations[0].location[0].weatherElement[6].time[0].elementValue[0].value+ '°C');
-        $('#rain').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].elementValue[0].value+ '%');
-        $('#humidity').text(AreaData.records.locations[0].location[0].weatherElement[2].time[0].elementValue[0].value+ '%');
-        $('#explanation').text(AreaData.records.locations[0].location[0].weatherElement[5].time[0].elementValue[0].value);
+        $('#temperature').text(camparea.records.locations[0].location[0].weatherElement[1].time[0].elementValue[0].value+ '°C');
+        $('#lowtemp').text(camparea.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
+        $('#hightemp').text(camparea.records.locations[0].location[0].weatherElement[6].time[0].elementValue[0].value+ '°C');
+        $('#rain').text(camparea.records.locations[0].location[0].weatherElement[0].time[0].elementValue[0].value+ '%');
+        $('#humidity').text(camparea.records.locations[0].location[0].weatherElement[2].time[0].elementValue[0].value+ '%');
+        $('#explanation').text(camparea.records.locations[0].location[0].weatherElement[5].time[0].elementValue[0].value);
 
         //日期
-        $('#day1').text(AreaData.records.locations[0].location[0].weatherElement[0].time[0].startTime.slice(8,10));
-        $('#day2').text(AreaData.records.locations[0].location[0].weatherElement[0].time[2].startTime.slice(8,10));
-        $('#day3').text(AreaData.records.locations[0].location[0].weatherElement[0].time[4].startTime.slice(8,10));
-        $('#day4').text(AreaData.records.locations[0].location[0].weatherElement[0].time[6].startTime.slice(8,10));
-        $('#day5').text(AreaData.records.locations[0].location[0].weatherElement[0].time[8].startTime.slice(8,10));
-        $('#day6').text(AreaData.records.locations[0].location[0].weatherElement[0].time[10].startTime.slice(8,10));
-        $('#day7').text(AreaData.records.locations[0].location[0].weatherElement[0].time[12].startTime.slice(8,10));
+        $('#day1').text(camparea.records.locations[0].location[0].weatherElement[0].time[0].startTime.slice(8,10));
+        $('#day2').text(camparea.records.locations[0].location[0].weatherElement[0].time[2].startTime.slice(8,10));
+        $('#day3').text(camparea.records.locations[0].location[0].weatherElement[0].time[4].startTime.slice(8,10));
+        $('#day4').text(camparea.records.locations[0].location[0].weatherElement[0].time[6].startTime.slice(8,10));
+        $('#day5').text(camparea.records.locations[0].location[0].weatherElement[0].time[8].startTime.slice(8,10));
+        $('#day6').text(camparea.records.locations[0].location[0].weatherElement[0].time[10].startTime.slice(8,10));
+        $('#day7').text(camparea.records.locations[0].location[0].weatherElement[0].time[12].startTime.slice(8,10));
 
         //最高溫
-        $('#htday1').text(AreaData.records.locations[0].location[0].weatherElement[6].time[1].elementValue[0].value+ '°C');
-        $('#htday2').text(AreaData.records.locations[0].location[0].weatherElement[6].time[3].elementValue[0].value+ '°C');
-        $('#htday3').text(AreaData.records.locations[0].location[0].weatherElement[6].time[5].elementValue[0].value+ '°C');
-        $('#htday4').text(AreaData.records.locations[0].location[0].weatherElement[6].time[7].elementValue[0].value+ '°C');
-        $('#htday5').text(AreaData.records.locations[0].location[0].weatherElement[6].time[9].elementValue[0].value+ '°C');
-        $('#htday6').text(AreaData.records.locations[0].location[0].weatherElement[6].time[11].elementValue[0].value+ '°C');
-        $('#htday7').text(AreaData.records.locations[0].location[0].weatherElement[6].time[13].elementValue[0].value+ '°C');
+        $('#htday1').text(camparea.records.locations[0].location[0].weatherElement[6].time[1].elementValue[0].value+ '°C');
+        $('#htday2').text(camparea.records.locations[0].location[0].weatherElement[6].time[3].elementValue[0].value+ '°C');
+        $('#htday3').text(camparea.records.locations[0].location[0].weatherElement[6].time[5].elementValue[0].value+ '°C');
+        $('#htday4').text(camparea.records.locations[0].location[0].weatherElement[6].time[7].elementValue[0].value+ '°C');
+        $('#htday5').text(camparea.records.locations[0].location[0].weatherElement[6].time[9].elementValue[0].value+ '°C');
+        $('#htday6').text(camparea.records.locations[0].location[0].weatherElement[6].time[11].elementValue[0].value+ '°C');
+        $('#htday7').text(camparea.records.locations[0].location[0].weatherElement[6].time[13].elementValue[0].value+ '°C');
 
         //最低溫
-        $('#ltday1').text(AreaData.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
-        $('#ltday2').text(AreaData.records.locations[0].location[0].weatherElement[4].time[2].elementValue[0].value+ '°C');
-        $('#ltday3').text(AreaData.records.locations[0].location[0].weatherElement[4].time[4].elementValue[0].value+ '°C');
-        $('#ltday4').text(AreaData.records.locations[0].location[0].weatherElement[4].time[6].elementValue[0].value+ '°C');
-        $('#ltday5').text(AreaData.records.locations[0].location[0].weatherElement[4].time[8].elementValue[0].value+ '°C');
-        $('#ltday6').text(AreaData.records.locations[0].location[0].weatherElement[4].time[10].elementValue[0].value+ '°C');
-        $('#ltday7').text(AreaData.records.locations[0].location[0].weatherElement[4].time[12].elementValue[0].value+ '°C');
+        $('#ltday1').text(camparea.records.locations[0].location[0].weatherElement[4].time[0].elementValue[0].value+ '°C');
+        $('#ltday2').text(camparea.records.locations[0].location[0].weatherElement[4].time[2].elementValue[0].value+ '°C');
+        $('#ltday3').text(camparea.records.locations[0].location[0].weatherElement[4].time[4].elementValue[0].value+ '°C');
+        $('#ltday4').text(camparea.records.locations[0].location[0].weatherElement[4].time[6].elementValue[0].value+ '°C');
+        $('#ltday5').text(camparea.records.locations[0].location[0].weatherElement[4].time[8].elementValue[0].value+ '°C');
+        $('#ltday6').text(camparea.records.locations[0].location[0].weatherElement[4].time[10].elementValue[0].value+ '°C');
+        $('#ltday7').text(camparea.records.locations[0].location[0].weatherElement[4].time[12].elementValue[0].value+ '°C');
 
     }
 
@@ -394,52 +394,52 @@
             //alert($("#campSpot").val()); //抓到option的值(中文)
             switch($("#campSpot").val()){
             case '確幸莊園':
-                RenderWeather(N1data);
+                weather(N1data);
             break;
             case '森森親子露營':
-                RenderWeather(N2N4data);
+                weather(N2N4data);
             break;
             case '溪口台露營區':
-                RenderWeather(N3data);
+                weather(N3data);
             break;
             case '綠果子休憩站':
-                RenderWeather(N2N4data);
+                weather(N2N4data);
             break;
             case '相思園露營區':
-                RenderWeather(N5data);
+                weather(N5data);
             break;
             case '紮營趣露營區':
-                RenderWeather(N6data);
+                weather(N6data);
             break;
             case '梅林親水岸露營區':
-                RenderWeather(C1data);
+                weather(C1data);
             break;
             case '樹不老露營區':
-                RenderWeather(C2data);
+                weather(C2data);
             break;
             case '逸境生態露營區':
-                RenderWeather(C3data);
+                weather(C3data);
             break;
             case '倉伯露營區':
-                RenderWeather(C4data);
+                weather(C4data);
             break;
             case '春園休閒農場':
-                RenderWeather(S1data);
+                weather(S1data);
             break;
             case '荖濃有機農場露營區':
-                RenderWeather(S2data);
+                weather(S2data);
             break;
             case '海豚茉莉灣':
-                RenderWeather(S3data);
+                weather(S3data);
             break;
             case '松蘿園林露營區':
-                RenderWeather(E1data);
+                weather(E1data);
             break;
             case 'Ocean Chill 海憩露營區':
-                RenderWeather(E2data);
+                weather(E2data);
             break;
             case '老麥農場露營區':
-                RenderWeather(E3data);
+                weather(E3data);
             break;
             
         };
@@ -448,52 +448,52 @@
             //alert($("#campSpot").val()); //抓到option的值(中文)
             switch($("#campSpot").val()){
             case '確幸莊園':
-                RenderWeather(N1data);
+                weather(N1data);
             break;
             case '森森親子露營':
-                RenderWeather(N2N4data);
+                weather(N2N4data);
             break;
             case '溪口台露營區':
-                RenderWeather(N3data);
+                weather(N3data);
             break;
             case '綠果子休憩站':
-                RenderWeather(N2N4data);
+                weather(N2N4data);
             break;
             case '相思園露營區':
-                RenderWeather(N5data);
+                weather(N5data);
             break;
             case '紮營趣露營區':
-                RenderWeather(N6data);
+                weather(N6data);
             break;
             case '梅林親水岸露營區':
-                RenderWeather(C1data);
+                weather(C1data);
             break;
             case '樹不老露營區':
-                RenderWeather(C2data);
+                weather(C2data);
             break;
             case '逸境生態露營區':
-                RenderWeather(C3data);
+                weather(C3data);
             break;
             case '倉伯露營區':
-                RenderWeather(C4data);
+                weather(C4data);
             break;
             case '春園休閒農場':
-                RenderWeather(S1data);
+                weather(S1data);
             break;
             case '荖濃有機農場露營區':
-                RenderWeather(S2data);
+                weather(S2data);
             break;
             case '海豚茉莉灣':
-                RenderWeather(S3data);
+                weather(S3data);
             break;
             case '松蘿園林露營區':
-                RenderWeather(E1data);
+                weather(E1data);
             break;
             case 'Ocean Chill 海憩露營區':
-                RenderWeather(E2data);
+                weather(E2data);
             break;
             case '老麥農場露營區':
-                RenderWeather(E3data);
+                weather(E3data);
             break;
             
         };
